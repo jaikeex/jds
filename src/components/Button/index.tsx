@@ -3,11 +3,12 @@ import './styles.scss';
 import { useRippleEffect } from '@core/hooks';
 
 export interface ButtonProps {
-  size?: 'small' | 'medium' | 'large' | 'wide';
-  appearance?: 'subtle' | 'contained' | 'outlined';
+  size?: 'small' | 'medium' | 'large';
+  appearance?: 'subtle' | 'contained' | 'outlined' | 'success' | 'danger';
   disabled?: boolean;
   icon?: React.ReactNode;
   type?: 'button' | 'submit' | 'reset';
+  className?: string;
   onClick: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   children?: React.ReactNode;
 }
@@ -17,6 +18,8 @@ export const Button: React.FC<ButtonProps> = ({
   disabled = false,
   icon = null,
   type = 'button',
+  className = '',
+  appearance = 'contained',
   onClick,
   children,
   ...props
@@ -32,10 +35,11 @@ export const Button: React.FC<ButtonProps> = ({
   };
 
   const getClassName = () => {
-    const classNameGeneral = `mds-btn ${disabled && 'mds-btn--disabled'}`;
-    const classNameSize = `mds-btn--${size}`;
+    const classNameGeneral = disabled ? 'jds-btn jds-btn--disabled' : 'jds-btn';
+    const classNameSize = `jds-btn--${size}`;
+    const classNameAppearance = appearance && `jds-btn--${appearance}`;
 
-    return `${classNameGeneral} ${classNameSize}`;
+    return `${classNameGeneral} ${classNameSize} ${classNameAppearance} ${className}`;
   };
 
   return (
@@ -47,8 +51,8 @@ export const Button: React.FC<ButtonProps> = ({
       type={type}
       onClick={buttonClickHandler}
     >
-      {icon && <span className="mds-btn__icon">{icon}</span>}
-      <span className="mds-btn__text">{children}</span>
+      {icon && <div className="jds-btn__icon">{icon}</div>}
+      <span className="jds-btn__text">{children}</span>
     </button>
   );
 };

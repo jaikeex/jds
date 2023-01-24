@@ -68,3 +68,10 @@
   font-weight: 700;
   src: url('~assets/fonts/italic/OpenSans-BoldItalic.ttf') format('truetype');
 }
+
+.jds-storybook {
+  font-family: 'OpenSans', sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
