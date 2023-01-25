@@ -9,6 +9,8 @@
 /coverage
 
 # production
+/css
+/dist
 /build
 
 # misc

@@ -1,15 +1,16 @@
 import React, { useRef } from 'react';
 import './styles.scss';
 import { useRippleEffect } from '@core/hooks';
+import { ButtonAppearance, ButtonSize, ButtonType } from '@/core/types';
 
 export interface ButtonProps {
-  size?: 'small' | 'medium' | 'large';
-  appearance?: 'subtle' | 'contained' | 'outlined' | 'success' | 'danger';
+  size?: ButtonSize;
+  appearance?: ButtonAppearance;
   disabled?: boolean;
   icon?: React.ReactNode;
-  type?: 'button' | 'submit' | 'reset';
+  type?: ButtonType;
   className?: string;
-  onClick: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onClick?: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   children?: React.ReactNode;
 }
 
@@ -29,9 +30,8 @@ export const Button: React.FC<ButtonProps> = ({
   const createRippleEffect = useRippleEffect(ref);
 
   const buttonClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
     createRippleEffect(event);
-    onClick(event);
+    onClick && onClick(event);
   };
 
   const getClassName = () => {

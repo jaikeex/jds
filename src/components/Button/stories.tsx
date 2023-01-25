@@ -4,7 +4,7 @@ import { Button, ButtonProps } from '.';
 import { ContactMeIcon } from '@components/icons';
 
 export default {
-  title: 'atoms/Button',
+  title: 'Button',
   component: Button
 } as Meta;
 

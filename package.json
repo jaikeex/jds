@@ -1,7 +1,7 @@
 {
   "name": "@jaikeex/jds",
   "description": "A simple React design system to be used in my projects",
-  "version": "0.1.16",
+  "version": "0.2.3",
   "private": false,
   "license": "ISC",
   "publishConfig": {
@@ -50,8 +50,10 @@
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-dts": "^5.1.1",
+    "rollup-plugin-generate-package-json": "^3.2.0",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-scss": "^4.0.0",
+    "rollup-plugin-typescript-paths": "^1.4.0",
     "sass": "^1.57.1",
     "sass-loader": "^13.2.0",
     "storybook-addon-theme-toggle": "^0.0.1",

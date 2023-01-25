@@ -5,6 +5,7 @@ addDecorator(story => <div className="jds-storybook">{story()}</div>);
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
+  layout: 'centered',
   options: {
     storySort: (a, b) =>
       a[1].kind === b[1].kind
