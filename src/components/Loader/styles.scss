@@ -1,0 +1,98 @@
+@import '../../styles/main.scss';
+
+//based on design by https://tobiasahlin.com/spinkit/
+
+.jds-loader {
+  $module: '.jds-loader';
+  display: inline-block;
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    position: relative;
+    transform: rotateZ(45deg);
+  }
+
+  &__square {
+    position: relative;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      animation: loader-folding 2.4s infinite linear both;
+      transform-origin: 100% 100%;
+
+      @include themify() {
+        background-color: themed(text-color-primary);
+      }
+    }
+
+    &--top {
+      transform: scale(1.1);
+    }
+
+    &--right {
+      transform: scale(1.1) rotateZ(90deg);
+
+      &::before {
+        animation-delay: 0.3s;
+      }
+    }
+
+    &--bottom {
+      transform: scale(1.1) rotateZ(180deg);
+
+      &::before {
+        animation-delay: 0.6s;
+      }
+    }
+
+    &--left {
+      transform: scale(1.1) rotateZ(270deg);
+
+      &::before {
+        animation-delay: 0.9s;
+      }
+    }
+  }
+
+  &--size {
+    &-small {
+      width: 4rem;
+      height: 4rem;
+
+      #{$module}__container {
+        margin: 1.25rem auto;
+        width: 1.8rem;
+        height: 1.8rem;
+      }
+    }
+
+    &-medium {
+      width: 5rem;
+      height: 5rem;
+
+      #{$module}__container {
+        margin: 1.25em auto;
+        width: 2.2rem;
+        height: 2.2rem;
+      }
+    }
+
+    &-large {
+      width: 6rem;
+      height: 6rem;
+
+      #{$module}__container {
+        margin: 1.25em auto;
+        width: 2.5rem;
+        height: 2.5rem;
+      }
+    }
+  }
+}
