@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import './styles.scss';
 import { useRippleEffect } from '@core/hooks';
 import { ButtonAppearance, ButtonSize, ButtonType } from '@/core/types';
+import classNames from 'classnames';
 
 export interface ButtonProps {
   size?: ButtonSize;
@@ -10,6 +11,7 @@ export interface ButtonProps {
   icon?: React.ReactNode;
   type?: ButtonType;
   className?: string;
+  styles?: React.CSSProperties;
   onClick?: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   children?: React.ReactNode;
 }
@@ -21,6 +23,7 @@ export const Button: React.FC<ButtonProps> = ({
   type = 'button',
   className = '',
   appearance = 'contained',
+  styles,
   onClick,
   children,
   ...props
@@ -34,18 +37,20 @@ export const Button: React.FC<ButtonProps> = ({
     onClick && onClick(event);
   };
 
-  const getClassName = () => {
-    const classNameGeneral = disabled ? 'jds-btn jds-btn--disabled' : 'jds-btn';
-    const classNameSize = `jds-btn--${size}`;
-    const classNameAppearance = appearance && `jds-btn--${appearance}`;
-
-    return `${classNameGeneral} ${classNameSize} ${classNameAppearance} ${className}`;
-  };
+  const classes = classNames(
+    'jds-btn',
+    `jds-btn--${size}`,
+    `jds-btn--${appearance}`,
+    {
+      'jds-btn--disabled': disabled
+    }
+  );
 
   return (
     <button
       {...props}
-      className={getClassName()}
+      className={classes}
+      style={styles}
       ref={ref}
       disabled={disabled}
       type={type}

@@ -1,0 +1,62 @@
+@import '../../styles/main';
+
+.jds-card {
+  font-family: inherit;
+  position: relative;
+  perspective: 100rem;
+
+  &__side {
+    backface-visibility: hidden;
+    transition: all 0.8s ease;
+    min-width: 200px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    @include themify() {
+      background-color: themed(background-color-primary);
+      color: themed(text-color-primary);
+    }
+
+    &--default {
+      border: none;
+    }
+
+    &--outlined {
+      @include themify() {
+        border: 1px solid rgba(themed(text-color-primary), 0.5);
+      }
+    }
+
+    &--sharp {
+      border-radius: 0;
+    }
+
+    &--shadow {
+      box-shadow: 0 0.5rem 2rem rgba($color-black, 0.4);
+    }
+
+    &--clickable {
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    &--back {
+      transform: rotateY(180deg);
+    }
+  }
+
+  &:hover &__side--front {
+    transform: rotateY(-180deg);
+  }
+
+  &:hover &__side--back {
+    transform: rotateY(0);
+  }
+}

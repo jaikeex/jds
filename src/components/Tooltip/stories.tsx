@@ -127,6 +127,6 @@ LargeTextDanger.args = {
 export const CustomWidth = Template.bind({});
 CustomWidth.args = {
   ...Default.args,
-  size: 180,
+  styles: { width: '180px' },
   content: 'This box is 180px wide'
 };
