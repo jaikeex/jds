@@ -1,6 +1,8 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import { Card, CardProps } from '.';
+import { CardHeader } from '../CardHeader';
+import { ContactMeIcon, DarkModeIcon } from '../icons';
 
 export default {
   title: 'Card',
@@ -48,4 +50,15 @@ Flippable.args = {
   ...Default.args,
   children: <div style={{ textAlign: 'center' }}>This is the frontside</div>,
   backside: <div style={{ textAlign: 'center' }}>This is the backside</div>
+};
+
+export const WithHeader = Template.bind({});
+WithHeader.args = {
+  ...Default.args,
+  children: <CardHeader
+  title= {'Card title'}
+  subtitle= {'Card sub-title'}
+  rightAction= <ContactMeIcon />
+  leftAction= <DarkModeIcon />
+ />
 };
