@@ -1,10 +1,10 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { Button, ButtonProps } from '.';
-import { ContactMeIcon } from '@components/icons';
+import Button, { ButtonProps } from '.';
+import { HomeIcon } from '@components/icons';
 
 export default {
-  title: 'Button',
+  title: 'Design System/Button',
   component: Button
 } as Meta;
 
@@ -12,10 +12,7 @@ const Template: Story<ButtonProps> = args => <Button {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  children: 'Default',
-  onClick: () => {
-    console.log('BUTTON CLICKED');
-  }
+  children: 'Default'
 };
 
 export const Small = Template.bind({});
@@ -30,6 +27,14 @@ Large.args = {
   ...Default.args,
   size: 'large',
   children: 'Large'
+};
+
+export const LargeWithIcon = Template.bind({});
+LargeWithIcon.args = {
+  ...Default.args,
+  size: 'large',
+  children: 'Large',
+  icon: <HomeIcon />
 };
 
 export const Subtle = Template.bind({});
@@ -63,7 +68,7 @@ Danger.args = {
 export const DefaultWithIcon = Template.bind({});
 DefaultWithIcon.args = {
   ...Default.args,
-  icon: <ContactMeIcon />
+  icon: <HomeIcon />
 };
 
 export const Disabled = Template.bind({});

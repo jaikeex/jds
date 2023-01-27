@@ -8,14 +8,16 @@ export interface TooltipProps {
   position?: TooltipPosition;
   size?: 'short-text' | 'long-text' | 'default';
   content: React.ReactNode;
+  className?: string;
   styles?: React.CSSProperties;
   children?: React.ReactNode;
 }
 
-export const Tooltip: React.FC<TooltipProps> = ({
+const Tooltip: React.FC<TooltipProps> = ({
   appearance = 'default',
   position = 'right',
   size = 'default',
+  className = '',
   styles,
   content,
   children
@@ -27,7 +29,8 @@ export const Tooltip: React.FC<TooltipProps> = ({
     'jds-tooltip__content',
     `jds-tooltip__content--pos--${position}`,
     `jds-tooltip__content--color--${appearance}`,
-    `jds-tooltip__content--size--${size}`
+    `jds-tooltip__content--size--${size}`,
+    className
   );
 
   useEffect(() => {
@@ -52,10 +55,4 @@ export const Tooltip: React.FC<TooltipProps> = ({
   );
 };
 
-/*
-
-Wraps around the component which should display the tooltip
-
-The container is an inline, relative positioned element with appropriate mouse event handlers
-
-*/
+export default Tooltip;

@@ -7,10 +7,9 @@ export interface CardHeaderProps {
   leftAction?: React.ReactNode;
   rightAction?: React.ReactNode;
   styles?: React.CSSProperties;
-  children?: React.ReactNode;
 }
 
-export const CardHeader: React.FC<CardHeaderProps> = ({
+const CardHeader: React.FC<CardHeaderProps> = ({
   title = '',
   subtitle = '',
   leftAction,
@@ -38,3 +37,5 @@ export const CardHeader: React.FC<CardHeaderProps> = ({
     </div>
   );
 };
+
+export default CardHeader;

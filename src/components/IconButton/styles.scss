@@ -1,0 +1,66 @@
+@import '../../styles/main';
+
+.jds-icon-btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  will-change: transform;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.8);
+  }
+
+  &--default {
+    svg {
+      @include themify() {
+        fill: themed(icon-button-color);
+      }
+    }
+
+    &:hover {
+      svg {
+        @include themify() {
+          fill: themed(icon-button-color-hover);
+        }
+      }
+    }
+  }
+
+  &--success {
+    svg {
+      fill: $color-success-1;
+    }
+  }
+
+  &--danger {
+    svg {
+      fill: $color-danger-1;
+    }
+  }
+
+  &--small {
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  &--medium {
+    svg {
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+  }
+
+  &--large {
+    svg {
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+  }
+}

@@ -5,7 +5,7 @@ export interface LoaderProps {
   size?: 'small' | 'medium' | 'large';
 }
 
-export const Loader: React.FC<LoaderProps> = ({ size = 'medium' }) => {
+const Loader: React.FC<LoaderProps> = ({ size = 'medium' }) => {
   const getClassName = () => {
     let className = 'jds-loader';
     className = className.concat(` jds-loader--size-${size}`);
@@ -24,3 +24,5 @@ export const Loader: React.FC<LoaderProps> = ({ size = 'medium' }) => {
     </div>
   );
 };
+
+export default Loader;

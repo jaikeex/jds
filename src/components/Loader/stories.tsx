@@ -1,9 +1,9 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { Loader, LoaderProps } from '.';
+import Loader, { LoaderProps } from '.';
 
 export default {
-  title: 'Loader',
+  title: 'Design System/Loader',
   component: Loader
 } as Meta;
 

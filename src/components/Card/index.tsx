@@ -7,17 +7,19 @@ export interface CardProps {
   hasShadow?: boolean;
   clickable?: boolean;
   sharpCorners?: boolean;
-  onClick?: () => void;
+  onClick?: React.MouseEventHandler<HTMLDivElement>;
   styles?: React.CSSProperties;
   backside?: React.ReactNode;
+  className?: string;
   children?: React.ReactNode;
 }
 
-export const Card: React.FC<CardProps> = ({
+const Card: React.FC<CardProps> = ({
   appearance = 'default',
   hasShadow = false,
   clickable = false,
   sharpCorners = false,
+  className = '',
   onClick,
   styles,
   backside,
@@ -34,14 +36,15 @@ export const Card: React.FC<CardProps> = ({
       'jds-card__side--shadow': hasShadow,
       'jds-card__side--clickable': clickable && !backside,
       'jds-card__side--front': backside
-    }
+    },
+    className
   );
   const backSideClasses = classNames('jds-card__side', {
     'jds-card__side--back': backside
   });
 
-  const cardClickHandler = () => {
-    clickable && onClick && onClick();
+  const cardClickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
+    clickable && onClick && onClick(event);
   };
 
   console.log(backside);
@@ -65,3 +68,5 @@ export const Card: React.FC<CardProps> = ({
     </React.Fragment>
   );
 };
+
+export default Card;

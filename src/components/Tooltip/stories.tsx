@@ -1,11 +1,11 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
 import './stories.scss';
-import { Tooltip, TooltipProps } from '.';
-import { Button } from '../Button/index';
+import Tooltip, { TooltipProps } from '.';
+import Button from '@components/Button';
 
 export default {
-  title: 'Tooltip',
+  title: 'Design System/Tooltip',
   component: Tooltip
 } as Meta;
 

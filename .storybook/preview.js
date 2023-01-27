@@ -7,10 +7,9 @@ export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
   layout: 'centered',
   options: {
-    storySort: (a, b) =>
-      a[1].kind === b[1].kind
-        ? 0
-        : a[1].id.localeCompare(b[1].id, undefined, { numeric: true })
+    storySort: {
+      method: 'alphabetical'
+    }
   },
   controls: {
     matchers: {
@@ -19,6 +18,7 @@ export const parameters = {
     }
   },
   theme: {
+    default: 'light',
     themes: [
       { title: 'light', id: 'light', class: 'theme-light', color: '#ffffff' },
       { title: 'dark', id: 'dark', class: 'theme-dark', color: '#202020' }

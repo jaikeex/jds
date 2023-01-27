@@ -5,8 +5,10 @@ $themes: (
     button-color-background-2: #42a5f5,
     button-color-text: rgba($color-black, 0.9),
     button-color-icon: rgba($color-black, 0.9),
-    text-color-primary: #e1e1e1,
-    text-color-secondary: #bbbbbb
+    icon-button-color: #084b83,
+    icon-button-color-hover: #2f6da0,
+    text-color-primary: #202020,
+    text-color-secondary: #444444
   ),
   '.theme-light': (
     background-color-primary: #eaf7cf,
@@ -14,6 +16,8 @@ $themes: (
     button-color-background-2: #42a5f5,
     button-color-text: rgba($color-black, 0.9),
     button-color-icon: rgba($color-black, 0.9),
+    icon-button-color: #084b83,
+    icon-button-color-hover: #2f6da0,
     text-color-primary: #202020,
     text-color-secondary: #444444
   ),
@@ -23,6 +27,8 @@ $themes: (
     button-color-background-2: #2f6da0,
     button-color-text: rgba($color-grey-light-1, 0.9),
     button-color-icon: rgba($color-grey-light-1, 0.9),
+    icon-button-color: #ebefbf,
+    icon-button-color-hover: #eaf7cf,
     text-color-primary: #e1e1e1,
     text-color-secondary: #bbbbbb
   )

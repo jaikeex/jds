@@ -12,11 +12,11 @@ export interface ButtonProps {
   type?: ButtonType;
   className?: string;
   styles?: React.CSSProperties;
-  onClick?: (event?: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
   children?: React.ReactNode;
 }
 
-export const Button: React.FC<ButtonProps> = ({
+const Button: React.FC<ButtonProps> = ({
   size = 'medium',
   disabled = false,
   icon = null,
@@ -43,7 +43,8 @@ export const Button: React.FC<ButtonProps> = ({
     `jds-btn--${appearance}`,
     {
       'jds-btn--disabled': disabled
-    }
+    },
+    className
   );
 
   return (
@@ -61,3 +62,5 @@ export const Button: React.FC<ButtonProps> = ({
     </button>
   );
 };
+
+export default Button;

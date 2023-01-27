@@ -1,10 +1,10 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { CardHeader, CardHeaderProps } from '.';
-import { ContactMeIcon, DarkModeIcon } from '@components/icons';
+import CardHeader, { CardHeaderProps } from '.';
+import { HomeIcon, SearchIcon } from '@components/icons';
 
 export default {
-  title: 'CardHeader',
+  title: 'Design System/Card/CardHeader',
   component: CardHeader
 } as Meta;
 
@@ -15,6 +15,6 @@ Default.args = {
   styles: { width: '250px' },
   title: 'Card title',
   subtitle: 'Card sub-title',
-  rightAction: <ContactMeIcon />,
-  leftAction: <DarkModeIcon />
+  rightAction: <HomeIcon />,
+  leftAction: <SearchIcon />
 };

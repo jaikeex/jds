@@ -1,11 +1,11 @@
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { Card, CardProps } from '.';
-import { CardHeader } from '../CardHeader';
-import { ContactMeIcon, DarkModeIcon } from '../icons';
+import Card, { CardProps } from '.';
+import CardHeader from '@components/CardHeader';
+import { HomeIcon, SearchIcon } from '@components/icons';
 
 export default {
-  title: 'Card',
+  title: 'Design System/Card',
   component: Card
 } as Meta;
 
@@ -55,10 +55,12 @@ Flippable.args = {
 export const WithHeader = Template.bind({});
 WithHeader.args = {
   ...Default.args,
-  children: <CardHeader
-  title= {'Card title'}
-  subtitle= {'Card sub-title'}
-  rightAction= <ContactMeIcon />
-  leftAction= <DarkModeIcon />
- />
+  children: (
+    <CardHeader
+      title={'Card title'}
+      subtitle={'Card sub-title'}
+      rightAction={<SearchIcon />}
+      leftAction={<HomeIcon />}
+    />
+  )
 };
