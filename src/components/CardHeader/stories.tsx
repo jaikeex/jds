@@ -1,12 +1,12 @@
 import React from 'react';
-import { Story, Meta } from '@storybook/react';
+import { Story, ComponentMeta } from '@storybook/react';
 import CardHeader, { CardHeaderProps } from '.';
 import { HomeIcon, SearchIcon } from '@components/icons';
 
 export default {
   title: 'Design System/Card/CardHeader',
   component: CardHeader
-} as Meta;
+} as ComponentMeta<typeof CardHeader>;
 
 const Template: Story<CardHeaderProps> = args => <CardHeader {...args} />;
 

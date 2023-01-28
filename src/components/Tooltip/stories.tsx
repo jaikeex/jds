@@ -1,5 +1,5 @@
 import React from 'react';
-import { Story, Meta } from '@storybook/react';
+import { Story, ComponentMeta } from '@storybook/react';
 import './stories.scss';
 import Tooltip, { TooltipProps } from '.';
 import Button from '@components/Button';
@@ -7,7 +7,7 @@ import Button from '@components/Button';
 export default {
   title: 'Design System/Tooltip',
   component: Tooltip
-} as Meta;
+} as ComponentMeta<typeof Tooltip>;
 
 const Template: Story<TooltipProps> = args => (
   <div className="container">

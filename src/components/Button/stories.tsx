@@ -1,12 +1,12 @@
 import React from 'react';
-import { Story, Meta } from '@storybook/react';
+import { Story, ComponentMeta } from '@storybook/react';
 import Button, { ButtonProps } from '.';
 import { HomeIcon } from '@components/icons';
 
 export default {
   title: 'Design System/Button',
   component: Button
-} as Meta;
+} as ComponentMeta<typeof Button>;
 
 const Template: Story<ButtonProps> = args => <Button {...args} />;
 

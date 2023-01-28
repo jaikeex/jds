@@ -1,11 +1,11 @@
 import React from 'react';
-import { Story, Meta } from '@storybook/react';
+import { Story, ComponentMeta } from '@storybook/react';
 import Loader, { LoaderProps } from '.';
 
 export default {
   title: 'Design System/Loader',
   component: Loader
-} as Meta;
+} as ComponentMeta<typeof Loader>;
 
 const Template: Story<LoaderProps> = args => <Loader {...args} />;
 

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Story, Meta } from '@storybook/react';
+import { Story, ComponentMeta } from '@storybook/react';
 import IconButton, { IconButtonProps } from '.';
 import { LightModeIcon } from '@components/icons';
 
 export default {
   title: 'Design System/IconButton',
   component: IconButton
-} as Meta;
+} as ComponentMeta<typeof IconButton>;
 
 const Template: Story<IconButtonProps> = args => <IconButton {...args} />;
 
