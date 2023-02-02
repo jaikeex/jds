@@ -43,10 +43,10 @@ const Template: Story<AlertProps> = args => {
     });
   };
 
-  const primaryClickHandler = () => {
+  const warningClickHandler = () => {
     displayAlert({
-      message: 'This is an alert bar - primary variant',
-      appearance: 'primary'
+      message: 'This is an alert bar - warning variant',
+      appearance: 'warning'
     });
   };
 
@@ -67,8 +67,12 @@ const Template: Story<AlertProps> = args => {
       <Button onClick={dangerClickHandler} color="danger">
         Show Alert (danger)
       </Button>
-      <Button onClick={primaryClickHandler}>Show Alert (primary)</Button>
-      <Button onClick={darkClickHandler}>Show Alert (dark)</Button>
+      <Button onClick={warningClickHandler} color="warning">
+        Show Alert (warning)
+      </Button>
+      <Button onClick={darkClickHandler} appearance="outlined">
+        Show Alert (dark)
+      </Button>
     </div>
   );
 };

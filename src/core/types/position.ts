@@ -1,6 +1,4 @@
-export type TooltipAppearance = 'default' | 'success' | 'danger';
-
-export type TooltipPosition =
+export type Position =
   | 'top-start'
   | 'top'
   | 'top-end'

@@ -1,8 +1,6 @@
-import { ButtonAppearance } from '@core/types';
-
 export const useButtonGroupStyles = (
   orientation: 'horizontal' | 'vertical',
-  appearance: ButtonAppearance
+  appearance: 'subtle' | 'filled' | 'outlined'
 ) => {
   const styleFirstElement: React.CSSProperties =
     orientation === 'horizontal'

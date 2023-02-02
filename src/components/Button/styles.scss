@@ -1,5 +1,8 @@
 @import '@styles/main';
 
+$btn-color-variants: 'default', 'warning', 'success', 'danger', 'focus',
+  'accented';
+
 @mixin btn-color-variant($variant) {
   &--#{$variant} {
     &--filled {
@@ -69,7 +72,7 @@
   transition: background-color 0.3s;
   cursor: pointer;
 
-  @each $variant in map-keys($variants) {
+  @each $variant in $btn-color-variants {
     @include btn-color-variant($variant);
   }
 

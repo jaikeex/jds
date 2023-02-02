@@ -1,6 +1,8 @@
 @import '@styles/main';
 
 .jds-tooltip {
+  $tooltip-offset: 0.5rem;
+
   &__container {
     position: relative;
     display: inline-block;
@@ -50,62 +52,62 @@
 
     &--pos {
       &--right-start {
-        left: calc(100% + 0.5rem);
+        left: calc(100% + $tooltip-offset);
       }
 
       &--right {
-        left: calc(100% + 0.5rem);
+        left: calc(100% + $tooltip-offset);
         top: 50%;
         transform: translateY(-50%);
       }
 
       &--right-end {
-        left: calc(100% + 0.5rem);
+        left: calc(100% + $tooltip-offset);
         bottom: 0;
       }
 
       &--bottom-end {
-        top: calc(100% + 0.5rem);
+        top: calc(100% + $tooltip-offset);
         right: 0;
       }
 
       &--bottom {
-        top: calc(100% + 0.5rem);
+        top: calc(100% + $tooltip-offset);
         left: 50%;
         transform: translateX(-50%);
       }
 
       &--bottom-start {
-        top: calc(100% + 0.5rem);
+        top: calc(100% + $tooltip-offset);
       }
 
       &--left-end {
-        right: calc(100% + 0.5rem);
+        right: calc(100% + $tooltip-offset);
         bottom: 0;
       }
 
       &--left {
-        right: calc(100% + 0.5rem);
+        right: calc(100% + $tooltip-offset);
         top: 50%;
         transform: translateY(-50%);
       }
 
       &--left-start {
-        right: calc(100% + 0.5rem);
+        right: calc(100% + $tooltip-offset);
       }
 
       &--top-start {
-        bottom: calc(100% + 0.5rem);
+        bottom: calc(100% + $tooltip-offset);
       }
 
       &--top {
-        bottom: calc(100% + 0.5rem);
+        bottom: calc(100% + $tooltip-offset);
         left: 50%;
         transform: translateX(-50%);
       }
 
       &--top-end {
-        bottom: calc(100% + 0.5rem);
+        bottom: calc(100% + $tooltip-offset);
         right: 0;
       }
     }

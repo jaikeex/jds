@@ -46,6 +46,12 @@ $themes: (
         color-light: #ba68c8,
         color-dark: #7b1fa2,
         text-color: #ffffff
+      ),
+      color-variant-dark: (
+        color-primary: #ce93d8,
+        color-light: #e3f2fd,
+        color-dark: #42a5f5,
+        text-color: #202020
       )
     ),
   '.theme-dark': (
@@ -94,6 +100,12 @@ $themes: (
       color-light: #e3f2fd,
       color-dark: #42a5f5,
       text-color: #202020
+    ),
+    color-variant-dark: (
+      color-primary: #ce93d8,
+      color-light: #e3f2fd,
+      color-dark: #42a5f5,
+      text-color: #202020
     )
   )
 );
@@ -104,5 +116,6 @@ $variants: (
   warning: 'color-variant-warning',
   danger: 'color-variant-danger',
   accented: 'color-variant-accented',
-  focus: 'color-variant-focus'
+  focus: 'color-variant-focus',
+  dark: 'color-variant-dark'
 );

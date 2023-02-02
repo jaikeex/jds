@@ -1,5 +1,26 @@
 @import '@styles/main';
 
+$icon-btn-color-variants: 'default', 'warning', 'success', 'danger', 'focus',
+  'accented';
+
+@mixin icon-btn-color-variant($variant) {
+  &--#{$variant} {
+    svg {
+      @include themify() {
+        fill: themed-variant($variant, color-primary);
+      }
+    }
+
+    &:hover {
+      svg {
+        @include themify() {
+          fill: themed-variant($variant, color-dark);
+        }
+      }
+    }
+  }
+}
+
 .jds-icon-btn {
   border: none;
   background-color: transparent;
@@ -23,44 +44,8 @@
     transform: scale(0.9);
   }
 
-  &--default {
-    svg {
-      @include themify() {
-        fill: themed(icon-button-color);
-      }
-    }
-
-    &:hover {
-      svg {
-        @include themify() {
-          fill: themed(icon-button-color-hover);
-        }
-      }
-    }
-  }
-
-  &--success {
-    svg {
-      fill: $color-success-1 !important;
-    }
-
-    &:hover {
-      svg {
-        fill: $color-success-2 !important;
-      }
-    }
-  }
-
-  &--danger {
-    path {
-      fill: $color-danger-1 !important;
-    }
-
-    &:hover {
-      svg {
-        fill: $color-danger-2 !important;
-      }
-    }
+  @each $variant in $icon-btn-color-variants {
+    @include icon-btn-color-variant($variant);
   }
 
   &--small {

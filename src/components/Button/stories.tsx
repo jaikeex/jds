@@ -5,16 +5,7 @@ import { HomeIcon } from '@components/icons';
 
 export default {
   title: 'Design System/Button',
-  component: Button,
-  parameters: {
-    options: {
-      storySort: {
-        method: 'alphabetical',
-        order: ['Small', 'Medium', 'Large', '*'],
-        includeName: true
-      }
-    }
-  }
+  component: Button
 } as ComponentMeta<typeof Button>;
 
 const Template: Story<ButtonProps> = args => {

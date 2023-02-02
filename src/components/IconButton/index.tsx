@@ -1,11 +1,10 @@
 import React from 'react';
 import './styles.scss';
 import classNames from 'classnames';
-import { ButtonSize } from '@/core/types';
 
 export interface IconButtonProps {
-  size?: ButtonSize;
-  appearance?: 'success' | 'danger' | 'default';
+  size?: 'small' | 'medium' | 'large';
+  color?: 'default' | 'warning' | 'success' | 'danger' | 'focus' | 'accented';
   styles?: React.CSSProperties;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   className?: string;
@@ -13,7 +12,7 @@ export interface IconButtonProps {
 }
 
 const IconButton: React.FC<IconButtonProps> = ({
-  appearance = 'default',
+  color = 'default',
   size = 'medium',
   className = '',
   styles,
@@ -23,7 +22,7 @@ const IconButton: React.FC<IconButtonProps> = ({
   const classes = classNames(
     'jds-icon-btn',
     `jds-icon-btn--${size}`,
-    `jds-icon-btn--${appearance}`,
+    `jds-icon-btn--${color}`,
     className
   );
 

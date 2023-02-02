@@ -1,11 +1,11 @@
-import { TooltipAppearance, TooltipPosition } from '@/core/types';
+import { Position } from '@/core/types';
 import React, { useEffect, useRef, useState } from 'react';
 import './styles.scss';
 import classNames from 'classnames';
 
 export interface TooltipProps {
-  appearance?: TooltipAppearance;
-  position?: TooltipPosition;
+  appearance?: 'default' | 'success' | 'danger';
+  position?: Position;
   size?: 'short-text' | 'long-text' | 'default';
   content: React.ReactNode;
   className?: string;

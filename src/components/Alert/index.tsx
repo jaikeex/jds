@@ -12,7 +12,14 @@ export interface AlertProps {
   closable?: boolean;
   message?: string;
   action?: React.ReactNode;
-  appearance?: AlertAppearance;
+  appearance?:
+    | 'default'
+    | 'warning'
+    | 'success'
+    | 'danger'
+    | 'accented'
+    | 'dark'
+    | 'focus';
   location?: AlertLocation;
   icon?: React.ReactElement;
   onClose?: () => void;

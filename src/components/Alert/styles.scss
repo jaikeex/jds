@@ -1,5 +1,25 @@
 @import '@styles/main';
 
+@mixin alert-color-variant($variant) {
+  &--#{$variant} {
+    @include themify() {
+      background-color: themed-variant($variant, color-primary);
+      color: themed-variant($variant, text-color);
+
+      @if $variant == default {
+        background-color: themed(alert-color-background);
+        color: themed(text-color-primary);
+      }
+
+      @if $variant == dark {
+        svg {
+          fill: $color-white !important;
+        }
+      }
+    }
+  }
+}
+
 .jds-alert {
   $module: '.jds-alert';
 
@@ -14,6 +34,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
+
+  @each $variant in map-keys($variants) {
+    @include alert-color-variant($variant);
+  }
 
   &__info {
     width: 100%;
@@ -62,36 +86,5 @@
 
   &--center#{&}--bottom {
     animation: slide-in-bottom 0.4s;
-  }
-
-  &--default {
-    @include themify() {
-      background-color: themed(alert-color-background);
-      color: themed(text-color-primary);
-    }
-  }
-
-  &--success {
-    background-color: $color-success-1;
-    color: $color-white;
-  }
-
-  &--danger {
-    background-color: $color-danger-1;
-    color: $color-white;
-  }
-
-  &--primary {
-    background-color: $color-blue-light-1;
-    color: $color-white;
-  }
-
-  &--dark {
-    background-color: $color-grey-dark-3;
-    color: $color-white;
-
-    svg {
-      fill: $color-white !important;
-    }
   }
 }

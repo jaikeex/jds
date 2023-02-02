@@ -18,13 +18,31 @@ Default.args = {
 export const Success = Template.bind({});
 Success.args = {
   ...Default.args,
-  appearance: 'success'
+  color: 'success'
 };
 
 export const Danger = Template.bind({});
 Danger.args = {
   ...Default.args,
-  appearance: 'danger'
+  color: 'danger'
+};
+
+export const Warning = Template.bind({});
+Warning.args = {
+  ...Default.args,
+  color: 'warning'
+};
+
+export const Focus = Template.bind({});
+Focus.args = {
+  ...Default.args,
+  color: 'focus'
+};
+
+export const Accented = Template.bind({});
+Accented.args = {
+  ...Default.args,
+  color: 'accented'
 };
 
 export const Small = Template.bind({});
