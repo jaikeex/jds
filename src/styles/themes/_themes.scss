@@ -1,26 +1,53 @@
 $themes: (
-  '': (
-    background-color-primary: #202020,
-    button-color-background-1: #90caf9,
-    button-color-background-2: #42a5f5,
-    button-color-text: rgba($color-black, 0.9),
-    button-color-icon: rgba($color-black, 0.9),
-    icon-button-color: #084b83,
-    icon-button-color-hover: #2f6da0,
-    text-color-primary: #202020,
-    text-color-secondary: #444444
-  ),
-  '.theme-light': (
-    background-color-primary: #eaf7cf,
-    button-color-background-1: #90caf9,
-    button-color-background-2: #42a5f5,
-    button-color-text: rgba($color-black, 0.9),
-    button-color-icon: rgba($color-black, 0.9),
-    icon-button-color: #084b83,
-    icon-button-color-hover: #2f6da0,
-    text-color-primary: #202020,
-    text-color-secondary: #444444
-  ),
+  '.theme-light' '':
+    (
+      background-color-primary: #eaf7cf,
+      button-color-background-1: #90caf9,
+      button-color-background-2: #42a5f5,
+      button-color-text: rgba($color-black, 0.9),
+      button-color-icon: rgba($color-black, 0.9),
+      icon-button-color: #084b83,
+      icon-button-color-hover: #2f6da0,
+      alert-color-background: #eaf7cf,
+      text-color-primary: #202020,
+      text-color-secondary: #444444,
+      color-variant-default: (
+        color-primary: #1976d2,
+        color-light: #42a5f5,
+        color-dark: #1565c0,
+        text-color: #ffffff
+      ),
+      color-variant-success: (
+        color-primary: #2e7d32,
+        color-light: #4caf50,
+        color-dark: #1b5e20,
+        text-color: #ffffff
+      ),
+      color-variant-warning: (
+        color-primary: #ed6c02,
+        color-light: #ff9800,
+        color-dark: #e65100,
+        text-color: #ffffff
+      ),
+      color-variant-danger: (
+        color-primary: #d32f2f,
+        color-light: #ef5350,
+        color-dark: #c62828,
+        text-color: #ffffff
+      ),
+      color-variant-accented: (
+        color-primary: #9c27b0,
+        color-light: #ba68c8,
+        color-dark: #7b1fa2,
+        text-color: #ffffff
+      ),
+      color-variant-focus: (
+        color-primary: #9c27b0,
+        color-light: #ba68c8,
+        color-dark: #7b1fa2,
+        text-color: #ffffff
+      )
+    ),
   '.theme-dark': (
     background-color-primary: #202020,
     button-color-background-1: #084b83,
@@ -29,7 +56,53 @@ $themes: (
     button-color-icon: rgba($color-grey-light-1, 0.9),
     icon-button-color: #ebefbf,
     icon-button-color-hover: #eaf7cf,
+    alert-color-background: #0b192c,
     text-color-primary: #e1e1e1,
-    text-color-secondary: #bbbbbb
+    text-color-secondary: #bbbbbb,
+    color-variant-default: (
+      color-primary: #90caf9,
+      color-light: #e3f2fd,
+      color-dark: #42a5f5,
+      text-color: #202020
+    ),
+    color-variant-success: (
+      color-primary: #66bb6a,
+      color-light: #81c784,
+      color-dark: #388e3c,
+      text-color: #202020
+    ),
+    color-variant-warning: (
+      color-primary: #ffa726,
+      color-light: #ffb74d,
+      color-dark: #f57c00,
+      text-color: #202020
+    ),
+    color-variant-danger: (
+      color-primary: #f44336,
+      color-light: #e57373,
+      color-dark: #d32f2f,
+      text-color: #202020
+    ),
+    color-variant-accented: (
+      color-primary: #ce93d8,
+      color-light: #e3f2fd,
+      color-dark: #42a5f5,
+      text-color: #202020
+    ),
+    color-variant-focus: (
+      color-primary: #ce93d8,
+      color-light: #e3f2fd,
+      color-dark: #42a5f5,
+      text-color: #202020
+    )
   )
+);
+
+$variants: (
+  default: 'color-variant-default',
+  success: 'color-variant-success',
+  warning: 'color-variant-warning',
+  danger: 'color-variant-danger',
+  accented: 'color-variant-accented',
+  focus: 'color-variant-focus'
 );

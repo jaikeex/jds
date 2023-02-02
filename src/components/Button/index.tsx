@@ -6,9 +6,11 @@ import classNames from 'classnames';
 
 export interface ButtonProps {
   size?: ButtonSize;
-  appearance?: ButtonAppearance;
+  appearance?: 'subtle' | 'filled' | 'outlined';
+  color?: 'default' | 'warning' | 'success' | 'danger' | 'focus' | 'accented';
   disabled?: boolean;
-  icon?: React.ReactNode;
+  iconLeft?: React.ReactNode;
+  iconRight?: React.ReactNode;
   type?: ButtonType;
   className?: string;
   styles?: React.CSSProperties;
@@ -19,10 +21,12 @@ export interface ButtonProps {
 const Button: React.FC<ButtonProps> = ({
   size = 'medium',
   disabled = false,
-  icon = null,
+  iconLeft = null,
+  iconRight = null,
   type = 'button',
   className = '',
-  appearance = 'contained',
+  appearance = 'filled',
+  color = 'default',
   styles,
   onClick,
   children,
@@ -40,7 +44,7 @@ const Button: React.FC<ButtonProps> = ({
   const classes = classNames(
     'jds-btn',
     `jds-btn--${size}`,
-    `jds-btn--${appearance}`,
+    `jds-btn--${color}--${appearance}`,
     {
       'jds-btn--disabled': disabled
     },
@@ -57,8 +61,9 @@ const Button: React.FC<ButtonProps> = ({
       type={type}
       onClick={buttonClickHandler}
     >
-      {icon && <div className="jds-btn__icon">{icon}</div>}
+      {iconLeft && <div className="jds-btn__icon">{iconLeft}</div>}
       <span className="jds-btn__text">{children}</span>
+      {iconRight && <div className="jds-btn__icon">{iconRight}</div>}
     </button>
   );
 };

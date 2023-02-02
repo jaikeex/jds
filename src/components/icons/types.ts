@@ -21,4 +21,10 @@ export type IconSize =
   | 'large'
   | 'extra-large';
 
-export type IconColor = 'default' | 'success' | 'danger' | 'disabled' | 'focus';
+export type IconColor =
+  | 'default'
+  | 'success'
+  | 'danger'
+  | 'disabled'
+  | 'focus'
+  | 'white';

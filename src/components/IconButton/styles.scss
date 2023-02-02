@@ -7,6 +7,10 @@
   will-change: transform;
   transition: transform 0.2s;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   svg {
     transition: fill 0.2s;
   }
@@ -22,14 +26,14 @@
   &--default {
     svg {
       @include themify() {
-        fill: themed(icon-button-color) !important;
+        fill: themed(icon-button-color);
       }
     }
 
     &:hover {
       svg {
         @include themify() {
-          fill: themed(icon-button-color-hover) !important;
+          fill: themed(icon-button-color-hover);
         }
       }
     }

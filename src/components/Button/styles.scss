@@ -1,5 +1,55 @@
 @import '@styles/main';
 
+@mixin btn-color-variant($variant) {
+  &--#{$variant} {
+    &--filled {
+      @include themify() {
+        background-color: themed-variant($variant, color-primary);
+        color: themed-variant($variant, text-color);
+
+        svg {
+          fill: themed-variant($variant, text-color);
+        }
+
+        &:hover {
+          background-color: themed-variant($variant, color-dark);
+        }
+      }
+    }
+
+    &--outlined {
+      @include themify() {
+        background-color: transparent;
+        border: 1px solid themed-variant($variant, color-primary);
+        color: themed-variant($variant, color-dark);
+
+        svg {
+          fill: themed-variant($variant, color-dark);
+        }
+
+        &:hover {
+          background-color: rgba(themed-variant($variant, color-primary), 0.2);
+        }
+      }
+    }
+
+    &--subtle {
+      @include themify() {
+        background-color: transparent;
+        color: themed-variant($variant, color-dark);
+
+        svg {
+          fill: themed-variant($variant, color-dark);
+        }
+
+        &:hover {
+          background-color: rgba(themed-variant($variant, color-primary), 0.2);
+        }
+      }
+    }
+  }
+}
+
 .jds-btn {
   font-family: inherit;
   font-weight: 600;
@@ -11,12 +61,17 @@
   border-radius: 5px;
   position: relative;
   overflow: hidden;
+  text-overflow: ellipsis;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.25rem;
   transition: background-color 0.3s;
   cursor: pointer;
+
+  @each $variant in map-keys($variants) {
+    @include btn-color-variant($variant);
+  }
 
   &__icon {
     display: flex;
@@ -27,9 +82,6 @@
       height: 1.2rem;
       width: 1.2rem;
     }
-  }
-
-  &__text {
   }
 
   &--small {
@@ -56,66 +108,6 @@
     svg {
       height: 1.5rem;
       width: 1.5rem;
-    }
-  }
-
-  &--contained {
-    @include themify() {
-      background-color: themed(button-color-background-1);
-      color: themed(button-color-text);
-    }
-
-    &:hover {
-      @include themify() {
-        background-color: themed(button-color-background-2);
-      }
-    }
-  }
-
-  &--subtle {
-    background-color: transparent;
-
-    @include themify() {
-      color: themed(button-color-text);
-    }
-
-    &:hover {
-      @include themify() {
-        background-color: themed(button-color-background-2);
-      }
-    }
-  }
-
-  &--outlined {
-    border: 1px solid #8675d3;
-    background-color: transparent;
-
-    @include themify() {
-      color: themed(button-color-text);
-    }
-
-    &:hover {
-      @include themify() {
-        background-color: themed(button-color-background-2);
-      }
-    }
-  }
-
-  &--success {
-    color: rgba($color-black, 0.9);
-    background-color: $color-success-1;
-
-    &:hover {
-      background-color: $color-success-2;
-    }
-  }
-
-  &--danger {
-    color: rgba($color-black, 0.9);
-    background-color: $color-danger-1;
-
-    &:hover {
-      background-color: $color-danger-2;
     }
   }
 

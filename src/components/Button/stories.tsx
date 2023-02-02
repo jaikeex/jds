@@ -5,75 +5,116 @@ import { HomeIcon } from '@components/icons';
 
 export default {
   title: 'Design System/Button',
-  component: Button
+  component: Button,
+  parameters: {
+    options: {
+      storySort: {
+        method: 'alphabetical',
+        order: ['Small', 'Medium', 'Large', '*'],
+        includeName: true
+      }
+    }
+  }
 } as ComponentMeta<typeof Button>;
 
-const Template: Story<ButtonProps> = args => <Button {...args} />;
+const Template: Story<ButtonProps> = args => {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      <Button {...args} color="default">
+        default
+      </Button>
+      <Button {...args} color="success">
+        success
+      </Button>
+      <Button {...args} color="warning">
+        warning
+      </Button>
+      <Button {...args} color="danger">
+        danger
+      </Button>
+      <Button {...args} color="accented">
+        accented
+      </Button>
+      <Button {...args} color="focus">
+        focus
+      </Button>
+    </div>
+  );
+};
 
-export const Default = Template.bind({});
-Default.args = {
-  children: 'Default'
+export const Medium = Template.bind({});
+Medium.args = {
+  size: 'medium'
 };
 
 export const Small = Template.bind({});
 Small.args = {
-  ...Default.args,
-  size: 'small',
-  children: 'Small'
+  size: 'small'
 };
 
 export const Large = Template.bind({});
 Large.args = {
-  ...Default.args,
-  size: 'large',
-  children: 'Large'
-};
-
-export const LargeWithIcon = Template.bind({});
-LargeWithIcon.args = {
-  ...Default.args,
-  size: 'large',
-  children: 'Large',
-  icon: <HomeIcon />
+  size: 'large'
 };
 
 export const Subtle = Template.bind({});
 Subtle.args = {
-  ...Default.args,
-  children: 'Subtle',
   appearance: 'subtle'
 };
 
 export const Outlined = Template.bind({});
 Outlined.args = {
-  ...Default.args,
-  children: 'Outlined',
   appearance: 'outlined'
 };
 
-export const Success = Template.bind({});
-Success.args = {
-  ...Default.args,
-  children: 'Success',
-  appearance: 'success'
+export const OutlinedWithIconRight = Template.bind({});
+OutlinedWithIconRight.args = {
+  appearance: 'outlined',
+  iconRight: <HomeIcon />
 };
 
-export const Danger = Template.bind({});
-Danger.args = {
-  ...Default.args,
-  children: 'Danger',
-  appearance: 'danger'
+export const OutlinedWithIconLeft = Template.bind({});
+OutlinedWithIconLeft.args = {
+  appearance: 'outlined',
+  iconLeft: <HomeIcon />
 };
 
-export const DefaultWithIcon = Template.bind({});
-DefaultWithIcon.args = {
-  ...Default.args,
-  icon: <HomeIcon />
+export const SmallWithIconLeft = Template.bind({});
+SmallWithIconLeft.args = {
+  iconLeft: <HomeIcon />,
+  size: 'small'
+};
+
+export const MediumWithIconLeft = Template.bind({});
+MediumWithIconLeft.args = {
+  iconLeft: <HomeIcon />
+};
+
+export const LargeWithIconLeft = Template.bind({});
+LargeWithIconLeft.args = {
+  iconLeft: <HomeIcon />,
+  size: 'large'
+};
+
+export const SmallWithIconRight = Template.bind({});
+SmallWithIconRight.args = {
+  iconRight: <HomeIcon />,
+  size: 'small'
+};
+
+export const MediumWithIconRight = Template.bind({});
+MediumWithIconRight.args = {
+  iconRight: <HomeIcon />
+};
+
+export const LargeWithIconRight = Template.bind({});
+LargeWithIconRight.args = {
+  iconRight: <HomeIcon />,
+  size: 'large'
 };
 
 export const Disabled = Template.bind({});
 Disabled.args = {
-  ...Default.args,
   children: 'Disabled',
   disabled: true
 };

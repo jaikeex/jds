@@ -28,6 +28,7 @@ const Slider: React.FC<SliderProps> = ({
   className = '',
   label = '',
   id = '',
+  onChange = () => {},
   width,
   styles
 }) => {
@@ -39,6 +40,7 @@ const Slider: React.FC<SliderProps> = ({
 
   const inputChangeHandler = (event: React.FormEvent<HTMLInputElement>) => {
     setInputValue(+event.currentTarget.value);
+    onChange(event);
   };
 
   const getStyles = (): React.CSSProperties => {

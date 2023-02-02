@@ -1,0 +1,27 @@
+@import '@styles/main';
+
+.jds-alert-container {
+  width: 22rem;
+  position: fixed;
+
+  &--center {
+    left: 50%;
+    transform: translate(-50%);
+  }
+
+  &--left {
+    left: 0;
+  }
+
+  &--right {
+    right: 0;
+  }
+
+  &--top {
+    top: 0;
+  }
+
+  &--bottom {
+    bottom: 0;
+  }
+}
