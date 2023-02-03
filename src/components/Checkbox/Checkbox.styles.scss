@@ -1,0 +1,38 @@
+@import '@styles/main';
+
+.jds-checkbox {
+  appearance: none;
+  display: inline-block;
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  border: 1px solid black;
+  cursor: pointer;
+
+  &__container {
+  }
+
+  &:checked::before {
+    content: '2714';
+    font-size: 1.5em;
+    color: #fff;
+    position: absolute;
+    right: 1px;
+    top: -5px;
+  }
+
+  @include size(small) {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  @include size(medium) {
+    width: 1.2rem;
+    height: 1.2rem;
+  }
+
+  @include size(large) {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

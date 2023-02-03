@@ -1,0 +1,62 @@
+@import '@styles/main';
+
+.jds-icon-btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  will-change: transform;
+  transition: transform 0.2s;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    transition: fill 0.2s;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.9);
+  }
+
+  @include use-color-variants() using ($variant) {
+    svg {
+      @include themify() {
+        fill: themed-variant($variant, color-primary);
+      }
+    }
+
+    &:hover {
+      svg {
+        @include themify() {
+          fill: themed-variant($variant, color-dark);
+        }
+      }
+    }
+  }
+
+  @include size(small) {
+    svg {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+  }
+
+  @include size(medium) {
+    svg {
+      width: 1.8rem;
+      height: 1.8rem;
+    }
+  }
+
+  @include size(large) {
+    svg {
+      width: 2.2rem;
+      height: 2.2rem;
+    }
+  }
+}

@@ -17,3 +17,143 @@
     }
   }
 }
+
+@mixin size($name) {
+  &--size--#{$name} {
+    @content;
+  }
+}
+
+@mixin color($variant) {
+  &--color--#{$variant} {
+    @content;
+  }
+}
+
+@mixin use-color-variants($variants: $color-variants) {
+  @each $variant in map-keys($variants) {
+    @include color($variant) {
+      @content ($variant);
+    }
+  }
+}
+
+@mixin position(
+  $offset: 0rem,
+  $offset-bottom: 0rem,
+  $offset-top: 0rem,
+  $offset-right: 0rem,
+  $offset-left: 0rem
+) {
+  position: absolute;
+
+  &--pos {
+    &--right-start {
+      left: calc(100% + $offset);
+
+      @if $offset-right != 0rem {
+        left: calc(100% + $offset-right);
+      }
+    }
+
+    &--right {
+      left: calc(100% + $offset);
+      top: 50%;
+      transform: translateY(-50%);
+
+      @if $offset-right != 0rem {
+        left: calc(100% + $offset-right);
+      }
+    }
+
+    &--right-end {
+      left: calc(100% + $offset);
+      bottom: 0;
+
+      @if $offset-right != 0rem {
+        left: calc(100% + $offset-right);
+      }
+    }
+
+    &--bottom-end {
+      top: calc(100% + $offset);
+      right: 0;
+
+      @if $offset-bottom != 0rem {
+        top: calc(100% + $offset-bottom);
+      }
+    }
+
+    &--bottom {
+      top: calc(100% + $offset);
+      left: 50%;
+      transform: translateX(-50%);
+
+      @if $offset-bottom != 0rem {
+        top: calc(100% + $offset-bottom);
+      }
+    }
+
+    &--bottom-start {
+      top: calc(100% + $offset);
+
+      @if $offset-bottom != 0rem {
+        top: calc(100% + $offset-bottom);
+      }
+    }
+
+    &--left-end {
+      right: calc(100% + $offset);
+      bottom: 0;
+
+      @if $offset-left != 0rem {
+        right: calc(100% + $offset-left);
+      }
+    }
+
+    &--left {
+      right: calc(100% + $offset);
+      top: 50%;
+      transform: translateY(-50%);
+
+      @if $offset-left != 0rem {
+        right: calc(100% + $offset-left);
+      }
+    }
+
+    &--left-start {
+      right: calc(100% + $offset);
+
+      @if $offset-left != 0rem {
+        right: calc(100% + $offset-left);
+      }
+    }
+
+    &--top-start {
+      bottom: calc(100% + $offset);
+
+      @if $offset-top != 0rem {
+        bottom: calc(100% + $offset-top);
+      }
+    }
+
+    &--top {
+      bottom: calc(100% + $offset);
+      left: 50%;
+      transform: translateX(-50%);
+
+      @if $offset-top != 0rem {
+        bottom: calc(100% + $offset-top);
+      }
+    }
+
+    &--top-end {
+      bottom: calc(100% + $offset);
+      right: 0;
+
+      @if $offset-top != 0rem {
+        bottom: calc(100% + $offset-top);
+      }
+    }
+  }
+}

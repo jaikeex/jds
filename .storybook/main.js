@@ -21,6 +21,7 @@ module.exports = {
     config.resolve.alias['assets'] = path.join(__dirname, '../src/assets');
     config.resolve.alias['@styles'] = path.join(__dirname, '../src/styles');
     config.resolve.alias['@core'] = path.join(__dirname, '../src/core');
+    config.resolve.alias['@store'] = path.join(__dirname, '../src/store');
     config.resolve.alias['@components'] = path.join(
       __dirname,
       '../src/components'

@@ -5,7 +5,9 @@ export interface AlertLocation {
 
 export type AlertAppearance =
   | 'default'
+  | 'warning'
   | 'success'
   | 'danger'
-  | 'primary'
-  | 'dark';
+  | 'accented'
+  | 'dark'
+  | 'focus';

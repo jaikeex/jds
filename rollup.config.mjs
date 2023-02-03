@@ -17,11 +17,13 @@ export default [
     input: 'src/index.ts',
     output: [
       {
+        preserveModules: true,
         file: packageJson.main,
         format: 'cjs',
         sourcemap: true
       },
       {
+        preserveModules: true,
         file: packageJson.module,
         format: 'esm',
         sourcemap: true
