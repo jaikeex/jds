@@ -61,38 +61,36 @@
     }
   }
 
-  &--size {
-    &--small {
-      width: 4rem;
-      height: 4rem;
+  @include size(small) {
+    width: 4rem;
+    height: 4rem;
 
-      #{$module}__container {
-        margin: 1.25rem auto;
-        width: 1.8rem;
-        height: 1.8rem;
-      }
+    #{$module}__container {
+      margin: 1.25rem auto;
+      width: 1.8rem;
+      height: 1.8rem;
     }
+  }
 
-    &--medium {
-      width: 5rem;
-      height: 5rem;
+  @include size(medium) {
+    width: 5rem;
+    height: 5rem;
 
-      #{$module}__container {
-        margin: 1.25em auto;
-        width: 2.2rem;
-        height: 2.2rem;
-      }
+    #{$module}__container {
+      margin: 1.25em auto;
+      width: 2.2rem;
+      height: 2.2rem;
     }
+  }
 
-    &--large {
-      width: 6rem;
-      height: 6rem;
+  @include size(large) {
+    width: 6rem;
+    height: 6rem;
 
-      #{$module}__container {
-        margin: 1.25em auto;
-        width: 2.5rem;
-        height: 2.5rem;
-      }
+    #{$module}__container {
+      margin: 1.25em auto;
+      width: 2.5rem;
+      height: 2.5rem;
     }
   }
 }

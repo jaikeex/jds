@@ -2,13 +2,14 @@ import React from 'react';
 import './Loader.styles.scss';
 import { Size } from '@core/types';
 import classNames from 'classnames';
+import { classNameSize } from '@core/utils';
 
 export interface LoaderProps {
   size?: Size;
 }
 
 const Loader: React.FC<LoaderProps> = ({ size = 'medium' }) => {
-  const classes = classNames('jds-loader', `jds-loader--size--${size}`);
+  const classes = classNames('jds-loader', classNameSize('jds-loader', size));
 
   return (
     <div className={classes}>

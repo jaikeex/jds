@@ -2,6 +2,7 @@ export * from './AppsIcon';
 export * from './BlockIcon';
 export * from './BoltIcon';
 export * from './CheckmarkIcon';
+export * from './CheckmarkThickIcon';
 export * from './CheckmarkCircleIcon';
 export * from './ChevronDownIcon';
 export * from './ChevronLeftIcon';

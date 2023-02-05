@@ -7,7 +7,35 @@ export default {
   component: Checkbox
 } as ComponentMeta<typeof Checkbox>;
 
-const Template: Story<CheckboxProps> = args => <Checkbox {...args} />;
+const Template: Story<CheckboxProps> = args => {
+  return (
+    <div style={{ display: 'flex', gap: '1rem' }}>
+      <Checkbox {...args} />
+      <Checkbox {...args} color="success" />
+      <Checkbox {...args} color="danger" />
+      <Checkbox {...args} color="warning" />
+      <Checkbox {...args} color="focus" />
+    </div>
+  );
+};
 
 export const Default = Template.bind({});
 Default.args = {};
+
+export const Small = Template.bind({});
+Small.args = {
+  ...Default.args,
+  size: 'small'
+};
+
+export const Large = Template.bind({});
+Large.args = {
+  ...Default.args,
+  size: 'large'
+};
+
+export const WithLabel = Template.bind({});
+WithLabel.args = {
+  ...Default.args,
+  label: 'Checkbox label'
+};

@@ -33,24 +33,9 @@ const Template: Story<ButtonProps> = args => {
   );
 };
 
-export const Medium = Template.bind({});
-Medium.args = {
+export const Contained = Template.bind({});
+Contained.args = {
   size: 'medium'
-};
-
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small'
-};
-
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large'
-};
-
-export const Subtle = Template.bind({});
-Subtle.args = {
-  appearance: 'subtle'
 };
 
 export const Outlined = Template.bind({});
@@ -58,11 +43,22 @@ Outlined.args = {
   appearance: 'outlined'
 };
 
-export const OutlinedWithIconRight = Template.bind({});
-OutlinedWithIconRight.args = {
-  appearance: 'outlined',
-  iconRight: <HomeIcon />
+export const Subtle = Template.bind({});
+Subtle.args = {
+  appearance: 'subtle'
 };
+
+export const Small = Template.bind({});
+Small.args = {
+  size: 'small'
+};
+Small.storyName = 'Size - Small';
+
+export const Large = Template.bind({});
+Large.args = {
+  size: 'large'
+};
+Large.storyName = 'Size - Large';
 
 export const OutlinedWithIconLeft = Template.bind({});
 OutlinedWithIconLeft.args = {
@@ -85,6 +81,12 @@ export const LargeWithIconLeft = Template.bind({});
 LargeWithIconLeft.args = {
   iconLeft: <HomeIcon />,
   size: 'large'
+};
+
+export const OutlinedWithIconRight = Template.bind({});
+OutlinedWithIconRight.args = {
+  appearance: 'outlined',
+  iconRight: <HomeIcon />
 };
 
 export const SmallWithIconRight = Template.bind({});

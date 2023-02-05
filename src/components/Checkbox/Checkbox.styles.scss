@@ -1,38 +1,94 @@
 @import '@styles/main';
 
 .jds-checkbox {
-  appearance: none;
+  $module: 'jds-checkbox';
   display: inline-block;
-  outline: none;
-  border: none;
-  border-radius: 3px;
-  border: 1px solid black;
-  cursor: pointer;
+  width: max-content;
+  border: 2px solid;
+  border-radius: 2px;
+  appearance: none;
+  outline: 0;
+  transition: background 100ms ease-out;
 
-  &__container {
+  @include use-color-variants() using ($variant) {
+    @include themify() {
+      border-color: themed(text-color-primary);
+      ~ .#{$module}__label .#{$module}__mark svg {
+        fill: themed(background-color-primary) !important;
+      }
+
+      &:checked {
+        border-color: themed-variant($variant, color-primary);
+        background-color: themed-variant($variant, color-primary);
+      }
+    }
   }
 
-  &:checked::before {
-    content: '2714';
-    font-size: 1.5em;
-    color: #fff;
+  &__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  &__mark {
     position: absolute;
-    right: 1px;
-    top: -5px;
+    left: 0.25rem;
+    top: 0.15rem;
+    opacity: 0;
+  }
+
+  &__label {
+    cursor: pointer;
+
+    @include themify() {
+      color: themed(text-color-primary);
+    }
+  }
+
+  &__text {
+    font-family: inherit;
+  }
+
+  &:checked {
+    ~ .#{$module}__label .#{$module}__mark {
+      opacity: 1;
+      transition: opacity 100ms ease-out;
+    }
   }
 
   @include size(small) {
     width: 1rem;
     height: 1rem;
+
+    ~ .#{$module}__label .#{$module}__mark svg {
+      width: 1rem;
+      height: 1rem;
+    }
   }
 
   @include size(medium) {
     width: 1.2rem;
     height: 1.2rem;
+
+    ~ .#{$module}__label .#{$module}__mark svg {
+      width: 1.2rem;
+      height: 1.2rem;
+    }
   }
 
   @include size(large) {
     width: 1.5rem;
     height: 1.5rem;
+
+    ~ .#{$module}__label .#{$module}__mark {
+      left: 0.25rem;
+      top: 0.2rem;
+
+      svg {
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
   }
 }

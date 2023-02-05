@@ -3,6 +3,7 @@ import './IconButton.styles.scss';
 import classNames from 'classnames';
 import { ColorVariants } from '@core/types';
 import { IconButtonSize } from './types';
+import { classNameColor, classNameSize } from '@core/utils';
 
 export interface IconButtonProps {
   size?: IconButtonSize;
@@ -23,8 +24,8 @@ const IconButton: React.FC<IconButtonProps> = ({
 }) => {
   const classes = classNames(
     'jds-icon-btn',
-    `jds-icon-btn--size--${size}`,
-    `jds-icon-btn--color--${color}`,
+    classNameColor('jds-icon-btn', color),
+    classNameSize('jds-icon-btn', size),
     className
   );
 

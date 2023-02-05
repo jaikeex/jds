@@ -27,4 +27,5 @@ export type IconColor =
   | 'danger'
   | 'disabled'
   | 'focus'
-  | 'white';
+  | 'white'
+  | 'background';
