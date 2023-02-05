@@ -1,0 +1,92 @@
+@import '@styles/main';
+
+.jds-typography {
+  font-family: inherit;
+
+  @include use-color-variants() using($variant) {
+    @include themify() {
+      color: themed-variant($variant, color-primary);
+
+      @if $variant == default {
+        color: themed(text-color-primary);
+      }
+    }
+  }
+
+  &--variant {
+    &--h1 {
+      font-size: 5rem;
+      font-weight: 300;
+    }
+
+    &--h2 {
+      font-size: 4rem;
+      font-weight: 400;
+    }
+
+    &--h3 {
+      font-size: 3.25rem;
+      font-weight: 400;
+    }
+
+    &--h4 {
+      font-size: 2.125rem;
+      font-weight: 400;
+    }
+
+    &--h5 {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+
+    &--h6 {
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+
+    &--subHeading1 {
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    &--subHeading2 {
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.25;
+    }
+
+    &--body1 {
+      font-size: 1rem;
+      font-weight: 400;
+    }
+
+    &--body2 {
+      font-size: 0.938rem;
+      font-weight: 400;
+    }
+
+    &--body3 {
+      font-size: 0.875rem;
+      font-weight: 400;
+    }
+
+    &--caption {
+      font-size: 0.75rem;
+      font-weight: 400;
+    }
+
+    &--button {
+      font-size: 0.938rem;
+      font-weight: 600;
+      letter-spacing: 0.031rem;
+      text-transform: uppercase;
+    }
+
+    &--label {
+      font-size: 0.938rem;
+      font-weight: 400;
+      letter-spacing: 0.031rem;
+    }
+  }
+}

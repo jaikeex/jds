@@ -33,8 +33,6 @@
 
   &__mark {
     position: absolute;
-    left: 0.25rem;
-    top: 0.15rem;
     opacity: 0;
   }
 
@@ -61,9 +59,14 @@
     width: 1rem;
     height: 1rem;
 
-    ~ .#{$module}__label .#{$module}__mark svg {
-      width: 1rem;
-      height: 1rem;
+    ~ .#{$module}__label .#{$module}__mark {
+      left: 0.25rem;
+      top: 0.15rem;
+
+      svg {
+        width: 1rem;
+        height: 1rem;
+      }
     }
   }
 
@@ -71,9 +74,14 @@
     width: 1.2rem;
     height: 1.2rem;
 
-    ~ .#{$module}__label .#{$module}__mark svg {
-      width: 1.2rem;
-      height: 1.2rem;
+    ~ .#{$module}__label .#{$module}__mark {
+      left: 0.25rem;
+      top: 0.2rem;
+
+      svg {
+        width: 1.2rem;
+        height: 1.2rem;
+      }
     }
   }
 

@@ -26,7 +26,7 @@ export const parameters = {
     ]
   },
   theme: {
-    default: 'light',
+    default: 'dark',
     themes: [
       { title: 'light', id: 'light', class: 'theme-light', color: '#ffffff' },
       { title: 'dark', id: 'dark', class: 'theme-dark', color: '#202020' }
