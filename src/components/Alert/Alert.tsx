@@ -6,6 +6,7 @@ import { CheckmarkCircleIcon, CloseIcon, WarningIcon } from '../icons';
 import { useAlertTimers } from './useAlertTimers';
 import { AlertLocation } from './types';
 import { ColorVariants } from '@core/types';
+import { classNameColor } from '@core/utils';
 
 export interface AlertProps {
   autoCloseDuration?: number;
@@ -53,7 +54,7 @@ const Alert: React.FC<AlertProps> = ({
     'jds-alert',
     `jds-alert--${location.horizontal}`,
     `jds-alert--${location.vertical}`,
-    `jds-alert--color--${color}`,
+    classNameColor('jds-alert', color),
     className
   );
 

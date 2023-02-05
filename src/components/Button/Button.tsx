@@ -4,6 +4,7 @@ import { useRippleEffect } from '@core/hooks';
 import classNames from 'classnames';
 import { ButtonAppearance, ButtonSize, ButtonType } from './types';
 import { ColorVariants } from '@core/types';
+import { classNameColor, classNameSize } from '@core/utils';
 
 export interface ButtonProps {
   size?: ButtonSize;
@@ -44,8 +45,8 @@ const Button: React.FC<ButtonProps> = ({
 
   const classes = classNames(
     'jds-btn',
-    `jds-btn--size--${size}`,
-    `jds-btn--color--${color}--${appearance}`,
+    classNameSize('jds-btn', size),
+    `${classNameColor('jds-btn', color)}--${appearance}`,
     {
       'jds-btn--disabled': disabled
     },

@@ -107,7 +107,7 @@
     @include position($offset: 0.5rem, $offset-top: 3rem);
   }
 
-  &--small {
+  @include size(small) {
     margin-top: 3.2rem;
 
     #{$module}__input {
@@ -125,7 +125,7 @@
     }
   }
 
-  &--medium {
+  @include size(medium) {
     #{$module}__input {
       height: 0.375rem;
 
@@ -141,7 +141,7 @@
     }
   }
 
-  &--large {
+  @include size(large) {
     #{$module}__input {
       height: 0.5rem;
 

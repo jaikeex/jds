@@ -1,24 +1,43 @@
 @import '@styles/main';
 
 .jds-checkbox {
+  position: relative;
+  border: 2px solid #aaa;
+  border-radius: 2px;
   appearance: none;
-  display: inline-block;
-  outline: none;
-  border: none;
-  border-radius: 3px;
-  border: 1px solid black;
+  outline: 0;
   cursor: pointer;
-
+  transition: background 200ms cubic-bezier(0.1, 0.1, 0.25, 1);
   &__container {
+    position: relative;
   }
 
-  &:checked::before {
-    content: '2714';
-    font-size: 1.5em;
-    color: #fff;
+  &__mark {
     position: absolute;
-    right: 1px;
-    top: -5px;
+    left: 0;
+  }
+
+  &__label {
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    display: block;
+    border-style: solid;
+    border-color: $color-white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+    opacity: 0;
+  }
+
+  &:checked {
+    opacity: 1;
+    background-color: green;
+
+    &::before {
+      opacity: 1;
+    }
   }
 
   @include size(small) {
@@ -29,6 +48,13 @@
   @include size(medium) {
     width: 1.2rem;
     height: 1.2rem;
+
+    &::before {
+      left: 35%;
+      top: 5%;
+      width: 0.375rem;
+      height: 0.75rem;
+    }
   }
 
   @include size(large) {

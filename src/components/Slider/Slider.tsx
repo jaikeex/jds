@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { useOffset } from './useOffset';
 import { SliderSize } from './types';
 import { Position } from '@core/types';
+import { classNameSize } from '@core/utils';
 
 export interface SliderProps {
   min?: number;
@@ -43,7 +44,11 @@ const Slider: React.FC<SliderProps> = ({
   const [inputValue, setInputValue] = useState<number>(value);
   const [selectorOffset, valueBoxOffset] = useOffset(inputRef);
 
-  const classes = classNames('jds-slider', `jds-slider--${size}`, className);
+  const classes = classNames(
+    'jds-slider',
+    classNameSize('jds-slider', size),
+    className
+  );
   const labelClasses = classNames(
     'jds-slider__label',
     `jds-slider__label--pos--${labelPosition}`

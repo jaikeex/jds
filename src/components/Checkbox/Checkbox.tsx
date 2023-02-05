@@ -2,6 +2,7 @@ import { ColorVariants, Position, Size } from '@core/types';
 import React from 'react';
 import './Checkbox.styles.scss';
 import classNames from 'classnames';
+import { CheckmarkIcon } from '../icons';
 
 export interface CheckboxProps {
   size?: Size;
@@ -17,7 +18,11 @@ export interface CheckboxProps {
 
 const Checkbox: React.FC<CheckboxProps> = ({
   size = 'medium',
-  color = 'default'
+  color = 'default',
+  label = '',
+  labelPosition = 'right',
+  id = '',
+  style
 }) => {
   const classes = classNames(
     'jds-checkbox',
@@ -27,8 +32,13 @@ const Checkbox: React.FC<CheckboxProps> = ({
 
   return (
     <div className="jds-checkbox__container">
-      <input type="checkbox" className={classes} />
-      {}
+      <input type="checkbox" className={classes} id={id} />
+      <label className="jds-checkbox__label" htmlFor={id}>
+        <span className="jds-checkbox__mark">
+          <CheckmarkIcon size="small" color="danger" />
+        </span>
+        {label}
+      </label>
     </div>
   );
 };
