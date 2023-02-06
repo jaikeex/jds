@@ -38,20 +38,18 @@
 
   &__label {
     cursor: pointer;
-
-    @include themify() {
-      color: themed(text-color-primary);
-    }
-  }
-
-  &__text {
-    font-family: inherit;
   }
 
   &:checked {
     ~ .#{$module}__label .#{$module}__mark {
       opacity: 1;
       transition: opacity 100ms ease-out;
+    }
+  }
+
+  &--disabled {
+    ~ .#{$module}__label {
+      cursor: not-allowed;
     }
   }
 

@@ -59,9 +59,6 @@ const Template: Story<TypographyProps> = args => {
       <Typography {...args} variant="caption">
         Caption
       </Typography>
-      <Typography {...args} style={{ display: 'block' }} variant="button">
-        Button
-      </Typography>
       <Typography {...args} variant="label">
         Label
       </Typography>

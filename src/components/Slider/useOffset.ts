@@ -24,7 +24,6 @@ export const useOffset = (ref: React.RefObject<HTMLInputElement>) => {
   useEffect(() => {
     setThumbOffset(getCurrentThumbOffset());
     setValueBoxOffset(getCurrentPositionOffset());
-    console.log(thumbOffset, valueBoxOffset);
   }, [value]);
 
   return [thumbOffset, valueBoxOffset];

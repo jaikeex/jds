@@ -39,3 +39,15 @@ WithLabel.args = {
   ...Default.args,
   label: 'Checkbox label'
 };
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  ...Default.args,
+  disabled: true
+};
+
+export const CheckedByDefault = Template.bind({});
+CheckedByDefault.args = {
+  ...Default.args,
+  defaultChecked: true
+};

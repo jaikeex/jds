@@ -110,6 +110,6 @@
   &--disabled {
     background-color: $color-grey-light-1 !important;
     color: $color-grey-dark-3 !important;
-    cursor: auto;
+    cursor: not-allowed;
   }
 }

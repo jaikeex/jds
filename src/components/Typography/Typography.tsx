@@ -17,7 +17,6 @@ const variantMap = {
   body2: 'p',
   body3: 'p',
   caption: 'p',
-  button: 'span',
   label: 'span'
 };
 
