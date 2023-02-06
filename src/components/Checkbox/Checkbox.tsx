@@ -13,6 +13,7 @@ export interface CheckboxProps {
   labelColor?: ColorVariants;
   disabled?: boolean;
   icon?: React.ReactNode;
+  iconChecked?: React.ReactNode;
   checked?: boolean;
   defaultChecked?: boolean;
   inputRef?: React.RefObject<HTMLInputElement>;
@@ -35,6 +36,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
   inputRef,
   onChange,
   icon,
+  iconChecked = icon,
   style
 }) => {
   const ref = inputRef || useRef<HTMLInputElement>(null);
@@ -45,6 +47,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
     `jds-checkbox--size--${size}`,
     `jds-checkbox--color--${color}`,
     {
+      'jds-checkbox__hidden': icon,
       'jds-checkbox--disabled': disabled
     }
   );
@@ -74,6 +77,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
         required={required}
       />
       <label className="jds-checkbox__label" htmlFor={id}>
+        {icon && !isChecked ? icon : iconChecked}
         <div className="jds-checkbox__mark">
           <CheckmarkThickIcon size="small" />
         </div>

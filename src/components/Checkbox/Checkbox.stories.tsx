@@ -1,6 +1,7 @@
 import React from 'react';
 import { Story, ComponentMeta } from '@storybook/react';
 import Checkbox, { CheckboxProps } from './Checkbox';
+import { HeartIcon, HeartIconOutlined } from '@components/icons';
 
 export default {
   title: 'Design System/Checkbox',
@@ -32,6 +33,13 @@ export const Large = Template.bind({});
 Large.args = {
   ...Default.args,
   size: 'large'
+};
+
+export const Icon = Template.bind({});
+Icon.args = {
+  ...Default.args,
+  icon: <HeartIconOutlined />,
+  iconChecked: <HeartIcon color="danger" />
 };
 
 export const WithLabel = Template.bind({});

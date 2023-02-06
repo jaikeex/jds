@@ -4,7 +4,7 @@ import { StarIcon } from '.';
 import { IconProps } from '@components/icons/types';
 
 export default {
-  title: 'Icons/Basic UI/Star',
+  title: 'Icons/Basic UI/Filled/Star',
   component: StarIcon
 } as ComponentMeta<typeof StarIcon>;
 

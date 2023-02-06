@@ -3,7 +3,6 @@
 .jds-checkbox {
   $module: 'jds-checkbox';
   display: inline-block;
-  width: max-content;
   border: 2px solid;
   border-radius: 2px;
   appearance: none;
@@ -13,6 +12,7 @@
   @include use-color-variants() using ($variant) {
     @include themify() {
       border-color: themed(text-color-primary);
+
       ~ .#{$module}__label .#{$module}__mark svg {
         fill: themed(background-color-primary) !important;
       }
@@ -29,6 +29,15 @@
     display: flex;
     align-items: center;
     gap: 0.4rem;
+  }
+
+  &__hidden {
+    visibility: hidden;
+    border: none;
+
+    ~ .#{$module}__label .#{$module}__mark {
+      visibility: hidden;
+    }
   }
 
   &__mark {

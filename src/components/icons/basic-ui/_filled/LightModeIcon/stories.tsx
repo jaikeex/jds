@@ -4,7 +4,7 @@ import { LightModeIcon } from '.';
 import { IconProps } from '@components/icons/types';
 
 export default {
-  title: 'Icons/Basic UI/LightMode',
+  title: 'Icons/Basic UI/Filled/LightMode',
   component: LightModeIcon
 } as ComponentMeta<typeof LightModeIcon>;
 

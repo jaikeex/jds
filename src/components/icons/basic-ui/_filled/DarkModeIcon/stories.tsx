@@ -4,7 +4,7 @@ import { DarkModeIcon } from '.';
 import { IconProps } from '@components/icons/types';
 
 export default {
-  title: 'Icons/Basic UI/DarkMode',
+  title: 'Icons/Basic UI/Filled/DarkMode',
   component: DarkModeIcon
 } as ComponentMeta<typeof DarkModeIcon>;
 

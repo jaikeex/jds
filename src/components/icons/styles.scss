@@ -1,6 +1,12 @@
 @import '@styles/main';
 
 .jds-icon {
+  @include use-color-variants() using ($variant) {
+    @include themify() {
+      fill: themed-variant($variant, color-primary);
+    }
+  }
+
   &--extra-small {
     width: 1rem;
     height: 1rem;

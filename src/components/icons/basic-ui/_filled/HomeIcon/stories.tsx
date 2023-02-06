@@ -4,7 +4,7 @@ import { HomeIcon } from '.';
 import { IconProps } from '@components/icons/types';
 
 export default {
-  title: 'Icons/Basic UI/Home',
+  title: 'Icons/Basic UI/Filled/Home',
   component: HomeIcon
 } as ComponentMeta<typeof HomeIcon>;
 

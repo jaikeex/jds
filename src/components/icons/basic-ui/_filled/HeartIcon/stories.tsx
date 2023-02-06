@@ -4,7 +4,7 @@ import { HeartIcon } from '.';
 import { IconProps } from '@components/icons/types';
 
 export default {
-  title: 'Icons/Basic UI/Heart',
+  title: 'Icons/Basic UI/Filled/Heart',
   component: HeartIcon
 } as ComponentMeta<typeof HeartIcon>;
 

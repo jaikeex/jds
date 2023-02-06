@@ -4,7 +4,7 @@ import { BoltIcon } from '.';
 import { IconProps } from '@components/icons/types';
 
 export default {
-  title: 'Icons/Basic UI/Bolt',
+  title: 'Icons/Basic UI/Filled/Bolt',
   component: BoltIcon
 } as ComponentMeta<typeof BoltIcon>;
 

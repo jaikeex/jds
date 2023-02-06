@@ -4,7 +4,7 @@ import { SettingsIcon } from '.';
 import { IconProps } from '@components/icons/types';
 
 export default {
-  title: 'Icons/Basic UI/Settings',
+  title: 'Icons/Basic UI/Filled/Settings',
   component: SettingsIcon
 } as ComponentMeta<typeof SettingsIcon>;
 
