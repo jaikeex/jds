@@ -9,24 +9,10 @@
   outline: 0;
   transition: background 100ms ease-out;
 
-  @include use-color-variants() using ($variant) {
-    @include themify() {
-      border-color: themed(text-color-primary);
-
-      ~ .#{$module}__label .#{$module}__mark svg {
-        fill: themed(background-color-primary) !important;
-      }
-
-      &:checked {
-        border-color: themed-variant($variant, color-primary);
-        background-color: themed-variant($variant, color-primary);
-      }
-    }
-  }
-
   &__container {
     position: relative;
     display: flex;
+    flex: 0 0 auto;
     align-items: center;
     gap: 0.4rem;
   }
@@ -59,6 +45,21 @@
   &--disabled {
     ~ .#{$module}__label {
       cursor: not-allowed;
+    }
+  }
+
+  @include use-color-variants() using ($variant) {
+    @include themify() {
+      border-color: themed(text-color-primary);
+
+      ~ .#{$module}__label .#{$module}__mark svg {
+        fill: themed(background-color-primary) !important;
+      }
+
+      &:checked {
+        border-color: themed-variant($variant, color-primary);
+        background-color: themed-variant($variant, color-primary);
+      }
     }
   }
 

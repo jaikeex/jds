@@ -17,7 +17,7 @@ export const parameters = {
     values: [
       {
         name: 'light',
-        value: '#eaf7cf'
+        value: '#ffffff'
       },
       {
         name: 'dark',

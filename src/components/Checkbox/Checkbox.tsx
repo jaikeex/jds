@@ -2,7 +2,7 @@ import { ColorVariants, Size } from '@core/types';
 import React, { useEffect, useRef, useState } from 'react';
 import './Checkbox.styles.scss';
 import classNames from 'classnames';
-import { CheckmarkThickIcon } from '../icons';
+import { CheckmarkThickIcon } from '@components/icons';
 import { makeId } from '@core/utils';
 import { Typography } from '@components/Typography';
 
