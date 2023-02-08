@@ -1,0 +1,24 @@
+@import '@styles/main';
+
+$sheet-levels: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12;
+
+.jds-sheet {
+  border-radius: 5px;
+
+  &--sharp-corners {
+    border-radius: 0;
+  }
+
+  &--outlined {
+    @include themify() {
+      border: 1px solid rgba(themed(text-color-primary), 0.2);
+    }
+  }
+
+  @each $level in $sheet-levels {
+    &--level--#{$level} {
+      $y-offset: calc($level / 2);
+      box-shadow: 0 #{$y-offset}px #{$level}px rgba($color-black, 0.2);
+    }
+  }
+}
