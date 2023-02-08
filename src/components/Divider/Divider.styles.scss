@@ -1,0 +1,34 @@
+@import '@styles/main';
+
+.jds-divider {
+  display: block;
+  padding: 0;
+
+  @include use-color-variants() using ($variant) {
+    @include themify() {
+      background-color: themed-variant($variant, color-primary);
+
+      @if $variant == default {
+        background-color: $color-grey-dark-1;
+      }
+    }
+  }
+
+  hr {
+    border: none;
+  }
+
+  &--horizontal {
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  &--vertical {
+    height: 100%;
+    margin: 0 1rem;
+  }
+
+  &--flex {
+    flex-grow: 0;
+  }
+}

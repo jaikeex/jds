@@ -31,19 +31,19 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
           return React.cloneElement(btn, {
             size: size,
             appearance: appearance,
-            styles: { ...btn.props.styles, ...styleFirstElement }
+            style: { ...btn.props.styles, ...styleFirstElement }
           });
         } else if (index === children.length - 1) {
           return React.cloneElement(btn, {
             size: size,
             appearance: appearance,
-            styles: { ...btn.props.styles, ...styleLastElement }
+            style: { ...btn.props.styles, ...styleLastElement }
           });
         } else {
           return React.cloneElement(btn, {
             size: size,
             appearance: appearance,
-            styles: { ...btn.props.styles, ...styleMiddleElement }
+            style: { ...btn.props.styles, ...styleMiddleElement }
           });
         }
       });

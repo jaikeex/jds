@@ -1,7 +1,6 @@
 @import '@styles/main';
 
 .jds-textfield {
-  $module: 'jds-textfield';
   position: relative;
   margin: 1.8rem 0;
 
@@ -95,11 +94,10 @@
       color: rgba(themed(text-color-primary), 0.8);
     }
 
-    &--transformed#{&}--position--top {
+    &--transformed {
       font-size: 0.875rem;
       letter-spacing: 0.031rem;
       z-index: 20;
-      top: -1.4rem;
       margin-left: 0rem;
       cursor: default;
 
@@ -108,17 +106,12 @@
       }
     }
 
-    &--transformed#{&}--position--bottom {
-      font-size: 0.875rem;
-      letter-spacing: 0.031rem;
-      z-index: 20;
-      top: 3.2rem;
-      margin-left: 0rem;
-      cursor: default;
+    &--transformed#{&}--position--top {
+      top: -1.4rem;
+    }
 
-      @include themify() {
-        color: themed(text-color-primary);
-      }
+    &--transformed#{&}--position--bottom {
+      top: 3.2rem;
     }
   }
 
