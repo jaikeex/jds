@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import './ListItem.styles.scss';
 import classNames from 'classnames';
 import { makeId } from '@core/utils';
 import Divider from '../Divider/Divider';
 import { useRippleEffect } from '@core/hooks';
+import { useListContext } from '../List/ListContextProvider';
 
 export interface ListItemProps {
   children?: React.ReactNode;
@@ -37,9 +38,11 @@ const ListItem: React.FC<ListItemProps> = ({
   const ref = itemRef || useRef(null);
   const createRippleEffect = useRippleEffect(ref, true);
 
+  const { isCompact } = useListContext();
+
   const classes = classNames('jds-list-item', className, {
     'jds-list-item--clickable': clickable,
-    'jds-list-item--compact': compact,
+    'jds-list-item--compact': isCompact || compact,
     'jds-list-item--disabled': disabled,
     'jds-list-item--selected': selected
   });

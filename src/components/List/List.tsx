@@ -1,26 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './List.styles.scss';
 import classNames from 'classnames';
+import ListContextProvider from './ListContextProvider';
 
 export interface ListProps {
   children?: React.ReactNode;
   className?: string;
   compact?: boolean;
-  removeGap?: boolean;
 }
 
 const List: React.FC<ListProps> = ({
   children,
   className = '',
-  compact = false,
-  removeGap = false
+  compact = false
 }) => {
-  const classes = classNames('jds-list', className, {
-    'jds-list--compact': compact,
-    'jds-list--no-gap': removeGap
-  });
+  const classes = classNames('jds-list', className);
 
-  return <ul className={classes}>{children}</ul>;
+  return (
+    <ListContextProvider compact={compact}>
+      <ul className={classes}>{children}</ul>
+    </ListContextProvider>
+  );
 };
 
 export default List;

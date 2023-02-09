@@ -5,6 +5,8 @@ import ListItem, { ListItemProps } from '../ListItem/ListItem';
 import { Typography } from '@components/Typography';
 import Sheet from '../Sheet/Sheet';
 import { Checkbox } from '../Checkbox';
+import { IconButton } from '../IconButton';
+import { EmailIcon } from '../icons/social/EmailIcon/index';
 
 export default {
   title: 'List',
@@ -80,6 +82,39 @@ ClickableItems.args = {
   ...Default.args,
   children: generateListItems({
     clickable: true,
+    children: <Typography>This is a list item</Typography>
+  })
+};
+
+export const WithIconButton = Template.bind({});
+WithIconButton.args = {
+  ...Default.args,
+  children: generateListItems({
+    elementAfter: (
+      <IconButton color="success">
+        <EmailIcon />
+      </IconButton>
+    ),
+    children: <Typography>This is a list item</Typography>
+  })
+};
+
+export const Compact = Template.bind({});
+Compact.args = {
+  ...Default.args,
+  compact: true
+};
+
+export const CompactWithIcons = Template.bind({});
+CompactWithIcons.args = {
+  ...Default.args,
+  compact: true,
+  children: generateListItems({
+    elementBefore: (
+      <IconButton size="small">
+        <EmailIcon />
+      </IconButton>
+    ),
     children: <Typography>This is a list item</Typography>
   })
 };
