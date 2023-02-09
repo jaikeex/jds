@@ -3,7 +3,6 @@ import { ColorVariants, Size } from '@core/types';
 import './TextField.styles.scss';
 import { makeId } from '@core/utils';
 import classNames from 'classnames';
-import { classNameColor, classNameSize } from '@core/utils';
 import { useIsFocused } from '@core/hooks';
 
 export interface TextFieldProps {

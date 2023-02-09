@@ -1,10 +1,10 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import './ListItem.styles.scss';
 import classNames from 'classnames';
 import { makeId } from '@core/utils';
-import Divider from '../Divider/Divider';
+import { Divider } from '@components/Divider';
 import { useRippleEffect } from '@core/hooks';
-import { useListContext } from '../List/ListContextProvider';
+import { useListContext } from '@components/List';
 
 export interface ListItemProps {
   children?: React.ReactNode;

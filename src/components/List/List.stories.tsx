@@ -1,12 +1,12 @@
-import React, { useCallback, useState } from 'react';
+import React, { useState } from 'react';
 import { Story, ComponentMeta } from '@storybook/react';
 import List, { ListProps } from './List';
-import ListItem, { ListItemProps } from '../ListItem/ListItem';
+import { ListItem, ListItemProps } from '@components/ListItem';
 import { Typography } from '@components/Typography';
-import Sheet from '../Sheet/Sheet';
-import { Checkbox } from '../Checkbox';
-import { IconButton } from '../IconButton';
-import { EmailIcon } from '../icons/social/EmailIcon/index';
+import { Sheet } from '@components/Sheet';
+import { Checkbox } from '@components/Checkbox';
+import { IconButton } from '@components/IconButton';
+import { EmailIcon } from '@components/icons';
 
 export default {
   title: 'List',

@@ -1,8 +1,8 @@
 import React from 'react';
 import { Story, ComponentMeta } from '@storybook/react';
 import ListItem, { ListItemProps } from './ListItem';
-import { Typography } from '../Typography';
-import { EmailIcon } from '../icons';
+import { Typography } from '@components/Typography';
+import { EmailIcon } from '@components/icons';
 
 export default {
   title: 'ListItem',
