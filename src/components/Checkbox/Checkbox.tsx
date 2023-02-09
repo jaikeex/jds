@@ -34,13 +34,13 @@ const Checkbox: React.FC<CheckboxProps> = ({
   required = false,
   id = makeId(5),
   inputRef,
-  onChange,
+  onChange = () => {},
   icon,
   iconChecked = icon,
   style
 }) => {
-  const ref = inputRef || useRef<HTMLInputElement>(null);
-  const [isChecked, setIsChecked] = useState<boolean>(defaultChecked);
+  const ref = inputRef?.current ? inputRef : useRef<HTMLInputElement>(null);
+  const [isChecked, setIsChecked] = useState<boolean>(checked);
 
   const classes = classNames(
     'jds-checkbox',
@@ -56,7 +56,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
 
   const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(event.target.checked);
-    onChange && onChange(event);
+    onChange(event);
   };
 
   useEffect(() => {
@@ -71,7 +71,6 @@ const Checkbox: React.FC<CheckboxProps> = ({
         className={classes}
         id={id}
         checked={isChecked}
-        defaultChecked={defaultChecked}
         onChange={inputChangeHandler}
         disabled={disabled}
         required={required}
@@ -89,4 +88,4 @@ const Checkbox: React.FC<CheckboxProps> = ({
   );
 };
 
-export default Checkbox;
+export default React.memo(Checkbox);

@@ -10,7 +10,7 @@
         background-color: themed-variant($variant, color-primary);
 
         @if $variant == default {
-          background-color: $color-grey-dark-1;
+          background-color: themed(divider-color);
         }
       }
     }

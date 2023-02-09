@@ -15,7 +15,7 @@ export interface ListItemProps {
   elementAfter?: React.ReactNode;
   elementBefore?: React.ReactNode;
   itemRef?: React.RefObject<HTMLLIElement>;
-  key?: string;
+  key?: string | number;
   onClick?: React.MouseEventHandler<HTMLLIElement>;
   selected?: boolean;
 }
@@ -71,4 +71,4 @@ const ListItem: React.FC<ListItemProps> = ({
   );
 };
 
-export default ListItem;
+export default React.memo(ListItem);

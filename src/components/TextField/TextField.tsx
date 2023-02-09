@@ -55,8 +55,8 @@ const TextField: React.FC<TextFieldProps> = ({
   value = defaultValue,
   width = undefined
 }) => {
-  const ref = inputRef || useRef<HTMLInputElement>(null);
-  const [inputValue, setInputValue] = useState<string>(defaultValue);
+  const ref = inputRef?.current ? inputRef : useRef<HTMLInputElement>(null);
+  const [inputValue, setInputValue] = useState<string>(value);
   const isFocused = useIsFocused(ref, autoFocus);
 
   const classes = classNames(
