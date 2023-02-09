@@ -51,5 +51,16 @@
   border-radius: 50%;
   transform: scale(0);
   animation: ripple 600ms linear;
-  background-color: rgba($color-white, 0.3);
+  background-color: rgba($color-white, 0.25);
+}
+
+.u-ripple-themed {
+  position: absolute;
+  border-radius: 50%;
+  transform: scale(0);
+  animation: ripple 600ms linear;
+
+  @include themify() {
+    background-color: rgba(themed(text-color-primary), 0.25);
+  }
 }

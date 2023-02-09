@@ -36,7 +36,7 @@ const Button: React.FC<ButtonProps> = ({
 }) => {
   const ref = useRef<HTMLButtonElement>(null);
 
-  const createRippleEffect = useRippleEffect(ref);
+  const createRippleEffect = useRippleEffect(ref, appearance !== 'filled');
 
   const buttonClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
     createRippleEffect(event);

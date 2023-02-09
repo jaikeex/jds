@@ -5,6 +5,10 @@ $sheet-levels: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12;
 .jds-sheet {
   border-radius: 5px;
 
+  @include themify() {
+    background-color: themed(background-color-primary);
+  }
+
   &--sharp-corners {
     border-radius: 0;
   }
@@ -19,6 +23,12 @@ $sheet-levels: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12;
     &--level--#{$level} {
       $y-offset: calc($level / 2);
       box-shadow: 0 #{$y-offset}px #{$level}px rgba($color-black, 0.2);
+
+      @include themify() {
+        @if $active-theme == '.theme-dark' {
+          background-color: lighten(themed(background-color-primary), $level);
+        }
+      }
     }
   }
 }

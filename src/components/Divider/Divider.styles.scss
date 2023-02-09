@@ -5,17 +5,20 @@
   padding: 0;
 
   @include use-color-variants() using ($variant) {
-    @include themify() {
-      background-color: themed-variant($variant, color-primary);
+    hr {
+      @include themify() {
+        background-color: themed-variant($variant, color-primary);
 
-      @if $variant == default {
-        background-color: $color-grey-dark-1;
+        @if $variant == default {
+          background-color: $color-grey-dark-1;
+        }
       }
     }
   }
 
   hr {
     border: none;
+    margin: 0;
   }
 
   &--horizontal {
@@ -30,5 +33,6 @@
 
   &--flex {
     flex-grow: 0;
+    margin: 0;
   }
 }

@@ -1,5 +1,6 @@
 @mixin themify() {
   @each $theme, $map in $themes {
+    $active-theme: $theme !global;
     #{$theme} & {
       $theme-map: () !global;
       @each $key, $submap in $map {

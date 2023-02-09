@@ -16,13 +16,11 @@ Default.args = {};
 
 export const SharpCorners = Template.bind({});
 SharpCorners.args = {
-  ...Default.args,
   sharpCorners: true
 };
 
 export const Outlined = Template.bind({});
 Outlined.args = {
-  ...Default.args,
   level: 2,
   outlined: true
 };

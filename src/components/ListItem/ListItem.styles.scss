@@ -1,0 +1,67 @@
+@import '@styles/main';
+
+.jds-list-item {
+  width: 100%;
+  height: 3rem;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  background-color: inherit;
+  padding: 0.25rem 0.5rem;
+
+  * {
+    flex-grow: 1;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  &--clickable {
+    cursor: pointer;
+    transition: box-shadow 0.15s;
+
+    &:hover {
+      @include themify() {
+        box-shadow: inset 0 0 100px 100px rgba(themed(text-color-primary), 0.1);
+      }
+    }
+  }
+
+  &--selected {
+    background-color: rgba($color-blue-light-1, 0.25);
+  }
+
+  &--compact {
+    padding: 0 0.5rem;
+    height: 2rem;
+
+    * {
+      margin-top: 0;
+      margin-bottom: 0;
+      font-size: 0.875rem;
+    }
+  }
+
+  &__element {
+    flex-grow: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &--before {
+      margin-right: 0.5rem;
+    }
+
+    &--after {
+      margin-left: auto;
+    }
+  }
+
+  &--disabled {
+    &,
+    * {
+      color: $color-disabled !important;
+    }
+    cursor: not-allowed;
+  }
+}

@@ -1,5 +1,6 @@
 export const useRippleEffect = <T extends HTMLElement>(
-  ref: React.RefObject<T>
+  ref: React.RefObject<T>,
+  themed: boolean = false
 ) => {
   const createRippleEffect = (event: React.MouseEvent<T>) => {
     const target = ref.current!;
@@ -14,7 +15,7 @@ export const useRippleEffect = <T extends HTMLElement>(
     circle.style.left = `${event.clientX - (rect.left + radius)}px`;
     circle.style.top = `${event.clientY - (rect.top + radius)}px`;
 
-    circle.classList.add('u-ripple');
+    circle.classList.add(themed ? 'u-ripple-themed' : 'u-ripple');
 
     const ripple = document.getElementsByClassName('u-ripple')[0];
     if (ripple) ripple.remove();
