@@ -3,7 +3,7 @@ import { Story, ComponentMeta } from '@storybook/react';
 import Menu, { MenuProps } from './Menu';
 
 export default {
-  title: 'Menu',
+  title: 'Design System/Menu',
   component: Menu
 } as ComponentMeta<typeof Menu>;
 

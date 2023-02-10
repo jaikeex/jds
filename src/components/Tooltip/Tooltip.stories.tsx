@@ -15,8 +15,8 @@ const Template: Story<TooltipProps> = args => {
   return (
     <div className="story-container">
       <div className="story-item story-item--1">
-        <Tooltip {...args} position="top-start" referenceElement={ref}>
-          <Button ref={ref} onClick={() => console.log('BUTTON CLICKED')}>
+        <Tooltip {...args} position="top-start">
+          <Button onClick={() => console.log('BUTTON CLICKED')}>
             top-start
           </Button>
         </Tooltip>
@@ -131,6 +131,6 @@ LargeText.args = {
 export const CustomWidth = Template.bind({});
 CustomWidth.args = {
   ...Default.args,
-  styles: { width: '180px' },
+  style: { width: '180px' },
   content: 'This box is 180px wide'
 };

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Story, ComponentMeta } from '@storybook/react';
 import { MoreHorizontalIcon } from '.';
-import { IconProps } from '@components/icons/types';
+import { SvgIconProps } from '@components/icons';
 
 export default {
   title: 'Icons/Basic UI/MoreHorizontal',
   component: MoreHorizontalIcon
 } as ComponentMeta<typeof MoreHorizontalIcon>;
 
-const Template: Story<IconProps> = args => <MoreHorizontalIcon {...args} />;
+const Template: Story<SvgIconProps> = args => <MoreHorizontalIcon {...args} />;
 
 export const MoreHorizontal = Template.bind({});
 MoreHorizontal.args = {};

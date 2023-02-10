@@ -3,7 +3,7 @@ import { Story, ComponentMeta } from '@storybook/react';
 import Divider, { DividerProps } from './Divider';
 
 export default {
-  title: 'Divider',
+  title: 'Design System/Divider',
   component: Divider
 } as ComponentMeta<typeof Divider>;
 

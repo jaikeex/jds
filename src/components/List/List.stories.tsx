@@ -9,7 +9,7 @@ import { IconButton } from '@components/IconButton';
 import { EmailIcon } from '@components/icons';
 
 export default {
-  title: 'List',
+  title: 'Design System/List',
   component: List
 } as ComponentMeta<typeof List>;
 

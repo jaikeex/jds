@@ -1,19 +1,17 @@
 import { ColorVariants, Position } from '@core/types';
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import './Tooltip.styles.scss';
 import classNames from 'classnames';
 import { TooltipSize } from './types';
-import { usePopper } from 'react-popper';
-
+import { usePopperTooltip } from 'react-popper-tooltip';
 export interface TooltipProps {
   color?: ColorVariants;
   position?: Position;
   size?: TooltipSize;
   content: React.ReactNode;
   className?: string;
-  referenceElement: React.RefObject<HTMLElement>;
   style?: React.CSSProperties;
-  children?: React.ReactNode;
+  children: React.ReactNode | React.ReactNode[];
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
@@ -21,55 +19,40 @@ const Tooltip: React.FC<TooltipProps> = ({
   position = 'right',
   size = 'default',
   className = '',
-  referenceElement,
   style,
   content,
   children
 }) => {
-  const tooltipElement = useRef(null);
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const { getTooltipProps, setTooltipRef, setTriggerRef, visible } =
+    usePopperTooltip({ placement: position });
 
-  let isInitialRender = useRef(true);
-
-  const { styles, attributes } = usePopper(
-    referenceElement.current,
-    tooltipElement.current,
-    {
-      placement: position
+  const childrenWithProps = React.Children.map(children, child => {
+    if (React.isValidElement(child)) {
+      return React.cloneElement(child as React.ReactElement<any>, {
+        ref: setTriggerRef
+      });
     }
-  );
+    return child;
+  });
 
   const classes = classNames(
     'jds-tooltip__content',
-    `jds-tooltip__content--pos--${position}`,
     `jds-tooltip__content--color--${color}`,
     `jds-tooltip__content--size--${size}`,
     className
   );
 
-  useEffect(() => {
-    if (isInitialRender.current) {
-      isInitialRender.current = false;
-    }
-  }, [isVisible]);
-
   return (
     <React.Fragment>
-      {children}
-      <div ref={tooltipElement} style={styles.popper} {...attributes.popper}>
-        {content}
-      </div>
-      {/* <div
-        className="jds-tooltip__container"
-        onMouseOver={() => setIsVisible(true)}
-        onMouseLeave={() => setIsVisible(false)}
-      >
-        {isVisible && (
-          <div style={style} className={classes}>
-            {content}
-          </div>
-        )}
-      </div> */}
+      {childrenWithProps}
+      {visible && (
+        <div
+          ref={setTooltipRef}
+          {...getTooltipProps({ style: style, className: classes })}
+        >
+          {content}
+        </div>
+      )}
     </React.Fragment>
   );
 };

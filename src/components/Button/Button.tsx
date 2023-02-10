@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import './Button.styles.scss';
 import { useForwardedRef, useRippleEffect } from '@core/hooks';
 import classNames from 'classnames';

@@ -3,7 +3,7 @@ import { Story, ComponentMeta } from '@storybook/react';
 import Navigation, { NavigationProps } from './Navigation';
 
 export default {
-  title: 'Navigation',
+  title: 'Design System/Navigation',
   component: Navigation
 } as ComponentMeta<typeof Navigation>;
 

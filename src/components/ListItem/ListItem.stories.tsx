@@ -5,7 +5,7 @@ import { Typography } from '@components/Typography';
 import { EmailIcon } from '@components/icons';
 
 export default {
-  title: 'ListItem',
+  title: 'Design System/ListItem',
   component: ListItem
 } as ComponentMeta<typeof ListItem>;
 

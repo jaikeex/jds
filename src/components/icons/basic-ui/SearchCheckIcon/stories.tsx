@@ -1,14 +1,14 @@
 import React from 'react';
 import { Story, ComponentMeta } from '@storybook/react';
 import { SearchCheckIcon } from '.';
-import { IconProps } from '@components/icons/types';
+import { SvgIconProps } from '@components/icons';
 
 export default {
   title: 'Icons/Basic UI/SearchCheck',
   component: SearchCheckIcon
 } as ComponentMeta<typeof SearchCheckIcon>;
 
-const Template: Story<IconProps> = args => <SearchCheckIcon {...args} />;
+const Template: Story<SvgIconProps> = args => <SearchCheckIcon {...args} />;
 
 export const SearchCheck = Template.bind({});
 SearchCheck.args = {};

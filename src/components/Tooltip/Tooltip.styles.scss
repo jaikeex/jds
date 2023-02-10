@@ -31,8 +31,6 @@
       }
     }
 
-    @include position($offset: 0.5rem);
-
     &--size {
       &--default {
         width: fit-content;

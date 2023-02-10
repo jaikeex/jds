@@ -1,14 +1,14 @@
 import React from 'react';
 import { Story, ComponentMeta } from '@storybook/react';
 import { GithubIcon } from '.';
-import { IconProps } from '@components/icons/types';
+import { SvgIconProps } from '@components/icons';
 
 export default {
   title: 'Icons/Social/Github',
   component: GithubIcon
 } as ComponentMeta<typeof GithubIcon>;
 
-const Template: Story<IconProps> = args => <GithubIcon {...args} />;
+const Template: Story<SvgIconProps> = args => <GithubIcon {...args} />;
 
 export const Github = Template.bind({});
 Github.args = {};

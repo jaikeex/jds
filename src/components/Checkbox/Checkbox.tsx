@@ -1,5 +1,5 @@
 import { ColorVariants, Size } from '@core/types';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Checkbox.styles.scss';
 import classNames from 'classnames';
 import { CheckmarkThickIcon } from '@components/icons';
@@ -16,76 +16,80 @@ export interface CheckboxProps {
   iconChecked?: React.ReactNode;
   checked?: boolean;
   defaultChecked?: boolean;
-  inputRef?: React.RefObject<HTMLInputElement>;
   required?: boolean;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   id?: string;
   style?: React.CSSProperties;
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({
-  size = 'medium',
-  color = 'default',
-  label = '',
-  labelColor = 'default',
-  disabled = false,
-  defaultChecked = false,
-  checked = defaultChecked,
-  required = false,
-  id = makeId(5),
-  inputRef,
-  onChange = () => {},
-  icon,
-  iconChecked = icon,
-  style
-}) => {
-  const ref = inputRef?.current ? inputRef : useRef<HTMLInputElement>(null);
-  const [isChecked, setIsChecked] = useState<boolean>(checked);
-
-  const classes = classNames(
-    'jds-checkbox',
-    `jds-checkbox--size--${size}`,
-    `jds-checkbox--color--${color}`,
+const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
+  (
     {
-      'jds-checkbox__hidden': icon,
-      'jds-checkbox--disabled': disabled
-    }
-  );
+      size = 'medium',
+      color = 'default',
+      label = '',
+      labelColor = 'default',
+      disabled = false,
+      defaultChecked = false,
+      checked = defaultChecked,
+      required = false,
+      id = makeId(5),
+      onChange = () => {},
+      icon,
+      iconChecked = icon,
+      style
+    },
+    ref
+  ) => {
+    const [isChecked, setIsChecked] = useState<boolean>(checked);
 
-  const labelClasses = classNames(`jds-checkbox__label--color--${labelColor}`);
+    const classes = classNames(
+      'jds-checkbox',
+      `jds-checkbox--size--${size}`,
+      `jds-checkbox--color--${color}`,
+      {
+        'jds-checkbox__hidden': icon,
+        'jds-checkbox--disabled': disabled
+      }
+    );
 
-  const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setIsChecked(event.target.checked);
-    onChange(event);
-  };
+    const labelClasses = classNames(
+      `jds-checkbox__label--color--${labelColor}`
+    );
 
-  useEffect(() => {
-    setIsChecked(checked);
-  }, [checked]);
+    const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
+      setIsChecked(event.target.checked);
+      onChange(event);
+    };
 
-  return (
-    <div className="jds-checkbox__container" style={style}>
-      <input
-        type="checkbox"
-        ref={ref}
-        className={classes}
-        id={id}
-        checked={isChecked}
-        onChange={inputChangeHandler}
-        disabled={disabled}
-        required={required}
-      />
-      <label className="jds-checkbox__label" htmlFor={id}>
-        {icon && !isChecked ? icon : iconChecked}
-        <div className="jds-checkbox__mark">
-          <CheckmarkThickIcon size="small" />
-        </div>
-        <Typography variant="label" className={labelClasses}>
-          {label}
-        </Typography>
-      </label>
-    </div>
-  );
-};
+    useEffect(() => {
+      setIsChecked(checked);
+    }, [checked]);
+
+    return (
+      <div className="jds-checkbox__container" style={style}>
+        <input
+          type="checkbox"
+          ref={ref}
+          className={classes}
+          id={id}
+          checked={isChecked}
+          onChange={inputChangeHandler}
+          disabled={disabled}
+          required={required}
+        />
+        <label className="jds-checkbox__label" htmlFor={id}>
+          {icon && !isChecked ? icon : iconChecked}
+          <div className="jds-checkbox__mark">
+            <CheckmarkThickIcon size="small" />
+          </div>
+          <Typography variant="label" className={labelClasses}>
+            {label}
+          </Typography>
+        </label>
+      </div>
+    );
+  }
+);
 
 export default React.memo(Checkbox);

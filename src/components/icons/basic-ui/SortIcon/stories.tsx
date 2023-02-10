@@ -1,14 +1,14 @@
 import React from 'react';
 import { Story, ComponentMeta } from '@storybook/react';
 import { SortIcon } from '.';
-import { IconProps } from '@components/icons/types';
+import { SvgIconProps } from '@components/icons';
 
 export default {
   title: 'Icons/Basic UI/Sort',
   component: SortIcon
 } as ComponentMeta<typeof SortIcon>;
 
-const Template: Story<IconProps> = args => <SortIcon {...args} />;
+const Template: Story<SvgIconProps> = args => <SortIcon {...args} />;
 
 export const Sort = Template.bind({});
 Sort.args = {};

@@ -3,7 +3,7 @@ import { Story, ComponentMeta } from '@storybook/react';
 import Sheet, { SheetProps } from './Sheet';
 
 export default {
-  title: 'Sheet',
+  title: 'Design System/Sheet',
   component: Sheet
 } as ComponentMeta<typeof Sheet>;
 

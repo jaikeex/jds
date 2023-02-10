@@ -1,14 +1,14 @@
 import React from 'react';
 import { Story, ComponentMeta } from '@storybook/react';
 import { HomeIcon } from '.';
-import { IconProps } from '@components/icons/types';
+import { SvgIconProps } from '@components/icons';
 
 export default {
   title: 'Icons/Basic UI/Filled/Home',
   component: HomeIcon
 } as ComponentMeta<typeof HomeIcon>;
 
-const Template: Story<IconProps> = args => <HomeIcon {...args} />;
+const Template: Story<SvgIconProps> = args => <HomeIcon {...args} />;
 
 export const Home = Template.bind({});
 Home.args = {};

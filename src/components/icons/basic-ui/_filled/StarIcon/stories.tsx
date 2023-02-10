@@ -1,14 +1,14 @@
 import React from 'react';
 import { Story, ComponentMeta } from '@storybook/react';
 import { StarIcon } from '.';
-import { IconProps } from '@components/icons/types';
+import { SvgIconProps } from '@components/icons';
 
 export default {
   title: 'Icons/Basic UI/Filled/Star',
   component: StarIcon
 } as ComponentMeta<typeof StarIcon>;
 
-const Template: Story<IconProps> = args => <StarIcon {...args} />;
+const Template: Story<SvgIconProps> = args => <StarIcon {...args} />;
 
 export const Star = Template.bind({});
 Star.args = {};

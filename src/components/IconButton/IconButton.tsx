@@ -14,26 +14,31 @@ export interface IconButtonProps {
   children?: React.ReactNode;
 }
 
-const IconButton: React.FC<IconButtonProps> = ({
-  color = 'default',
-  size = 'medium',
-  className = '',
-  style,
-  onClick,
-  children
-}) => {
-  const classes = classNames(
-    'jds-icon-btn',
-    classNameColor('jds-icon-btn', color),
-    classNameSize('jds-icon-btn', size),
-    className
-  );
+const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
+  (
+    {
+      color = 'default',
+      size = 'medium',
+      className = '',
+      style,
+      onClick,
+      children
+    },
+    ref
+  ) => {
+    const classes = classNames(
+      'jds-icon-btn',
+      classNameColor('jds-icon-btn', color),
+      classNameSize('jds-icon-btn', size),
+      className
+    );
 
-  return (
-    <button className={classes} style={style} onClick={onClick}>
-      {children}
-    </button>
-  );
-};
+    return (
+      <button ref={ref} className={classes} style={style} onClick={onClick}>
+        {children}
+      </button>
+    );
+  }
+);
 
 export default IconButton;
