@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import './Tooltip.styles.scss';
 import classNames from 'classnames';
 import { TooltipSize } from './types';
+import { usePopper } from 'react-popper';
 
 export interface TooltipProps {
   color?: ColorVariants;
@@ -10,7 +11,8 @@ export interface TooltipProps {
   size?: TooltipSize;
   content: React.ReactNode;
   className?: string;
-  styles?: React.CSSProperties;
+  referenceElement: React.RefObject<HTMLElement>;
+  style?: React.CSSProperties;
   children?: React.ReactNode;
 }
 
@@ -19,12 +21,23 @@ const Tooltip: React.FC<TooltipProps> = ({
   position = 'right',
   size = 'default',
   className = '',
-  styles,
+  referenceElement,
+  style,
   content,
   children
 }) => {
+  const tooltipElement = useRef(null);
   const [isVisible, setIsVisible] = useState<boolean>(false);
+
   let isInitialRender = useRef(true);
+
+  const { styles, attributes } = usePopper(
+    referenceElement.current,
+    tooltipElement.current,
+    {
+      placement: position
+    }
+  );
 
   const classes = classNames(
     'jds-tooltip__content',
@@ -41,18 +54,23 @@ const Tooltip: React.FC<TooltipProps> = ({
   }, [isVisible]);
 
   return (
-    <div
-      className="jds-tooltip__container"
-      onMouseOver={() => setIsVisible(true)}
-      onMouseLeave={() => setIsVisible(false)}
-    >
-      {isVisible && (
-        <div style={styles} className={classes}>
-          {content}
-        </div>
-      )}
+    <React.Fragment>
       {children}
-    </div>
+      <div ref={tooltipElement} style={styles.popper} {...attributes.popper}>
+        {content}
+      </div>
+      {/* <div
+        className="jds-tooltip__container"
+        onMouseOver={() => setIsVisible(true)}
+        onMouseLeave={() => setIsVisible(false)}
+      >
+        {isVisible && (
+          <div style={style} className={classes}>
+            {content}
+          </div>
+        )}
+      </div> */}
+    </React.Fragment>
   );
 };
 

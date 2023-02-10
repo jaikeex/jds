@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import './Button.styles.scss';
-import { useRippleEffect } from '@core/hooks';
+import { useForwardedRef, useRippleEffect } from '@core/hooks';
 import classNames from 'classnames';
 import { ButtonAppearance, ButtonSize, ButtonType } from './types';
 import { ColorVariants } from '@core/types';
@@ -20,54 +20,62 @@ export interface ButtonProps {
   children?: React.ReactNode;
 }
 
-const Button: React.FC<ButtonProps> = ({
-  size = 'medium',
-  disabled = false,
-  iconLeft = null,
-  iconRight = null,
-  type = 'button',
-  className = '',
-  appearance = 'filled',
-  color = 'default',
-  style,
-  onClick,
-  children,
-  ...props
-}) => {
-  const ref = useRef<HTMLButtonElement>(null);
-
-  const createRippleEffect = useRippleEffect(ref, appearance !== 'filled');
-
-  const buttonClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-    createRippleEffect(event);
-    onClick && onClick(event);
-  };
-
-  const classes = classNames(
-    'jds-btn',
-    classNameSize('jds-btn', size),
-    `${classNameColor('jds-btn', color)}--${appearance}`,
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (
     {
-      'jds-btn--disabled': disabled
+      size = 'medium',
+      disabled = false,
+      iconLeft = null,
+      iconRight = null,
+      type = 'button',
+      className = '',
+      appearance = 'filled',
+      color = 'default',
+      style,
+      onClick,
+      children,
+      ...props
     },
-    className
-  );
+    ref
+  ) => {
+    const buttonRef = useForwardedRef<HTMLButtonElement>(ref);
 
-  return (
-    <button
-      {...props}
-      className={classes}
-      style={style}
-      ref={ref}
-      disabled={disabled}
-      type={type}
-      onClick={buttonClickHandler}
-    >
-      {iconLeft && <div className="jds-btn__icon">{iconLeft}</div>}
-      <span className="jds-btn__text">{children}</span>
-      {iconRight && <div className="jds-btn__icon">{iconRight}</div>}
-    </button>
-  );
-};
+    const createRippleEffect = useRippleEffect(
+      buttonRef,
+      appearance !== 'filled'
+    );
+
+    const buttonClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+      createRippleEffect(event);
+      onClick && onClick(event);
+    };
+
+    const classes = classNames(
+      'jds-btn',
+      classNameSize('jds-btn', size),
+      `${classNameColor('jds-btn', color)}--${appearance}`,
+      {
+        'jds-btn--disabled': disabled
+      },
+      className
+    );
+
+    return (
+      <button
+        {...props}
+        className={classes}
+        style={style}
+        ref={buttonRef}
+        disabled={disabled}
+        type={type}
+        onClick={buttonClickHandler}
+      >
+        {iconLeft && <div className="jds-btn__icon">{iconLeft}</div>}
+        <span className="jds-btn__text">{children}</span>
+        {iconRight && <div className="jds-btn__icon">{iconRight}</div>}
+      </button>
+    );
+  }
+);
 
 export default Button;
