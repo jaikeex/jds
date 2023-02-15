@@ -51,6 +51,7 @@
     "react-popper": "^2.3.0",
     "react-popper-tooltip": "^4.4.2",
     "react-scripts": "^5.0.1",
+    "react-select": "^5.7.0",
     "rollup": "^3.10.1",
     "rollup-plugin-copy": "^3.4.0",
     "rollup-plugin-delete": "^2.0.0",

@@ -32,8 +32,8 @@ export interface TextFieldProps {
 const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   (
     {
-      autoFocus = false,
       appearance = 'outlined',
+      autoFocus = false,
       className = '',
       color = 'default',
       defaultValue = '',

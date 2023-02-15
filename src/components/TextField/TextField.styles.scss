@@ -11,7 +11,7 @@
     transition: all 0.2s;
     width: 25rem;
     font-size: 1rem;
-    padding: 0.75rem 1rem;
+    padding: 0.438rem 1rem;
 
     outline: none;
     background-color: inherit;
@@ -86,7 +86,7 @@
     display: block;
     transition: all 0.1s;
     position: absolute;
-    top: 0.85rem;
+    top: 0.5rem;
     margin-left: 1rem;
     cursor: text;
 
@@ -97,8 +97,7 @@
     &--transformed {
       font-size: 0.875rem;
       letter-spacing: 0.031rem;
-      z-index: 20;
-      margin-left: 0rem;
+      margin-left: 0rem !important;
       cursor: default;
 
       @include themify() {
@@ -107,20 +106,21 @@
     }
 
     &--transformed#{&}--position--top {
+      left: 0;
       top: -1.4rem;
     }
 
     &--transformed#{&}--position--bottom {
-      top: 3.2rem;
+      top: 2.5rem;
     }
   }
 
   &__element {
     position: absolute;
-    top: 0.5rem;
+    top: 0.45rem;
     height: 2rem;
     width: 2rem;
-    line-height: 2rem;
+    line-height: 1.5rem;
     text-align: center;
 
     overflow: hidden;

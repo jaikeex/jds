@@ -1,0 +1,51 @@
+@import '@styles/main';
+
+.jds-select-placeholder {
+  font-weight: 500;
+  display: block;
+  transition: all 0.15s;
+  position: absolute;
+  cursor: text;
+  top: 0.25rem;
+  left: 0.1rem;
+
+  &--transformed {
+    font-size: 0.875rem;
+    letter-spacing: 0.031rem;
+    margin-left: 0rem;
+    cursor: default;
+
+    @include themify() {
+      color: themed(text-color-primary) !important;
+    }
+
+    &--hidden {
+      transition: all 0s;
+      opacity: 0;
+    }
+  }
+
+  &--transformed#{&}--position--top {
+    top: -1.5rem;
+    left: -0.5rem;
+
+    &--multi {
+      top: -1.5rem;
+      left: 0;
+    }
+  }
+
+  &--transformed#{&}--position--bottom {
+    top: 2.4rem;
+    left: -0.5rem;
+
+    &--multi {
+      top: 2.4rem;
+      left: 0;
+    }
+  }
+
+  @include themify() {
+    color: rgba(themed(text-color-secondary), 0.5);
+  }
+}

@@ -1,11 +1,11 @@
 import React from 'react';
 import './Loader.styles.scss';
-import { Size } from '@core/types';
+import { ExtendedSize } from '@core/types';
 import classNames from 'classnames';
 import { classNameSize } from '@core/utils';
 
 export interface LoaderProps {
-  size?: Size;
+  size?: ExtendedSize;
 }
 
 const Loader: React.FC<LoaderProps> = ({ size = 'medium' }) => {

@@ -1,14 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import './Select.styles.scss';
 import { Selectable, SelectProps } from './types';
-import { default as RSelect, MultiValue, SingleValue } from 'react-select';
+import { default as RAsyncSelect } from 'react-select/async';
+import { GroupBase, MultiValue, SingleValue } from 'react-select';
 import { makeId } from '@core/utils';
 import { useForwardedRef } from '@core/hooks';
 import { CValueContainer } from '@components/Select';
 import { useSelectClasses } from './useSelectClasses';
-import { CLoadingIndicator } from '@components/Select';
 
-const Select = React.forwardRef<any, SelectProps>(
+export interface AsyncSelectProps extends SelectProps {
+  cacheOptions?: any;
+  defaultOptions?: boolean | ReadonlyArray<Selectable | GroupBase<Selectable>>;
+  loadOptions?: (
+    query: string,
+    callback: (
+      options: ReadonlyArray<Selectable | GroupBase<Selectable>>
+    ) => void
+  ) => void | Promise<ReadonlyArray<Selectable | GroupBase<Selectable>>>;
+}
+
+const AsyncSelect = React.forwardRef<any, AsyncSelectProps>(
   (
     {
       appearance = 'outlined',
@@ -70,7 +81,7 @@ const Select = React.forwardRef<any, SelectProps>(
     }, [value]);
 
     return (
-      <RSelect
+      <RAsyncSelect
         ref={inputRef}
         components={{
           ValueContainer: CValueContainer,
@@ -90,4 +101,4 @@ const Select = React.forwardRef<any, SelectProps>(
   }
 );
 
-export default Select;
+export default AsyncSelect;
