@@ -1,12 +1,20 @@
 import classNames from 'classnames';
-import { IconSize, IconColor } from './types';
+import { ColorVariants, ExtendedSize } from '@core/types';
 
 export const getIconClasses = (
-  size: IconSize = 'medium',
-  color: IconColor = 'default',
+  size: ExtendedSize = 'medium',
+  color: ColorVariants | `#${string}` = 'default',
   className: string = ''
-) =>
-  classNames('jds-icon', `jds-icon--${size}`, `jds-icon--${color}`, className);
+) => {
+  const colorClassName = `jds-icon--${color}`;
 
-export const getFlatIconClasses = (size: IconSize = 'medium') =>
+  return classNames(
+    'jds-icon',
+    `jds-icon--${size}`,
+    { [colorClassName]: !color.startsWith('#') },
+    className
+  );
+};
+
+export const getFlatIconClasses = (size: ExtendedSize = 'medium') =>
   classNames('jds-icon', `jds-icon--${size}`);

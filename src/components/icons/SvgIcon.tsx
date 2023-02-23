@@ -1,11 +1,11 @@
 import React from 'react';
 import '@components/icons/styles.scss';
-import { IconColor, IconSize } from './types';
 import { getIconClasses } from './utils';
+import { ColorVariants, ExtendedSize } from '@core/types';
 
 export interface SvgIconProps extends React.PropsWithChildren {
-  size?: IconSize;
-  color?: IconColor;
+  size?: ExtendedSize;
+  color?: ColorVariants | `#${string}`;
   className?: string;
   style?: React.CSSProperties;
   testId?: string;
@@ -34,12 +34,22 @@ const SvgIcon = React.forwardRef<SVGSVGElement, SvgIconProps>(
   ) => {
     const classes = getIconClasses(size, color, className);
 
+    const styles = () => {
+      const styles = { ...style };
+
+      if (color.startsWith('#')) {
+        styles.fill = color;
+      }
+
+      return styles;
+    };
+
     return (
       <svg
         {...props}
         ref={ref}
         className={classes}
-        style={style}
+        style={styles()}
         data-testid={testId}
         aria-label={ariaLabel}
         width={width}

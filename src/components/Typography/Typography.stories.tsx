@@ -62,6 +62,10 @@ const Template: Story<TypographyProps> = args => {
       <Typography {...args} variant="label">
         Label
       </Typography>
+      <div style={{ marginBottom: '0.75rem' }}></div>
+      <Typography {...args} variant="button">
+        Button
+      </Typography>
     </div>
   );
 };
@@ -89,4 +93,10 @@ export const Danger = Template.bind({});
 Danger.args = {
   ...Default.args,
   color: 'danger'
+};
+
+export const CustomColorYellow = Template.bind({});
+CustomColorYellow.args = {
+  ...Default.args,
+  color: '#ffff00'
 };

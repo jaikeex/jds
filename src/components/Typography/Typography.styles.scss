@@ -6,9 +6,11 @@
   @include use-color-variants() using($variant) {
     @include themify() {
       color: themed-variant($variant, color-primary);
+      text-decoration-color: themed-variant($variant, color-primary);
 
       @if $variant == default {
         color: themed(text-color-primary);
+        text-decoration-color: themed(text-color-primary);
       }
     }
   }
@@ -79,6 +81,13 @@
     &--label {
       font-size: 0.938rem;
       font-weight: 400;
+      letter-spacing: 0.031rem;
+    }
+
+    &--button {
+      font-weight: 600;
+      font-size: 0.938rem;
+      text-transform: uppercase;
       letter-spacing: 0.031rem;
     }
   }

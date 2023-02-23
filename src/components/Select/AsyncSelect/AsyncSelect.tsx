@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import './Select.styles.scss';
-import { Selectable, SelectProps } from './types';
-import { default as RAsyncSelect } from 'react-select/async';
+import '../Select.styles.scss';
+import { Selectable, SelectProps } from '../types';
 import { GroupBase, MultiValue, SingleValue } from 'react-select';
+import { default as RAsyncSelect } from 'react-select/async';
 import { makeId } from '@core/utils';
 import { useForwardedRef } from '@core/hooks';
-import { CValueContainer } from '@components/Select';
-import { useSelectClasses } from './useSelectClasses';
+import { CValueContainer } from '@components/Select/custom-components';
+import { useSelectClasses } from '../useSelectClasses';
 
 export interface AsyncSelectProps extends SelectProps {
   cacheOptions?: any;

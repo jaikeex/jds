@@ -44,6 +44,7 @@
     "babel-plugin-named-exports-order": "^0.0.2",
     "classnames": "^2.3.2",
     "css-loader": "^6.7.3",
+    "csstype": "^3.1.1",
     "node": "^19.4.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",

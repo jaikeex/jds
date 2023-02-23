@@ -2,27 +2,14 @@ import { ColorVariants } from '@core/types';
 import React from 'react';
 import './Typography.styles.scss';
 import classNames from 'classnames';
-import { classNameColor } from '@core/utils';
-
-const variantMap = {
-  h1: 'h1',
-  h2: 'h2',
-  h3: 'h3',
-  h4: 'h4',
-  h5: 'h5',
-  h6: 'h6',
-  subHeading1: 'h6',
-  subHeading2: 'h6',
-  body1: 'p',
-  body2: 'p',
-  body3: 'p',
-  caption: 'p',
-  label: 'span'
-};
+import {
+  typographyVariantMap,
+  TypographyVariants
+} from '@core/types/typography';
 
 export interface TypographyProps {
-  variant?: keyof typeof variantMap;
-  color?: ColorVariants;
+  variant?: TypographyVariants;
+  color?: ColorVariants | `#${string}`;
   textAlign?: 'center' | 'inherit' | 'justify' | 'left' | 'right';
   marginBottom?: number;
   marginTop?: number;
@@ -43,12 +30,15 @@ const Typography: React.FC<TypographyProps> = ({
   style,
   children
 }) => {
-  const Component = variantMap[variant] as keyof JSX.IntrinsicElements;
+  const Component = typographyVariantMap[
+    variant
+  ] as keyof JSX.IntrinsicElements;
+  const colorClassName = `jds-typography--color--${color}`;
 
   const classes = classNames(
     'jds-typography',
     `jds-typography--variant--${variant}`,
-    classNameColor('jds-typography', color),
+    { [colorClassName]: !color.startsWith('#') },
     className
   );
 
@@ -64,6 +54,11 @@ const Typography: React.FC<TypographyProps> = ({
       styles.overflow = 'hidden';
       styles.whiteSpace = 'nowrap';
       styles.textOverflow = 'ellipsis';
+    }
+
+    if (color.startsWith('#')) {
+      styles.color = color;
+      styles.textDecorationColor = color;
     }
 
     return styles;

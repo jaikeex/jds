@@ -3,7 +3,7 @@ $themes: (
     (
       background-color-primary: #ffffff,
       button-color-background-1: #90caf9,
-      button-color-background-2: #42a5f5,
+      tab-button-color-active: #42a5f5,
       button-color-text: rgba($color-black, 0.9),
       button-color-icon: rgba($color-black, 0.9),
       icon-button-color: #084b83,
@@ -58,7 +58,7 @@ $themes: (
   '.theme-dark': (
     background-color-primary: #202020,
     button-color-background-1: #084b83,
-    button-color-background-2: #2f6da0,
+    tab-button-color-active: #42a5f5,
     button-color-text: rgba($color-grey-light-1, 0.9),
     button-color-icon: rgba($color-grey-light-1, 0.9),
     icon-button-color: #ebefbf,

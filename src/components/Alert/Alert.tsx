@@ -62,15 +62,15 @@ const Alert: React.FC<AlertProps> = ({
     if (icon) {
       return React.cloneElement(icon, {
         size: 'small',
-        color: color === 'default' ? 'default' : 'white'
+        color: color === 'default' ? 'default' : '#ffffff'
       });
     }
 
     switch (color) {
       case 'success':
-        return <CheckmarkCircleIcon size="small" color="white" />;
+        return <CheckmarkCircleIcon size="small" color="#ffffff" />;
       case 'danger':
-        return <WarningIcon size="small" color="white" />;
+        return <WarningIcon size="small" color="#ffffff" />;
       default:
         return null;
     }

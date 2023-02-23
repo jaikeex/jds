@@ -9,6 +9,7 @@ export interface DividerProps {
   component?: keyof JSX.IntrinsicElements;
   flexItem?: boolean;
   lineStrength?: string | number;
+  removeMargin?: boolean;
   orientation?: 'horizontal' | 'vertical';
 }
 
@@ -18,6 +19,7 @@ const Divider: React.FC<DividerProps> = ({
   component = 'div',
   flexItem = false,
   lineStrength = 1,
+  removeMargin = false,
   orientation = 'horizontal'
 }) => {
   const Component = component;
@@ -28,7 +30,8 @@ const Divider: React.FC<DividerProps> = ({
     `jds-divider--${orientation}`,
     className,
     {
-      'jds-divider--flex': flexItem
+      'jds-divider--flex': flexItem,
+      'jds-divider--no-margin': removeMargin
     }
   );
 

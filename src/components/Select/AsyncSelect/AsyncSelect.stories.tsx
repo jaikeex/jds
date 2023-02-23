@@ -1,7 +1,7 @@
 import React from 'react';
 import { Story, ComponentMeta } from '@storybook/react';
 import AsyncSelect, { AsyncSelectProps } from './AsyncSelect';
-import { Selectable } from './types';
+import { Selectable } from '@components/Select';
 
 export default {
   title: 'Design System/Select/Async',
@@ -9,7 +9,7 @@ export default {
 } as ComponentMeta<typeof AsyncSelect>;
 
 const loadOptions = (
-  query: string,
+  inputValue: string,
   callback: (options: Selectable[]) => void
 ) => {
   const options = [
@@ -30,7 +30,7 @@ const loadOptions = (
   };
 
   setTimeout(() => {
-    callback(filterOptions(query));
+    callback(filterOptions(inputValue));
   }, 1000);
 };
 

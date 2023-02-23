@@ -20,6 +20,9 @@ export const classNameSize = (
   return `${baseClass}--size--${sizeProp}`;
 };
 
-export const classNameColor = (baseClass: string, colorProp: ColorVariants) => {
-  return `${baseClass}--color--${colorProp}`;
+export const classNameColor = (
+  baseClass: string,
+  colorProp: ColorVariants | `#${string}`
+) => {
+  return colorProp.startsWith('#') ? '' : `${baseClass}--color--${colorProp}`;
 };

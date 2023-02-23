@@ -1,7 +1,7 @@
 import React from 'react';
 import './CValueContainer.styles.scss';
 import { components, GroupBase, ValueContainerProps } from 'react-select';
-import { CPlaceholder } from '@components/Select';
+import { CPlaceholder } from '@components/Select/custom-components';
 import { Selectable } from '@components/Select';
 const { ValueContainer, Placeholder } = components;
 

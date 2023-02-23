@@ -1,0 +1,28 @@
+@import '@styles/main';
+
+.jds-link {
+  &--underline {
+    &--none {
+      &:link,
+      &:visited,
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    &--hover {
+      &:link,
+      &:visited {
+        text-decoration: none;
+      }
+
+      &:hover {
+        text-decoration-line: underline;
+      }
+    }
+
+    &--allways {
+      text-decoration-line: underline;
+    }
+  }
+}

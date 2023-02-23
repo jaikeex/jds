@@ -29,6 +29,7 @@ export * from './MaximizeIcon';
 export * from './MinimizeIcon';
 export * from './MoreHorizontalIcon';
 export * from './MoreVerticalIcon';
+export * from './OpenOutsideIcon';
 export * from './OutputIcon';
 export * from './PlusIcon';
 export * from './QuestionMarkCircleIcon';

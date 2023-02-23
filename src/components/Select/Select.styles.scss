@@ -176,6 +176,7 @@
   &__menu {
     font-size: 0.875rem;
     transition: all 0.15s;
+    margin-top: 4px !important;
 
     @include themify() {
       background-color: themed(background-color-primary);

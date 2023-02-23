@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import './Select.styles.scss';
-import { Selectable, SelectProps } from './types';
+import '../Select.styles.scss';
+import { Selectable, SelectProps } from '../types';
 import { default as RSelect, MultiValue, SingleValue } from 'react-select';
 import { makeId } from '@core/utils';
 import { useForwardedRef } from '@core/hooks';
-import { CValueContainer } from '@components/Select';
-import { useSelectClasses } from './useSelectClasses';
-import { CLoadingIndicator } from '@components/Select';
+import { CValueContainer } from '@components/Select/custom-components';
+import { useSelectClasses } from '../useSelectClasses';
 
-const Select = React.forwardRef<any, SelectProps>(
+const StandardSelect = React.forwardRef<any, SelectProps>(
   (
     {
       appearance = 'outlined',
@@ -90,4 +89,4 @@ const Select = React.forwardRef<any, SelectProps>(
   }
 );
 
-export default Select;
+export default StandardSelect;
