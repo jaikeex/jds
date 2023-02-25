@@ -7,7 +7,7 @@ export interface OutsideClickListenerProps {
 }
 
 const OutsideClickListener: React.FC<OutsideClickListenerProps> = ({
-  children,
+  children = null,
   onOutsideClick = () => {}
 }) => {
   const ref = useRef<HTMLDivElement>(null);

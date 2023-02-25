@@ -11,6 +11,7 @@ export interface ButtonProps {
   appearance?: ButtonAppearance;
   color?: Exclude<ColorVariants, 'dark'>;
   disabled?: boolean;
+  disableRippleEffect?: boolean;
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
   type?: ButtonType;
@@ -25,6 +26,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     {
       size = 'medium',
       disabled = false,
+      disableRippleEffect = false,
       iconLeft = null,
       iconRight = null,
       type = 'button',
@@ -46,7 +48,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     const buttonClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-      createRippleEffect(event);
+      disableRippleEffect || createRippleEffect(event);
       onClick && onClick(event);
     };
 

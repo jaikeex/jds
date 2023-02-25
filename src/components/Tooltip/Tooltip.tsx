@@ -19,9 +19,9 @@ const Tooltip: React.FC<TooltipProps> = ({
   position = 'right',
   size = 'default',
   className = '',
-  style,
-  content,
-  children
+  style = {},
+  content = null,
+  children = null
 }) => {
   const { getTooltipProps, setTooltipRef, setTriggerRef, visible } =
     usePopperTooltip({ placement: position });
