@@ -17,7 +17,8 @@
   "scripts": {
     "rollup": "rollup -c",
     "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "prepare": "husky install"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
@@ -41,12 +42,22 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@types/react-syntax-highlighter": "^15.5.6",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
     "babel-loader": "^8.3.0",
     "babel-plugin-named-exports-order": "^0.0.2",
     "classnames": "^2.3.2",
     "css-loader": "^6.7.3",
     "csstype": "^3.1.1",
+    "eslint": "^8.35.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-config-standard-with-typescript": "^34.0.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-n": "^15.6.1",
+    "eslint-plugin-promise": "^6.1.1",
+    "eslint-plugin-react": "^7.32.2",
+    "lint-staged": "^13.1.2",
     "node": "^19.4.0",
+    "prettier": "2.8.4",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -67,8 +78,9 @@
     "sass-loader": "^13.2.0",
     "storybook-addon-theme-toggle": "^0.0.1",
     "tslib": "^2.4.1",
-    "typescript": "^4.9.4",
-    "webpack": "^5.75.0"
+    "typescript": "^4.9.5",
+    "webpack": "^5.75.0",
+    "husky": "^8.0.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
