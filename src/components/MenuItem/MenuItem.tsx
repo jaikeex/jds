@@ -31,13 +31,7 @@ const MenuItem: React.FC<MenuItemProps> = ({
   };
 
   return (
-    <ListItem
-      {...props}
-      className="jds-menu-item"
-      color={color}
-      onClick={clickHandler}
-      clickable
-    >
+    <ListItem {...props} color={color} onClick={clickHandler} clickable>
       {children}
     </ListItem>
   );

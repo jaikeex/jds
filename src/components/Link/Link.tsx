@@ -2,7 +2,7 @@ import { ColorVariants } from '@core/types';
 import React from 'react';
 import './Link.styles.scss';
 import classNames from 'classnames';
-import { TypographyVariants } from '@core/types/typography';
+import { TypographyVariants } from '@core/types';
 import { Typography } from '../Typography';
 
 export interface LinkProps extends React.PropsWithChildren {

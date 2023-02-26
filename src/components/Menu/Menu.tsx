@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import './Menu.styles.scss';
 import { Position } from '@core/types';
 import { TriggerType } from 'react-popper-tooltip';
 import { MenuList } from '@components/MenuList';
@@ -50,7 +49,7 @@ const Menu: React.FC<MenuProps> = ({
 
   return (
     <MenuContextProvider defaultIsOpen={defaultOpen}>
-      <div className="jds-menu">
+      <div>
         {triggerComponentWithProps}
         <MenuList
           {...menuListProps}

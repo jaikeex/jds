@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './MenuList.styles.scss';
 import { Popper } from '@components/Popper';
 import { List } from '@components/List';
 import { Sheet } from '@components/Sheet';

@@ -1,0 +1,12 @@
+@import '@styles/main';
+
+.jds-code {
+  > pre {
+    border-radius: 5px;
+  }
+
+  code {
+    font-family: 'JetBrains Mono', monospace !important;
+    font-size: 0.875rem;
+  }
+}

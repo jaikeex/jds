@@ -69,6 +69,20 @@
   src: url('~assets/fonts/italic/OpenSans-BoldItalic.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'Consolas';
+  font-style: monospace;
+  font-weight: 400;
+  src: url('~assets/fonts/mono/Consolas.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  font-style: monospace;
+  font-weight: 400;
+  src: url('~assets/fonts/mono/JetBrainsMono-Regular.ttf') format('truetype');
+}
+
 .jds-storybook {
   font-family: 'OpenSans', sans-serif;
   font-weight: 400;

@@ -2,10 +2,7 @@ import { ColorVariants } from '@core/types';
 import React from 'react';
 import './Typography.styles.scss';
 import classNames from 'classnames';
-import {
-  typographyVariantMap,
-  TypographyVariants
-} from '@core/types/typography';
+import { typographyVariantMap, TypographyVariants } from '@core/types';
 
 export interface TypographyProps {
   variant?: TypographyVariants;
