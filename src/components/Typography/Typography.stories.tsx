@@ -72,8 +72,7 @@ const Template: Story<TypographyProps> = args => {
 
 export const Default = Template.bind({});
 Default.args = {
-  marginBottom: 10,
-  marginTop: 5
+  gutterBottom: true
 };
 
 export const NoWrap = Template.bind({});

@@ -8,8 +8,7 @@ export interface TypographyProps {
   variant?: TypographyVariants;
   color?: ColorVariants | `#${string}`;
   textAlign?: 'center' | 'inherit' | 'justify' | 'left' | 'right';
-  marginBottom?: number;
-  marginTop?: number;
+  gutterBottom?: boolean;
   noWrap?: boolean;
   style?: React.CSSProperties;
   className?: string;
@@ -22,8 +21,7 @@ const Typography: React.FC<TypographyProps> = ({
   textAlign = 'inherit',
   className = '',
   noWrap = false,
-  marginBottom,
-  marginTop,
+  gutterBottom = false,
   style,
   children
 }) => {
@@ -42,10 +40,12 @@ const Typography: React.FC<TypographyProps> = ({
   const getStyles = () => {
     const styles: React.CSSProperties = {
       textAlign: textAlign,
-      marginBottom: `${marginBottom}px`,
-      marginTop: `${marginTop}px`,
       ...style
     };
+
+    if (!gutterBottom) {
+      styles.marginBottom = 0;
+    }
 
     if (noWrap) {
       styles.overflow = 'hidden';

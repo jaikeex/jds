@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Popper } from '@components/Popper';
 import { List } from '@components/List';
-import { Sheet } from '@components/Sheet';
+import { Sheet, SheetProps } from '@components/Sheet';
 import { Position } from '@core/types';
 import { TriggerType } from 'react-popper-tooltip';
 import { useMenuContext } from '../Menu/MenuContextProvider';
-import classNames from 'classnames';
 
 export interface MenuListProps extends React.PropsWithChildren {
   onVisibleChange?: (state: boolean) => void;
-  className?: string;
   compact?: boolean;
+  maxHeight?: number | string;
+  minWidth?: number | string;
   position?: Position;
+  sheetProps?: SheetProps;
   style?: React.CSSProperties;
   trigger?: TriggerType | TriggerType[];
   referenceElement: HTMLElement | null;
@@ -19,15 +20,28 @@ export interface MenuListProps extends React.PropsWithChildren {
 
 const MenuList: React.FC<MenuListProps> = ({
   children = null,
-  className = '',
   compact = false,
+  maxHeight = undefined,
+  minWidth = '100%',
   onVisibleChange = () => {},
+  sheetProps = {},
   style = {},
   ...popperProps
 }) => {
   const { isOpen, setIsOpen } = useMenuContext();
 
-  const classes = classNames('jds-menu-list', className);
+  const getStyles = () => {
+    const styles = { ...sheetProps.style };
+
+    if (maxHeight) {
+      styles.maxHeight =
+        typeof maxHeight === 'string' ? maxHeight : `${maxHeight}px`;
+      styles.overflowY = 'auto';
+    }
+
+    styles.minWidth = typeof minWidth === 'string' ? minWidth : `${minWidth}px`;
+    return styles;
+  };
 
   const visibilityChangeHandler = (state: boolean) => {
     setIsOpen && setIsOpen(state);
@@ -42,7 +56,7 @@ const MenuList: React.FC<MenuListProps> = ({
       delayHide={popperProps.trigger === 'hover' ? 200 : 0}
       {...popperProps}
     >
-      <Sheet className={classes} style={style} level={6}>
+      <Sheet {...sheetProps} style={getStyles()} level={6}>
         <List compact={compact}>{children}</List>
       </Sheet>
     </Popper>
