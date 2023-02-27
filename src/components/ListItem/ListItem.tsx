@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './ListItem.styles.scss';
 import classNames from 'classnames';
 import { makeId } from '@core/utils';
 import { Divider } from '@components/Divider';
 import { useForwardedRef, useRippleEffect } from '@core/hooks';
 import { useListContext } from '@components/List';
-import { ColorVariants } from '@core/types';
+import type { ColorVariants } from '@core/types';
 
 export interface ListItemProps extends React.PropsWithChildren {
   className?: string;
@@ -68,12 +68,15 @@ const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
       return styles;
     };
 
-    const clickHandler = (event: React.MouseEvent<HTMLLIElement>) => {
-      if (clickable && !disabled) {
-        createRippleEffect(event);
-        onClick(event);
-      }
-    };
+    const clickHandler = useCallback(
+      (event: React.MouseEvent<HTMLLIElement>) => {
+        if (clickable && !disabled) {
+          createRippleEffect(event);
+          onClick(event);
+        }
+      },
+      [createRippleEffect, onclose, clickable, disabled]
+    );
 
     return (
       <React.Fragment>

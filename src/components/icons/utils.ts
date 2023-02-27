@@ -1,10 +1,10 @@
 import classNames from 'classnames';
-import { ColorVariants, ExtendedSize } from '@core/types';
+import type { ColorVariants, ExtendedSize } from '@core/types';
 
 export const getIconClasses = (
   size: ExtendedSize = 'medium',
   color: ColorVariants | `#${string}` = 'default',
-  className: string = ''
+  className = ''
 ) => {
   const colorClassName = `jds-icon--${color}`;
 

@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Typography } from '@components/Typography';
+import React, { useCallback, useState } from 'react';
 import './Tabs.styles.scss';
 import { TabButton } from './TabButton';
 import { Divider } from '@components/Divider';
@@ -26,7 +25,7 @@ const Tabs: React.FC<TabsProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<number>(0);
 
-  const labels = React.Children.map(children, child => {
+  const labels = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
       return { label: child.props.label, disabled: child.props.disabled };
     }
@@ -47,10 +46,17 @@ const Tabs: React.FC<TabsProps> = ({
     <div>
       <div style={styles()} className="jds-tabs">
         {labels &&
-          labels.map((props, index) => (
-            <div onClick={() => tabChangeHandler(index)}>
-              <TabButton active={index === activeTab} disabled={props.disabled}>
-                {props.label}
+          labels.map((args, index) => (
+            <div
+              key={index}
+              //TODO: refactor this shit
+              onClick={useCallback(
+                () => tabChangeHandler(index),
+                [tabChangeHandler]
+              )}
+            >
+              <TabButton active={index === activeTab} disabled={args.disabled}>
+                {args.label}
               </TabButton>
             </div>
           ))}

@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import './AlertProvider.styles.scss';
 import { AlertContext } from '@store/AlertContext';
-import { Alert, AlertProps } from '@components/Alert';
+import type { AlertProps } from '@components/Alert';
+import { Alert } from '@components/Alert';
 import { makeId } from '@core/utils';
 import classNames from 'classnames';
-import { AlertLocation } from '@components/Alert';
+import type { AlertLocation } from '@components/Alert';
 
 export interface AlertProviderProps {
   location?: AlertLocation;
@@ -28,24 +29,27 @@ const AlertProvider: React.FC<AlertProviderProps> = ({
   );
 
   const removeAlertItemFromStack = (id: string) => {
-    setAlertItems(prevState => {
+    setAlertItems((prevState) => {
       const newState = [...prevState];
-      return newState.filter(item => item.id !== id);
+      return newState.filter((item) => item.id !== id);
     });
   };
 
   const addAlertItemToStack = (props: AlertProps) => {
-    setAlertItems(prevState => {
+    setAlertItems((prevState) => {
       props.id = `jds-alert-${makeId(10)}`;
       props.location = location;
       return [props, ...prevState];
     });
   };
 
-  const contextState = {
-    addItem: addAlertItemToStack,
-    removeItem: removeAlertItemFromStack
-  };
+  const contextState = React.useMemo(
+    () => ({
+      addItem: addAlertItemToStack,
+      removeItem: removeAlertItemFromStack
+    }),
+    [addAlertItemToStack, removeAlertItemFromStack]
+  );
 
   return (
     <AlertContext.Provider value={contextState}>

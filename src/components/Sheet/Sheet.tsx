@@ -1,6 +1,6 @@
-import { NumericRange } from '@core/types';
 import React from 'react';
 import './Sheet.styles.scss';
+import type { NumericRange } from '@core/types';
 import classNames from 'classnames';
 
 export interface SheetProps {
@@ -42,4 +42,5 @@ const Sheet = React.forwardRef<HTMLDivElement, SheetProps>(
   }
 );
 
+Sheet.displayName = 'Sheet';
 export default Sheet;

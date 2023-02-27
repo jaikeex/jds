@@ -1,14 +1,14 @@
 import React from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
+import type { Story, ComponentMeta } from '@storybook/react';
 import { QuestionMarkCircleIcon } from '.';
-import { SvgIconProps } from '@components/icons';
+import type { SvgIconProps } from '@components/icons';
 
 export default {
   title: 'Icons/Basic UI/QuestionMarkCircle',
   component: QuestionMarkCircleIcon
 } as ComponentMeta<typeof QuestionMarkCircleIcon>;
 
-const Template: Story<SvgIconProps> = args => (
+const Template: Story<SvgIconProps> = (args) => (
   <QuestionMarkCircleIcon {...args} />
 );
 

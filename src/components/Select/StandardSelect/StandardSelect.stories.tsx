@@ -1,7 +1,7 @@
 import React from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
+import type { Story, ComponentMeta } from '@storybook/react';
 import StandardSelect from './StandardSelect';
-import { SelectProps } from '../types';
+import type { SelectProps } from '@components/Select/types';
 
 export default {
   title: 'Design System/Select/Standard',
@@ -21,22 +21,20 @@ const options = [
   { value: 'silver', label: 'Silver', color: '#666666' }
 ];
 
-const Template: Story<SelectProps> = args => {
-  return (
-    <div
-      style={{
-        width: '300px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '2rem'
-      }}
-    >
-      <StandardSelect {...args} options={options} appearance="outlined" />
-      <StandardSelect {...args} options={options} appearance="filled" />
-      <StandardSelect {...args} options={options} appearance="subtle" />
-    </div>
-  );
-};
+const Template: Story<SelectProps> = (args) => (
+  <div
+    style={{
+      width: '300px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '2rem'
+    }}
+  >
+    <StandardSelect {...args} options={options} appearance="outlined" />
+    <StandardSelect {...args} options={options} appearance="filled" />
+    <StandardSelect {...args} options={options} appearance="subtle" />
+  </div>
+);
 
 export const Default = Template.bind({});
 Default.args = {};

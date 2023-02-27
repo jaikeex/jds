@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 
 export interface ListContextProps {
-  isCompact?: boolean;
+  isCompact: boolean;
 }
 
 export interface ListContextProviderProps {
@@ -9,20 +9,20 @@ export interface ListContextProviderProps {
   compact?: boolean;
 }
 
-export const useListContext = () => {
-  return useContext(ListContext);
-};
+export const useListContext = (): ListContextProps => useContext(ListContext);
 
-export const ListContext = React.createContext<ListContextProps>({});
+export const ListContext = React.createContext<ListContextProps>({
+  isCompact: false
+});
 
 const ListContextProvider: React.FC<ListContextProviderProps> = ({
   children,
   compact = false
 }) => {
+  const defaultProps = React.useMemo(() => ({ isCompact: compact }), [compact]);
+
   return (
-    <ListContext.Provider value={{ isCompact: compact }}>
-      {children}
-    </ListContext.Provider>
+    <ListContext.Provider value={defaultProps}>{children}</ListContext.Provider>
   );
 };
 

@@ -1,11 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import './Alert.styles.scss';
 import classNames from 'classnames';
-import IconButton from '../IconButton/IconButton';
-import { CheckmarkCircleIcon, CloseIcon, WarningIcon } from '../icons';
+import { IconButton } from '@components/IconButton';
+import { CheckmarkCircleIcon, CloseIcon, WarningIcon } from '@components/icons';
 import { useAlertTimers } from './useAlertTimers';
-import { AlertLocation } from './types';
-import { ColorVariants } from '@core/types';
+import type { AlertLocation } from './types';
+import type { ColorVariants } from '@core/types';
 import { classNameColor } from '@core/utils';
 
 export interface AlertProps {
@@ -39,8 +39,7 @@ const Alert: React.FC<AlertProps> = ({
   icon,
   action,
   style,
-  children,
-  ...props
+  children
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
@@ -76,17 +75,17 @@ const Alert: React.FC<AlertProps> = ({
     }
   };
 
-  const closeButtonClickHandler = () => {
+  const closeButtonClickHandler = useCallback(() => {
     closeAlert(50);
-  };
+  }, [closeAlert]);
 
-  const mouseOverHandler = () => {
+  const mouseOverHandler = useCallback(() => {
     stopClose();
-  };
+  }, [stopClose]);
 
-  const mouseLeaveHandler = () => {
+  const mouseLeaveHandler = useCallback(() => {
     closeAlert(resumeHideDuration);
-  };
+  }, [closeAlert, resumeHideDuration]);
 
   useEffect(() => {
     isVisible ? onOpen() : onClose();

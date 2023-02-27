@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Popper } from '@components/Popper';
 import { List } from '@components/List';
-import { Sheet, SheetProps } from '@components/Sheet';
-import { Position } from '@core/types';
-import { TriggerType } from 'react-popper-tooltip';
-import { useMenuContext } from '../Menu/MenuContextProvider';
+import { Sheet, type SheetProps } from '@components/Sheet';
+import type { Position } from '@core/types';
+import type { TriggerType } from 'react-popper-tooltip';
+import { useMenuContext } from '@components/Menu/MenuContextProvider';
 
 export interface MenuListProps extends React.PropsWithChildren {
   onVisibleChange?: (state: boolean) => void;
@@ -13,7 +13,6 @@ export interface MenuListProps extends React.PropsWithChildren {
   minWidth?: number | string;
   position?: Position;
   sheetProps?: SheetProps;
-  style?: React.CSSProperties;
   trigger?: TriggerType | TriggerType[];
   referenceElement: HTMLElement | null;
 }
@@ -25,7 +24,6 @@ const MenuList: React.FC<MenuListProps> = ({
   minWidth = '100%',
   onVisibleChange = () => {},
   sheetProps = {},
-  style = {},
   ...popperProps
 }) => {
   const { isOpen, setIsOpen } = useMenuContext();
@@ -33,7 +31,7 @@ const MenuList: React.FC<MenuListProps> = ({
   const getStyles = () => {
     const styles = { ...sheetProps.style };
 
-    if (maxHeight) {
+    if (maxHeight != undefined) {
       styles.maxHeight =
         typeof maxHeight === 'string' ? maxHeight : `${maxHeight}px`;
       styles.overflowY = 'auto';
@@ -43,10 +41,13 @@ const MenuList: React.FC<MenuListProps> = ({
     return styles;
   };
 
-  const visibilityChangeHandler = (state: boolean) => {
-    setIsOpen && setIsOpen(state);
-    onVisibleChange && onVisibleChange(state);
-  };
+  const visibilityChangeHandler = useCallback(
+    (state: boolean) => {
+      setIsOpen(state);
+      onVisibleChange(state);
+    },
+    [setIsOpen, onVisibleChange]
+  );
 
   return (
     <Popper

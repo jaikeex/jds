@@ -1,6 +1,6 @@
 import React from 'react';
 import './Loader.styles.scss';
-import { ExtendedSize } from '@core/types';
+import type { ExtendedSize } from '@core/types';
 import classNames from 'classnames';
 import { classNameSize } from '@core/utils';
 
@@ -14,10 +14,10 @@ const Loader: React.FC<LoaderProps> = ({ size = 'medium' }) => {
   return (
     <div className={classes}>
       <div className="jds-loader__container">
-        <div className="jds-loader__square jds-loader__square--top"></div>
-        <div className="jds-loader__square jds-loader__square--right"></div>
-        <div className="jds-loader__square jds-loader__square--left"></div>
-        <div className="jds-loader__square jds-loader__square--bottom"></div>
+        <div className="jds-loader__square jds-loader__square--top" />
+        <div className="jds-loader__square jds-loader__square--right" />
+        <div className="jds-loader__square jds-loader__square--left" />
+        <div className="jds-loader__square jds-loader__square--bottom" />
       </div>
     </div>
   );

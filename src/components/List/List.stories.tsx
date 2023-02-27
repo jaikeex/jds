@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
-import List, { ListProps } from './List';
-import { ListItem, ListItemProps } from '@components/ListItem';
+import type { Story, ComponentMeta } from '@storybook/react';
+import type { ListProps } from './List';
+import List from './List';
+import type { ListItemProps } from '@components/ListItem';
+import { ListItem } from '@components/ListItem';
 import { Typography } from '@components/Typography';
 import { Sheet } from '@components/Sheet';
 import { Checkbox } from '@components/Checkbox';
@@ -13,21 +15,18 @@ export default {
   component: List
 } as ComponentMeta<typeof List>;
 
-const generateListItems = (props: ListItemProps) => {
-  return [1, 2, 3, 4].map(el => <ListItem {...props} key={el} />);
-};
+const generateListItems = (props: ListItemProps) =>
+  [1, 2, 3, 4].map((el) => <ListItem {...props} key={el} />);
 
-const Template: Story<ListProps> = args => {
-  return (
-    <div style={{ width: '300px' }}>
-      <Sheet level={6}>
-        <List {...args} />
-      </Sheet>
-    </div>
-  );
-};
+const Template: Story<ListProps> = (args) => (
+  <div style={{ width: '300px' }}>
+    <Sheet level={6}>
+      <List {...args} />
+    </Sheet>
+  </div>
+);
 
-const TemplateCheckbox: Story<ListProps> = args => {
+const TemplateCheckbox: Story<ListProps> = (args) => {
   const [checked, setChecked] = useState<boolean[]>([
     true,
     false,
@@ -46,8 +45,9 @@ const TemplateCheckbox: Story<ListProps> = args => {
     <div style={{ width: '300px' }}>
       <Sheet level={6}>
         <List {...args}>
-          {[0, 1, 2, 3].map(el => (
+          {[0, 1, 2, 3].map((el) => (
             <ListItem
+              key={el}
               clickable={true}
               onClick={() => checkboxHandler(el)}
               elementBefore={<Checkbox checked={checked[el]} />}

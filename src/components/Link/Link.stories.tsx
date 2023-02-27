@@ -1,16 +1,17 @@
 import React from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
-import Link, { LinkProps } from './Link';
+import type { Story, ComponentMeta } from '@storybook/react';
+import type { LinkProps } from './Link';
+import Link from './Link';
 
 export default {
   title: 'Design System/Link',
   component: Link
 } as ComponentMeta<typeof Link>;
 
-const Template: Story<LinkProps> = args => <Link {...args} />;
+const Template: Story<LinkProps> = (args) => <Link {...args} />;
 
 export const Default = Template.bind({});
-Default.args = { children: 'Link' };
+Default.args = { children: 'Link', href: '#' };
 
 export const OpenInNew = Template.bind({});
 OpenInNew.args = {

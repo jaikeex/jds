@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './Card.styles.scss';
 import classNames from 'classnames';
-import { CardAppearance } from './types';
+import type { CardAppearance } from './types';
 
 export interface CardProps {
   appearance?: CardAppearance;
@@ -19,11 +19,10 @@ const Card: React.FC<CardProps> = ({
   hasShadow = false,
   clickable = false,
   sharpCorners = false,
-  onClick,
+  onClick = () => {},
   style,
   backside,
-  children,
-  ...props
+  children
 }) => {
   const rootClasses = classNames('jds-card');
 
@@ -41,11 +40,12 @@ const Card: React.FC<CardProps> = ({
     'jds-card__side--back': backside
   });
 
-  const cardClickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
-    clickable && onClick && onClick(event);
-  };
-
-  console.log(backside);
+  const cardClickHandler = useCallback(
+    (event: React.MouseEvent<HTMLDivElement>) => {
+      clickable && onClick(event);
+    },
+    [clickable, onClick]
+  );
 
   return (
     <React.Fragment>

@@ -1,8 +1,8 @@
 import React from 'react';
 import './IconButton.styles.scss';
 import classNames from 'classnames';
-import { ColorVariants } from '@core/types';
-import { IconButtonSize } from './types';
+import type { ColorVariants } from '@core/types';
+import type { IconButtonSize } from './types';
 import { classNameColor, classNameSize } from '@core/utils';
 
 export interface IconButtonProps {
@@ -41,4 +41,5 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
   }
 );
 
+IconButton.displayName = 'IconButton';
 export default IconButton;

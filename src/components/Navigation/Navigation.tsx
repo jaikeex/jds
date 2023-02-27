@@ -5,11 +5,15 @@ export interface NavigationProps {
   children?: React.ReactNode;
   className?: string;
   orientatnion?: 'horizontal' | 'vertical';
-  uppercase?: boolean;
 }
 
-const Navigation: React.FC<NavigationProps> = props => {
-  return <div></div>;
+const Navigation: React.FC<NavigationProps> = ({
+  children = null,
+  className = '',
+  orientatnion = 'horizontal'
+}) => {
+  console.log(orientatnion);
+  return <div className={className}> {children} </div>;
 };
 
 export default Navigation;

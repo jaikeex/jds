@@ -1,26 +1,26 @@
 import React, { useState } from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
-import Menu, { MenuProps } from './Menu';
+import type { Story, ComponentMeta } from '@storybook/react';
+import type { MenuProps } from './Menu';
+import Menu from './Menu';
 import { Button } from '@components/Button';
+import type { MenuItemProps } from '@components/MenuItem';
 import { MenuItem } from '@components/MenuItem';
 import { Typography } from '@components/Typography';
 import { DeleteIcon, EditIcon, MoreHorizontalIcon } from '@components/icons';
-import { MenuItemProps } from '@components/MenuItem';
 
 export default {
   title: 'Design System/Menu',
   component: Menu
 } as ComponentMeta<typeof Menu>;
 
-const generateMenuItems = (props: MenuItemProps, amount: number) => {
-  return Array.from({ length: amount }, (x, i) => i).map((el, i) => (
+const generateMenuItems = (props: MenuItemProps, amount: number) =>
+  Array.from({ length: amount }, (x, i) => i).map((el, i) => (
     <MenuItem {...props} key={el}>
       <Typography>Option {i + 1}</Typography>
     </MenuItem>
   ));
-};
 
-const Template: Story<MenuProps> = args => <Menu {...args} />;
+const Template: Story<MenuProps> = (args) => <Menu {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
@@ -37,13 +37,17 @@ Positioned.args = {
     </Button>
   ),
   children: [
-    <MenuItem elementBefore={<EditIcon size="small" />}>
+    <MenuItem key={1} elementBefore={<EditIcon size="small" />}>
       <Typography>Edit</Typography>
     </MenuItem>,
-    <MenuItem disabled divider>
+    <MenuItem key={2} disabled divider>
       <Typography>Move</Typography>
     </MenuItem>,
-    <MenuItem elementBefore={<DeleteIcon size="small" />} color={'danger'}>
+    <MenuItem
+      key={3}
+      elementBefore={<DeleteIcon size="small" />}
+      color={'danger'}
+    >
       <Typography>Delete</Typography>
     </MenuItem>
   ],
@@ -70,7 +74,7 @@ Scrollable.args = {
   children: generateMenuItems({}, 30)
 };
 
-const SelectedTemplate: Story<MenuProps> = args => {
+const SelectedTemplate: Story<MenuProps> = (args) => {
   const [selectedItem, setSelectedItem] = useState<number>(1);
 
   const createClickHandler = (index: number) => () => {
@@ -79,15 +83,27 @@ const SelectedTemplate: Story<MenuProps> = args => {
 
   return (
     <Menu {...args}>
-      <MenuItem selected={selectedItem === 0} onClick={createClickHandler(0)}>
+      <MenuItem
+        key={1}
+        selected={selectedItem === 0}
+        onClick={createClickHandler(0)}
+      >
         <Typography>Option 1</Typography>
       </MenuItem>
 
-      <MenuItem selected={selectedItem === 1} onClick={createClickHandler(1)}>
+      <MenuItem
+        key={2}
+        selected={selectedItem === 1}
+        onClick={createClickHandler(1)}
+      >
         <Typography>Option 2</Typography>
       </MenuItem>
 
-      <MenuItem selected={selectedItem === 2} onClick={createClickHandler(2)}>
+      <MenuItem
+        key={3}
+        selected={selectedItem === 2}
+        onClick={createClickHandler(2)}
+      >
         <Typography>Option 3</Typography>
       </MenuItem>
     </Menu>

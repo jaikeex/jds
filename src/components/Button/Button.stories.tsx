@@ -1,6 +1,7 @@
 import React from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
-import Button, { ButtonProps } from './Button';
+import type { Story, ComponentMeta } from '@storybook/react';
+import type { ButtonProps } from './Button';
+import Button from './Button';
 import { HomeIcon } from '@components/icons';
 
 export default {
@@ -8,30 +9,28 @@ export default {
   component: Button
 } as ComponentMeta<typeof Button>;
 
-const Template: Story<ButtonProps> = args => {
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <Button {...args} color="default">
-        default
-      </Button>
-      <Button {...args} color="success">
-        success
-      </Button>
-      <Button {...args} color="warning">
-        warning
-      </Button>
-      <Button {...args} color="danger">
-        danger
-      </Button>
-      <Button {...args} color="accented">
-        accented
-      </Button>
-      <Button {...args} color="focus">
-        focus
-      </Button>
-    </div>
-  );
-};
+const Template: Story<ButtonProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+    <Button {...args} color="default">
+      default
+    </Button>
+    <Button {...args} color="success">
+      success
+    </Button>
+    <Button {...args} color="warning">
+      warning
+    </Button>
+    <Button {...args} color="danger">
+      danger
+    </Button>
+    <Button {...args} color="accented">
+      accented
+    </Button>
+    <Button {...args} color="focus">
+      focus
+    </Button>
+  </div>
+);
 
 export const Contained = Template.bind({});
 Contained.args = {

@@ -1,14 +1,14 @@
 import React from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
+import type { Story, ComponentMeta } from '@storybook/react';
 import { DownArrowIcon } from '.';
-import { SvgIconProps } from '@components/icons';
+import type { SvgIconProps } from '@components/icons';
 
 export default {
   title: 'Icons/Basic UI/DownArrow',
   component: DownArrowIcon
 } as ComponentMeta<typeof DownArrowIcon>;
 
-const Template: Story<SvgIconProps> = args => <DownArrowIcon {...args} />;
+const Template: Story<SvgIconProps> = (args) => <DownArrowIcon {...args} />;
 
 export const DownArrow = Template.bind({});
 DownArrow.args = {};

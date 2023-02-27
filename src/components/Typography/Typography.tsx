@@ -1,29 +1,32 @@
-import { ColorVariants } from '@core/types';
+import type { ColorVariants } from '@core/types';
 import React from 'react';
 import './Typography.styles.scss';
 import classNames from 'classnames';
-import { typographyVariantMap, TypographyVariants } from '@core/types';
+import type { TypographyVariants } from '@core/types';
+import { typographyVariantMap } from '@core/types';
 
 export interface TypographyProps {
-  variant?: TypographyVariants;
+  children?: React.ReactNode;
+  className?: string;
   color?: ColorVariants | `#${string}`;
-  textAlign?: 'center' | 'inherit' | 'justify' | 'left' | 'right';
   gutterBottom?: boolean;
   noWrap?: boolean;
   style?: React.CSSProperties;
-  className?: string;
-  children?: React.ReactNode;
+  textAlign?: 'center' | 'inherit' | 'justify' | 'left' | 'right';
+  upperCase?: boolean;
+  variant?: TypographyVariants;
 }
 
 const Typography: React.FC<TypographyProps> = ({
-  variant = 'body1',
-  color = 'default',
-  textAlign = 'inherit',
+  children = null,
   className = '',
-  noWrap = false,
+  color = 'default',
   gutterBottom = false,
+  noWrap = false,
   style,
-  children
+  textAlign = 'inherit',
+  upperCase = false,
+  variant = 'body1'
 }) => {
   const Component = typographyVariantMap[
     variant
@@ -33,7 +36,10 @@ const Typography: React.FC<TypographyProps> = ({
   const classes = classNames(
     'jds-typography',
     `jds-typography--variant--${variant}`,
-    { [colorClassName]: !color.startsWith('#') },
+    {
+      [colorClassName]: !color.startsWith('#'),
+      'jds-typography--uppercase': upperCase
+    },
     className
   );
 

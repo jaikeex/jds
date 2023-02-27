@@ -1,13 +1,14 @@
 import React from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
-import Slider, { SliderProps } from './Slider';
+import type { Story, ComponentMeta } from '@storybook/react';
+import type { SliderProps } from './Slider';
+import Slider from './Slider';
 
 export default {
   title: 'Design System/Slider',
   component: Slider
 } as ComponentMeta<typeof Slider>;
 
-const Template: Story<SliderProps> = args => (
+const Template: Story<SliderProps> = (args) => (
   <div style={{ width: '25rem' }}>
     <Slider {...args} />
   </div>

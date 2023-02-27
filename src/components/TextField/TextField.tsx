@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { ColorVariants } from '@core/types';
+import React, { useCallback, useEffect, useState } from 'react';
+import type { ColorVariants } from '@core/types';
 import './TextField.styles.scss';
 import { makeId } from '@core/utils';
 import classNames from 'classnames';
@@ -93,10 +93,13 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       return styles;
     };
 
-    const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setInputValue(event.target.value);
-      onChange(event);
-    };
+    const inputChangeHandler = useCallback(
+      (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputValue(event.target.value);
+        onChange(event);
+      },
+      [setInputValue, onChange]
+    );
 
     useEffect(() => {
       setInputValue(value);
@@ -138,4 +141,5 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   }
 );
 
+TextField.displayName = 'TextField';
 export default TextField;

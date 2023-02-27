@@ -2,7 +2,7 @@ import React from 'react';
 import './ButtonGroup.styles.scss';
 import { useButtonGroupStyles } from './useButtonGroupStyles';
 import classNames from 'classnames';
-import { ButtonAppearance, ButtonSize } from '@components/Button';
+import type { ButtonAppearance, ButtonSize } from '@components/Button';
 
 export interface ButtonGroupProps {
   size?: ButtonSize;
@@ -24,6 +24,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
 
   const classes = classNames('jds-btn-group', `jds-btn-group--${orientation}`);
 
+  //TODO: use React.children
   const getContent = () => {
     if (Array.isArray(children)) {
       return children.map((btn, index) => {

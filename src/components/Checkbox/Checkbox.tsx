@@ -1,6 +1,6 @@
-import { ColorVariants, Size } from '@core/types';
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import './Checkbox.styles.scss';
+import type { ColorVariants, Size } from '@core/types';
 import classNames from 'classnames';
 import { CheckmarkThickIcon } from '@components/icons';
 import { makeId } from '@core/utils';
@@ -57,10 +57,13 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       `jds-checkbox__label--color--${labelColor}`
     );
 
-    const inputChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setIsChecked(event.target.checked);
-      onChange(event);
-    };
+    const inputChangeHandler = useCallback(
+      (event: React.ChangeEvent<HTMLInputElement>) => {
+        setIsChecked(event.target.checked);
+        onChange(event);
+      },
+      [setIsChecked, onChange]
+    );
 
     useEffect(() => {
       setIsChecked(checked);
@@ -92,4 +95,5 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   }
 );
 
+Checkbox.displayName = 'Checkbox';
 export default React.memo(Checkbox);

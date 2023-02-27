@@ -1,84 +1,79 @@
-import { Story, ComponentMeta } from '@storybook/react';
+import React from 'react';
+import type { Story, ComponentMeta } from '@storybook/react';
 import './Tooltip.stories.scss';
-import Tooltip, { TooltipProps } from './Tooltip';
+import type { TooltipProps } from './Tooltip';
+import Tooltip from './Tooltip';
 import { Button } from '@components/Button';
-import { useRef } from 'react';
 
 export default {
   title: 'Design System/Tooltip',
   component: Tooltip
 } as ComponentMeta<typeof Tooltip>;
 
-const Template: Story<TooltipProps> = args => {
-  const ref = useRef(null);
-
-  return (
-    <div className="story-container">
-      <div className="story-item story-item--1">
-        <Tooltip {...args} position="top-start">
-          <Button onClick={() => console.log('BUTTON CLICKED')}>
-            top-start
-          </Button>
-        </Tooltip>
-      </div>
-      <div className="story-item story-item--2">
-        <Tooltip {...args} position="top">
-          <Button>top</Button>
-        </Tooltip>
-      </div>
-      <div className="story-item story-item--3">
-        <Tooltip {...args} position="top-end">
-          <Button>top-end</Button>
-        </Tooltip>
-      </div>
-      <div className="story-item story-item--4">
-        <Tooltip {...args} position="right-start">
-          <Button>right-start</Button>
-        </Tooltip>
-      </div>
-      <div className="story-item story-item--5">
-        <Tooltip {...args} position="right">
-          <Button>right</Button>
-        </Tooltip>
-      </div>
-      <div className="story-item story-item--6">
-        <Tooltip {...args} position="right-end">
-          <Button>right-end</Button>
-        </Tooltip>
-      </div>
-      <div className="story-item story-item--7">
-        <Tooltip {...args} position="bottom-end">
-          <Button>bottom-end</Button>
-        </Tooltip>
-      </div>
-      <div className="story-item story-item--8">
-        <Tooltip {...args} position="bottom">
-          <Button>bottom</Button>
-        </Tooltip>
-      </div>
-      <div className="story-item story-item--9">
-        <Tooltip {...args} position="bottom-start">
-          <Button>bottom-start</Button>
-        </Tooltip>
-      </div>
-      <div className="story-item story-item--10">
-        <Tooltip {...args} position="left-end">
-          <Button>left-end</Button>
-        </Tooltip>
-      </div>
-      <div className="story-item story-item--11">
-        <Tooltip {...args} position="left">
-          <Button>left</Button>
-        </Tooltip>
-      </div>
-      <div className="story-item story-item--12">
-        <Tooltip {...args} position="left-start">
-          <Button>left-start</Button>
-        </Tooltip>
-      </div>
+const Template: Story<TooltipProps> = (args) => (
+  <div className="story-container">
+    <div className="story-item story-item--1">
+      <Tooltip {...args} position="top-start">
+        <Button onClick={() => console.log('BUTTON CLICKED')}>top-start</Button>
+      </Tooltip>
     </div>
-  );
-};
+    <div className="story-item story-item--2">
+      <Tooltip {...args} position="top">
+        <Button>top</Button>
+      </Tooltip>
+    </div>
+    <div className="story-item story-item--3">
+      <Tooltip {...args} position="top-end">
+        <Button>top-end</Button>
+      </Tooltip>
+    </div>
+    <div className="story-item story-item--4">
+      <Tooltip {...args} position="right-start">
+        <Button>right-start</Button>
+      </Tooltip>
+    </div>
+    <div className="story-item story-item--5">
+      <Tooltip {...args} position="right">
+        <Button>right</Button>
+      </Tooltip>
+    </div>
+    <div className="story-item story-item--6">
+      <Tooltip {...args} position="right-end">
+        <Button>right-end</Button>
+      </Tooltip>
+    </div>
+    <div className="story-item story-item--7">
+      <Tooltip {...args} position="bottom-end">
+        <Button>bottom-end</Button>
+      </Tooltip>
+    </div>
+    <div className="story-item story-item--8">
+      <Tooltip {...args} position="bottom">
+        <Button>bottom</Button>
+      </Tooltip>
+    </div>
+    <div className="story-item story-item--9">
+      <Tooltip {...args} position="bottom-start">
+        <Button>bottom-start</Button>
+      </Tooltip>
+    </div>
+    <div className="story-item story-item--10">
+      <Tooltip {...args} position="left-end">
+        <Button>left-end</Button>
+      </Tooltip>
+    </div>
+    <div className="story-item story-item--11">
+      <Tooltip {...args} position="left">
+        <Button>left</Button>
+      </Tooltip>
+    </div>
+    <div className="story-item story-item--12">
+      <Tooltip {...args} position="left-start">
+        <Button>left-start</Button>
+      </Tooltip>
+    </div>
+  </div>
+);
 
 export const Default = Template.bind({});
 Default.args = {

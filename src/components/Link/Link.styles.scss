@@ -1,6 +1,8 @@
 @import '@styles/main';
 
 .jds-link {
+  cursor: pointer;
+
   &--underline {
     &--none {
       &:link,

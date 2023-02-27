@@ -1,10 +1,7 @@
-import { Position } from '@core/types';
+import type { Position } from '@core/types';
 import React, { useEffect } from 'react';
-import {
-  PopperOptions,
-  TriggerType,
-  usePopperTooltip
-} from 'react-popper-tooltip';
+import type { PopperOptions, TriggerType } from 'react-popper-tooltip';
+import { usePopperTooltip } from 'react-popper-tooltip';
 import './Popper.styles.scss';
 
 export interface PopperProps {
@@ -51,9 +48,9 @@ const Popper: React.FC<PopperProps> = ({
       popperOptions
     );
 
-  const childrenWithProps = React.Children.map(children, child => {
+  const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
-      return React.cloneElement(child as React.ReactElement<any>, {
+      return React.cloneElement(child as React.ReactElement, {
         ref: setTooltipRef,
         className: className,
         ...getTooltipProps(child.props)

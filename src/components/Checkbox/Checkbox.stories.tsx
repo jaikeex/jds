@@ -1,6 +1,7 @@
 import React from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
-import Checkbox, { CheckboxProps } from './Checkbox';
+import type { Story, ComponentMeta } from '@storybook/react';
+import type { CheckboxProps } from './Checkbox';
+import Checkbox from './Checkbox';
 import { HeartIcon, HeartIconOutlined } from '@components/icons';
 
 export default {
@@ -8,17 +9,15 @@ export default {
   component: Checkbox
 } as ComponentMeta<typeof Checkbox>;
 
-const Template: Story<CheckboxProps> = args => {
-  return (
-    <div style={{ display: 'flex', gap: '1rem' }}>
-      <Checkbox {...args} />
-      <Checkbox {...args} color="success" />
-      <Checkbox {...args} color="danger" />
-      <Checkbox {...args} color="warning" />
-      <Checkbox {...args} color="focus" />
-    </div>
-  );
-};
+const Template: Story<CheckboxProps> = (args) => (
+  <div style={{ display: 'flex', gap: '1rem' }}>
+    <Checkbox {...args} />
+    <Checkbox {...args} color="success" />
+    <Checkbox {...args} color="danger" />
+    <Checkbox {...args} color="warning" />
+    <Checkbox {...args} color="focus" />
+  </div>
+);
 
 export const Default = Template.bind({});
 Default.args = {};

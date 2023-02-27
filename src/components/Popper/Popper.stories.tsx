@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
-import Popper, { PopperProps } from './Popper';
-import { Button } from '../Button';
-import { Sheet } from '../Sheet';
+import type { Story, ComponentMeta } from '@storybook/react';
+import type { PopperProps } from './Popper';
+import Popper from './Popper';
+import { Button } from '@components/Button';
+import { Sheet } from '@components/Sheet';
 
 export default {
   title: 'Design System/Popper',
   component: Popper
 } as ComponentMeta<typeof Popper>;
 
-const Template: Story<PopperProps> = args => {
-  const [referenceElement, setReferenceElement] =
-    useState<HTMLElement | null>(null);
+const Template: Story<PopperProps> = (args) => {
+  const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
+    null
+  );
 
   return (
     <div style={{ width: '200px', position: 'relative' }}>

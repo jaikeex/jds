@@ -1,5 +1,6 @@
-import React, { useEffect } from 'react';
-import { Sheet, SheetProps } from '@components/Sheet';
+import React, { useCallback, useEffect } from 'react';
+import type { SheetProps } from '@components/Sheet';
+import { Sheet } from '@components/Sheet';
 import './Dialog.styles.scss';
 import classNames from 'classnames';
 
@@ -57,10 +58,13 @@ const Dialog: React.FC<DialogProps> = ({
     return styles;
   };
 
-  const backdropClickHandler = (event: React.MouseEvent<HTMLElement>) => {
-    onBackdropClick(event);
-    disableBackdropClickClose || onClose(event);
-  };
+  const backdropClickHandler = useCallback(
+    (event: React.MouseEvent<HTMLElement>) => {
+      onBackdropClick(event);
+      disableBackdropClickClose || onClose(event);
+    },
+    [onBackdropClick, disableBackdropClickClose, onClose]
+  );
 
   useEffect(() => {
     document.addEventListener('keydown', (event: KeyboardEvent) => {
@@ -79,7 +83,7 @@ const Dialog: React.FC<DialogProps> = ({
           <div
             className="jds-dialog__backdrop"
             onClick={backdropClickHandler}
-          ></div>
+          />
           <div className="jds-dialog">
             <Sheet
               {...sheetProps}

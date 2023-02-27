@@ -1,14 +1,14 @@
 import React from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
+import type { Story, ComponentMeta } from '@storybook/react';
 import { LightModeIconOutlined } from '.';
-import { SvgIconProps } from '@components/icons';
+import type { SvgIconProps } from '@components/icons';
 
 export default {
   title: 'Icons/Basic UI/Outlined/LightMode',
   component: LightModeIconOutlined
 } as ComponentMeta<typeof LightModeIconOutlined>;
 
-const Template: Story<SvgIconProps> = args => (
+const Template: Story<SvgIconProps> = (args) => (
   <LightModeIconOutlined {...args} />
 );
 

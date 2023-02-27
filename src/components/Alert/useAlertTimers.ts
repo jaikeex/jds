@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useAlertContext } from '@store/AlertContext';
-import { AlertLocation } from './types';
+import type { AlertLocation } from './types';
 
 export const useAlertTimers = (
   ref: React.RefObject<HTMLDivElement>,
@@ -38,8 +38,11 @@ export const useAlertTimers = (
     if (!isMidHiding) {
       setCloseTimeoutId(
         window.setTimeout(() => {
+          if (ref.current) {
+            ref.current.style.animation = getAnimationName();
+          }
+
           setIsMidHiding(true);
-          ref.current!.style.animation = getAnimationName();
           setHideAnimationTimeout();
         }, duration)
       );
@@ -50,7 +53,7 @@ export const useAlertTimers = (
     window.setTimeout(() => {
       setIsMidHiding(false);
       setIsVisible(false);
-      removeItem(ref.current?.id!);
+      ref.current && removeItem(ref.current.id);
     }, 300);
   };
 

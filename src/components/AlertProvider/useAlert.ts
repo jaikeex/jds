@@ -1,4 +1,4 @@
-import { AlertProps } from '@components/Alert';
+import type { AlertProps } from '@components/Alert';
 import { useAlertContext } from '@store/AlertContext';
 
 export const useAlert = () => {

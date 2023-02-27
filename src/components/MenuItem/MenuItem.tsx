@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './MenuItem.styles.scss';
 import { ListItem } from '@components/ListItem';
-import { useMenuContext } from '../Menu/MenuContextProvider';
-import { ColorVariants } from '@core/types';
+import { useMenuContext } from '@components/Menu/MenuContextProvider';
+import type { ColorVariants } from '@core/types';
 
 export interface MenuItemProps extends React.PropsWithChildren {
   className?: string;
@@ -25,10 +25,13 @@ const MenuItem: React.FC<MenuItemProps> = ({
 }) => {
   const { setIsOpen } = useMenuContext();
 
-  const clickHandler = (event: React.MouseEvent<HTMLLIElement>) => {
-    setIsOpen && setIsOpen(false);
-    onClick(event);
-  };
+  const clickHandler = useCallback(
+    (event: React.MouseEvent<HTMLLIElement>) => {
+      setIsOpen(false);
+      onClick(event);
+    },
+    [setIsOpen, onClick]
+  );
 
   return (
     <ListItem {...props} color={color} onClick={clickHandler} clickable>

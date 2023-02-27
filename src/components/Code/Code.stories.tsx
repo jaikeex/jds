@@ -1,12 +1,14 @@
-import { Story, ComponentMeta } from '@storybook/react';
-import Code, { CodeProps } from './Code';
+import React from 'react';
+import type { Story, ComponentMeta } from '@storybook/react';
+import type { CodeProps } from './Code';
+import Code from './Code';
 
 export default {
   title: 'Design System/Code',
   component: Code
 } as ComponentMeta<typeof Code>;
 
-const Template: Story<CodeProps> = args => <Code {...args}></Code>;
+const Template: Story<CodeProps> = (args) => <Code {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

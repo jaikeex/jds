@@ -1,5 +1,5 @@
-import React from 'react';
-import {
+import type React from 'react';
+import type {
   GroupBase,
   MenuPlacement,
   MultiValue,
@@ -7,8 +7,8 @@ import {
   SingleValue,
   StylesConfig
 } from 'react-select';
-import { ColorVariants } from '@core/types';
-import { SelectComponents } from 'react-select/dist/declarations/src/components';
+import type { ColorVariants } from '@core/types';
+import type { SelectComponents } from 'react-select/dist/declarations/src/components';
 
 export interface Selectable {
   label: React.ReactNode;

@@ -1,8 +1,8 @@
-import { ColorVariants, Position } from '@core/types';
+import type { ColorVariants, Position } from '@core/types';
 import React from 'react';
 import './Tooltip.styles.scss';
 import classNames from 'classnames';
-import { TooltipSize } from './types';
+import type { TooltipSize } from './types';
 import { usePopperTooltip } from 'react-popper-tooltip';
 export interface TooltipProps {
   color?: ColorVariants;
@@ -26,9 +26,9 @@ const Tooltip: React.FC<TooltipProps> = ({
   const { getTooltipProps, setTooltipRef, setTriggerRef, visible } =
     usePopperTooltip({ placement: position });
 
-  const childrenWithProps = React.Children.map(children, child => {
+  const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
-      return React.cloneElement(child as React.ReactElement<any>, {
+      return React.cloneElement(child as React.ReactElement, {
         ref: setTriggerRef
       });
     }

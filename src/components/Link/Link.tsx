@@ -1,9 +1,8 @@
-import { ColorVariants } from '@core/types';
 import React from 'react';
 import './Link.styles.scss';
+import type { ColorVariants, TypographyVariants } from '@core/types';
 import classNames from 'classnames';
-import { TypographyVariants } from '@core/types';
-import { Typography } from '../Typography';
+import { Typography } from '@components/Typography';
 
 export interface LinkProps extends React.PropsWithChildren {
   color?: ColorVariants | `#${string}`;
@@ -17,30 +16,38 @@ export interface LinkProps extends React.PropsWithChildren {
 const Link: React.FC<LinkProps> = ({
   children = null,
   color = 'accented',
-  href = '#',
   level = 'body1',
   openInNew = false,
-  style = {},
-  underline = 'hover'
+  underline = 'hover',
+  ...anchorProps
 }) => {
   const classes = classNames('jds-link', `jds-link--underline--${underline}`);
 
-  const getChildren = () => {
-    return typeof children === 'string' ? (
+  const getChildren = () =>
+    typeof children === 'string' ? (
       <Typography variant={level} color={color} className={classes}>
         {children}
       </Typography>
     ) : (
       children
     );
+
+  const getAnchorProps = () => {
+    const props = { ...anchorProps } as LinkProps &
+      React.LinkHTMLAttributes<HTMLAnchorElement>;
+
+    if (openInNew) {
+      props.rel = 'noreferrer';
+    }
+
+    return props;
   };
 
   return (
     <a
-      href={href}
+      {...getAnchorProps()}
       target={openInNew ? '_blank' : '_self'}
       className={classes}
-      style={style}
     >
       {getChildren()}
     </a>

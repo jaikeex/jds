@@ -1,6 +1,7 @@
 import React from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
-import TextField, { TextFieldProps } from './TextField';
+import type { Story, ComponentMeta } from '@storybook/react';
+import type { TextFieldProps } from './TextField';
+import TextField from './TextField';
 import { SettingsIcon } from '@components/icons';
 
 export default {
@@ -8,15 +9,13 @@ export default {
   component: TextField
 } as ComponentMeta<typeof TextField>;
 
-const Template: Story<TextFieldProps> = args => {
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      <TextField appearance="outlined" label="Label - Outlined" {...args} />
-      <TextField appearance="filled" label="Label - Filled" {...args} />
-      <TextField appearance="subtle" label="Label - Subtle" {...args} />
-    </div>
-  );
-};
+const Template: Story<TextFieldProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'column' }}>
+    <TextField appearance="outlined" label="Label - Outlined" {...args} />
+    <TextField appearance="filled" label="Label - Filled" {...args} />
+    <TextField appearance="subtle" label="Label - Subtle" {...args} />
+  </div>
+);
 
 export const Default = Template.bind({});
 Default.args = {

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
-import Card, { CardProps } from './Card';
+import type { Story, ComponentMeta } from '@storybook/react';
+import type { CardProps } from './Card';
+import Card from './Card';
 import { CardHeader } from '@components/CardHeader';
 import { HomeIcon, SearchIcon } from '@components/icons';
 
@@ -9,7 +10,7 @@ export default {
   component: Card
 } as ComponentMeta<typeof Card>;
 
-const Template: Story<CardProps> = args => <Card {...args} />;
+const Template: Story<CardProps> = (args) => <Card {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {

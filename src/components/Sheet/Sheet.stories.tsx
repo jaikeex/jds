@@ -1,13 +1,13 @@
 import React from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
-import Sheet, { SheetProps } from './Sheet';
+import type { Story, ComponentMeta } from '@storybook/react';
+import Sheet, { type SheetProps } from './Sheet';
 
 export default {
   title: 'Design System/Sheet',
   component: Sheet
 } as ComponentMeta<typeof Sheet>;
 
-const Template: Story<SheetProps> = args => (
+const Template: Story<SheetProps> = (args) => (
   <Sheet {...args} style={{ width: '200px', height: '200px' }} />
 );
 

@@ -1,13 +1,14 @@
 import React from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
-import Loader, { LoaderProps } from './Loader';
+import type { Story, ComponentMeta } from '@storybook/react';
+import type { LoaderProps } from './Loader';
+import Loader from './Loader';
 
 export default {
   title: 'Design System/Loader',
   component: Loader
 } as ComponentMeta<typeof Loader>;
 
-const Template: Story<LoaderProps> = args => <Loader {...args} />;
+const Template: Story<LoaderProps> = (args) => <Loader {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {};

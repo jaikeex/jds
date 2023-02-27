@@ -1,5 +1,7 @@
-import { Story, ComponentMeta } from '@storybook/react';
-import Alert, { AlertProps } from './Alert';
+import React from 'react';
+import type { Story, ComponentMeta } from '@storybook/react';
+import type { AlertProps } from './Alert';
+import Alert from './Alert';
 import { Button } from '@components/Button';
 import { AlertProvider } from '@components/AlertProvider';
 import { useAlert } from '@components/AlertProvider';
@@ -9,7 +11,7 @@ export default {
   title: 'Design System/Alert',
   component: Alert,
   decorators: [
-    Story => (
+    (Story) => (
       <AlertProvider>
         <Story />
       </AlertProvider>
@@ -17,11 +19,12 @@ export default {
   ]
 } as ComponentMeta<typeof Alert>;
 
-const Template: Story<AlertProps> = args => {
+const Template: Story<AlertProps> = (args) => {
   const { displayAlert } = useAlert();
 
   const defaultClickHandler = () => {
     displayAlert({
+      ...args,
       message: 'This is an alert bar',
       action: <Button>Action</Button>,
       icon: <AppsIcon />

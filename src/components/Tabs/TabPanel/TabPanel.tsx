@@ -3,16 +3,16 @@ import React from 'react';
 import './TabPanel.styles.scss';
 
 export interface TabPanelProps extends React.PropsWithChildren {
-  disabled?: boolean;
-  label: string;
+  // disabled?: boolean;
+  // label: string;
   removeHorizontalPadding?: boolean;
   removeVerticalPadding?: boolean;
 }
 
 const TabPanel: React.FC<TabPanelProps> = ({
   children,
-  disabled = false,
-  label = '',
+  // disabled = false,
+  // label = '',
   removeHorizontalPadding = false,
   removeVerticalPadding = false
 }) => {

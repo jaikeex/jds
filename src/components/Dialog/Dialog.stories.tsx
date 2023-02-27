@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
-import Dialog, { DialogProps } from './Dialog';
+import type { Story, ComponentMeta } from '@storybook/react';
+import type { DialogProps } from './Dialog';
+import Dialog from './Dialog';
 import { Button } from '@components/Button';
-import Typography from '../Typography/Typography';
+import { Typography } from '@components/Typography';
 
 export default {
   title: 'Design System/Dialog',
   component: Dialog
 } as ComponentMeta<typeof Dialog>;
 
-const Template: Story<DialogProps> = args => {
+const Template: Story<DialogProps> = (args) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (

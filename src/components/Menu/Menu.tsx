@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './Menu.styles.scss';
-import { Position } from '@core/types';
-import { TriggerType } from 'react-popper-tooltip';
+import type { Position } from '@core/types';
+import type { TriggerType } from 'react-popper-tooltip';
 import { MenuList } from '@components/MenuList';
 import { MenuContextProvider } from './MenuContextProvider';
-import { SheetProps } from '@components/Sheet';
+import type { SheetProps } from '@components/Sheet';
 
 export interface MenuProps extends React.PropsWithChildren {
   compact?: boolean;
@@ -25,8 +25,9 @@ const Menu: React.FC<MenuProps> = ({
   triggerComponent,
   ...menuListProps
 }) => {
-  const [referenceElement, setReferenceElement] =
-    useState<HTMLElement | null>(null);
+  const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
+    null
+  );
 
   const triggerComponentWithProps = React.cloneElement(triggerComponent, {
     ref: setReferenceElement

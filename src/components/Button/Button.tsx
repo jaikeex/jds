@@ -1,24 +1,25 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './Button.styles.scss';
 import { useForwardedRef, useRippleEffect } from '@core/hooks';
 import classNames from 'classnames';
-import { ButtonAppearance, ButtonSize, ButtonType } from './types';
-import { ColorVariants } from '@core/types';
+import type { ButtonAppearance, ButtonSize, ButtonType } from './types';
+import type { ColorVariants } from '@core/types';
 import { classNameColor, classNameSize } from '@core/utils';
+import { Typography } from '@components/Typography';
 
-export interface ButtonProps {
+export interface ButtonProps extends React.PropsWithChildren {
   size?: ButtonSize;
   appearance?: ButtonAppearance;
   color?: Exclude<ColorVariants, 'dark'>;
   disabled?: boolean;
   disableRippleEffect?: boolean;
+  disableUpperCase?: boolean;
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
   type?: ButtonType;
   className?: string;
   style?: React.CSSProperties;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  children?: React.ReactNode;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -27,6 +28,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       size = 'medium',
       disabled = false,
       disableRippleEffect = false,
+      disableUpperCase = false,
       iconLeft = null,
       iconRight = null,
       type = 'button',
@@ -34,7 +36,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       appearance = 'filled',
       color = 'default',
       style,
-      onClick,
+      onClick = () => {},
       children,
       ...props
     },
@@ -47,11 +49,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       appearance !== 'filled'
     );
 
-    const buttonClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
-      disableRippleEffect || createRippleEffect(event);
-      onClick && onClick(event);
-    };
-
     const classes = classNames(
       'jds-btn',
       classNameSize('jds-btn', size),
@@ -60,6 +57,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         'jds-btn--disabled': disabled
       },
       className
+    );
+
+    const buttonClickHandler = useCallback(
+      (event: React.MouseEvent<HTMLButtonElement>) => {
+        disableRippleEffect || createRippleEffect(event);
+        onClick(event);
+      },
+      [disableRippleEffect, createRippleEffect, onClick]
     );
 
     return (
@@ -73,11 +78,17 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         onClick={buttonClickHandler}
       >
         {iconLeft && <div className="jds-btn__icon">{iconLeft}</div>}
-        <span className="jds-btn__text">{children}</span>
+        <Typography
+          variant="button"
+          upperCase={disableUpperCase ? false : true}
+        >
+          {children}
+        </Typography>
         {iconRight && <div className="jds-btn__icon">{iconRight}</div>}
       </button>
     );
   }
 );
 
-export default Button;
+Button.displayName = 'Button';
+export default React.memo(Button);

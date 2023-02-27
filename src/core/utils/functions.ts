@@ -1,4 +1,4 @@
-import { Size, ExtendedSize, ColorVariants } from '@core/types';
+import type { Size, ExtendedSize, ColorVariants } from '@core/types';
 
 export const makeId = (length: number) => {
   let result = '';
@@ -16,13 +16,9 @@ export const makeId = (length: number) => {
 export const classNameSize = (
   baseClass: string,
   sizeProp: Size | ExtendedSize
-) => {
-  return `${baseClass}--size--${sizeProp}`;
-};
+) => `${baseClass}--size--${sizeProp}`;
 
 export const classNameColor = (
   baseClass: string,
   colorProp: ColorVariants | `#${string}`
-) => {
-  return colorProp.startsWith('#') ? '' : `${baseClass}--color--${colorProp}`;
-};
+) => (colorProp.startsWith('#') ? '' : `${baseClass}--color--${colorProp}`);

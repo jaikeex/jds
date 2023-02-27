@@ -1,13 +1,14 @@
 import React from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
-import Divider, { DividerProps } from './Divider';
+import type { Story, ComponentMeta } from '@storybook/react';
+import type { DividerProps } from './Divider';
+import Divider from './Divider';
 
 export default {
   title: 'Design System/Divider',
   component: Divider
 } as ComponentMeta<typeof Divider>;
 
-const Template: Story<DividerProps> = args => {
+const Template: Story<DividerProps> = (args) => {
   const styles =
     args.orientation === 'horizontal'
       ? { width: '400px' }

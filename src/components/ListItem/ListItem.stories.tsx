@@ -1,6 +1,7 @@
 import React from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
-import ListItem, { ListItemProps } from './ListItem';
+import type { Story, ComponentMeta } from '@storybook/react';
+import type { ListItemProps } from './ListItem';
+import ListItem from './ListItem';
 import { Typography } from '@components/Typography';
 import { EmailIcon } from '@components/icons';
 
@@ -9,13 +10,11 @@ export default {
   component: ListItem
 } as ComponentMeta<typeof ListItem>;
 
-const Template: Story<ListItemProps> = args => {
-  return (
-    <div style={{ width: '300px' }}>
-      <ListItem {...args} />
-    </div>
-  );
-};
+const Template: Story<ListItemProps> = (args) => (
+  <div style={{ width: '300px' }}>
+    <ListItem {...args} />
+  </div>
+);
 
 export const Default = Template.bind({});
 Default.args = {

@@ -7,11 +7,18 @@
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "prettier",
-    "standard-with-typescript"
+    "plugin:storybook/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
   ],
-  "overrides": [],
+  "overrides": [
+    {
+      "files": ["*.stories.@(js|jsx|ts|tsx)", "*stories.@(js|jsx|ts|tsx)"],
+      "rules": {
+        "react/jsx-no-bind": "off"
+      }
+    }
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "ecmaFeatures": {
@@ -23,7 +30,10 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "@typescript-eslint/semi": ["warn", "always"],
+    //* Typescript specific rules
+    "@typescript-eslint/semi": ["error", "always"],
+    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
     "@typescript-eslint/member-delimiter-style": [
       "error",
       {
@@ -37,6 +47,37 @@
         }
       }
     ],
-    "react/prop-types": "off"
+    "@typescript-eslint/consistent-type-assertions": [
+      "error",
+      {
+        "assertionStyle": "as"
+      }
+    ],
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        "prefer": "type-imports"
+      }
+    ],
+
+    //* React specific rules
+    "react/display-name": "off",
+    "react/jsx-no-bind": ["warn"],
+    "react/sort-prop-types": ["warn"],
+    "react/sort-default-props": ["warn"],
+    "react/jsx-no-constructed-context-values": ["warn"],
+    "react/prefer-read-only-props": ["error"],
+    "react/no-unused-prop-types": ["error"],
+    "react/self-closing-comp": ["error"],
+    "react/no-danger": ["error"],
+
+    //* General rules
+    "arrow-body-style": ["error", "as-needed"],
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["../"]
+      }
+    ]
   }
 }

@@ -1,7 +1,8 @@
 import React from 'react';
-import { Story, ComponentMeta } from '@storybook/react';
-import AsyncSelect, { AsyncSelectProps } from './AsyncSelect';
-import { Selectable } from '@components/Select';
+import type { Story, ComponentMeta } from '@storybook/react';
+import type { AsyncSelectProps } from './AsyncSelect';
+import AsyncSelect from './AsyncSelect';
+import type { Selectable } from '@components/Select';
 
 export default {
   title: 'Design System/Select/Async',
@@ -25,46 +26,43 @@ const loadOptions = (
     { value: 'silver', label: 'Silver', color: '#666666' }
   ];
 
-  const filterOptions = (query: string) => {
-    return options.filter(option => option.value.includes(query.toLowerCase()));
-  };
+  const filterOptions = (query: string) =>
+    options.filter((option) => option.value.includes(query.toLowerCase()));
 
   setTimeout(() => {
     callback(filterOptions(inputValue));
   }, 1000);
 };
 
-const Template: Story<AsyncSelectProps> = args => {
-  return (
-    <div
-      style={{
-        width: '300px',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: '2rem'
-      }}
-    >
-      <AsyncSelect
-        {...args}
-        loadOptions={loadOptions}
-        defaultOptions
-        appearance="outlined"
-      />
-      <AsyncSelect
-        {...args}
-        loadOptions={loadOptions}
-        defaultOptions
-        appearance="filled"
-      />
-      <AsyncSelect
-        {...args}
-        loadOptions={loadOptions}
-        defaultOptions
-        appearance="subtle"
-      />
-    </div>
-  );
-};
+const Template: Story<AsyncSelectProps> = (args) => (
+  <div
+    style={{
+      width: '300px',
+      display: 'flex',
+      flexDirection: 'column',
+      gap: '2rem'
+    }}
+  >
+    <AsyncSelect
+      {...args}
+      loadOptions={loadOptions}
+      defaultOptions
+      appearance="outlined"
+    />
+    <AsyncSelect
+      {...args}
+      loadOptions={loadOptions}
+      defaultOptions
+      appearance="filled"
+    />
+    <AsyncSelect
+      {...args}
+      loadOptions={loadOptions}
+      defaultOptions
+      appearance="subtle"
+    />
+  </div>
+);
 
 export const Default = Template.bind({});
 Default.args = {};

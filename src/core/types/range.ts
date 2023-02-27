@@ -1,4 +1,4 @@
-type LessThan<N extends number, A extends any[] = []> = N extends A['length']
+type LessThan<N extends number, A extends number[] = []> = N extends A['length']
   ? A[number]
   : LessThan<N, [...A, A['length']]>;
 

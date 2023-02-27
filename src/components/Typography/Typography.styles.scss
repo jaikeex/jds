@@ -16,6 +16,10 @@
     }
   }
 
+  &--uppercase {
+    text-transform: uppercase;
+  }
+
   &--variant {
     &--h1 {
       font-size: 5rem;
