@@ -19,7 +19,7 @@
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "prepare": "husky install",
-    "lint": "eslint ."
+    "lint": "prettier --write . && eslint . --fix"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",

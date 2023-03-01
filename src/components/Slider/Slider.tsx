@@ -16,10 +16,7 @@ export interface SliderProps {
   size?: SliderSize;
   width?: number;
   label?: string;
-  labelPosition?: Exclude<
-    Position,
-    'right-start' | 'right-end' | 'left-start' | 'left-end'
-  >;
+  labelPosition?: Exclude<Position, 'right-start' | 'right-end' | 'left-start' | 'left-end'>;
   id?: string;
   displayValue?: boolean;
   styles?: React.CSSProperties;
@@ -51,15 +48,8 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
     const [inputValue, setInputValue] = useState<number>(value);
     const [selectorOffset, valueBoxOffset] = useOffset(inputRef);
 
-    const classes = classNames(
-      'jds-slider',
-      classNameSize('jds-slider', size),
-      className
-    );
-    const labelClasses = classNames(
-      'jds-slider__label',
-      `jds-slider__label--pos--${labelPosition}`
-    );
+    const classes = classNames('jds-slider', classNameSize('jds-slider', size), className);
+    const labelClasses = classNames('jds-slider__label', `jds-slider__label--pos--${labelPosition}`);
 
     const inputChangeHandler = useCallback(
       (event: React.FormEvent<HTMLInputElement>) => {

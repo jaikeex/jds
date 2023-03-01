@@ -19,15 +19,9 @@
 
           &--focused {
             @if $active-theme == '.theme-dark' {
-              background-color: rgba(
-                themed-variant($variant, color-primary),
-                0.25
-              );
+              background-color: rgba(themed-variant($variant, color-primary), 0.25);
             } @else {
-              background-color: rgba(
-                themed-variant($variant, color-primary),
-                0.25
-              );
+              background-color: rgba(themed-variant($variant, color-primary), 0.25);
             }
           }
         }
@@ -36,15 +30,9 @@
           color: themed(text-color-primary);
 
           @if $active-theme == '.theme-dark' {
-            background-color: rgba(
-              themed-variant($variant, color-primary),
-              0.5
-            );
+            background-color: rgba(themed-variant($variant, color-primary), 0.5);
           } @else {
-            background-color: rgba(
-              themed-variant($variant, color-primary),
-              0.5
-            );
+            background-color: rgba(themed-variant($variant, color-primary), 0.5);
           }
         }
 
@@ -64,8 +52,7 @@
             }
 
             &--active {
-              box-shadow: inset 0 0 0 1px
-                themed-variant($variant, color-primary) !important;
+              box-shadow: inset 0 0 0 1px themed-variant($variant, color-primary) !important;
               border-color: themed-variant($variant, color-primary) !important;
             }
           }
@@ -74,15 +61,11 @@
             border: none;
             border-bottom-left-radius: 0 !important;
             border-bottom-right-radius: 0 !important;
-            border-bottom: 1px solid
-              rgba(themed-variant($variant, color-primary), 0.6);
+            border-bottom: 1px solid rgba(themed-variant($variant, color-primary), 0.6);
             background-color: rgba(themed-variant($variant, color-light), 0.1);
 
             &:hover {
-              background-color: rgba(
-                themed-variant($variant, color-light),
-                0.15
-              );
+              background-color: rgba(themed-variant($variant, color-light), 0.15);
               border-color: themed(text-color-secondary);
             }
 
@@ -93,12 +76,8 @@
               border-bottom-left-radius: 0 !important;
               border-bottom-right-radius: 0 !important;
 
-              background-color: rgba(
-                themed-variant($variant, color-light),
-                0.15
-              ) !important;
-              box-shadow: inset 0 -2px 2px -2px
-                themed-variant($variant, color-primary) !important;
+              background-color: rgba(themed-variant($variant, color-light), 0.15) !important;
+              box-shadow: inset 0 -2px 2px -2px themed-variant($variant, color-primary) !important;
               border-color: themed-variant($variant, color-primary) !important;
             }
           }
@@ -107,8 +86,7 @@
             border: none;
             border-bottom-left-radius: 0;
             border-bottom-right-radius: 0;
-            border-bottom: 1px solid
-              rgba(themed-variant($variant, color-primary), 0.6);
+            border-bottom: 1px solid rgba(themed-variant($variant, color-primary), 0.6);
 
             &:hover {
               border-color: themed(text-color-secondary);
@@ -121,8 +99,7 @@
               border-bottom-left-radius: 0 !important;
               border-bottom-right-radius: 0 !important;
 
-              box-shadow: inset 0 -2px 2px -2px
-                themed-variant($variant, color-primary) !important;
+              box-shadow: inset 0 -2px 2px -2px themed-variant($variant, color-primary) !important;
               border-color: themed-variant($variant, color-primary) !important;
             }
           }

@@ -15,15 +15,10 @@ export const ListContext = React.createContext<ListContextProps>({
   isCompact: false
 });
 
-const ListContextProvider: React.FC<ListContextProviderProps> = ({
-  children,
-  compact = false
-}) => {
+const ListContextProvider: React.FC<ListContextProviderProps> = ({ children, compact = false }) => {
   const defaultProps = React.useMemo(() => ({ isCompact: compact }), [compact]);
 
-  return (
-    <ListContext.Provider value={defaultProps}>{children}</ListContext.Provider>
-  );
+  return <ListContext.Provider value={defaultProps}>{children}</ListContext.Provider>;
 };
 
 export default ListContextProvider;

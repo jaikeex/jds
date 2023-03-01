@@ -19,11 +19,7 @@ export interface CodeProps {
   wrapLongLines?: boolean;
 }
 
-const Code: React.FC<CodeProps> = ({
-  children = '',
-  style = 'darcula',
-  ...props
-}) => (
+const Code: React.FC<CodeProps> = ({ children = '', style = 'darcula', ...props }) => (
   <div className="jds-code">
     <SyntaxHighlighter {...props} style={SyntaxHighlighterThemes[style]}>
       {children}

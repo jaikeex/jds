@@ -8,9 +8,7 @@ export default {
   component: SwapHorizontalIcon
 } as ComponentMeta<typeof SwapHorizontalIcon>;
 
-const Template: Story<SvgIconProps> = (args) => (
-  <SwapHorizontalIcon {...args} />
-);
+const Template: Story<SvgIconProps> = (args) => <SwapHorizontalIcon {...args} />;
 
 export const SwapHorizontal = Template.bind({});
 SwapHorizontal.args = {};

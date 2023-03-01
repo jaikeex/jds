@@ -11,9 +11,7 @@ export default {
 } as ComponentMeta<typeof Popper>;
 
 const Template: Story<PopperProps> = (args) => {
-  const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
-    null
-  );
+  const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(null);
 
   return (
     <div style={{ width: '200px', position: 'relative' }}>

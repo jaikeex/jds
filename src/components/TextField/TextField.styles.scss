@@ -44,8 +44,7 @@
           border: none;
           border-bottom-left-radius: 0;
           border-bottom-right-radius: 0;
-          border-bottom: 1px solid
-            rgba(themed-variant($variant, color-primary), 0.6);
+          border-bottom: 1px solid rgba(themed-variant($variant, color-primary), 0.6);
           background-color: rgba(themed-variant($variant, color-light), 0.1);
 
           &:hover {
@@ -54,8 +53,7 @@
           }
 
           &:focus {
-            box-shadow: inset 0 -2px 2px -2px
-              themed-variant($variant, color-primary);
+            box-shadow: inset 0 -2px 2px -2px themed-variant($variant, color-primary);
             border-color: themed-variant($variant, color-primary);
           }
         }
@@ -64,16 +62,14 @@
           border: none;
           border-bottom-left-radius: 0;
           border-bottom-right-radius: 0;
-          border-bottom: 1px solid
-            rgba(themed-variant($variant, color-primary), 0.6);
+          border-bottom: 1px solid rgba(themed-variant($variant, color-primary), 0.6);
 
           &:hover {
             border-color: themed(text-color-secondary);
           }
 
           &:focus {
-            box-shadow: inset 0 -2px 2px -2px
-              themed-variant($variant, color-primary);
+            box-shadow: inset 0 -2px 2px -2px themed-variant($variant, color-primary);
             border-color: themed-variant($variant, color-primary);
           }
         }

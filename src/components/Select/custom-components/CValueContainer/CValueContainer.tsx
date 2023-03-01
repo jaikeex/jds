@@ -6,9 +6,10 @@ import { CPlaceholder } from '@components/Select/custom-components';
 import type { Selectable } from '@components/Select';
 const { ValueContainer, Placeholder } = components;
 
-const CValueContainer: React.FC<
-  ValueContainerProps<Selectable, boolean, GroupBase<Selectable>>
-> = ({ children, ...props }) => (
+const CValueContainer: React.FC<ValueContainerProps<Selectable, boolean, GroupBase<Selectable>>> = ({
+  children,
+  ...props
+}) => (
   <ValueContainer {...props}>
     {/* @ts-ignore */}
     <CPlaceholder {...props} isFocused={props.isFocused}>

@@ -5,8 +5,8 @@ import type { Selectable } from '@components/Select';
 const { Placeholder } = components;
 import './CPlaceholder.styles.scss';
 
-const CPlaceholder: React.FC<
-  PlaceholderProps<Selectable, boolean, GroupBase<Selectable>>
-> = ({ ...props }) => <Placeholder {...props} />;
+const CPlaceholder: React.FC<PlaceholderProps<Selectable, boolean, GroupBase<Selectable>>> = ({ ...props }) => (
+  <Placeholder {...props} />
+);
 
 export default CPlaceholder;

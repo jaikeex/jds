@@ -6,10 +6,7 @@ export interface OutsideClickListenerProps {
   onOutsideClick?: (event: MouseEvent) => void;
 }
 
-const OutsideClickListener: React.FC<OutsideClickListenerProps> = ({
-  children = null,
-  onOutsideClick = () => {}
-}) => {
+const OutsideClickListener: React.FC<OutsideClickListenerProps> = ({ children = null, onOutsideClick = () => {} }) => {
   const ref = useRef<HTMLDivElement>(null);
   useOutsideClick(ref, onOutsideClick);
 

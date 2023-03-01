@@ -7,9 +7,7 @@ export default {
   component: Sheet
 } as ComponentMeta<typeof Sheet>;
 
-const Template: Story<SheetProps> = (args) => (
-  <Sheet {...args} style={{ width: '200px', height: '200px' }} />
-);
+const Template: Story<SheetProps> = (args) => <Sheet {...args} style={{ width: '200px', height: '200px' }} />;
 
 export const Default = Template.bind({});
 Default.args = {};

@@ -6,23 +6,11 @@ import { Divider } from '@components/Divider';
 export interface TabsProps {
   children?: React.ReactNode[];
   divider?: boolean;
-  justifyButtons?:
-    | 'space-around'
-    | 'space-between'
-    | 'space-evenly'
-    | 'stretch'
-    | 'center'
-    | 'flex-end'
-    | 'flex-start';
+  justifyButtons?: 'space-around' | 'space-between' | 'space-evenly' | 'stretch' | 'center' | 'flex-end' | 'flex-start';
   style?: React.CSSProperties;
 }
 
-const Tabs: React.FC<TabsProps> = ({
-  children,
-  divider = false,
-  justifyButtons = 'flex-start',
-  style = {}
-}) => {
+const Tabs: React.FC<TabsProps> = ({ children, divider = false, justifyButtons = 'flex-start', style = {} }) => {
   const [activeTab, setActiveTab] = useState<number>(0);
 
   const labels = React.Children.map(children, (child) => {
@@ -50,10 +38,7 @@ const Tabs: React.FC<TabsProps> = ({
             <div
               key={index}
               //TODO: refactor this shit
-              onClick={useCallback(
-                () => tabChangeHandler(index),
-                [tabChangeHandler]
-              )}
+              onClick={useCallback(() => tabChangeHandler(index), [tabChangeHandler])}
             >
               <TabButton active={index === activeTab} disabled={args.disabled}>
                 {args.label}

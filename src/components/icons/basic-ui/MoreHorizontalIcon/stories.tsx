@@ -8,9 +8,7 @@ export default {
   component: MoreHorizontalIcon
 } as ComponentMeta<typeof MoreHorizontalIcon>;
 
-const Template: Story<SvgIconProps> = (args) => (
-  <MoreHorizontalIcon {...args} />
-);
+const Template: Story<SvgIconProps> = (args) => <MoreHorizontalIcon {...args} />;
 
 export const MoreHorizontal = Template.bind({});
 MoreHorizontal.args = {};

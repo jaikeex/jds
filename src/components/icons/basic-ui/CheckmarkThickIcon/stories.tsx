@@ -8,9 +8,7 @@ export default {
   component: CheckmarkThickIcon
 } as ComponentMeta<typeof CheckmarkThickIcon>;
 
-const Template: Story<SvgIconProps> = (args) => (
-  <CheckmarkThickIcon {...args} />
-);
+const Template: Story<SvgIconProps> = (args) => <CheckmarkThickIcon {...args} />;
 
 export const CheckmarkThick = Template.bind({});
 CheckmarkThick.args = {};

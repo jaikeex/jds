@@ -24,26 +24,18 @@ const Divider: React.FC<DividerProps> = ({
 }) => {
   const Component = component;
 
-  const classes = classNames(
-    'jds-divider',
-    `jds-divider--color--${color}`,
-    `jds-divider--${orientation}`,
-    className,
-    {
-      'jds-divider--flex': flexItem,
-      'jds-divider--no-margin': removeMargin
-    }
-  );
+  const classes = classNames('jds-divider', `jds-divider--color--${color}`, `jds-divider--${orientation}`, className, {
+    'jds-divider--flex': flexItem,
+    'jds-divider--no-margin': removeMargin
+  });
 
   const styles = () => {
     const styles: React.CSSProperties = {};
     if (orientation === 'horizontal') {
-      styles.height =
-        typeof lineStrength === 'string' ? lineStrength : `${lineStrength}px`;
+      styles.height = typeof lineStrength === 'string' ? lineStrength : `${lineStrength}px`;
     }
     if (orientation === 'vertical') {
-      styles.width =
-        typeof lineStrength === 'string' ? lineStrength : `${lineStrength}px`;
+      styles.width = typeof lineStrength === 'string' ? lineStrength : `${lineStrength}px`;
     }
 
     return styles;

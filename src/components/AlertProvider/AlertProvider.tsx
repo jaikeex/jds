@@ -55,11 +55,7 @@ const AlertProvider: React.FC<AlertProviderProps> = ({
     <AlertContext.Provider value={contextState}>
       <div className={classes}>
         {alertItems.slice(-maxItems).map((item, index) => (
-          <Alert
-            {...item}
-            key={item.id}
-            style={{ zIndex: (9999 - index).toString() }}
-          />
+          <Alert {...item} key={item.id} style={{ zIndex: (9999 - index).toString() }} />
         ))}
       </div>
       {children}

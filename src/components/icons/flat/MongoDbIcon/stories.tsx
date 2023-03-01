@@ -8,9 +8,7 @@ export default {
   component: MongoDbIcon
 } as ComponentMeta<typeof MongoDbIcon>;
 
-const Template: Story<SvgColoredIconProps> = (args) => (
-  <MongoDbIcon {...args} />
-);
+const Template: Story<SvgColoredIconProps> = (args) => <MongoDbIcon {...args} />;
 
 export const MongoDB = Template.bind({});
 MongoDB.args = {};

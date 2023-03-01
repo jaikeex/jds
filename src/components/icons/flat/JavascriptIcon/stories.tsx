@@ -8,9 +8,7 @@ export default {
   component: JavascriptIcon
 } as ComponentMeta<typeof JavascriptIcon>;
 
-const Template: Story<SvgColoredIconProps> = (args) => (
-  <JavascriptIcon {...args} />
-);
+const Template: Story<SvgColoredIconProps> = (args) => <JavascriptIcon {...args} />;
 
 export const Javascript = Template.bind({});
 Javascript.args = {};

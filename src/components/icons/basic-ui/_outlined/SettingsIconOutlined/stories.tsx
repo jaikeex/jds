@@ -8,9 +8,7 @@ export default {
   component: SettingsIconOutlined
 } as ComponentMeta<typeof SettingsIconOutlined>;
 
-const Template: Story<SvgIconProps> = (args) => (
-  <SettingsIconOutlined {...args} />
-);
+const Template: Story<SvgIconProps> = (args) => <SettingsIconOutlined {...args} />;
 
 export const Settings = Template.bind({});
 Settings.args = {};

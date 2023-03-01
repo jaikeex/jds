@@ -1,7 +1,7 @@
 import '../src/styles/main.scss';
 import { addDecorator } from '@storybook/react';
 
-addDecorator(story => <div className="jds-storybook">{story()}</div>);
+addDecorator((story) => <div className="jds-storybook">{story()}</div>);
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

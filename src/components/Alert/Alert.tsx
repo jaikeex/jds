@@ -43,11 +43,7 @@ const Alert: React.FC<AlertProps> = ({
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const { isVisible, closeAlert, stopClose } = useAlertTimers(
-    ref,
-    location,
-    autoCloseDuration
-  );
+  const { isVisible, closeAlert, stopClose } = useAlertTimers(ref, location, autoCloseDuration);
 
   const classes = classNames(
     'jds-alert',
@@ -112,11 +108,7 @@ const Alert: React.FC<AlertProps> = ({
                   </span>
                 )}
                 {closable && (
-                  <IconButton
-                    onClick={closeButtonClickHandler}
-                    size="small"
-                    className="jds-alert__close-btn"
-                  >
+                  <IconButton onClick={closeButtonClickHandler} size="small" className="jds-alert__close-btn">
                     <CloseIcon />
                   </IconButton>
                 )}

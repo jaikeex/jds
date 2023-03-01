@@ -73,16 +73,11 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       }
     );
 
-    const labelClasses = classNames(
-      'jds-textfield__label',
-      `jds-textfield__label--position--${labelPosition}`,
-      {
-        'jds-textfield__label--transformed':
-          placeholder || inputValue || isFocused,
-        'u-margin-left-3rem': elementBefore,
-        'u-margin-right-3rem': elementAfter
-      }
-    );
+    const labelClasses = classNames('jds-textfield__label', `jds-textfield__label--position--${labelPosition}`, {
+      'jds-textfield__label--transformed': placeholder || inputValue || isFocused,
+      'u-margin-left-3rem': elementBefore,
+      'u-margin-right-3rem': elementAfter
+    });
 
     const styles = () => {
       const styles: React.CSSProperties = { ...style };
@@ -107,16 +102,8 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
 
     return (
       <div className="jds-textfield">
-        {elementBefore && (
-          <div className="jds-textfield__element jds-textfield__element--before">
-            {elementBefore}
-          </div>
-        )}
-        {elementAfter && (
-          <div className="jds-textfield__element jds-textfield__element--after">
-            {elementAfter}
-          </div>
-        )}
+        {elementBefore && <div className="jds-textfield__element jds-textfield__element--before">{elementBefore}</div>}
+        {elementAfter && <div className="jds-textfield__element jds-textfield__element--after">{elementAfter}</div>}
         <label htmlFor={id} className={labelClasses}>
           {label}
         </label>

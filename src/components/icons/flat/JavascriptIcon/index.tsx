@@ -2,16 +2,9 @@ import React from 'react';
 import type { SvgColoredIconProps } from '@components/icons';
 import { SvgColoredIcon } from '@components/icons';
 
-export const JavascriptIcon = React.forwardRef<
-  SVGSVGElement,
-  SvgColoredIconProps
->((props, ref) => (
+export const JavascriptIcon = React.forwardRef<SVGSVGElement, SvgColoredIconProps>((props, ref) => (
   <SvgColoredIcon {...props} ref={ref}>
-    <path
-      xmlns="http://www.w3.org/2000/svg"
-      fill="#ffd600"
-      d="M6,42V6h36v36H6z"
-    />
+    <path xmlns="http://www.w3.org/2000/svg" fill="#ffd600" d="M6,42V6h36v36H6z" />
     <path
       xmlns="http://www.w3.org/2000/svg"
       fill="#000001"

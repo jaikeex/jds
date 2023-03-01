@@ -39,13 +39,7 @@
   }
 }
 
-@mixin position(
-  $offset: 0rem,
-  $offset-bottom: 0rem,
-  $offset-top: 0rem,
-  $offset-right: 0rem,
-  $offset-left: 0rem
-) {
+@mixin position($offset: 0rem, $offset-bottom: 0rem, $offset-top: 0rem, $offset-right: 0rem, $offset-left: 0rem) {
   position: absolute;
 
   &--pos {

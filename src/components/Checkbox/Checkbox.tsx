@@ -43,19 +43,12 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   ) => {
     const [isChecked, setIsChecked] = useState<boolean>(checked);
 
-    const classes = classNames(
-      'jds-checkbox',
-      `jds-checkbox--size--${size}`,
-      `jds-checkbox--color--${color}`,
-      {
-        'jds-checkbox__hidden': icon,
-        'jds-checkbox--disabled': disabled
-      }
-    );
+    const classes = classNames('jds-checkbox', `jds-checkbox--size--${size}`, `jds-checkbox--color--${color}`, {
+      'jds-checkbox__hidden': icon,
+      'jds-checkbox--disabled': disabled
+    });
 
-    const labelClasses = classNames(
-      `jds-checkbox__label--color--${labelColor}`
-    );
+    const labelClasses = classNames(`jds-checkbox__label--color--${labelColor}`);
 
     const inputChangeHandler = useCallback(
       (event: React.ChangeEvent<HTMLInputElement>) => {

@@ -2,10 +2,7 @@ import React from 'react';
 import type { SvgIconProps } from '@components/icons';
 import { SvgIcon } from '@components/icons';
 
-export const QuestionMarkCircleIcon = React.forwardRef<
-  SVGSVGElement,
-  SvgIconProps
->((props, ref) => (
+export const QuestionMarkCircleIcon = React.forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => (
   <SvgIcon {...props} ref={ref}>
     <path
       xmlns="http://www.w3.org/2000/svg"

@@ -8,9 +8,7 @@ export default {
   component: QuestionMarkCircleIcon
 } as ComponentMeta<typeof QuestionMarkCircleIcon>;
 
-const Template: Story<SvgIconProps> = (args) => (
-  <QuestionMarkCircleIcon {...args} />
-);
+const Template: Story<SvgIconProps> = (args) => <QuestionMarkCircleIcon {...args} />;
 
 export const QuestionMarkCircle = Template.bind({});
 QuestionMarkCircle.args = {};

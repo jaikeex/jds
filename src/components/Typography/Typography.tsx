@@ -28,9 +28,7 @@ const Typography: React.FC<TypographyProps> = ({
   upperCase = false,
   variant = 'body1'
 }) => {
-  const Component = typographyVariantMap[
-    variant
-  ] as keyof JSX.IntrinsicElements;
+  const Component = typographyVariantMap[variant] as keyof JSX.IntrinsicElements;
   const colorClassName = `jds-typography--color--${color}`;
 
   const classes = classNames(

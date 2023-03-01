@@ -9,10 +9,7 @@ import { CValueContainer } from '@components/Select/custom-components';
 import { useSelectClasses } from '@components/Select/useSelectClasses';
 import type Select from 'react-select/dist/declarations/src/Select';
 
-const StandardSelect = React.forwardRef<
-  Select<Selectable, boolean, GroupBase<Selectable>>,
-  SelectProps
->(
+const StandardSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Selectable>>, SelectProps>(
   (
     {
       appearance = 'outlined',
@@ -34,11 +31,10 @@ const StandardSelect = React.forwardRef<
     },
     ref
   ) => {
-    const inputRef =
-      useForwardedRef<Select<Selectable, boolean, GroupBase<Selectable>>>(ref);
-    const [selectedValue, setSelectedValue] = useState<
-      SingleValue<Selectable> | MultiValue<Selectable> | undefined
-    >(value);
+    const inputRef = useForwardedRef<Select<Selectable, boolean, GroupBase<Selectable>>>(ref);
+    const [selectedValue, setSelectedValue] = useState<SingleValue<Selectable> | MultiValue<Selectable> | undefined>(
+      value
+    );
 
     const classes = useSelectClasses({
       ...props,

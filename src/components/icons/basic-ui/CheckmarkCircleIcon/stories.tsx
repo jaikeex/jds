@@ -8,9 +8,7 @@ export default {
   component: CheckmarkCircleIcon
 } as ComponentMeta<typeof CheckmarkCircleIcon>;
 
-const Template: Story<SvgIconProps> = (args) => (
-  <CheckmarkCircleIcon {...args} />
-);
+const Template: Story<SvgIconProps> = (args) => <CheckmarkCircleIcon {...args} />;
 
 export const CheckmarkCircle = Template.bind({});
 CheckmarkCircle.args = {};

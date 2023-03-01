@@ -17,12 +17,7 @@ export interface MenuItemProps extends React.PropsWithChildren {
   selected?: boolean;
 }
 
-const MenuItem: React.FC<MenuItemProps> = ({
-  children = null,
-  color = 'default',
-  onClick = () => {},
-  ...props
-}) => {
+const MenuItem: React.FC<MenuItemProps> = ({ children = null, color = 'default', onClick = () => {}, ...props }) => {
   const { setIsOpen } = useMenuContext();
 
   const clickHandler = useCallback(

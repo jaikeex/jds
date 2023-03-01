@@ -8,9 +8,7 @@ export default {
   component: DeleteIconOutlined
 } as ComponentMeta<typeof DeleteIconOutlined>;
 
-const Template: Story<SvgIconProps> = (args) => (
-  <DeleteIconOutlined {...args} />
-);
+const Template: Story<SvgIconProps> = (args) => <DeleteIconOutlined {...args} />;
 
 export const Delete = Template.bind({});
 Delete.args = {};

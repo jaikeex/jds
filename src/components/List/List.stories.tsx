@@ -15,8 +15,7 @@ export default {
   component: List
 } as ComponentMeta<typeof List>;
 
-const generateListItems = (props: ListItemProps) =>
-  [1, 2, 3, 4].map((el) => <ListItem {...props} key={el} />);
+const generateListItems = (props: ListItemProps) => [1, 2, 3, 4].map((el) => <ListItem {...props} key={el} />);
 
 const Template: Story<ListProps> = (args) => (
   <div style={{ width: '300px' }}>
@@ -27,17 +26,10 @@ const Template: Story<ListProps> = (args) => (
 );
 
 const TemplateCheckbox: Story<ListProps> = (args) => {
-  const [checked, setChecked] = useState<boolean[]>([
-    true,
-    false,
-    false,
-    false
-  ]);
+  const [checked, setChecked] = useState<boolean[]>([true, false, false, false]);
 
   const checkboxHandler = (value: number) => {
-    const newState = checked.map((item, index) =>
-      index === value ? !item : item
-    );
+    const newState = checked.map((item, index) => (index === value ? !item : item));
     setChecked(newState);
   };
 

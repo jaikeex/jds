@@ -33,8 +33,7 @@ const Link: React.FC<LinkProps> = ({
     );
 
   const getAnchorProps = () => {
-    const props = { ...anchorProps } as LinkProps &
-      React.LinkHTMLAttributes<HTMLAnchorElement>;
+    const props = { ...anchorProps } as LinkProps & React.LinkHTMLAttributes<HTMLAnchorElement>;
 
     if (openInNew) {
       props.rel = 'noreferrer';
@@ -44,11 +43,7 @@ const Link: React.FC<LinkProps> = ({
   };
 
   return (
-    <a
-      {...getAnchorProps()}
-      target={openInNew ? '_blank' : '_self'}
-      className={classes}
-    >
+    <a {...getAnchorProps()} target={openInNew ? '_blank' : '_self'} className={classes}>
       {getChildren()}
     </a>
   );

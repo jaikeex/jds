@@ -8,9 +8,7 @@ export default {
   component: ReactJsIcon
 } as ComponentMeta<typeof ReactJsIcon>;
 
-const Template: Story<SvgColoredIconProps> = (args) => (
-  <ReactJsIcon {...args} />
-);
+const Template: Story<SvgColoredIconProps> = (args) => <ReactJsIcon {...args} />;
 
 export const ReactJs = Template.bind({});
 ReactJs.args = {};

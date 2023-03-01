@@ -8,13 +8,7 @@ export const getIconClasses = (
 ) => {
   const colorClassName = `jds-icon--${color}`;
 
-  return classNames(
-    'jds-icon',
-    `jds-icon--${size}`,
-    { [colorClassName]: !color.startsWith('#') },
-    className
-  );
+  return classNames('jds-icon', `jds-icon--${size}`, { [colorClassName]: !color.startsWith('#') }, className);
 };
 
-export const getFlatIconClasses = (size: ExtendedSize = 'medium') =>
-  classNames('jds-icon', `jds-icon--${size}`);
+export const getFlatIconClasses = (size: ExtendedSize = 'medium') => classNames('jds-icon', `jds-icon--${size}`);

@@ -9,11 +9,7 @@ export interface ListProps {
   compact?: boolean;
 }
 
-const List: React.FC<ListProps> = ({
-  children,
-  className = '',
-  compact = false
-}) => {
+const List: React.FC<ListProps> = ({ children, className = '', compact = false }) => {
   const classes = classNames('jds-list', className);
 
   return (

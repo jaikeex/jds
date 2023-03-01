@@ -8,9 +8,7 @@ export default {
   component: NavigationItem
 } as ComponentMeta<typeof NavigationItem>;
 
-const Template: Story<NavigationItemProps> = (args) => (
-  <NavigationItem {...args} />
-);
+const Template: Story<NavigationItemProps> = (args) => <NavigationItem {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {};

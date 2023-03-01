@@ -8,15 +8,8 @@ export interface TabButtonProps extends React.PropsWithChildren, ButtonProps {
   active?: boolean;
 }
 
-const TabButton: React.FC<TabButtonProps> = ({
-  active = true,
-  children,
-  ...props
-}) => {
-  const classes = classNames(
-    'jds-tab-button',
-    active && 'jds-tab-button--active'
-  );
+const TabButton: React.FC<TabButtonProps> = ({ active = true, children, ...props }) => {
+  const classes = classNames('jds-tab-button', active && 'jds-tab-button--active');
 
   return (
     <Button appearance="subtle" className={classes} {...props}>

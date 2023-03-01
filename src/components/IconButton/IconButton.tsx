@@ -15,17 +15,7 @@ export interface IconButtonProps {
 }
 
 const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
-  (
-    {
-      color = 'default',
-      size = 'medium',
-      className = '',
-      style,
-      onClick,
-      children
-    },
-    ref
-  ) => {
+  ({ color = 'default', size = 'medium', className = '', style, onClick, children }, ref) => {
     const classes = classNames(
       'jds-icon-btn',
       classNameColor('jds-icon-btn', color),

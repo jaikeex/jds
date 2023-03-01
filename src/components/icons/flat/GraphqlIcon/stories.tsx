@@ -8,9 +8,7 @@ export default {
   component: GraphqlIcon
 } as ComponentMeta<typeof GraphqlIcon>;
 
-const Template: Story<SvgColoredIconProps> = (args) => (
-  <GraphqlIcon {...args} />
-);
+const Template: Story<SvgColoredIconProps> = (args) => <GraphqlIcon {...args} />;
 
 export const Graphql = Template.bind({});
 Graphql.args = {};

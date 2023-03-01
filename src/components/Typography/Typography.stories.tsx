@@ -29,30 +29,27 @@ const Template: Story<TypographyProps> = (args) => (
       Heading 6
     </Typography>
     <Typography {...args} variant="subHeading1">
-      Sub heading 1: Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-      Curabitur vitae diam non enim vestibulum interdum. Nulla est. Fusce wisi.
+      Sub heading 1: Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Curabitur vitae diam non enim vestibulum
+      interdum. Nulla est. Fusce wisi.
     </Typography>
     <Typography {...args} variant="subHeading2">
-      Sub heading 2: Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-      Curabitur vitae diam non enim vestibulum interdum. Nulla est. Fusce wisi.
+      Sub heading 2: Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Curabitur vitae diam non enim vestibulum
+      interdum. Nulla est. Fusce wisi.
     </Typography>
     <Typography {...args} variant="body1">
-      Body 1: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-      blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
-      neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti?
-      Eum quasi quidem quibusdam.
+      Body 1: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam
+      beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
+      quasi quidem quibusdam.
     </Typography>
     <Typography {...args} variant="body2">
-      Body 2: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-      blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
-      neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti?
-      Eum quasi quidem quibusdam.
+      Body 2: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam
+      beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
+      quasi quidem quibusdam.
     </Typography>
     <Typography {...args} variant="body3">
-      Body 3: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos
-      blanditiis tenetur unde suscipit, quam beatae rerum inventore consectetur,
-      neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti?
-      Eum quasi quidem quibusdam.
+      Body 3: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur unde suscipit, quam
+      beatae rerum inventore consectetur, neque doloribus, cupiditate numquam dignissimos laborum fugiat deleniti? Eum
+      quasi quidem quibusdam.
     </Typography>
     <Typography {...args} variant="caption">
       Caption

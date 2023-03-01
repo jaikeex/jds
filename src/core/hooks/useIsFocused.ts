@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react';
 
-export const useIsFocused = <T extends HTMLElement>(
-  ref: React.RefObject<T>,
-  defaultState: boolean
-) => {
+export const useIsFocused = <T extends HTMLElement>(ref: React.RefObject<T>, defaultState: boolean) => {
   const [isFocused, setIsFocused] = useState<boolean>(defaultState);
 
   const focusHandler = (event: FocusEvent) => {

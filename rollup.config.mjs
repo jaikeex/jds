@@ -7,10 +7,7 @@ import dts from 'rollup-plugin-dts';
 import packageJson from './package.json' assert { type: 'json' };
 import tsConfigJson from './tsconfig.json' assert { type: 'json' };
 
-const EXTERNAL = [
-  ...Object.keys(packageJson.devDependencies),
-  ...Object.keys(packageJson.peerDependencies)
-];
+const EXTERNAL = [...Object.keys(packageJson.devDependencies), ...Object.keys(packageJson.peerDependencies)];
 
 export default [
   {

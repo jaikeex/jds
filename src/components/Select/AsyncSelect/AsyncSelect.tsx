@@ -14,16 +14,11 @@ export interface AsyncSelectProps extends SelectProps {
   defaultOptions?: boolean | ReadonlyArray<Selectable | GroupBase<Selectable>>;
   loadOptions?: (
     query: string,
-    callback: (
-      options: ReadonlyArray<Selectable | GroupBase<Selectable>>
-    ) => void
+    callback: (options: ReadonlyArray<Selectable | GroupBase<Selectable>>) => void
   ) => void | Promise<ReadonlyArray<Selectable | GroupBase<Selectable>>>;
 }
 
-const AsyncSelect = React.forwardRef<
-  Select<Selectable, boolean, GroupBase<Selectable>>,
-  AsyncSelectProps
->(
+const AsyncSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Selectable>>, AsyncSelectProps>(
   (
     {
       appearance = 'outlined',
@@ -45,11 +40,10 @@ const AsyncSelect = React.forwardRef<
     },
     ref
   ) => {
-    const inputRef =
-      useForwardedRef<Select<Selectable, boolean, GroupBase<Selectable>>>(ref);
-    const [selectedValue, setSelectedValue] = useState<
-      SingleValue<Selectable> | MultiValue<Selectable> | undefined
-    >(value);
+    const inputRef = useForwardedRef<Select<Selectable, boolean, GroupBase<Selectable>>>(ref);
+    const [selectedValue, setSelectedValue] = useState<SingleValue<Selectable> | MultiValue<Selectable> | undefined>(
+      value
+    );
 
     const classes = useSelectClasses({
       ...props,

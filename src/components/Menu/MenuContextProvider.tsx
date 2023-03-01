@@ -22,12 +22,7 @@ export const MenuContextProvider: React.FC<MenuContextProviderProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState<boolean | undefined>(defaultIsOpen);
 
-  const defaultProps = React.useMemo(
-    () => ({ isOpen: isOpen, setIsOpen: setIsOpen }),
-    [isOpen, setIsOpen]
-  );
+  const defaultProps = React.useMemo(() => ({ isOpen: isOpen, setIsOpen: setIsOpen }), [isOpen, setIsOpen]);
 
-  return (
-    <MenuContext.Provider value={defaultProps}>{children}</MenuContext.Provider>
-  );
+  return <MenuContext.Provider value={defaultProps}>{children}</MenuContext.Provider>;
 };

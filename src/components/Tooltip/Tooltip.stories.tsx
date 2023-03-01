@@ -114,11 +114,9 @@ LargeText.args = {
   size: 'long-text',
   content: (
     <span>
-      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce suscipit
-      libero eget elit. Nulla turpis magna, cursus sit amet, suscipit a,
-      interdum id, felis. Proin mattis lacinia justo. Maecenas fermentum, sem in
-      pharetra pellentesque, velit turpis volutpat ante, in pharetra metus odio
-      a lectus.
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce suscipit libero eget elit. Nulla turpis magna,
+      cursus sit amet, suscipit a, interdum id, felis. Proin mattis lacinia justo. Maecenas fermentum, sem in pharetra
+      pellentesque, velit turpis volutpat ante, in pharetra metus odio a lectus.
     </span>
   )
 };

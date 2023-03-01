@@ -33,20 +33,19 @@ const Popper: React.FC<PopperProps> = ({
   referenceElement = null,
   trigger = 'click'
 }) => {
-  const { getTooltipProps, setTooltipRef, setTriggerRef, visible } =
-    usePopperTooltip(
-      {
-        closeOnOutsideClick: closeOnOutsideClick,
-        interactive: interactive,
-        offset: offset,
-        placement: position,
-        trigger: trigger,
-        visible: isVisible,
-        delayHide: delayHide,
-        onVisibleChange: onVisibleChange
-      },
-      popperOptions
-    );
+  const { getTooltipProps, setTooltipRef, setTriggerRef, visible } = usePopperTooltip(
+    {
+      closeOnOutsideClick: closeOnOutsideClick,
+      interactive: interactive,
+      offset: offset,
+      placement: position,
+      trigger: trigger,
+      visible: isVisible,
+      delayHide: delayHide,
+      onVisibleChange: onVisibleChange
+    },
+    popperOptions
+  );
 
   const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {

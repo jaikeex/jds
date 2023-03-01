@@ -9,10 +9,7 @@ export default {
   component: AsyncSelect
 } as ComponentMeta<typeof AsyncSelect>;
 
-const loadOptions = (
-  inputValue: string,
-  callback: (options: Selectable[]) => void
-) => {
+const loadOptions = (inputValue: string, callback: (options: Selectable[]) => void) => {
   const options = [
     { value: 'ocean', label: 'Ocean', color: '#00B8D9', isFixed: true },
     { value: 'blue', label: 'Blue', color: '#0052CC', isDisabled: true },
@@ -26,8 +23,7 @@ const loadOptions = (
     { value: 'silver', label: 'Silver', color: '#666666' }
   ];
 
-  const filterOptions = (query: string) =>
-    options.filter((option) => option.value.includes(query.toLowerCase()));
+  const filterOptions = (query: string) => options.filter((option) => option.value.includes(query.toLowerCase()));
 
   setTimeout(() => {
     callback(filterOptions(inputValue));
@@ -43,24 +39,9 @@ const Template: Story<AsyncSelectProps> = (args) => (
       gap: '2rem'
     }}
   >
-    <AsyncSelect
-      {...args}
-      loadOptions={loadOptions}
-      defaultOptions
-      appearance="outlined"
-    />
-    <AsyncSelect
-      {...args}
-      loadOptions={loadOptions}
-      defaultOptions
-      appearance="filled"
-    />
-    <AsyncSelect
-      {...args}
-      loadOptions={loadOptions}
-      defaultOptions
-      appearance="subtle"
-    />
+    <AsyncSelect {...args} loadOptions={loadOptions} defaultOptions appearance="outlined" />
+    <AsyncSelect {...args} loadOptions={loadOptions} defaultOptions appearance="filled" />
+    <AsyncSelect {...args} loadOptions={loadOptions} defaultOptions appearance="subtle" />
   </div>
 );
 

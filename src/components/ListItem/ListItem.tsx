@@ -80,24 +80,12 @@ const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
 
     return (
       <React.Fragment>
-        <li
-          className={classes}
-          style={getStyles()}
-          key={key}
-          ref={innerRef}
-          onClick={clickHandler}
-        >
+        <li className={classes} style={getStyles()} key={key} ref={innerRef} onClick={clickHandler}>
           {elementBefore && (
-            <div className="jds-list-item__element jds-list-item__element--before">
-              {elementBefore}
-            </div>
+            <div className="jds-list-item__element jds-list-item__element--before">{elementBefore}</div>
           )}
           {children}
-          {elementAfter && (
-            <div className="jds-list-item__element jds-list-item__element--after">
-              {elementAfter}
-            </div>
-          )}
+          {elementAfter && <div className="jds-list-item__element jds-list-item__element--after">{elementAfter}</div>}
         </li>
         {divider && <Divider flexItem />}
       </React.Fragment>

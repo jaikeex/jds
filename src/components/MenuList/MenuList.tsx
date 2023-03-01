@@ -32,8 +32,7 @@ const MenuList: React.FC<MenuListProps> = ({
     const styles = { ...sheetProps.style };
 
     if (maxHeight != undefined) {
-      styles.maxHeight =
-        typeof maxHeight === 'string' ? maxHeight : `${maxHeight}px`;
+      styles.maxHeight = typeof maxHeight === 'string' ? maxHeight : `${maxHeight}px`;
       styles.overflowY = 'auto';
     }
 

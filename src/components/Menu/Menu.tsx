@@ -25,9 +25,7 @@ const Menu: React.FC<MenuProps> = ({
   triggerComponent,
   ...menuListProps
 }) => {
-  const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(
-    null
-  );
+  const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(null);
 
   const triggerComponentWithProps = React.cloneElement(triggerComponent, {
     ref: setReferenceElement
@@ -37,11 +35,7 @@ const Menu: React.FC<MenuProps> = ({
     <MenuContextProvider defaultIsOpen={defaultOpen}>
       <div className="jds-menu">
         {triggerComponentWithProps}
-        <MenuList
-          {...menuListProps}
-          position={position}
-          referenceElement={referenceElement}
-        >
+        <MenuList {...menuListProps} position={position} referenceElement={referenceElement}>
           {children}
         </MenuList>
       </div>

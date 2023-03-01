@@ -3,11 +3,4 @@ export interface AlertLocation {
   vertical: 'bottom' | 'top';
 }
 
-export type AlertAppearance =
-  | 'default'
-  | 'warning'
-  | 'success'
-  | 'danger'
-  | 'accented'
-  | 'dark'
-  | 'focus';
+export type AlertAppearance = 'default' | 'warning' | 'success' | 'danger' | 'accented' | 'dark' | 'focus';

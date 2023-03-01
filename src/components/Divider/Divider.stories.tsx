@@ -9,10 +9,7 @@ export default {
 } as ComponentMeta<typeof Divider>;
 
 const Template: Story<DividerProps> = (args) => {
-  const styles =
-    args.orientation === 'horizontal'
-      ? { width: '400px' }
-      : { height: '400px' };
+  const styles = args.orientation === 'horizontal' ? { width: '400px' } : { height: '400px' };
 
   return (
     <div style={styles}>

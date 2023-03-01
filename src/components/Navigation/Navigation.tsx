@@ -7,11 +7,7 @@ export interface NavigationProps {
   orientatnion?: 'horizontal' | 'vertical';
 }
 
-const Navigation: React.FC<NavigationProps> = ({
-  children = null,
-  className = '',
-  orientatnion = 'horizontal'
-}) => {
+const Navigation: React.FC<NavigationProps> = ({ children = null, className = '', orientatnion = 'horizontal' }) => {
   console.log(orientatnion);
   return <div className={className}> {children} </div>;
 };

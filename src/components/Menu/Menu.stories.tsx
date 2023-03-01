@@ -43,11 +43,7 @@ Positioned.args = {
     <MenuItem key={2} disabled divider>
       <Typography>Move</Typography>
     </MenuItem>,
-    <MenuItem
-      key={3}
-      elementBefore={<DeleteIcon size="small" />}
-      color={'danger'}
-    >
+    <MenuItem key={3} elementBefore={<DeleteIcon size="small" />} color={'danger'}>
       <Typography>Delete</Typography>
     </MenuItem>
   ],
@@ -83,27 +79,15 @@ const SelectedTemplate: Story<MenuProps> = (args) => {
 
   return (
     <Menu {...args}>
-      <MenuItem
-        key={1}
-        selected={selectedItem === 0}
-        onClick={createClickHandler(0)}
-      >
+      <MenuItem key={1} selected={selectedItem === 0} onClick={createClickHandler(0)}>
         <Typography>Option 1</Typography>
       </MenuItem>
 
-      <MenuItem
-        key={2}
-        selected={selectedItem === 1}
-        onClick={createClickHandler(1)}
-      >
+      <MenuItem key={2} selected={selectedItem === 1} onClick={createClickHandler(1)}>
         <Typography>Option 2</Typography>
       </MenuItem>
 
-      <MenuItem
-        key={3}
-        selected={selectedItem === 2}
-        onClick={createClickHandler(2)}
-      >
+      <MenuItem key={3} selected={selectedItem === 2} onClick={createClickHandler(2)}>
         <Typography>Option 3</Typography>
       </MenuItem>
     </Menu>

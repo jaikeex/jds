@@ -19,8 +19,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
   style,
   children
 }) => {
-  const { styleFirstElement, styleMiddleElement, styleLastElement } =
-    useButtonGroupStyles(orientation, appearance);
+  const { styleFirstElement, styleMiddleElement, styleLastElement } = useButtonGroupStyles(orientation, appearance);
 
   const classes = classNames('jds-btn-group', `jds-btn-group--${orientation}`);
 

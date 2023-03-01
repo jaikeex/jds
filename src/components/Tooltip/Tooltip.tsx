@@ -23,8 +23,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   content = null,
   children = null
 }) => {
-  const { getTooltipProps, setTooltipRef, setTriggerRef, visible } =
-    usePopperTooltip({ placement: position });
+  const { getTooltipProps, setTooltipRef, setTriggerRef, visible } = usePopperTooltip({ placement: position });
 
   const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
@@ -46,10 +45,7 @@ const Tooltip: React.FC<TooltipProps> = ({
     <React.Fragment>
       {childrenWithProps}
       {visible && (
-        <div
-          ref={setTooltipRef}
-          {...getTooltipProps({ style: style, className: classes })}
-        >
+        <div ref={setTooltipRef} {...getTooltipProps({ style: style, className: classes })}>
           {content}
         </div>
       )}

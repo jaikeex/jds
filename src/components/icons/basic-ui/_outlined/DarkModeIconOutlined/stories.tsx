@@ -8,9 +8,7 @@ export default {
   component: DarkModeIconOutlined
 } as ComponentMeta<typeof DarkModeIconOutlined>;
 
-const Template: Story<SvgIconProps> = (args) => (
-  <DarkModeIconOutlined {...args} />
-);
+const Template: Story<SvgIconProps> = (args) => <DarkModeIconOutlined {...args} />;
 
 export const DarkMode = Template.bind({});
 DarkMode.args = {};

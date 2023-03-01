@@ -44,10 +44,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ) => {
     const buttonRef = useForwardedRef<HTMLButtonElement>(ref);
 
-    const createRippleEffect = useRippleEffect(
-      buttonRef,
-      appearance !== 'filled'
-    );
+    const createRippleEffect = useRippleEffect(buttonRef, appearance !== 'filled');
 
     const classes = classNames(
       'jds-btn',
@@ -78,10 +75,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         onClick={buttonClickHandler}
       >
         {iconLeft && <div className="jds-btn__icon">{iconLeft}</div>}
-        <Typography
-          variant="button"
-          upperCase={disableUpperCase ? false : true}
-        >
+        <Typography variant="button" upperCase={disableUpperCase ? false : true}>
           {children}
         </Typography>
         {iconRight && <div className="jds-btn__icon">{iconRight}</div>}

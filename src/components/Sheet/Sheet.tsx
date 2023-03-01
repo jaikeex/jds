@@ -13,26 +13,11 @@ export interface SheetProps {
 }
 
 const Sheet = React.forwardRef<HTMLDivElement, SheetProps>(
-  (
-    {
-      children,
-      className = '',
-      level = 4,
-      outlined = false,
-      sharpCorners = false,
-      style = {}
-    },
-    ref
-  ) => {
-    const classes = classNames(
-      'jds-sheet',
-      `jds-sheet--level--${level}`,
-      className,
-      {
-        'jds-sheet--sharp-corners': sharpCorners,
-        'jds-sheet--outlined': outlined
-      }
-    );
+  ({ children, className = '', level = 4, outlined = false, sharpCorners = false, style = {} }, ref) => {
+    const classes = classNames('jds-sheet', `jds-sheet--level--${level}`, className, {
+      'jds-sheet--sharp-corners': sharpCorners,
+      'jds-sheet--outlined': outlined
+    });
 
     return (
       <div className={classes} style={style} ref={ref}>

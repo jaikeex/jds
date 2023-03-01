@@ -8,9 +8,7 @@ export default {
   component: TypescriptIcon
 } as ComponentMeta<typeof TypescriptIcon>;
 
-const Template: Story<SvgColoredIconProps> = (args) => (
-  <TypescriptIcon {...args} />
-);
+const Template: Story<SvgColoredIconProps> = (args) => <TypescriptIcon {...args} />;
 
 export const Typescript = Template.bind({});
 Typescript.args = {};

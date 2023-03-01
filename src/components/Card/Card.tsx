@@ -26,16 +26,12 @@ const Card: React.FC<CardProps> = ({
 }) => {
   const rootClasses = classNames('jds-card');
 
-  const frontSideClasses = classNames(
-    'jds-card__side',
-    `jds-card__side--${appearance}`,
-    {
-      'jds-card__side--sharp': sharpCorners,
-      'jds-card__side--shadow': hasShadow,
-      'jds-card__side--clickable': clickable && !backside,
-      'jds-card__side--front': backside
-    }
-  );
+  const frontSideClasses = classNames('jds-card__side', `jds-card__side--${appearance}`, {
+    'jds-card__side--sharp': sharpCorners,
+    'jds-card__side--shadow': hasShadow,
+    'jds-card__side--clickable': clickable && !backside,
+    'jds-card__side--front': backside
+  });
   const backSideClasses = classNames('jds-card__side', {
     'jds-card__side--back': backside
   });
@@ -50,11 +46,7 @@ const Card: React.FC<CardProps> = ({
   return (
     <React.Fragment>
       <div className={rootClasses}>
-        <div
-          className={frontSideClasses}
-          style={style}
-          onClick={cardClickHandler}
-        >
+        <div className={frontSideClasses} style={style} onClick={cardClickHandler}>
           {children}
         </div>
         {backside && (

@@ -48,11 +48,9 @@ const Dialog: React.FC<DialogProps> = ({
       return styles;
     }
 
-    styles.maxHeight =
-      typeof maxHeight === 'string' ? maxHeight : `${maxHeight}px`;
+    styles.maxHeight = typeof maxHeight === 'string' ? maxHeight : `${maxHeight}px`;
     styles.maxWidth = typeof maxWidth === 'string' ? maxWidth : `${maxWidth}px`;
-    styles.minHeight =
-      typeof minHeight === 'string' ? minHeight : `${minHeight}px`;
+    styles.minHeight = typeof minHeight === 'string' ? minHeight : `${minHeight}px`;
     styles.minWidth = typeof minWidth === 'string' ? minWidth : `${minWidth}px`;
 
     return styles;
@@ -80,16 +78,9 @@ const Dialog: React.FC<DialogProps> = ({
     <React.Fragment>
       {open && (
         <React.Fragment>
-          <div
-            className="jds-dialog__backdrop"
-            onClick={backdropClickHandler}
-          />
+          <div className="jds-dialog__backdrop" onClick={backdropClickHandler} />
           <div className="jds-dialog">
-            <Sheet
-              {...sheetProps}
-              className={sheetClasses}
-              style={getSheetStyles()}
-            >
+            <Sheet {...sheetProps} className={sheetClasses} style={getSheetStyles()}>
               {children}
             </Sheet>
           </div>
