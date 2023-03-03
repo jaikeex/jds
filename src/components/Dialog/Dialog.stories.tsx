@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import type { DialogProps } from './Dialog';
 import Dialog from './Dialog';
-import { Button } from '@components/Button';
-import { Typography } from '@components/Typography';
+import { Button } from 'components/Button';
+import { Typography } from 'components/Typography';
 
 export default {
   title: 'Design System/Dialog',

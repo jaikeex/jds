@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import StandardSelect from './StandardSelect';
-import type { SelectProps } from '@components/Select/types';
+import type { SelectProps } from 'components/Select/types';
 
 export default {
   title: 'Design System/Select/Standard',

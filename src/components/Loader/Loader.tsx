@@ -1,8 +1,8 @@
 import React from 'react';
 import './Loader.styles.scss';
-import type { ExtendedSize } from '@core/types';
+import type { ExtendedSize } from 'core/types';
 import classNames from 'classnames';
-import { classNameSize } from '@core/utils';
+import { classNameSize } from 'core/utils';
 
 export interface LoaderProps {
   size?: ExtendedSize;

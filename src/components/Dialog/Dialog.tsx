@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react';
-import type { SheetProps } from '@components/Sheet';
-import { Sheet } from '@components/Sheet';
+import type { SheetProps } from 'components/Sheet';
+import { Sheet } from 'components/Sheet';
 import './Dialog.styles.scss';
 import classNames from 'classnames';
 

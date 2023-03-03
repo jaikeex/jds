@@ -1,9 +1,9 @@
-import type { ColorVariants } from '@core/types';
 import React from 'react';
 import './Typography.styles.scss';
+import type { ColorVariants } from 'core/types';
 import classNames from 'classnames';
-import type { TypographyVariants } from '@core/types';
-import { typographyVariantMap } from '@core/types';
+import type { TypographyVariants } from 'core/types';
+import { typographyVariantMap } from 'core/types';
 
 export interface TypographyProps {
   children?: React.ReactNode;

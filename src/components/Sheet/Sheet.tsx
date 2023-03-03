@@ -1,6 +1,6 @@
 import React from 'react';
 import './Sheet.styles.scss';
-import type { NumericRange } from '@core/types';
+import type { NumericRange } from 'core/types';
 import classNames from 'classnames';
 
 export interface SheetProps {

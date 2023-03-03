@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import { CssIcon } from '.';
-import type { SvgColoredIconProps } from '@components/icons';
+import type { SvgColoredIconProps } from 'components/icons';
 
 export default {
   title: 'Icons/Flat/CSS',

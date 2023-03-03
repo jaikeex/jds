@@ -2,7 +2,7 @@ import React from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import type { ButtonGroupProps } from '.';
 import { ButtonGroup } from '.';
-import { Button } from '@components/Button';
+import { Button } from 'components/Button';
 
 export default {
   title: 'Design System/ButtonGroup',

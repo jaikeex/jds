@@ -2,7 +2,7 @@ import React from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import type { CardHeaderProps } from './CardHeader';
 import CardHeader from './CardHeader';
-import { HomeIcon, SearchIcon } from '@components/icons';
+import { HomeIcon, SearchIcon } from 'components/icons';
 
 export default {
   title: 'Design System/Card/CardHeader',

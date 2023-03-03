@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import './AlertProvider.styles.scss';
-import { AlertContext } from '@store/AlertContext';
-import type { AlertProps } from '@components/Alert';
-import { Alert } from '@components/Alert';
-import { makeId } from '@core/utils';
+import { AlertContext } from 'store/AlertContext';
+import type { AlertProps } from 'components/Alert';
+import { Alert } from 'components/Alert';
+import { makeId } from 'core/utils';
 import classNames from 'classnames';
-import type { AlertLocation } from '@components/Alert';
+import type { AlertLocation } from 'components/Alert';
 
 export interface AlertProviderProps {
   location?: AlertLocation;

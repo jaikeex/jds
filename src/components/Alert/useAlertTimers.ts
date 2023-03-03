@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useAlertContext } from '@store/AlertContext';
+import { useAlertContext } from 'store/AlertContext';
 import type { AlertLocation } from './types';
 
 export const useAlertTimers = (

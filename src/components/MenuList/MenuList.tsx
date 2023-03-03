@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
-import { Popper } from '@components/Popper';
-import { List } from '@components/List';
-import { Sheet, type SheetProps } from '@components/Sheet';
-import type { Position } from '@core/types';
+import { Popper } from 'components/Popper';
+import { List } from 'components/List';
+import { Sheet, type SheetProps } from 'components/Sheet';
+import type { Position } from 'core/types';
 import type { TriggerType } from 'react-popper-tooltip';
-import { useMenuContext } from '@components/Menu/MenuContextProvider';
+import { useMenuContext } from 'components/Menu/MenuContextProvider';
 
 export interface MenuListProps extends React.PropsWithChildren {
   onVisibleChange?: (state: boolean) => void;

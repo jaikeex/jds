@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import './Menu.styles.scss';
-import type { Position } from '@core/types';
+import type { Position } from 'core/types';
 import type { TriggerType } from 'react-popper-tooltip';
-import { MenuList } from '@components/MenuList';
+import { MenuList } from 'components/MenuList';
 import { MenuContextProvider } from './MenuContextProvider';
-import type { SheetProps } from '@components/Sheet';
+import type { SheetProps } from 'components/Sheet';
 
 export interface MenuProps extends React.PropsWithChildren {
   compact?: boolean;

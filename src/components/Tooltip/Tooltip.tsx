@@ -1,6 +1,6 @@
-import type { ColorVariants, Position } from '@core/types';
 import React from 'react';
 import './Tooltip.styles.scss';
+import type { ColorVariants, Position } from 'core/types';
 import classNames from 'classnames';
 import type { TooltipSize } from './types';
 import { usePopperTooltip } from 'react-popper-tooltip';

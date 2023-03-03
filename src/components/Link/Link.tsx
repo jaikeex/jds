@@ -1,8 +1,8 @@
 import React from 'react';
 import './Link.styles.scss';
-import type { ColorVariants, TypographyVariants } from '@core/types';
+import type { ColorVariants, TypographyVariants } from 'core/types';
 import classNames from 'classnames';
-import { Typography } from '@components/Typography';
+import { Typography } from 'components/Typography';
 
 export interface LinkProps extends React.PropsWithChildren {
   color?: ColorVariants | `#${string}`;

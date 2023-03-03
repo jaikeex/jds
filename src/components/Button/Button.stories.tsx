@@ -2,7 +2,7 @@ import React from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import type { ButtonProps } from './Button';
 import Button from './Button';
-import { HomeIcon } from '@components/icons';
+import { HomeIcon } from 'components/icons';
 
 export default {
   title: 'Design System/Button',

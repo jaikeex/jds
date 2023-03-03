@@ -1,9 +1,9 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import type { ColorVariants } from '@core/types';
+import type { ColorVariants } from 'core/types';
 import './TextField.styles.scss';
-import { makeId } from '@core/utils';
+import { makeId } from 'core/utils';
 import classNames from 'classnames';
-import { useForwardedRef, useIsFocused } from '@core/hooks';
+import { useForwardedRef, useIsFocused } from 'core/hooks';
 
 export interface TextFieldProps {
   appearance?: 'outlined' | 'filled' | 'subtle';

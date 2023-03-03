@@ -1,6 +1,6 @@
 import React from 'react';
 import './Divider.styles.scss';
-import type { ColorVariants } from '@core/types';
+import type { ColorVariants } from 'core/types';
 import classNames from 'classnames';
 
 export interface DividerProps {

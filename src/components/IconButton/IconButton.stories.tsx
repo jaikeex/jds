@@ -2,7 +2,7 @@ import React from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import type { IconButtonProps } from './IconButton';
 import IconButton from './IconButton';
-import { LightModeIcon } from '@components/icons';
+import { LightModeIcon } from 'components/icons';
 
 export default {
   title: 'Design System/IconButton',

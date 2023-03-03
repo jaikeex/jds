@@ -2,7 +2,7 @@ import React from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import type { CheckboxProps } from './Checkbox';
 import Checkbox from './Checkbox';
-import { HeartIcon, HeartIconOutlined } from '@components/icons';
+import { HeartIcon, HeartIconOutlined } from 'components/icons';
 
 export default {
   title: 'Design System/Checkbox',

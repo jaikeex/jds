@@ -1,6 +1,6 @@
 import React from 'react';
-import type { SvgColoredIconProps } from '@components/icons/SvgColoredIcon';
-import SvgColoredIcon from '@components/icons/SvgColoredIcon';
+import type { SvgColoredIconProps } from 'components/icons/SvgColoredIcon';
+import SvgColoredIcon from 'components/icons/SvgColoredIcon';
 
 export const ReactJsIcon = React.forwardRef<SVGSVGElement, SvgColoredIconProps>((props, ref) => (
   <SvgColoredIcon {...props} viewBox="0 0 80 80" ref={ref}>

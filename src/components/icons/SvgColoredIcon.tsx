@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.scss';
-import type { ExtendedSize } from '@core/types';
-import { getFlatIconClasses } from '@components/icons/utils';
+import type { ExtendedSize } from 'core/types';
+import { getFlatIconClasses } from 'components/icons/utils';
 
 export interface SvgColoredIconProps extends React.PropsWithChildren {
   size?: ExtendedSize;

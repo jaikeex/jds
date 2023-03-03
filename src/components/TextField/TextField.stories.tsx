@@ -2,7 +2,7 @@ import React from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import type { TextFieldProps } from './TextField';
 import TextField from './TextField';
-import { SettingsIcon } from '@components/icons';
+import { SettingsIcon } from 'components/icons';
 
 export default {
   title: 'Design System/TextField',

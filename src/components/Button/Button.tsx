@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
 import './Button.styles.scss';
-import { useForwardedRef, useRippleEffect } from '@core/hooks';
+import { useForwardedRef, useRippleEffect } from 'core/hooks';
 import classNames from 'classnames';
 import type { ButtonAppearance, ButtonSize, ButtonType } from './types';
-import type { ColorVariants } from '@core/types';
-import { classNameColor, classNameSize } from '@core/utils';
-import { Typography } from '@components/Typography';
+import type { ColorVariants } from 'core/types';
+import { classNameColor, classNameSize } from 'core/utils';
+import { Typography } from 'components/Typography';
 
 export interface ButtonProps extends React.PropsWithChildren {
   size?: ButtonSize;

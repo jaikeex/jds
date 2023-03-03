@@ -1,6 +1,6 @@
 import React from 'react';
-import type { SvgIconProps } from '@components/icons/SvgIcon';
-import SvgIcon from '@components/icons/SvgIcon';
+import type { SvgIconProps } from 'components/icons/SvgIcon';
+import SvgIcon from 'components/icons/SvgIcon';
 
 export const NextJsIcon = React.forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => (
   <SvgIcon {...props} viewBox="0 0 256 256" ref={ref}>

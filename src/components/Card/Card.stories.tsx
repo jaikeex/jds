@@ -2,8 +2,8 @@ import React from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import type { CardProps } from './Card';
 import Card from './Card';
-import { CardHeader } from '@components/CardHeader';
-import { HomeIcon, SearchIcon } from '@components/icons';
+import { CardHeader } from 'components/CardHeader';
+import { HomeIcon, SearchIcon } from 'components/icons';
 
 export default {
   title: 'Design System/Card',

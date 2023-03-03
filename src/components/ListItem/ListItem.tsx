@@ -1,11 +1,11 @@
 import React, { useCallback } from 'react';
 import './ListItem.styles.scss';
 import classNames from 'classnames';
-import { makeId } from '@core/utils';
-import { Divider } from '@components/Divider';
-import { useForwardedRef, useRippleEffect } from '@core/hooks';
-import { useListContext } from '@components/List';
-import type { ColorVariants } from '@core/types';
+import { makeId } from 'core/utils';
+import { Divider } from 'components/Divider';
+import { useForwardedRef, useRippleEffect } from 'core/hooks';
+import { useListContext } from 'components/List';
+import type { ColorVariants } from 'core/types';
 
 export interface ListItemProps extends React.PropsWithChildren {
   className?: string;

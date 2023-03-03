@@ -1,6 +1,6 @@
 import type React from 'react';
 import type { GroupBase, MenuPlacement, MultiValue, Options, SingleValue, StylesConfig } from 'react-select';
-import type { ColorVariants } from '@core/types';
+import type { ColorVariants } from 'core/types';
 import type { SelectComponents } from 'react-select/dist/declarations/src/components';
 
 export interface Selectable {

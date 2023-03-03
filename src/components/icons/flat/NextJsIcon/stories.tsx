@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import { NextJsIcon } from '.';
-import type { SvgIconProps } from '@components/icons';
+import type { SvgIconProps } from 'components/icons';
 
 export default {
   title: 'Icons/Flat/Next.js',

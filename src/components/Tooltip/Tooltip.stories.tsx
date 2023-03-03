@@ -3,7 +3,7 @@ import type { Story, ComponentMeta } from '@storybook/react';
 import './Tooltip.stories.scss';
 import type { TooltipProps } from './Tooltip';
 import Tooltip from './Tooltip';
-import { Button } from '@components/Button';
+import { Button } from 'components/Button';
 
 export default {
   title: 'Design System/Tooltip',

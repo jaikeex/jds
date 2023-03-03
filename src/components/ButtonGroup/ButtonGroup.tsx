@@ -2,7 +2,7 @@ import React from 'react';
 import './ButtonGroup.styles.scss';
 import { useButtonGroupStyles } from './useButtonGroupStyles';
 import classNames from 'classnames';
-import type { ButtonAppearance, ButtonSize } from '@components/Button';
+import type { ButtonAppearance, ButtonSize } from 'components/Button';
 
 export interface ButtonGroupProps {
   size?: ButtonSize;

@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import type { MenuProps } from './Menu';
 import Menu from './Menu';
-import { Button } from '@components/Button';
-import type { MenuItemProps } from '@components/MenuItem';
-import { MenuItem } from '@components/MenuItem';
-import { Typography } from '@components/Typography';
-import { DeleteIcon, EditIcon, MoreHorizontalIcon } from '@components/icons';
+import { Button } from 'components/Button';
+import type { MenuItemProps } from 'components/MenuItem';
+import { MenuItem } from 'components/MenuItem';
+import { Typography } from 'components/Typography';
+import { DeleteIcon, EditIcon, MoreHorizontalIcon } from 'components/icons';
 
 export default {
   title: 'Design System/Menu',

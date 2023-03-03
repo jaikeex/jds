@@ -1,8 +1,8 @@
 import React, { useCallback } from 'react';
 import './MenuItem.styles.scss';
-import { ListItem } from '@components/ListItem';
-import { useMenuContext } from '@components/Menu/MenuContextProvider';
-import type { ColorVariants } from '@core/types';
+import { ListItem } from 'components/ListItem';
+import { useMenuContext } from 'components/Menu/MenuContextProvider';
+import type { ColorVariants } from 'core/types';
 
 export interface MenuItemProps extends React.PropsWithChildren {
   className?: string;

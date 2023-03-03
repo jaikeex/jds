@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import type { PopperProps } from './Popper';
 import Popper from './Popper';
-import { Button } from '@components/Button';
-import { Sheet } from '@components/Sheet';
+import { Button } from 'components/Button';
+import { Sheet } from 'components/Sheet';
 
 export default {
   title: 'Design System/Popper',

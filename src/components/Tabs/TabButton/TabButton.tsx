@@ -1,7 +1,7 @@
 import React from 'react';
 import './TabButton.styles.scss';
-import type { ButtonProps } from '@components/Button';
-import { Button } from '@components/Button';
+import type { ButtonProps } from 'components/Button';
+import { Button } from 'components/Button';
 import classNames from 'classnames';
 
 export interface TabButtonProps extends React.PropsWithChildren, ButtonProps {

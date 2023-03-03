@@ -2,9 +2,9 @@ import React from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import type { TabsProps } from './Tabs';
 import Tabs from './Tabs';
-import type { TabPanelProps } from '@components/Tabs';
-import { TabPanel } from '@components/Tabs';
-import { Sheet } from '@components/Sheet';
+import type { TabPanelProps } from 'components/Tabs';
+import { TabPanel } from 'components/Tabs';
+import { Sheet } from 'components/Sheet';
 
 export default {
   title: 'Design System/Tabs',

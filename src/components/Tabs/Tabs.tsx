@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react';
 import './Tabs.styles.scss';
 import { TabButton } from './TabButton';
-import { Divider } from '@components/Divider';
+import { Divider } from 'components/Divider';
 
 export interface TabsProps {
   children?: React.ReactNode[];

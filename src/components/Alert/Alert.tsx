@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import './Alert.styles.scss';
 import classNames from 'classnames';
-import { IconButton } from '@components/IconButton';
-import { CheckmarkCircleIcon, CloseIcon, WarningIcon } from '@components/icons';
+import { IconButton } from 'components/IconButton';
+import { CheckmarkCircleIcon, CloseIcon, WarningIcon } from 'components/icons';
 import { useAlertTimers } from './useAlertTimers';
 import type { AlertLocation } from './types';
-import type { ColorVariants } from '@core/types';
-import { classNameColor } from '@core/utils';
+import type { ColorVariants } from 'core/types';
+import { classNameColor } from 'core/utils';
 
 export interface AlertProps {
   autoCloseDuration?: number;

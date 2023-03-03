@@ -2,7 +2,7 @@ import React from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import type { AsyncSelectProps } from './AsyncSelect';
 import AsyncSelect from './AsyncSelect';
-import type { Selectable } from '@components/Select';
+import type { Selectable } from 'components/Select';
 
 export default {
   title: 'Design System/Select/Async',

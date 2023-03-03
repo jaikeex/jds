@@ -2,8 +2,8 @@ import React from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import type { ListItemProps } from './ListItem';
 import ListItem from './ListItem';
-import { Typography } from '@components/Typography';
-import { EmailIcon } from '@components/icons';
+import { Typography } from 'components/Typography';
+import { EmailIcon } from 'components/icons';
 
 export default {
   title: 'Design System/ListItem',

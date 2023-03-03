@@ -1,4 +1,4 @@
-import type { Size, ExtendedSize, ColorVariants } from '@core/types';
+import type { Size, ExtendedSize, ColorVariants } from 'core/types';
 
 export const makeId = (length: number) => {
   let result = '';

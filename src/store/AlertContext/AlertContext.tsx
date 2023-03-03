@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import type { AlertProps } from '@components/Alert';
+import type { AlertProps } from 'components/Alert';
 
 export interface AlertContextState {
   addItem: (props: AlertProps) => void;

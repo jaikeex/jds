@@ -1,9 +1,9 @@
 import React from 'react';
 import './IconButton.styles.scss';
 import classNames from 'classnames';
-import type { ColorVariants } from '@core/types';
+import type { ColorVariants } from 'core/types';
 import type { IconButtonSize } from './types';
-import { classNameColor, classNameSize } from '@core/utils';
+import { classNameColor, classNameSize } from 'core/utils';
 
 export interface IconButtonProps {
   size?: IconButtonSize;

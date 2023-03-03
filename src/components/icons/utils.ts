@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import type { ColorVariants, ExtendedSize } from '@core/types';
+import type { ColorVariants, ExtendedSize } from 'core/types';
 
 export const getIconClasses = (
   size: ExtendedSize = 'medium',

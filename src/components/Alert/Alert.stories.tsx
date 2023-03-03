@@ -2,10 +2,10 @@ import React from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import type { AlertProps } from './Alert';
 import Alert from './Alert';
-import { Button } from '@components/Button';
-import { AlertProvider } from '@components/AlertProvider';
-import { useAlert } from '@components/AlertProvider';
-import { AppsIcon } from '@components/icons';
+import { Button } from 'components/Button';
+import { AlertProvider } from 'components/AlertProvider';
+import { useAlert } from 'components/AlertProvider';
+import { AppsIcon } from 'components/icons';
 
 export default {
   title: 'Design System/Alert',

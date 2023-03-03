@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Story, Meta } from '@storybook/react';
 import { SearchIcon } from '.';
-import type { SvgIconProps } from '@components/icons';
+import type { SvgIconProps } from 'components/icons';
 
 export default {
   title: 'Icons/Basic UI/Search',

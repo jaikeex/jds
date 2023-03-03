@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import './Checkbox.styles.scss';
-import type { ColorVariants, Size } from '@core/types';
+import type { ColorVariants, Size } from 'core/types';
 import classNames from 'classnames';
-import { CheckmarkThickIcon } from '@components/icons';
-import { makeId } from '@core/utils';
-import { Typography } from '@components/Typography';
+import { CheckmarkThickIcon } from 'components/icons';
+import { makeId } from 'core/utils';
+import { Typography } from 'components/Typography';
 
 export interface CheckboxProps {
   size?: Size;

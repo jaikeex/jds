@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": "src",
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -16,19 +17,11 @@
     "noEmitOnError": true,
     "jsx": "react-jsx",
     "declaration": true,
-    "declarationDir": "types",
-    "outDir": "dist",
+    "declarationDir": "dist/esm/types",
+    "outDir": "dist/esm",
     "sourceMap": true,
     "rootDir": "src",
-    "emitDeclarationOnly": true,
-    "paths": {
-      "@/*": ["./src/*"],
-      "@styles/*": ["./src/styles/*"],
-      "@core/*": ["./src/core/*"],
-      "@assets/*": ["./src/assets/*"],
-      "@components/*": ["./src/components/*"],
-      "@store/*": ["./src/store/*"]
-    }
+    "emitDeclarationOnly": true
   },
   "include": ["src", ".storybook/lib", "public/prism.js"]
 }

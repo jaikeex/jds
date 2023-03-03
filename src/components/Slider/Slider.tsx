@@ -3,9 +3,9 @@ import './Slider.styles.scss';
 import classNames from 'classnames';
 import { useOffset } from './useOffset';
 import type { SliderSize } from './types';
-import type { Position } from '@core/types';
-import { classNameSize } from '@core/utils';
-import { useForwardedRef } from '@core/hooks';
+import type { Position } from 'core/types';
+import { classNameSize } from 'core/utils';
+import { useForwardedRef } from 'core/hooks';
 
 export interface SliderProps {
   min?: number;

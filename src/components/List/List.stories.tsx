@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import type { ListProps } from './List';
 import List from './List';
-import type { ListItemProps } from '@components/ListItem';
-import { ListItem } from '@components/ListItem';
-import { Typography } from '@components/Typography';
-import { Sheet } from '@components/Sheet';
-import { Checkbox } from '@components/Checkbox';
-import { IconButton } from '@components/IconButton';
-import { EmailIcon } from '@components/icons';
+import type { ListItemProps } from 'components/ListItem';
+import { ListItem } from 'components/ListItem';
+import { Typography } from 'components/Typography';
+import { Sheet } from 'components/Sheet';
+import { Checkbox } from 'components/Checkbox';
+import { IconButton } from 'components/IconButton';
+import { EmailIcon } from 'components/icons';
 
 export default {
   title: 'Design System/List',
