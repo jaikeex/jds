@@ -1,5 +1,5 @@
 import React from 'react';
-import '@components/icons/styles.scss';
+import './styles.scss';
 import type { ExtendedSize } from '@core/types';
 import { getFlatIconClasses } from '@components/icons/utils';
 

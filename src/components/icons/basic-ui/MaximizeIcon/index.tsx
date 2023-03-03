@@ -1,5 +1,6 @@
 import React from 'react';
-import { SvgIcon, type SvgIconProps } from '@components/icons';
+import type { SvgIconProps } from '@components/icons/SvgIcon';
+import SvgIcon from '@components/icons/SvgIcon';
 
 export const MaximizeIcon = React.forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => (
   <SvgIcon {...props} viewBox="0 0 512 512" ref={ref}>

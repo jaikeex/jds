@@ -1,6 +1,6 @@
 import React from 'react';
-import type { SvgColoredIconProps } from '@components/icons';
-import { SvgColoredIcon } from '@components/icons';
+import type { SvgColoredIconProps } from '@components/icons/SvgColoredIcon';
+import SvgColoredIcon from '@components/icons/SvgColoredIcon';
 
 export const MongoDbIcon = React.forwardRef<SVGSVGElement, SvgColoredIconProps>((props, ref) => (
   <SvgColoredIcon {...props} viewBox="0 0 32 32" ref={ref}>

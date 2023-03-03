@@ -37,9 +37,9 @@ const TemplateCheckbox: Story<ListProps> = (args) => {
     <div style={{ width: '300px' }}>
       <Sheet level={6}>
         <List {...args}>
-          {[0, 1, 2, 3].map((el) => (
+          {[0, 1, 2, 3].map((el, index) => (
             <ListItem
-              key={el}
+              key={index}
               clickable={true}
               onClick={() => checkboxHandler(el)}
               elementBefore={<Checkbox checked={checked[el]} />}

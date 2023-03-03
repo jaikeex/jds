@@ -1,6 +1,7 @@
 *,
-::after,
-::before {
+*::after,
+*::before {
+  margin: 0;
   box-sizing: inherit;
 }
 

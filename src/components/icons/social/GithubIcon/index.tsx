@@ -1,6 +1,6 @@
 import React from 'react';
-import type { SvgIconProps } from '@components/icons';
-import { SvgIcon } from '@components/icons';
+import type { SvgIconProps } from '@components/icons/SvgIcon';
+import SvgIcon from '@components/icons/SvgIcon';
 
 export const GithubIcon = React.forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => (
   <SvgIcon {...props} viewBox="0 0 24 24" ref={ref}>

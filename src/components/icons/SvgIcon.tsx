@@ -1,5 +1,5 @@
 import React from 'react';
-import '@components/icons/styles.scss';
+import './styles.scss';
 import { getIconClasses } from './utils';
 import type { ColorVariants, ExtendedSize } from '@core/types';
 

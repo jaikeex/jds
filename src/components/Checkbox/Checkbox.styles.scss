@@ -1,9 +1,10 @@
-@import '@styles/main';
+@import '../../styles/main';
 
 .jds-checkbox {
   $module: 'jds-checkbox';
   display: inline-block;
   border: 2px solid;
+  margin: 3px 3px 3px 4px;
   border-radius: 2px;
   appearance: none;
   outline: 0;
