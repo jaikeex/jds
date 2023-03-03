@@ -89,4 +89,4 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 );
 
 Checkbox.displayName = 'Checkbox';
-export default React.memo(Checkbox);
+export default Checkbox;

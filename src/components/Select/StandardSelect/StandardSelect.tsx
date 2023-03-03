@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import '../Select.styles.scss';
+import 'components/Select/Select.styles.scss';
 import type { Selectable, SelectProps } from 'components/Select/types';
 import type { GroupBase, MultiValue, SingleValue } from 'react-select';
 import { default as RSelect } from 'react-select';

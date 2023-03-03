@@ -93,4 +93,4 @@ const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
   }
 );
 
-export default React.memo(ListItem);
+export default ListItem;

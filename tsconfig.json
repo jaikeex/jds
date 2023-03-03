@@ -1,16 +1,15 @@
 {
   "compilerOptions": {
     "baseUrl": "src",
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "target": "esnext",
+    "module": "esnext",
     "allowJs": true,
+    "checkJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
-    "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -20,8 +19,8 @@
     "declarationDir": "dist/esm/types",
     "outDir": "dist/esm",
     "sourceMap": true,
-    "rootDir": "src",
-    "emitDeclarationOnly": true
+    "rootDir": "src"
   },
-  "include": ["src", ".storybook/lib", "public/prism.js"]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
