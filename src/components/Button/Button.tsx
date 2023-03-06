@@ -1,25 +1,28 @@
 import React, { useCallback } from 'react';
-import './Button.styles.scss';
 import { useForwardedRef, useRippleEffect } from 'core/hooks';
-import classNames from 'classnames';
 import type { ButtonAppearance, ButtonSize, ButtonType } from './types';
-import type { ColorVariants } from 'core/types';
-import { classNameColor, classNameSize } from 'core/utils';
+import type { ThemeColorVariants } from 'core/types';
 import { Typography } from 'components/Typography';
+import { useStyles } from './useStyles';
+import type { ButtonClassKeys } from './types';
+import clsx from 'clsx';
+import type { Classes } from 'jss';
+import { mergeClasses } from 'core/utils';
 
 export interface ButtonProps extends React.PropsWithChildren {
-  size?: ButtonSize;
   appearance?: ButtonAppearance;
-  color?: Exclude<ColorVariants, 'dark'>;
+  classes?: Classes<ButtonClassKeys>;
+  className?: string;
+  color?: ThemeColorVariants;
   disabled?: boolean;
   disableRippleEffect?: boolean;
   disableUpperCase?: boolean;
   iconLeft?: React.ReactNode;
   iconRight?: React.ReactNode;
-  type?: ButtonType;
-  className?: string;
-  style?: React.CSSProperties;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  size?: ButtonSize;
+  style?: React.CSSProperties;
+  type?: ButtonType;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -32,27 +35,25 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       iconLeft = null,
       iconRight = null,
       type = 'button',
+      classes = { filled: 'looool' },
       className = '',
       appearance = 'filled',
-      color = 'default',
-      style,
+      color = 'primary',
+      style = {},
       onClick = () => {},
-      children,
-      ...props
+      children = null
     },
     ref
   ) => {
     const buttonRef = useForwardedRef<HTMLButtonElement>(ref);
 
     const createRippleEffect = useRippleEffect(buttonRef, appearance !== 'filled');
-
-    const classes = classNames(
-      'jds-btn',
-      classNameSize('jds-btn', size),
-      `${classNameColor('jds-btn', color)}--${appearance}`,
-      {
-        'jds-btn--disabled': disabled
-      },
+    const classNames = classes ? mergeClasses(useStyles({ color }), classes) : useStyles({ color });
+    const rootClasses = clsx(
+      classNames.root,
+      classNames[size],
+      classNames[appearance],
+      disabled && classNames.disabled,
       className
     );
 
@@ -66,19 +67,18 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <button
-        {...props}
-        className={classes}
+        className={rootClasses}
         style={style}
         ref={buttonRef}
         disabled={disabled}
         type={type}
         onClick={buttonClickHandler}
       >
-        {iconLeft && <div className="jds-btn__icon">{iconLeft}</div>}
+        {iconLeft && <div className={classNames.icon}>{iconLeft}</div>}
         <Typography variant="button" upperCase={disableUpperCase ? false : true}>
           {children}
         </Typography>
-        {iconRight && <div className="jds-btn__icon">{iconRight}</div>}
+        {iconRight && <div className={classNames.icon}>{iconRight}</div>}
       </button>
     );
   }

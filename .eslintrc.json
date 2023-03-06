@@ -4,6 +4,11 @@
     "es2022": true,
     "node": true
   },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "extends": [
     "eslint:recommended",
     "plugin:react/recommended",
@@ -72,6 +77,7 @@
     "react/no-danger": ["error"],
 
     //* General rules
+    "prefer-const": "off",
     "arrow-body-style": ["error", "as-needed"],
     "no-restricted-imports": [
       "error",

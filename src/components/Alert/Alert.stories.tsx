@@ -66,8 +66,8 @@ const Template: Story<AlertProps> = (args) => {
       <Button onClick={successClickHandler} color="success">
         Show Alert (success)
       </Button>
-      <Button onClick={dangerClickHandler} color="danger">
-        Show Alert (danger)
+      <Button onClick={dangerClickHandler} color="error">
+        Show Alert (error)
       </Button>
       <Button onClick={warningClickHandler} color="warning">
         Show Alert (warning)

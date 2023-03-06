@@ -11,7 +11,7 @@ export default {
 
 const Template: Story<ButtonProps> = (args) => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-    <Button {...args} color="default">
+    <Button {...args} color="primary">
       default
     </Button>
     <Button {...args} color="success">
@@ -20,14 +20,11 @@ const Template: Story<ButtonProps> = (args) => (
     <Button {...args} color="warning">
       warning
     </Button>
-    <Button {...args} color="danger">
-      danger
+    <Button {...args} color="error">
+      error
     </Button>
-    <Button {...args} color="accented">
-      accented
-    </Button>
-    <Button {...args} color="focus">
-      focus
+    <Button {...args} color="info">
+      info
     </Button>
   </div>
 );
