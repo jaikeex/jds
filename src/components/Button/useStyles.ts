@@ -16,7 +16,8 @@ export const useStyles = createStyles(
       justifyContent: 'center',
       gap: '0.25rem',
       transition: 'background-color 0.3s',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      fontFamily: 'inherit'
     },
     filled: (props: ButtonProps) => ({
       backgroundColor: theme.palette[props.color || 'primary'].main,
@@ -59,6 +60,16 @@ export const useStyles = createStyles(
         backgroundColor: theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.1)
       }
     }),
+    icon: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      '& svg': {
+        height: '1.2rem',
+        width: '1.2rem'
+      }
+    },
+
     small: {
       minWidth: '5rem',
       height: '1.8rem',
@@ -79,15 +90,6 @@ export const useStyles = createStyles(
       '& svg': {
         height: '1.5rem',
         width: '1.5rem'
-      }
-    },
-    icon: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      '& svg': {
-        height: '1.2rem',
-        width: '1.2rem'
       }
     },
     disabled: {

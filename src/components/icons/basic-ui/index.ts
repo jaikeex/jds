@@ -32,8 +32,6 @@ export * from './MoreVerticalIcon';
 export * from './OpenOutsideIcon';
 export * from './OutputIcon';
 export * from './PlusIcon';
-export * from './QuestionMarkCircleIcon';
-export * from './QuestionMarkIcon';
 export * from './RedoIcon';
 export * from './RefreshIcon';
 export * from './RightArrowIcon';
@@ -48,8 +46,6 @@ export * from './SyncIcon';
 export * from './UndoIcon';
 export * from './UpArrowIcon';
 export * from './UploadIcon';
-export * from './WarningCircleIcon';
-export * from './WarningIcon';
 export * from './ZoomInIcon';
 export * from './ZoomOutIcon';
 

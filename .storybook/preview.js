@@ -2,12 +2,17 @@ import '../src/styles/main.scss';
 import { addDecorator } from '@storybook/react';
 import { defaultDarkTheme } from '../src/theming/default';
 import { ThemeProvider } from '../src/theming/ThemeProvider';
+import ThemeSwitchButton from './ThemeSwitchButton/ThemeSwitchButton';
 
-addDecorator((story) => (
-  <div className="jds-storybook">
-    <ThemeProvider theme={defaultDarkTheme}>{story()}</ThemeProvider>
-  </div>
-));
+addDecorator((story) => {
+  return (
+    <div className="jds-storybook">
+      <ThemeProvider theme={defaultDarkTheme}>
+        <ThemeSwitchButton /> {story()}
+      </ThemeProvider>
+    </div>
+  );
+});
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },

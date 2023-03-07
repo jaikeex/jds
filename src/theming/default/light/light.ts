@@ -10,29 +10,29 @@ export const defaultlightTheme: Theme = {
   },
   palette: {
     background: {
-      default: '#202020',
-      sheet: '#202020'
+      default: '#ffffff',
+      sheet: '#ffffff'
     },
     divider: '#999999',
     primary: {
-      main: '#90caf9',
-      light: '#e3f2fd',
-      dark: '#42a5f5'
+      main: '#1976d2',
+      light: '#42a5f5',
+      dark: '#1565c0'
     },
     secondary: {
-      main: '#90caf9',
-      light: '#e3f2fd',
-      dark: '#42a5f5'
+      main: '#1976d2',
+      light: '#42a5f5',
+      dark: '#1565c0'
     },
     error: {
-      main: '#f44336',
-      light: '#e57373',
-      dark: '#d32f2f'
+      main: '#d32f2f',
+      light: '#ff9800',
+      dark: '#e65100'
     },
     warning: {
-      main: '#ffa726',
-      light: '#ffb74d',
-      dark: '#f57c00'
+      main: '#ed6c02',
+      light: '#ff9800',
+      dark: '#e65100'
     },
     info: {
       main: '#ce93d8',
@@ -40,13 +40,13 @@ export const defaultlightTheme: Theme = {
       dark: '#42a5f5'
     },
     success: {
-      main: '#66bb6a',
-      light: '#81c784',
-      dark: '#388e3c'
+      main: '#2e7d32',
+      light: '#4caf50',
+      dark: '#1b5e20'
     },
     text: {
-      primary: '#e1e1e1',
-      secondary: '#bbbbbb',
+      primary: '#202020',
+      secondary: '#444444',
       disabled: '#6b7280',
       contrast: {
         light: '#e1e1e1',
@@ -71,7 +71,12 @@ export const defaultlightTheme: Theme = {
       return tinycolor(color).setAlpha(alpha).toRgbString();
     },
     getContrastText(background: string) {
-      return tinycolor.mostReadable(background, [this.text.contrast.dark, this.text.contrast.light]).toHexString();
+      return tinycolor
+        .mostReadable(background, [this.text.contrast.dark, this.text.contrast.light], {
+          includeFallbackColors: true,
+          level: 'AAA'
+        })
+        .toHexString();
     },
     augmentColor(color: PaletteColorOptions) {
       return augmentColor(color, this.tonalOffset);

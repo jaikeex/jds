@@ -38,7 +38,6 @@ const AlertProvider: React.FC<AlertProviderProps> = ({
   const addAlertItemToStack = (props: AlertProps) => {
     setAlertItems((prevState) => {
       props.id = `jds-alert-${makeId(10)}`;
-      props.location = location;
       return [props, ...prevState];
     });
   };

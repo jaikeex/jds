@@ -19,12 +19,11 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     const classes = classNames(
       'jds-icon-btn',
       classNameColor('jds-icon-btn', color),
-      classNameSize('jds-icon-btn', size),
-      className
+      classNameSize('jds-icon-btn', size)
     );
 
     return (
-      <button ref={ref} className={classes} style={style} onClick={onClick}>
+      <button ref={ref} className={classes + ' ' + className} style={style} onClick={onClick}>
         {children}
       </button>
     );

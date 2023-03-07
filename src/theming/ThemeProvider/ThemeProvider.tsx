@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { defaultDarkTheme } from 'theming/default/dark';
 import type { Theme } from 'theming/types';
 import { ThemeProvider as JSSThemeProvider } from 'react-jss';
+import { merge } from 'lodash';
 
 export interface ThemeContextProps {
   theme: Theme;

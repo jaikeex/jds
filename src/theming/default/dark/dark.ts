@@ -71,7 +71,12 @@ export const defaultDarkTheme: Theme = {
       return tinycolor(color).setAlpha(alpha).toRgbString();
     },
     getContrastText(background: string) {
-      return tinycolor.mostReadable(background, [this.text.contrast.dark, this.text.contrast.light]).toHexString();
+      return tinycolor
+        .mostReadable(background, [this.text.contrast.dark, this.text.contrast.light], {
+          includeFallbackColors: true,
+          level: 'AAA'
+        })
+        .toHexString();
     },
     augmentColor(color: PaletteColorOptions) {
       return augmentColor(color, this.tonalOffset);

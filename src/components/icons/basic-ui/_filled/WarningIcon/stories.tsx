@@ -4,7 +4,7 @@ import { WarningIcon } from '.';
 import type { SvgIconProps } from 'components/icons';
 
 export default {
-  title: 'Icons/Basic UI/Warning',
+  title: 'Icons/Basic UI/Filled/Warning',
   component: WarningIcon
 } as ComponentMeta<typeof WarningIcon>;
 

@@ -1,8 +1,9 @@
 @import '../../styles/main';
 
 .jds-alert-container {
-  width: 22rem;
+  width: 32rem;
   position: fixed;
+  z-index: 10000;
 
   &--center {
     left: 50%;

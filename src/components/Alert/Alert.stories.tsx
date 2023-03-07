@@ -41,7 +41,7 @@ const Template: Story<AlertProps> = (args) => {
   const dangerClickHandler = () => {
     displayAlert({
       message: 'This is an alert bar - danger variant',
-      color: 'danger'
+      color: 'error'
     });
   };
 
@@ -49,14 +49,6 @@ const Template: Story<AlertProps> = (args) => {
     displayAlert({
       message: 'This is an alert bar - warning variant',
       color: 'warning'
-    });
-  };
-
-  const darkClickHandler = () => {
-    displayAlert({
-      message: 'This is an alert bar - dark variant',
-      color: 'dark',
-      icon: <AppsIcon />
     });
   };
 
@@ -71,9 +63,6 @@ const Template: Story<AlertProps> = (args) => {
       </Button>
       <Button onClick={warningClickHandler} color="warning">
         Show Alert (warning)
-      </Button>
-      <Button onClick={darkClickHandler} appearance="outlined">
-        Show Alert (dark)
       </Button>
     </div>
   );
