@@ -4,14 +4,14 @@ import type { ButtonAppearance, ButtonSize, ButtonType } from './types';
 import type { ThemeColorVariants } from 'core/types';
 import { Typography } from 'components/Typography';
 import { useStyles } from './useStyles';
-import type { ButtonClassKeys } from './types';
+import type { ButtonClassKey } from './types';
 import clsx from 'clsx';
 import type { Classes } from 'jss';
 import { mergeClasses } from 'core/utils';
 
 export interface ButtonProps extends React.PropsWithChildren {
   appearance?: ButtonAppearance;
-  classes?: Classes<ButtonClassKeys>;
+  classes?: Classes<ButtonClassKey>;
   className?: string;
   color?: ThemeColorVariants;
   disabled?: boolean;

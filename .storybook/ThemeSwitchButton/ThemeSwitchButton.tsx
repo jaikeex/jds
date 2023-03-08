@@ -2,7 +2,7 @@ import React from 'react';
 import { IconButton } from '../../src/components/IconButton';
 import { LightModeIcon, DarkModeIcon } from '../../src/components/icons/basic-ui/_filled';
 import { useTheme } from '../../src/theming/ThemeProvider';
-import { defaultDarkTheme, defaultlightTheme } from '../../src/theming/default';
+import { defaultDarkTheme, defaultLightTheme } from '../../src/theming/default';
 import { Tooltip } from '../../src/components/Tooltip';
 import { Typography } from '../../src/components/Typography';
 
@@ -12,7 +12,7 @@ const ThemeSwitchButton: React.FC<ThemeSwitchButtonProps> = () => {
   const { setTheme, theme } = useTheme();
 
   const themeChangeHandler = () => {
-    theme === defaultDarkTheme ? setTheme(defaultlightTheme) : setTheme(defaultDarkTheme);
+    theme === defaultDarkTheme ? setTheme('default-light') : setTheme('default-dark');
   };
 
   return (

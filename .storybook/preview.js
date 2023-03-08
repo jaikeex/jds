@@ -7,7 +7,7 @@ import ThemeSwitchButton from './ThemeSwitchButton/ThemeSwitchButton';
 addDecorator((story) => {
   return (
     <div className="jds-storybook">
-      <ThemeProvider theme={defaultDarkTheme}>
+      <ThemeProvider defaultTheme={defaultDarkTheme}>
         <ThemeSwitchButton /> {story()}
       </ThemeProvider>
     </div>

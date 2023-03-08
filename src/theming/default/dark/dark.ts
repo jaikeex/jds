@@ -5,6 +5,7 @@ import tinycolor from 'tinycolor2';
 import type { PaletteColorOptions } from 'theming/types';
 
 export const defaultDarkTheme: Theme = {
+  name: 'default-dark',
   shape: {
     borderRadius: '5px'
   },

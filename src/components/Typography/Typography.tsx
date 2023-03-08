@@ -1,9 +1,9 @@
 import React from 'react';
-import type { ThemeColorVariants, TypographyVariants } from 'core/types';
+import type { TypographyVariants } from 'core/types';
 import { typographyVariantMap } from 'core/types';
 import { useStyles } from './useStyles';
 import clsx from 'clsx';
-import type { TypographyClassKey } from './types';
+import type { TypographyClassKey, TypographyColorVariants } from './types';
 import type { Classes } from 'jss';
 import { mergeClasses } from 'core/utils';
 
@@ -11,7 +11,7 @@ export interface TypographyProps {
   children?: React.ReactNode;
   classes?: Classes<TypographyClassKey>;
   className?: string;
-  color?: ThemeColorVariants | 'default';
+  color?: TypographyColorVariants;
   gutterBottom?: boolean;
   noWrap?: boolean;
   style?: React.CSSProperties;
@@ -56,7 +56,7 @@ const Typography: React.FC<TypographyProps> = ({
 
   return (
     <Component
-      className={clsx(classNames.root, classNames[variant], upperCase && classNames.upperCase, className)}
+      className={clsx(classNames.root, classNames[variant], upperCase && classNames.uppercase, className)}
       style={getStyles()}
     >
       {children}

@@ -4,7 +4,8 @@ import { defaultCommonColors } from 'theming/default/commonColors';
 import tinycolor from 'tinycolor2';
 import type { PaletteColorOptions } from 'theming/types';
 
-export const defaultlightTheme: Theme = {
+export const defaultLightTheme: Theme = {
+  name: 'default-light',
   shape: {
     borderRadius: '5px'
   },
