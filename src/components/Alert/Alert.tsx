@@ -4,7 +4,7 @@ import { CheckmarkCircleIcon, CloseIcon, ErrorIconOutlined, WarningIconOutlined 
 import { useAlertTimers } from './useAlertTimers';
 import type { ThemeColorVariants } from 'core/types';
 import { useStyles } from './useStyles';
-import type { ButtonClassKeys } from 'components/Button';
+import type { AlertClassKey } from './types';
 import { mergeClasses } from 'core/utils';
 import type { Classes } from 'jss';
 import clsx from 'clsx';
@@ -14,7 +14,7 @@ export interface AlertProps extends React.PropsWithChildren {
   action?: React.ReactNode;
   autoHide?: boolean;
   autoHideDuration?: number;
-  classes?: Classes<ButtonClassKeys>;
+  classes?: Classes<AlertClassKey>;
   className?: string;
   color?: ThemeColorVariants;
   displayCloseButton?: boolean;

@@ -3,40 +3,31 @@ import type { Story, ComponentMeta } from '@storybook/react';
 import type { ButtonProps } from './Button';
 import Button from './Button';
 import { HomeIcon } from 'components/icons';
-import { useTheme } from 'theming/ThemeProvider/ThemeProvider';
-import { defaultlightTheme } from 'theming/default';
 
 export default {
   title: 'Design System/Button',
   component: Button
 } as ComponentMeta<typeof Button>;
 
-const Template: Story<ButtonProps> = (args) => {
-  const { setTheme } = useTheme();
-  const themeChange = () => {
-    setTheme(defaultlightTheme);
-  };
-
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-      <Button {...args} onClick={themeChange} color="primary">
-        default
-      </Button>
-      <Button {...args} color="success">
-        success
-      </Button>
-      <Button {...args} color="warning">
-        warning
-      </Button>
-      <Button {...args} color="error">
-        error
-      </Button>
-      <Button {...args} color="info">
-        info
-      </Button>
-    </div>
-  );
-};
+const Template: Story<ButtonProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+    <Button {...args} color="primary">
+      default
+    </Button>
+    <Button {...args} color="success">
+      success
+    </Button>
+    <Button {...args} color="warning">
+      warning
+    </Button>
+    <Button {...args} color="error">
+      error
+    </Button>
+    <Button {...args} color="info">
+      info
+    </Button>
+  </div>
+);
 
 export const Contained = Template.bind({});
 Contained.args = {

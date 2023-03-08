@@ -1,11 +1,11 @@
 import React from 'react';
 import './Link.styles.scss';
-import type { ColorVariants, TypographyVariants } from 'core/types';
+import type { ThemeColorVariants, TypographyVariants } from 'core/types';
 import classNames from 'classnames';
 import { Typography } from 'components/Typography';
 
 export interface LinkProps extends React.PropsWithChildren {
-  color?: ColorVariants | `#${string}`;
+  color?: ThemeColorVariants;
   href?: string;
   level?: TypographyVariants;
   openInNew?: boolean;
@@ -15,7 +15,7 @@ export interface LinkProps extends React.PropsWithChildren {
 
 const Link: React.FC<LinkProps> = ({
   children = null,
-  color = 'accented',
+  color = 'primary',
   level = 'body1',
   openInNew = false,
   underline = 'hover',

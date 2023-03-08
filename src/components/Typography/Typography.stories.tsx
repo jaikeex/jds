@@ -82,14 +82,8 @@ Success.args = {
   color: 'success'
 };
 
-export const Danger = Template.bind({});
-Danger.args = {
+export const Error = Template.bind({});
+Error.args = {
   ...Default.args,
-  color: 'danger'
-};
-
-export const CustomColorYellow = Template.bind({});
-CustomColorYellow.args = {
-  ...Default.args,
-  color: '#ffff00'
+  color: 'error'
 };

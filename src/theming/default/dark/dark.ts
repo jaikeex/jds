@@ -72,10 +72,7 @@ export const defaultDarkTheme: Theme = {
     },
     getContrastText(background: string) {
       return tinycolor
-        .mostReadable(background, [this.text.contrast.dark, this.text.contrast.light], {
-          includeFallbackColors: true,
-          level: 'AAA'
-        })
+        .mostReadable(background, [this.text.contrast.dark, this.text.contrast.light], { level: 'AAA' })
         .toHexString();
     },
     augmentColor(color: PaletteColorOptions) {
@@ -108,39 +105,39 @@ export const defaultDarkTheme: Theme = {
   },
   typography: {
     h1: {
-      fontSize: '5rem',
-      fontWeight: 300,
-      marginBottom: '1.875rem'
-    },
-    h2: {
-      fontSize: '4rem',
+      fontSize: '2.488rem',
       fontWeight: 400,
       marginBottom: '1.375rem'
     },
-    h3: {
-      fontSize: '3.25rem',
+    h2: {
+      fontSize: '2.074rem',
       fontWeight: 400,
       marginBottom: '1rem'
     },
+    h3: {
+      fontSize: '1.728rem',
+      fontWeight: 400,
+      marginBottom: '0.938rem'
+    },
     h4: {
-      fontSize: '2.125rem',
+      fontSize: '1.44rem',
       fontWeight: 400,
       marginBottom: '0.813rem'
     },
     h5: {
-      fontSize: '1.5rem',
+      fontSize: '1.2rem',
       fontWeight: 500,
       marginBottom: '0.625rem'
     },
     h6: {
-      fontSize: '1.25rem',
-      fontWeight: 500,
+      fontSize: '1rem',
+      fontWeight: 600,
       marginBottom: '0.5rem'
     },
     subHeading1: {
       fontSize: '1rem',
       fontWeight: 400,
-      lineHeight: 1.5,
+      lineHeight: 1.25,
       marginBottom: '0.375rem'
     },
     subHeading2: {

@@ -1,14 +1,17 @@
 import React from 'react';
-import './Typography.styles.scss';
-import type { ColorVariants } from 'core/types';
-import classNames from 'classnames';
-import type { TypographyVariants } from 'core/types';
+import type { ThemeColorVariants, TypographyVariants } from 'core/types';
 import { typographyVariantMap } from 'core/types';
+import { useStyles } from './useStyles';
+import clsx from 'clsx';
+import type { TypographyClassKey } from './types';
+import type { Classes } from 'jss';
+import { mergeClasses } from 'core/utils';
 
 export interface TypographyProps {
   children?: React.ReactNode;
+  classes?: Classes<TypographyClassKey>;
   className?: string;
-  color?: ColorVariants | `#${string}`;
+  color?: ThemeColorVariants | 'default';
   gutterBottom?: boolean;
   noWrap?: boolean;
   style?: React.CSSProperties;
@@ -19,27 +22,18 @@ export interface TypographyProps {
 
 const Typography: React.FC<TypographyProps> = ({
   children = null,
+  classes = undefined,
   className = '',
   color = 'default',
   gutterBottom = false,
   noWrap = false,
-  style,
+  style = {},
   textAlign = 'inherit',
   upperCase = false,
   variant = 'body1'
 }) => {
   const Component = typographyVariantMap[variant] as keyof JSX.IntrinsicElements;
-  const colorClassName = `jds-typography--color--${color}`;
-
-  const classes = classNames(
-    'jds-typography',
-    `jds-typography--variant--${variant}`,
-    {
-      [colorClassName]: !color.startsWith('#'),
-      'jds-typography--uppercase': upperCase
-    },
-    className
-  );
+  const classNames = classes ? mergeClasses(useStyles({ color }), classes) : useStyles({ color });
 
   const getStyles = () => {
     const styles: React.CSSProperties = {
@@ -57,16 +51,14 @@ const Typography: React.FC<TypographyProps> = ({
       styles.textOverflow = 'ellipsis';
     }
 
-    if (color.startsWith('#')) {
-      styles.color = color;
-      styles.textDecorationColor = color;
-    }
-
     return styles;
   };
 
   return (
-    <Component className={classes} style={getStyles()}>
+    <Component
+      className={clsx(classNames.root, classNames[variant], upperCase && classNames.upperCase, className)}
+      style={getStyles()}
+    >
       {children}
     </Component>
   );
