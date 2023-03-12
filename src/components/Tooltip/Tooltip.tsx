@@ -1,29 +1,31 @@
 import React from 'react';
-import './Tooltip.styles.scss';
-import type { ColorVariants, Position } from 'core/types';
-import classNames from 'classnames';
-import type { TooltipSize } from './types';
+import type { Position } from 'core/types';
+import type { TooltipClassKey, TooltipColorVariants } from './types';
 import { usePopperTooltip } from 'react-popper-tooltip';
+import type { Classes } from 'jss';
+import { mergeClasses } from 'core/utils';
+import { useStyles } from './useStyles';
+
 export interface TooltipProps {
-  color?: ColorVariants;
+  color?: TooltipColorVariants;
   position?: Position;
-  size?: TooltipSize;
-  content: React.ReactNode;
+  content?: React.ReactNode;
   className?: string;
+  classes?: Classes<TooltipClassKey>;
   style?: React.CSSProperties;
-  children: React.ReactNode | React.ReactNode[];
+  children?: React.ReactNode | React.ReactNode[];
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
   color = 'default',
   position = 'right',
-  size = 'default',
-  className = '',
+  classes = {},
   style = {},
   content = null,
   children = null
 }) => {
   const { getTooltipProps, setTooltipRef, setTriggerRef, visible } = usePopperTooltip({ placement: position });
+  const classNames = classes ? mergeClasses(useStyles({ color }), classes) : useStyles({ color });
 
   const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
@@ -34,18 +36,11 @@ const Tooltip: React.FC<TooltipProps> = ({
     return child;
   });
 
-  const classes = classNames(
-    'jds-tooltip__content',
-    `jds-tooltip__content--color--${color}`,
-    `jds-tooltip__content--size--${size}`,
-    className
-  );
-
   return (
     <React.Fragment>
       {childrenWithProps}
       {visible && (
-        <div ref={setTooltipRef} {...getTooltipProps({ style: style, className: classes })}>
+        <div ref={setTooltipRef} {...getTooltipProps({ style: style, className: classNames.content })}>
           {content}
         </div>
       )}

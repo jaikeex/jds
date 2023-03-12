@@ -1,5 +1,5 @@
 import type { ThemeColorVariants } from 'core/types';
-import { createStyles, mergeOverrides } from 'styling/ThemeProvider';
+import { createStyles, mergeOverrides } from 'styling';
 import type { Theme } from 'styling/types';
 import type { AlertProps } from './Alert';
 
@@ -15,7 +15,7 @@ export const useStyles = createStyles(
           width: '30rem',
           padding: '1rem 0.5rem 1rem 1.5rem',
           border: 'none',
-          borderRadius: theme.shape.borderRadius,
+          borderRadius: theme.shape.borderRadius.medium,
           margin: theme.spacing.margin.medium,
           position: 'relative',
           display: 'flex',
@@ -33,7 +33,7 @@ export const useStyles = createStyles(
             fill:
               props.color === ('primary' || undefined)
                 ? theme.palette.text.contrast.light
-                : [theme.palette.getContrastText(theme.palette[props.color as ThemeColorVariants].main), '!important']
+                : theme.palette[props.color || 'primary'].contrastText
           }
         }),
         info: () => ({

@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { useForwardedRef, useRippleEffect } from 'core/hooks';
 import type { ButtonAppearance, ButtonSize, ButtonType } from './types';
 import type { ThemeColorVariants } from 'core/types';
@@ -8,6 +8,7 @@ import type { ButtonClassKey } from './types';
 import clsx from 'clsx';
 import type { Classes } from 'jss';
 import { mergeClasses } from 'core/utils';
+import type { JdsIcon, SvgColoredIconProps, SvgIconProps } from 'components/icons';
 
 export interface ButtonProps extends React.PropsWithChildren {
   appearance?: ButtonAppearance;
@@ -16,8 +17,8 @@ export interface ButtonProps extends React.PropsWithChildren {
   disabled?: boolean;
   disableRippleEffect?: boolean;
   disableUpperCase?: boolean;
-  iconLeft?: React.ReactNode;
-  iconRight?: React.ReactNode;
+  iconLeft?: React.ReactElement<SvgIconProps | SvgColoredIconProps>;
+  iconRight?: React.ReactElement<SvgIconProps | SvgColoredIconProps>;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   size?: ButtonSize;
   style?: React.CSSProperties;

@@ -50,16 +50,16 @@ const Alert: React.FC<AlertProps> = ({
 
   const getDisplayedIcon = () => {
     if (icon) {
-      return React.cloneElement(icon, { size: 'small' });
+      return React.cloneElement(icon, { size: 24 });
     }
 
     switch (color) {
       case 'success':
-        return <CheckmarkCircleIcon size={16} />;
+        return <CheckmarkCircleIcon size={24} />;
       case 'warning':
-        return <WarningIconOutlined size={16} />;
+        return <WarningIconOutlined size={24} />;
       case 'error':
-        return <ErrorIconOutlined size={16} />;
+        return <ErrorIconOutlined size={24} />;
       default:
         return null;
     }

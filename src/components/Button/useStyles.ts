@@ -9,7 +9,7 @@ export const useStyles = createStyles(
         root: {
           padding: '0.375rem 0.5rem',
           border: 'none',
-          borderRadius: theme.shape.borderRadius,
+          borderRadius: theme.shape.borderRadius.small,
           position: 'relative',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
@@ -26,7 +26,7 @@ export const useStyles = createStyles(
             color: theme.palette[props.color || 'primary'].contrastText
           },
           '& svg': {
-            fill: `${theme.palette.getContrastText(theme.palette[props.color || 'primary'].main)} !important`
+            fill: theme.palette[props.color || 'primary'].contrastText
           },
           '&:hover': {
             backgroundColor: theme.palette[props.color || 'primary'].dark
@@ -43,7 +43,7 @@ export const useStyles = createStyles(
             color: theme.palette[props.color || 'primary'].dark
           },
           '& svg': {
-            fill: `${theme.palette[props.color || 'primary'].dark} !important`
+            fill: theme.palette[props.color || 'primary'].dark
           },
           '&:hover': {
             backgroundColor: theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.1)
@@ -55,7 +55,7 @@ export const useStyles = createStyles(
             color: theme.palette[props.color || 'primary'].dark
           },
           '& svg': {
-            fill: `${theme.palette[props.color || 'primary'].dark} !important`
+            fill: theme.palette[props.color || 'primary'].dark
           },
           '&:hover': {
             backgroundColor: theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.1)

@@ -87,11 +87,11 @@ Success.args = {
   color: 'success'
 };
 
-export const Danger = Template.bind({});
-Danger.args = {
+export const Error = Template.bind({});
+Error.args = {
   ...Default.args,
   content: 'Tooltip',
-  color: 'danger'
+  color: 'error'
 };
 
 export const Warning = Template.bind({});
@@ -101,17 +101,10 @@ Warning.args = {
   color: 'warning'
 };
 
-export const Focus = Template.bind({});
-Focus.args = {
-  ...Default.args,
-  content: 'Tooltip',
-  color: 'focus'
-};
-
 export const LargeText = Template.bind({});
 LargeText.args = {
   ...Default.args,
-  size: 'long-text',
+  // size: 'long-text',
   content: (
     <span>
       Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Fusce suscipit libero eget elit. Nulla turpis magna,

@@ -1,4 +1,4 @@
-import type { ButtonClassKey, AlertClassKey, TypographyClassKey, IconClassKey } from 'components';
+import type { ButtonClassKey, AlertClassKey, TooltipClassKey, TypographyClassKey, IconClassKey } from 'components';
 import type { Styles } from 'react-jss';
 
 export type Overrides<Props = unknown> = {
@@ -9,5 +9,6 @@ export interface ComponentNameToClassKey {
   Alert: AlertClassKey;
   Button: ButtonClassKey;
   Icon: IconClassKey;
+  Tooltip: TooltipClassKey;
   Typography: TypographyClassKey;
 }

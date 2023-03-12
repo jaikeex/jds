@@ -6,9 +6,6 @@ import { createTheme } from './createTheme';
 it('should merge themes correctly', () => {
   const defaultTheme = defaultDarkTheme;
   const theme: ThemeOptions = {
-    shape: {
-      borderRadius: '10px'
-    },
     palette: {
       error: {
         main: 'red',
@@ -32,7 +29,6 @@ it('should merge themes correctly', () => {
   expect(newTheme.palette.error.main).toBe('red');
   expect(newTheme.palette.error.dark).toBe('darkred');
   expect(newTheme.palette.error.light).toBe('#e57373');
-  expect(newTheme.shape.borderRadius).toBe('10px');
   expect(newTheme.typography.body1.fontSize).toBe('2rem');
   expect(newTheme.typography.body1.textDecoration).toBe('underline');
   expect(newTheme.typography.body1.color).toBe('yellow');

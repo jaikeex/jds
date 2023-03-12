@@ -7,7 +7,12 @@ import type { PaletteColorOptions } from 'styling/types';
 export const defaultDarkTheme: Theme = {
   name: 'default-dark',
   shape: {
-    borderRadius: '5px'
+    borderRadius: {
+      small: '4px',
+      medium: '6px',
+      large: '10px',
+      fullRound: '9999px'
+    }
   },
   palette: {
     background: {
