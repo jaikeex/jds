@@ -11,4 +11,5 @@ export type ButtonClassKey =
   | 'outlined'
   | 'disabled'
   | 'root'
-  | 'icon';
+  | 'icon'
+  | 'text';

@@ -55,11 +55,11 @@ const Alert: React.FC<AlertProps> = ({
 
     switch (color) {
       case 'success':
-        return <CheckmarkCircleIcon size="small" />;
+        return <CheckmarkCircleIcon size={16} />;
       case 'warning':
-        return <WarningIconOutlined size="small" />;
+        return <WarningIconOutlined size={16} />;
       case 'error':
-        return <ErrorIconOutlined size="small" />;
+        return <ErrorIconOutlined size={16} />;
       default:
         return null;
     }

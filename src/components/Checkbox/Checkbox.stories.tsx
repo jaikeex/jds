@@ -38,7 +38,7 @@ export const Icon = Template.bind({});
 Icon.args = {
   ...Default.args,
   icon: <HeartIconOutlined />,
-  iconChecked: <HeartIcon color="danger" />
+  iconChecked: <HeartIcon color="error" />
 };
 
 export const WithLabel = Template.bind({});

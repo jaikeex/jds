@@ -77,7 +77,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         <label className="jds-checkbox__label" htmlFor={id}>
           {icon && !isChecked ? icon : iconChecked}
           <div className="jds-checkbox__mark">
-            <CheckmarkThickIcon size="small" />
+            <CheckmarkThickIcon size={16} />
           </div>
           <Typography variant="label" className={labelClasses}>
             {label}

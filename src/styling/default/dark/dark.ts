@@ -18,32 +18,38 @@ export const defaultDarkTheme: Theme = {
     primary: {
       main: '#90caf9',
       light: '#e3f2fd',
-      dark: '#42a5f5'
+      dark: '#42a5f5',
+      contrastText: '#202020'
     },
     secondary: {
       main: '#90caf9',
       light: '#e3f2fd',
-      dark: '#42a5f5'
+      dark: '#42a5f5',
+      contrastText: '#202020'
     },
     error: {
       main: '#f44336',
       light: '#e57373',
-      dark: '#d32f2f'
+      dark: '#d32f2f',
+      contrastText: '#202020'
     },
     warning: {
       main: '#ffa726',
       light: '#ffb74d',
-      dark: '#f57c00'
+      dark: '#f57c00',
+      contrastText: '#202020'
     },
     info: {
       main: '#ce93d8',
       light: '#e3f2fd',
-      dark: '#42a5f5'
+      dark: '#42a5f5',
+      contrastText: '#202020'
     },
     success: {
       main: '#66bb6a',
       light: '#81c784',
-      dark: '#388e3c'
+      dark: '#388e3c',
+      contrastText: '#202020'
     },
     text: {
       primary: '#e1e1e1',

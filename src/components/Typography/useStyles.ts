@@ -8,7 +8,7 @@ export const useStyles = createStyles(
     mergeOverrides(
       {
         root: (props: TypographyProps) => ({
-          fontFamily: 'inherit',
+          fontFamily: theme.typography.fontFamily,
           marginTop: 0,
           color:
             props.color === ('default' || undefined)

@@ -37,13 +37,13 @@ Positioned.args = {
     </Button>
   ),
   children: [
-    <MenuItem key={1} elementBefore={<EditIcon size="small" />}>
+    <MenuItem key={1} elementBefore={<EditIcon size={16} />}>
       <Typography>Edit</Typography>
     </MenuItem>,
     <MenuItem key={2} disabled divider>
       <Typography>Move</Typography>
     </MenuItem>,
-    <MenuItem key={3} elementBefore={<DeleteIcon size="small" />} color={'danger'}>
+    <MenuItem key={3} elementBefore={<DeleteIcon size={16} />} color={'danger'}>
       <Typography>Delete</Typography>
     </MenuItem>
   ],

@@ -18,32 +18,38 @@ export const defaultLightTheme: Theme = {
     primary: {
       main: '#1976d2',
       light: '#42a5f5',
-      dark: '#1565c0'
+      dark: '#1565c0',
+      contrastText: '#e1e1e1'
     },
     secondary: {
       main: '#1976d2',
       light: '#42a5f5',
-      dark: '#1565c0'
+      dark: '#1565c0',
+      contrastText: '#e1e1e1'
     },
     error: {
       main: '#d32f2f',
       light: '#ff9800',
-      dark: '#e65100'
+      dark: '#e65100',
+      contrastText: '#e1e1e1'
     },
     warning: {
       main: '#ed6c02',
       light: '#ff9800',
-      dark: '#e65100'
+      dark: '#e65100',
+      contrastText: '#e1e1e1'
     },
     info: {
       main: '#ce93d8',
       light: '#e3f2fd',
-      dark: '#42a5f5'
+      dark: '#42a5f5',
+      contrastText: '#e1e1e1'
     },
     success: {
       main: '#2e7d32',
       light: '#4caf50',
-      dark: '#1b5e20'
+      dark: '#1b5e20',
+      contrastText: '#e1e1e1'
     },
     text: {
       primary: '#202020',

@@ -43,6 +43,7 @@ export interface PaletteColor {
   light: string;
   main: string;
   dark: string;
+  contrastText: string;
 }
 
 export type ColorOptions = Partial<Color>;

@@ -18,13 +18,12 @@ export const useStyles = createStyles(
           justifyContent: 'center',
           gap: '0.25rem',
           transition: 'background-color 0.2s',
-          cursor: 'pointer',
-          fontFamily: 'inherit'
+          cursor: 'pointer'
         },
         filled: (props: ButtonProps) => ({
           backgroundColor: theme.palette[props.color || 'primary'].main,
           '& span': {
-            color: `${theme.palette.getContrastText(theme.palette[props.color || 'primary'].main)} !important`
+            color: theme.palette[props.color || 'primary'].contrastText
           },
           '& svg': {
             fill: `${theme.palette.getContrastText(theme.palette[props.color || 'primary'].main)} !important`
@@ -41,7 +40,7 @@ export const useStyles = createStyles(
             color: theme.palette[props.color || 'primary'].main
           },
           '& span': {
-            color: `${theme.palette[props.color || 'primary'].dark} !important`
+            color: theme.palette[props.color || 'primary'].dark
           },
           '& svg': {
             fill: `${theme.palette[props.color || 'primary'].dark} !important`
@@ -53,7 +52,7 @@ export const useStyles = createStyles(
         subtle: (props: ButtonProps) => ({
           backgroundColor: 'transparent',
           '& span': {
-            color: `${theme.palette[props.color || 'primary'].dark} !important`
+            color: theme.palette[props.color || 'primary'].dark
           },
           '& svg': {
             fill: `${theme.palette[props.color || 'primary'].dark} !important`
@@ -100,7 +99,8 @@ export const useStyles = createStyles(
             color: `${theme.palette.text.disabled} !important`
           },
           cursor: 'default'
-        }
+        },
+        text: {}
       },
       theme.overrides?.Button || {}
     ),

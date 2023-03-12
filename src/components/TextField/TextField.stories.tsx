@@ -32,12 +32,12 @@ LabelBottom.args = {
 
 export const IconBefore = Template.bind({});
 IconBefore.args = {
-  elementBefore: <SettingsIcon size="small" />
+  elementBefore: <SettingsIcon size={24} />
 };
 
 export const IconAfter = Template.bind({});
 IconAfter.args = {
-  elementAfter: <SettingsIcon size="small" />
+  elementAfter: <SettingsIcon size={24} />
 };
 
 export const TextBefore = Template.bind({});
