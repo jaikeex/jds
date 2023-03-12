@@ -1,6 +1,6 @@
-import type { Theme } from 'theming/types';
+import type { Theme } from 'styling/types';
 import type { ButtonProps } from './Button';
-import { createStyles, mergeOverrides } from 'theming/ThemeProvider';
+import { createStyles, mergeOverrides } from 'styling/ThemeProvider';
 
 export const useStyles = createStyles(
   (theme: Theme) =>
@@ -17,7 +17,7 @@ export const useStyles = createStyles(
           alignItems: 'center',
           justifyContent: 'center',
           gap: '0.25rem',
-          transition: 'background-color 0.3s',
+          transition: 'background-color 0.2s',
           cursor: 'pointer',
           fontFamily: 'inherit'
         },

@@ -1,5 +1,6 @@
-import { cloneDeep, merge } from 'lodash';
-import type { ThemeOptions, Theme } from 'theming/types';
+import merge from 'lodash/merge';
+import cloneDeep from 'lodash/cloneDeep';
+import type { ThemeOptions, Theme } from 'styling/types';
 
 export const updateTheme = (themeObj: ThemeOptions, defaultTheme: Theme): Theme => {
   const defaultThemeClone = cloneDeep(defaultTheme);

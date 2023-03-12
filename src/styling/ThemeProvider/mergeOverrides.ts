@@ -1,4 +1,4 @@
-import { merge } from 'lodash';
+import merge from 'lodash/merge';
 import type { Styles } from 'react-jss';
 
 export const mergeOverrides = <C extends string = string, Props = unknown>(

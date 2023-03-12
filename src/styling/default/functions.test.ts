@@ -1,5 +1,5 @@
 import { expect, it } from 'vitest';
-import { defaultDarkTheme } from 'theming/default';
+import { defaultDarkTheme } from 'styling/default';
 
 it('should correctly calculate px -> rem conversion', () => {
   const theme = defaultDarkTheme;

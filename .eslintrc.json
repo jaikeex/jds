@@ -78,12 +78,12 @@
 
     //* General rules
     "prefer-const": "off",
-    "arrow-body-style": ["error", "as-needed"],
-    "no-restricted-imports": [
-      "error",
-      {
-        "patterns": ["../"]
-      }
-    ]
+    "arrow-body-style": ["error", "as-needed"]
+    // "no-restricted-imports": [
+    //   "error",
+    //   {
+    //     "patterns": ["../"]
+    //   }
+    // ]
   }
 }

@@ -1,8 +1,8 @@
-import type { Theme } from 'theming/types';
-import { augmentColor, convertPxToRem } from 'theming/default/functions';
-import { defaultCommonColors } from 'theming/default/commonColors';
+import type { Theme } from 'styling/types';
+import { augmentColor, convertPxToRem } from 'styling/default/functions';
+import { defaultCommonColors } from 'styling/default/commonColors';
 import tinycolor from 'tinycolor2';
-import type { PaletteColorOptions } from 'theming/types';
+import type { PaletteColorOptions } from 'styling/types';
 
 export const defaultLightTheme: Theme = {
   name: 'default-light',

@@ -1,6 +1,6 @@
-import { defaultDarkTheme } from 'theming/default';
+import { defaultDarkTheme } from 'styling/default';
 import { it, expect } from 'vitest';
-import type { ThemeOptions } from 'theming/types';
+import type { ThemeOptions } from 'styling/types';
 import { createTheme } from './createTheme';
 
 it('should merge themes correctly', () => {

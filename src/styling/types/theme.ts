@@ -22,4 +22,4 @@ export interface Theme {
   overrides?: Overrides;
 }
 
-export type Themes = Record<string, Theme>;
+export type ThemeNameToTheme<ThemeName extends string = string> = Record<ThemeName, Theme>;

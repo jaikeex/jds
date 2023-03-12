@@ -1,8 +1,8 @@
 import React from 'react';
 import { IconButton } from '../../src/components/IconButton';
 import { LightModeIcon, DarkModeIcon } from '../../src/components/icons/basic-ui/_filled';
-import { useTheme } from '../../src/theming/ThemeProvider';
-import { defaultDarkTheme, defaultLightTheme } from '../../src/theming/default';
+import { useTheme } from '../../src/styling/ThemeProvider';
+import { defaultDarkTheme } from '../../src/styling/default';
 import { Tooltip } from '../../src/components/Tooltip';
 import { Typography } from '../../src/components/Typography';
 

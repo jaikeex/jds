@@ -1,4 +1,4 @@
-import type { CommonColor } from 'theming/types';
+import type { CommonColor } from 'styling/types';
 
 export const defaultCommonColors: CommonColor = {
   black: '#000000',

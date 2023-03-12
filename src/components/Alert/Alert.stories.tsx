@@ -40,7 +40,7 @@ const Template: Story<AlertProps> = (args) => {
 
   const dangerClickHandler = () => {
     displayAlert({
-      message: 'This is an alert bar - danger variant',
+      message: 'This is an alert bar - error variant',
       color: 'error'
     });
   };

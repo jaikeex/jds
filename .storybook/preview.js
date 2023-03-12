@@ -1,7 +1,7 @@
 import '../src/styles/main.scss';
 import { addDecorator } from '@storybook/react';
-import { defaultDarkTheme } from '../src/theming/default';
-import { ThemeProvider } from '../src/theming/ThemeProvider';
+import { defaultDarkTheme } from '../src/styling/default';
+import { ThemeProvider } from '../src/styling/ThemeProvider';
 import ThemeSwitchButton from './ThemeSwitchButton/ThemeSwitchButton';
 
 addDecorator((story) => {

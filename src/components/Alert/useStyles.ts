@@ -1,6 +1,6 @@
 import type { ThemeColorVariants } from 'core/types';
-import { createStyles, mergeOverrides } from 'theming/ThemeProvider';
-import type { Theme } from 'theming/types';
+import { createStyles, mergeOverrides } from 'styling/ThemeProvider';
+import type { Theme } from 'styling/types';
 import type { AlertProps } from './Alert';
 
 export const useStyles = createStyles(

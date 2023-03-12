@@ -1,7 +1,7 @@
-import type { PaletteColorOptions } from 'theming/types';
+import type { PaletteColorOptions } from 'styling/types';
 import tinyColor from 'tinycolor2';
 import type { NumericRange } from 'core/types';
-import type { PaletteColor } from 'theming/types';
+import type { PaletteColor } from 'styling/types';
 
 export const convertPxToRem = (px: number, rootFontSize: number): string => {
   const rem = px / rootFontSize;
