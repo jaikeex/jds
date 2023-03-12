@@ -36,5 +36,4 @@ it('should merge themes correctly', () => {
   expect(newTheme.typography.body1.fontWeight).toBe(400);
   expect(newTheme.typography.h1.textTransform).toBe('uppercase');
   expect(newTheme.typography.h1.fontSize).toBe('5rem');
-  expect(newTheme.spacing.margin.medium).toBe('1rem');
 });

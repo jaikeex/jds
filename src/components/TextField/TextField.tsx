@@ -1,23 +1,25 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import type { ColorVariants } from 'core/types';
-import './TextField.styles.scss';
-import { makeId } from 'core/utils';
-import classNames from 'classnames';
+import type { ThemeColorVariants } from 'core/types';
+import { makeId, mergeClasses } from 'core/utils';
 import { useForwardedRef, useIsFocused } from 'core/hooks';
+import { Typography } from 'components/Typography';
+import { useStyles } from './useStyles';
+import type { TextFieldClassKey } from './types';
+import type { Classes } from 'jss';
+import clsx from 'clsx';
 
 export interface TextFieldProps {
   appearance?: 'outlined' | 'filled' | 'subtle';
   autoFocus?: boolean;
+  classes?: Classes<TextFieldClassKey>;
   className?: string;
-  color?: ColorVariants;
+  color?: ThemeColorVariants;
   defaultValue?: string;
   disabled?: boolean;
-  fullWidth?: boolean;
   elementAfter?: React.ReactElement;
   elementBefore?: React.ReactElement;
   id?: string;
   label?: string;
-  labelPosition?: 'top' | 'bottom';
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
@@ -25,6 +27,7 @@ export interface TextFieldProps {
   readOnly?: boolean;
   required?: boolean;
   style?: React.CSSProperties;
+  transformLabel?: boolean;
   value?: string;
   width?: string | number;
 }
@@ -34,16 +37,15 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     {
       appearance = 'outlined',
       autoFocus = false,
+      classes = {},
       className = '',
-      color = 'default',
+      color = 'primary',
       defaultValue = '',
       disabled = false,
-      fullWidth = false,
       elementAfter = null,
       elementBefore = null,
       id = makeId(5),
       label = '',
-      labelPosition = 'top',
       onBlur = () => {},
       onChange = () => {},
       onFocus = () => {},
@@ -51,32 +53,21 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       readOnly = false,
       required = false,
       style = {},
+      transformLabel = true,
       value = defaultValue,
-      width = undefined
+      width = '20rem'
     },
     ref
   ) => {
     const inputRef = useForwardedRef<HTMLInputElement>(ref);
     const [inputValue, setInputValue] = useState<string>(value);
     const isFocused = useIsFocused(inputRef, autoFocus);
+    const classNames = classes ? mergeClasses(useStyles({ color }), classes) : useStyles({ color });
 
-    const classes = classNames(
-      'jds-textfield__input',
-      `jds-textfield__input--color--${color}--${appearance}`,
-
-      className,
-      {
-        'jds-textfield__input--fullWidth': fullWidth,
-        'jds-textfield__input--disabled': disabled,
-        'u-padding-left-3rem': elementBefore,
-        'u-padding-right-3rem': elementAfter
-      }
-    );
-
-    const labelClasses = classNames('jds-textfield__label', `jds-textfield__label--position--${labelPosition}`, {
-      'jds-textfield__label--transformed': placeholder || inputValue || isFocused,
-      'u-margin-left-3rem': elementBefore,
-      'u-margin-right-3rem': elementAfter
+    const rootClassNames = clsx(classNames.root, classNames[appearance], className);
+    const inputClassNames = clsx(classNames.input);
+    const labelClassNames = clsx(classNames.label, {
+      [classNames.labelTransformed]: placeholder || inputValue || isFocused || elementBefore || !transformLabel
     });
 
     const styles = () => {
@@ -101,15 +92,14 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     }, [value]);
 
     return (
-      <div className="jds-textfield">
-        {elementBefore && <div className="jds-textfield__element jds-textfield__element--before">{elementBefore}</div>}
-        {elementAfter && <div className="jds-textfield__element jds-textfield__element--after">{elementAfter}</div>}
-        <label htmlFor={id} className={labelClasses}>
-          {label}
+      <div className={rootClassNames}>
+        {elementBefore && <div className={classNames.element}>{elementBefore}</div>}
+        <label htmlFor={id} className={labelClassNames}>
+          <Typography variant="label">{label}</Typography>
         </label>
         <input
           type="text"
-          className={classes}
+          className={inputClassNames}
           autoFocus={autoFocus}
           disabled={disabled}
           id={id}
@@ -123,6 +113,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           style={styles()}
           value={inputValue}
         />
+        {elementAfter && <div className={classNames.element}>{elementAfter}</div>}
       </div>
     );
   }

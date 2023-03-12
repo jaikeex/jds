@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof TextField>;
 
 const Template: Story<TextFieldProps> = (args) => (
-  <div style={{ display: 'flex', flexDirection: 'column' }}>
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
     <TextField appearance="outlined" label="Label - Outlined" {...args} />
     <TextField appearance="filled" label="Label - Filled" {...args} />
     <TextField appearance="subtle" label="Label - Subtle" {...args} />
@@ -22,13 +22,8 @@ Default.args = {
   label: ''
 };
 
-export const LabelTop = Template.bind({});
-LabelTop.args = {};
-
-export const LabelBottom = Template.bind({});
-LabelBottom.args = {
-  labelPosition: 'bottom'
-};
+export const Label = Template.bind({});
+Label.args = {};
 
 export const IconBefore = Template.bind({});
 IconBefore.args = {
@@ -42,7 +37,7 @@ IconAfter.args = {
 
 export const TextBefore = Template.bind({});
 TextBefore.args = {
-  elementBefore: <span>kg</span>,
+  elementBefore: <span>Enter last name:</span>,
   label: 'Enter '
 };
 
@@ -69,7 +64,7 @@ ColorSuccess.args = {
   color: 'success'
 };
 
-export const ColorDanger = Template.bind({});
-ColorDanger.args = {
-  color: 'danger'
+export const ColorError = Template.bind({});
+ColorError.args = {
+  color: 'error'
 };

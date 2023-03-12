@@ -13,7 +13,7 @@ export const useStyles = createStyles(
         },
         content: (props: TooltipProps) => ({
           position: 'absolute',
-          padding: [theme.spacing.padding.small, theme.spacing.padding.medium],
+          padding: [theme.spacing.padding[2], theme.spacing.padding[2]],
           width: 'fit-content',
           maxWidth: '20rem',
           borderRadius: theme.shape.borderRadius.small,

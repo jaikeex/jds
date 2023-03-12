@@ -16,7 +16,7 @@ export const useStyles = createStyles(
           padding: '1rem 0.5rem 1rem 1.5rem',
           border: 'none',
           borderRadius: theme.shape.borderRadius.medium,
-          margin: theme.spacing.margin.medium,
+          margin: theme.spacing.margin[4],
           position: 'relative',
           display: 'flex',
           flexDirection: 'column',
@@ -29,7 +29,7 @@ export const useStyles = createStyles(
               ? theme.palette.grey[800]
               : theme.palette[props.color as ThemeColorVariants].main,
           '& svg': {
-            marginRight: theme.spacing.margin.medium,
+            marginRight: theme.spacing.margin[4],
             fill:
               props.color === ('primary' || undefined)
                 ? theme.palette.text.contrast.light
@@ -43,10 +43,10 @@ export const useStyles = createStyles(
           justifyContent: 'center'
         }),
         action: () => ({
-          margin: `${theme.spacing.margin.xsmall} auto 0 0`
+          margin: `${theme.spacing.margin[4]} auto 0 0`
         }),
         message: (props: AlertProps) => ({
-          paddingRight: theme.spacing.padding.xlarge,
+          paddingRight: theme.spacing.padding[4],
           display: 'flex',
           alignItems: 'center',
           color:
@@ -54,7 +54,7 @@ export const useStyles = createStyles(
               ? theme.palette.text.contrast.light
               : [theme.palette.getContrastText(theme.palette[props.color as ThemeColorVariants].main), '!important'],
           '& svg': {
-            marginRight: theme.spacing.margin.xxsmall
+            marginRight: theme.spacing.margin[4]
           }
         }),
         closeBtn: () => ({
