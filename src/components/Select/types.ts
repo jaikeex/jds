@@ -1,21 +1,44 @@
 import type React from 'react';
 import type { GroupBase, MenuPlacement, MultiValue, Options, SingleValue, StylesConfig } from 'react-select';
-import type { ColorVariants } from 'core/types';
+import type { ThemeColorVariants } from 'core/types';
 import type { SelectComponents } from 'react-select/dist/declarations/src/components';
+import type { Classes } from 'jss';
 
 export interface Selectable {
   label: React.ReactNode;
   value: string | number;
 }
 
+export type SelectClassKey =
+  | 'root'
+  | 'option'
+  | 'optionDisabled'
+  | 'optionSelected'
+  | 'optionFocused'
+  | 'control'
+  | 'filled'
+  | 'outlined'
+  | 'subtle'
+  | 'value'
+  | 'multiValue'
+  | 'multiValueLabel'
+  | 'multiValueRemove'
+  | 'separator'
+  | 'menu'
+  | 'label'
+  | 'labelTransformed'
+  | 'labelHidden'
+  | 'valueContainer';
+
 export interface SelectProps {
   appearance?: 'outlined' | 'filled' | 'subtle';
   autoFocus?: boolean;
   backspaceRemovesValue?: boolean;
   blurInputOnSelect?: boolean;
+  classes?: Classes<SelectClassKey>;
   className?: string;
   closeMenuOnSelect?: boolean;
-  color?: ColorVariants;
+  color?: ThemeColorVariants;
   components?: Partial<SelectComponents<Selectable, boolean, GroupBase<Selectable>>> | undefined;
   defaultOpen?: boolean;
   defaultValue?: SingleValue<Selectable> | MultiValue<Selectable> | undefined;
@@ -39,7 +62,6 @@ export interface SelectProps {
   openMenuOnFocus?: boolean;
   options?: Options<Selectable>;
   label?: string;
-  labelPosition?: 'top' | 'bottom';
   required?: boolean;
   style?: StylesConfig<Selectable, false | true, GroupBase<Selectable>>;
   transformLabel?: boolean;

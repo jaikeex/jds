@@ -62,7 +62,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     const inputRef = useForwardedRef<HTMLInputElement>(ref);
     const [inputValue, setInputValue] = useState<string>(value);
     const isFocused = useIsFocused(inputRef, autoFocus);
-    const classNames = classes ? mergeClasses(useStyles({ color }), classes) : useStyles({ color });
+    const classNames = classes ? mergeClasses(useStyles({ color, disabled }), classes) : useStyles({ color, disabled });
 
     const rootClassNames = clsx(classNames.root, classNames[appearance], className);
     const inputClassNames = clsx(classNames.input);

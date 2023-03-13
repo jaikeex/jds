@@ -55,7 +55,6 @@ LabelTop.args = {
 export const LabelBottom = Template.bind({});
 LabelBottom.args = {
   label: 'Select color',
-  labelPosition: 'bottom',
   transformLabel: true
 };
 
@@ -77,7 +76,7 @@ ColorSuccess.args = {
 
 export const ColorDanger = Template.bind({});
 ColorDanger.args = {
-  color: 'danger'
+  color: 'error'
 };
 
 export const Loading = Template.bind({});

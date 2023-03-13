@@ -5,7 +5,8 @@ import type {
   TextFieldClassKey,
   TooltipClassKey,
   TypographyClassKey,
-  IconClassKey
+  IconClassKey,
+  SelectClassKey
 } from 'components';
 import type { Styles } from 'react-jss';
 
@@ -17,6 +18,7 @@ export interface ComponentNameToClassKey {
   Alert: AlertClassKey;
   Button: ButtonClassKey;
   Icon: IconClassKey;
+  Select: SelectClassKey;
   Sheet: SheetClassKey;
   TextField: TextFieldClassKey;
   Tooltip: TooltipClassKey;

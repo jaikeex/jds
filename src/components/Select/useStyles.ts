@@ -1,36 +1,39 @@
-import { createStyles, mergeOverrides } from 'styling';
 import type { Theme } from 'styling/types';
-import type { TextFieldProps } from './TextField';
+import type { SelectProps } from './types';
+import { createStyles, mergeOverrides } from 'styling';
 
 export const useStyles = createStyles(
   (theme: Theme) =>
     mergeOverrides(
       {
-        root: (props: TextFieldProps) => ({
-          position: 'relative',
-          display: 'flex',
-          alignItems: 'center',
-          transition: 'all 0.15s ease-in-out',
-          borderRadius: theme.shape.borderRadius.small,
-          width: props.width || '20rem',
-          height: '2.5rem',
-          padding: [0, theme.spacing.padding[2]]
-        }),
-        input: (props: TextFieldProps) => ({
-          display: 'block',
-          padding: [theme.spacing.padding[4], theme.spacing.padding[3]],
-          border: 'none',
-          outline: 'none',
-          backgroundColor: 'transparent',
+        root: {
           fontFamily: 'inherit',
-          fontSize: '0.875rem',
-          color: theme.palette.text.primary,
-          '&::-webkit-input-placeholder': {
-            fontWeight: 400,
-            color: theme.palette.rgba(theme.palette.text.primary, 0.5)
-          }
+          fontSize: '1rem',
+          transition: 'all 0.2s',
+          width: '20rem',
+          outline: 'none'
+        },
+        option: (props: SelectProps) => ({
+          height: '1.75rem',
+          backgroundColor: 'transparent',
+          transition: 'background-color 0.1s',
+          padding: [theme.spacing.padding[2], theme.spacing.padding[6]]
         }),
-        filled: (props: TextFieldProps) => ({
+        optionDisabled: {
+          color: theme.palette.grey[300]
+        },
+        optionSelected: (props: SelectProps) => ({
+          color: theme.palette.text.primary,
+          backgroundColor: theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.5)
+        }),
+        optionFocused: (props: SelectProps) => ({
+          backgroundColor: theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.25)
+        }),
+        control: {
+          backgroundColor: theme.palette.background.default,
+          color: theme.palette.text.primary
+        },
+        filled: (props: SelectProps) => ({
           border: 'none',
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
@@ -49,6 +52,9 @@ export const useStyles = createStyles(
               : theme.palette.rgba(theme.palette[props.color || 'primary'].light, 0.15)
           },
           '&:focus-within': {
+            borderTop: 'hidden',
+            borderLeft: 'hidden',
+            borderRight: 'hidden',
             borderColor: theme.palette[props.color || 'primary'].main,
             boxShadow: {
               inset: 'inset',
@@ -60,7 +66,7 @@ export const useStyles = createStyles(
             }
           }
         }),
-        outlined: (props: TextFieldProps) => ({
+        outlined: (props: SelectProps) => ({
           border: {
             width: '1px',
             style: 'solid',
@@ -83,7 +89,7 @@ export const useStyles = createStyles(
             }
           }
         }),
-        subtle: (props: TextFieldProps) => ({
+        subtle: (props: SelectProps) => ({
           border: 'none',
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
@@ -109,41 +115,74 @@ export const useStyles = createStyles(
             }
           }
         }),
-        label: {
-          fontWeight: 500,
-          transition: 'all 0.1s ease-in-out',
-          position: 'absolute',
-          marginLeft: theme.spacing.margin[2],
-          top: '0.5rem',
-          cursor: 'text',
-          color: theme.palette.rgba(theme.palette.text.primary, 0.8),
-          '& span': {
-            fontSize: '0.875rem'
+        value: {
+          color: theme.palette.text.primary
+        },
+        multiValue: {
+          backgroundColor:
+            theme.name === 'dark'
+              ? theme.palette.lighten(theme.palette.background.default, 15)
+              : theme.palette.darken(theme.palette.background.default, 15)
+        },
+        multiValueLabel: {
+          color: theme.palette.text.primary
+        },
+        multiValueRemove: {
+          '&:hover': {
+            backgroundColor:
+              theme.name === 'dark'
+                ? theme.palette.lighten(theme.palette.background.default, 20)
+                : theme.palette.darken(theme.palette.background.default, 20)
+          },
+          '& path': {
+            fill: theme.palette.text.primary
           }
         },
+        separator: {
+          display: 'none'
+        },
+        menu: {
+          fontSize: '0.875rem',
+          transition: 'all 0.15s',
+          marginTop: theme.spacing.margin[2],
+          backgroundColor: theme.palette.background.default,
+          color: theme.palette.text.primary,
+          border: {
+            width: '1px',
+            style: 'solid',
+            color: theme.palette.rgba(theme.palette.text.primary, 0.5)
+          }
+        },
+        label: {
+          fontWeight: 500,
+          display: 'block',
+          transition: 'all 0.15s',
+          position: 'absolute',
+          cursor: 'text',
+          top: '0.25rem',
+          left: '0.1rem',
+          color: theme.palette.rgba(theme.palette.text.primary, 0.5)
+        },
         labelTransformed: {
-          fontSize: '0.75rem',
+          fontSize: '0.875rem',
           marginLeft: 0,
           cursor: 'default',
           color: theme.palette.text.primary,
-          top: '-1.4rem'
+          top: '-1.5rem',
+          left: '-0.5rem'
         },
-        element: {
-          lineHeight: '1.5rem',
-          textAlign: 'center',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: theme.palette.rgba(theme.palette.text.primary, 0.6),
-          whiteSpace: 'nowrap',
-          '& span': {
-            fontSize: '0.875rem'
-          }
+        labelHidden: {
+          transition: 'all 0s',
+          opacity: 0
+        },
+        valueContainer: {
+          overflow: 'visible'
         }
       },
-      theme.overrides?.TextField || {}
+      theme.overrides?.Select || {}
     ),
   {
-    name: 'jds-textfield'
+    name: 'jds-select',
+    element: document.getElementById('jds-select') as HTMLStyleElement
   }
 );

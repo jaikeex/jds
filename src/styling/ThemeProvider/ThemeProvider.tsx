@@ -48,7 +48,10 @@ const ThemeProvider: React.FC<ThemeContextProviderProps> = ({
   return (
     <ThemeContext.Provider value={defaultProps}>
       {/* @ts-ignore */}
-      <JSSThemeProvider theme={theme}>{children}</JSSThemeProvider>
+      <JSSThemeProvider theme={theme}>
+        <style id="jds-select" />
+        {children}
+      </JSSThemeProvider>
     </ThemeContext.Provider>
   );
 };

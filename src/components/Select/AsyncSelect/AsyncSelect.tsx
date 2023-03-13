@@ -31,7 +31,6 @@ const AsyncSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Selec
       isMulti = false,
       onChange = () => {},
       label = '',
-      labelPosition = 'top',
       style = {},
       transformLabel = false,
       value = defaultValue,
@@ -47,7 +46,6 @@ const AsyncSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Selec
 
     const classes = useSelectClasses({
       ...props,
-      labelPosition,
       appearance,
       className,
       color,

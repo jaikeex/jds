@@ -68,3 +68,9 @@ export const ColorError = Template.bind({});
 ColorError.args = {
   color: 'error'
 };
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  ...Default.args,
+  disabled: true
+};

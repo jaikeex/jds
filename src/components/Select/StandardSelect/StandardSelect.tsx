@@ -2,19 +2,19 @@ import React, { useCallback, useEffect, useState } from 'react';
 import '../Select.styles.scss';
 import type { Selectable, SelectProps } from 'components/Select/types';
 import type { GroupBase, MultiValue, SingleValue } from 'react-select';
-import { default as RSelect } from 'react-select';
 import { makeId } from 'core/utils';
 import { useForwardedRef } from 'core/hooks';
 import { CValueContainer } from 'components/Select/custom-components';
 import { useSelectClasses } from 'components/Select/useSelectClasses';
 import type Select from 'react-select/dist/declarations/src/Select';
+import { SelectBase } from '../SelectBase';
 
 const StandardSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Selectable>>, SelectProps>(
   (
     {
       appearance = 'outlined',
       className = '',
-      color = 'default',
+      color = 'primary',
       components = {},
       defaultValue = undefined,
       disabled = false,
@@ -22,7 +22,6 @@ const StandardSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Se
       isMulti = false,
       onChange = () => {},
       label = '',
-      labelPosition = 'top',
       style = {},
       transformLabel = false,
       value = defaultValue,
@@ -35,27 +34,6 @@ const StandardSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Se
     const [selectedValue, setSelectedValue] = useState<SingleValue<Selectable> | MultiValue<Selectable> | undefined>(
       value
     );
-
-    const classes = useSelectClasses({
-      ...props,
-      labelPosition,
-      appearance,
-      className,
-      color,
-      isMulti,
-      transformLabel
-    });
-
-    const styles = () => {
-      const styles = { ...style };
-      if (width) {
-        styles.container = () => ({
-          width: typeof width === 'string' ? width : `${width}}px`
-        });
-
-        return styles;
-      }
-    };
 
     const selectionChangeHandler = useCallback(
       (value: SingleValue<Selectable> | MultiValue<Selectable>) => {
@@ -70,20 +48,23 @@ const StandardSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Se
     }, [value]);
 
     return (
-      <RSelect
+      <SelectBase
+        appearance={appearance}
+        color={color}
+        transformLabel={transformLabel}
+        className={className}
         ref={inputRef}
         components={{
           ValueContainer: CValueContainer,
           ...components
         }}
         id={id}
-        isDisabled={disabled}
+        disabled={disabled}
         isMulti={isMulti}
         onChange={selectionChangeHandler}
-        placeholder={label}
-        styles={styles()}
+        label={label}
+        style={style}
         value={selectedValue}
-        classNames={classes}
         {...props}
       />
     );
