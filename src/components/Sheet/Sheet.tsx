@@ -1,10 +1,14 @@
 import React from 'react';
-import './Sheet.styles.scss';
 import type { NumericRange } from 'core/types';
-import classNames from 'classnames';
+import type { SheetClassKey } from './types';
+import type { Classes } from 'jss';
+import { mergeClasses } from 'core/utils';
+import { useStyles } from './useStyles';
+import clsx from 'clsx';
 
 export interface SheetProps {
   children?: React.ReactNode;
+  classes?: Classes<SheetClassKey>;
   className?: string;
   level?: NumericRange<0, 12>;
   outlined?: boolean;
@@ -13,14 +17,13 @@ export interface SheetProps {
 }
 
 const Sheet = React.forwardRef<HTMLDivElement, SheetProps>(
-  ({ children, className = '', level = 4, outlined = false, sharpCorners = false, style = {} }, ref) => {
-    const classes = classNames('jds-sheet', `jds-sheet--level--${level}`, className, {
-      'jds-sheet--sharp-corners': sharpCorners,
-      'jds-sheet--outlined': outlined
-    });
+  ({ children, classes = {}, className = '', level = 4, outlined = false, sharpCorners = false, style = {} }, ref) => {
+    const classNames = classes
+      ? mergeClasses(useStyles({ sharpCorners, outlined, level }), classes)
+      : useStyles({ sharpCorners, outlined, level });
 
     return (
-      <div className={classes} style={style} ref={ref}>
+      <div className={clsx(classNames.root, className)} style={style} ref={ref}>
         {children}
       </div>
     );

@@ -1,6 +1,7 @@
 import type {
   ButtonClassKey,
   AlertClassKey,
+  SheetClassKey,
   TextFieldClassKey,
   TooltipClassKey,
   TypographyClassKey,
@@ -16,6 +17,7 @@ export interface ComponentNameToClassKey {
   Alert: AlertClassKey;
   Button: ButtonClassKey;
   Icon: IconClassKey;
+  Sheet: SheetClassKey;
   TextField: TextFieldClassKey;
   Tooltip: TooltipClassKey;
   Typography: TypographyClassKey;

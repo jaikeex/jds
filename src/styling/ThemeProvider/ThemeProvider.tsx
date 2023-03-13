@@ -29,8 +29,8 @@ const ThemeProvider: React.FC<ThemeContextProviderProps> = ({
   const [theme, setTheme] = useState<Theme>(defaultTheme);
 
   const availableThemes = {
-    'default-light': defaultLightTheme,
-    'default-dark': defaultDarkTheme,
+    'light': defaultLightTheme,
+    'dark': defaultDarkTheme,
     [defaultTheme.name]: defaultTheme,
     ...additionalThemes
   };

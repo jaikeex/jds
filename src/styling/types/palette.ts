@@ -14,6 +14,8 @@ export interface Palette {
   background: BackgroundColor;
   tonalOffset: NumericRange<0, 100>;
   rgba: (color: string, alpha: number) => string;
+  lighten: (color: string, amount: number) => string;
+  darken: (color: string, amount: number) => string;
   getContrastText: (background: string) => string;
   augmentColor: (color: PaletteColorOptions) => PaletteColor;
 }
@@ -30,7 +32,6 @@ export interface PaletteOptions {
   text?: TextColorOptions;
   divider?: string;
   background?: BackgroundColorOptions;
-  getContrastText?: (background: string) => string;
 }
 
 export interface PaletteColorOptions {

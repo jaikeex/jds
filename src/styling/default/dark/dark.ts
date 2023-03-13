@@ -5,7 +5,7 @@ import tinycolor from 'tinycolor2';
 import type { PaletteColorOptions } from 'styling/types';
 
 export const defaultDarkTheme: Theme = {
-  name: 'default-dark',
+  name: 'dark',
   shape: {
     borderRadius: {
       small: '4px',
@@ -81,6 +81,12 @@ export const defaultDarkTheme: Theme = {
     tonalOffset: 15,
     rgba(color: string, alpha: number) {
       return tinycolor(color).setAlpha(alpha).toRgbString();
+    },
+    lighten(color: string, amount: number) {
+      return tinycolor(color).lighten(amount).toHexString();
+    },
+    darken(color: string, amount: number) {
+      return tinycolor(color).darken(amount).toHexString();
     },
     getContrastText(background: string) {
       return tinycolor

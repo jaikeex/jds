@@ -12,18 +12,12 @@ const ThemeSwitchButton: React.FC<ThemeSwitchButtonProps> = () => {
   const { setTheme, theme } = useTheme();
 
   const themeChangeHandler = () => {
-    theme === defaultDarkTheme ? setTheme('default-light') : setTheme('default-dark');
+    theme === defaultDarkTheme ? setTheme('light') : setTheme('dark');
   };
 
   return (
     <IconButton onClick={themeChangeHandler} size="small" style={{ position: 'fixed', top: '10px', left: '10px' }}>
-      <Tooltip
-        content={
-          <Typography variant="body3">{`Switch to ${
-            theme === defaultDarkTheme ? 'light theme' : 'dark theme'
-          }`}</Typography>
-        }
-      >
+      <Tooltip content={`Switch to ${theme === defaultDarkTheme ? 'light theme' : 'dark theme'}`}>
         {theme === defaultDarkTheme ? <LightModeIcon /> : <DarkModeIcon />}
       </Tooltip>
     </IconButton>
