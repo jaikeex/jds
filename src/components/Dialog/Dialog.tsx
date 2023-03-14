@@ -1,10 +1,18 @@
 import React, { useCallback, useEffect } from 'react';
 import type { SheetProps } from 'components/Sheet';
 import { Sheet } from 'components/Sheet';
-import './Dialog.styles.scss';
-import classNames from 'classnames';
+import { Backdrop } from 'components/Backdrop';
+import type { NumericRange } from 'core/types';
+import { mergeClasses } from 'core/utils';
+import { useStyles } from './useStyles';
+import type { DialogClassKey } from './types';
+import type { Classes } from 'jss';
+import clsx from 'clsx';
 
 export interface DialogProps extends React.PropsWithChildren {
+  backdropLevel?: NumericRange<0, 10>;
+  classes?: Classes<DialogClassKey>;
+  className?: string;
   disableBackdropClickClose?: boolean;
   disableEscapeKeyClose?: boolean;
   fullscreen?: boolean;
@@ -12,14 +20,17 @@ export interface DialogProps extends React.PropsWithChildren {
   maxWidth?: number | string;
   minHeight?: number | string;
   minWidth?: number | string;
-  onBackdropClick?: React.MouseEventHandler<HTMLElement>;
-  onClose?: (event?: React.MouseEvent | KeyboardEvent) => void;
+  onBackdropClick?: (event: MouseEvent) => void;
+  onClose?: (event?: MouseEvent | KeyboardEvent) => void;
   onOpen?: () => void;
   open?: boolean;
   sheetProps?: SheetProps;
 }
 
 const Dialog: React.FC<DialogProps> = ({
+  backdropLevel = 6,
+  classes = {},
+  className = '',
   children = null,
   disableBackdropClickClose = false,
   disableEscapeKeyClose = false,
@@ -34,7 +45,7 @@ const Dialog: React.FC<DialogProps> = ({
   open = false,
   sheetProps = {}
 }) => {
-  const sheetClasses = classNames(sheetProps.className, 'jds-dialog__sheet');
+  const classNames = mergeClasses(useStyles(), classes);
 
   const getSheetStyles = () => {
     const styles: React.CSSProperties = {
@@ -57,7 +68,8 @@ const Dialog: React.FC<DialogProps> = ({
   };
 
   const backdropClickHandler = useCallback(
-    (event: React.MouseEvent<HTMLElement>) => {
+    (event: MouseEvent) => {
+      event.stopPropagation();
       onBackdropClick(event);
       disableBackdropClickClose || onClose(event);
     },
@@ -76,16 +88,13 @@ const Dialog: React.FC<DialogProps> = ({
 
   return (
     <React.Fragment>
-      {open && (
-        <React.Fragment>
-          <div className="jds-dialog__backdrop" onClick={backdropClickHandler} />
-          <div className="jds-dialog">
-            <Sheet {...sheetProps} className={sheetClasses} style={getSheetStyles()}>
-              {children}
-            </Sheet>
-          </div>
-        </React.Fragment>
-      )}
+      <Backdrop visible={open} level={backdropLevel} className={classNames.backdrop} onClick={backdropClickHandler}>
+        <div style={{ zIndex: 2000 }} className={className}>
+          <Sheet {...sheetProps} className={clsx(classNames.sheet, sheetProps.className)} style={getSheetStyles()}>
+            {children}
+          </Sheet>
+        </div>
+      </Backdrop>
     </React.Fragment>
   );
 };

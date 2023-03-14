@@ -1,5 +1,4 @@
 import React from 'react';
-import './Divider.styles.scss';
 import type { ThemeColorVariantsWithDefault } from 'core/types';
 import type { DividerClassKey } from './types';
 import type { Classes } from 'jss';

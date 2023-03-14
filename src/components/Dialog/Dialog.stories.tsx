@@ -15,7 +15,9 @@ const Template: Story<DialogProps> = (args) => {
 
   return (
     <div>
-      <Button onClick={() => setIsOpen(true)}>Open Dialog</Button>
+      <Button onClick={() => setIsOpen(true)} disableRippleEffect>
+        Open Dialog
+      </Button>
       <Dialog {...args} open={isOpen} onClose={() => setIsOpen(false)}>
         <div style={{ width: '30rem' }}>
           <Typography gutterBottom textAlign="center" variant="h5">
