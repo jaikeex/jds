@@ -213,7 +213,7 @@ export const defaultDarkTheme: Theme = {
       marginBottom: '0.25rem'
     },
     label: {
-      fontSize: '0.938rem',
+      fontSize: '0.875rem',
       fontWeight: 400,
       marginBottom: '0.25rem'
     },

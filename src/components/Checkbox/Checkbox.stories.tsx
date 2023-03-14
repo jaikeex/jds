@@ -13,9 +13,9 @@ const Template: Story<CheckboxProps> = (args) => (
   <div style={{ display: 'flex', gap: '1rem' }}>
     <Checkbox {...args} />
     <Checkbox {...args} color="success" />
-    <Checkbox {...args} color="danger" />
+    <Checkbox {...args} color="error" />
     <Checkbox {...args} color="warning" />
-    <Checkbox {...args} color="focus" />
+    <Checkbox {...args} color="info" />
   </div>
 );
 
@@ -45,6 +45,20 @@ export const WithLabel = Template.bind({});
 WithLabel.args = {
   ...Default.args,
   label: 'Checkbox label'
+};
+
+export const SmallWithLabel = Template.bind({});
+SmallWithLabel.args = {
+  ...Default.args,
+  label: 'Checkbox label',
+  size: 'small'
+};
+
+export const LargeWithLabel = Template.bind({});
+LargeWithLabel.args = {
+  ...Default.args,
+  label: 'Checkbox label',
+  size: 'large'
 };
 
 export const Disabled = Template.bind({});

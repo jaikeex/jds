@@ -1,16 +1,20 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import './Checkbox.styles.scss';
-import type { ColorVariants, Size } from 'core/types';
-import classNames from 'classnames';
+import type { Size, ThemeColorVariants, ThemeColorVariantsWithDefault } from 'core/types';
 import { CheckmarkThickIcon } from 'components/icons';
-import { makeId } from 'core/utils';
+import { makeId, mergeClasses } from 'core/utils';
 import { Typography } from 'components/Typography';
+import type { CheckboxClassKey } from './types';
+import type { Classes } from 'jss';
+import { useStyles } from './useStyles';
+import clsx from 'clsx';
 
 export interface CheckboxProps {
   size?: Size;
-  color?: ColorVariants;
+  color?: ThemeColorVariants;
+  className?: string;
+  classes?: Classes<CheckboxClassKey>;
   label?: string;
-  labelColor?: ColorVariants;
+  labelColor?: ThemeColorVariantsWithDefault;
   disabled?: boolean;
   icon?: React.ReactNode;
   iconChecked?: React.ReactNode;
@@ -26,7 +30,9 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (
     {
       size = 'medium',
-      color = 'default',
+      color = 'primary',
+      className = '',
+      classes = {},
       label = '',
       labelColor = 'default',
       disabled = false,
@@ -35,20 +41,14 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       required = false,
       id = makeId(5),
       onChange = () => {},
-      icon,
+      icon = null,
       iconChecked = icon,
-      style
+      style = {}
     },
     ref
   ) => {
     const [isChecked, setIsChecked] = useState<boolean>(checked);
-
-    const classes = classNames('jds-checkbox', `jds-checkbox--size--${size}`, `jds-checkbox--color--${color}`, {
-      'jds-checkbox__hidden': icon,
-      'jds-checkbox--disabled': disabled
-    });
-
-    const labelClasses = classNames(`jds-checkbox__label--color--${labelColor}`);
+    const classNames = mergeClasses(useStyles({ color, icon, size }), classes);
 
     const inputChangeHandler = useCallback(
       (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -63,23 +63,23 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     }, [checked]);
 
     return (
-      <div className="jds-checkbox__container" style={style}>
+      <div className={clsx(classNames.root, className)} style={style}>
         <input
           type="checkbox"
           ref={ref}
-          className={classes}
+          className={clsx(classNames.input, classNames[size])}
           id={id}
           checked={isChecked}
           onChange={inputChangeHandler}
           disabled={disabled}
           required={required}
         />
-        <label className="jds-checkbox__label" htmlFor={id}>
+        <label className={clsx(classNames.label, disabled && classNames.disabled)} htmlFor={id}>
           {icon && !isChecked ? icon : iconChecked}
-          <div className="jds-checkbox__mark">
-            <CheckmarkThickIcon size={16} />
+          <div className={classNames.mark}>
+            <CheckmarkThickIcon />
           </div>
-          <Typography variant="label" className={labelClasses}>
+          <Typography variant="label" color={labelColor}>
             {label}
           </Typography>
         </label>
