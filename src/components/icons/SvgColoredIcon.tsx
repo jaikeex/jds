@@ -9,7 +9,7 @@ export interface SvgColoredIconProps extends React.PropsWithChildren {
 }
 
 const SvgColoredIcon = React.forwardRef<SVGSVGElement, SvgColoredIconProps>(
-  ({ size = 48, style = {}, testId = '', className = '', viewBox = '0 0 48 48', children, ...props }, ref) => (
+  ({ size = 32, style = {}, testId = '', className = '', viewBox = '0 0 48 48', children, ...props }, ref) => (
     <svg
       {...props}
       ref={ref}

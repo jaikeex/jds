@@ -1,29 +1,60 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import './IconButton.styles.scss';
-import classNames from 'classnames';
-import type { ColorVariants } from 'core/types';
-import type { IconButtonSize } from './types';
-import { classNameColor, classNameSize } from 'core/utils';
+import type { ThemeColorVariants } from 'core/types';
+import type { IconButtonClassKey, IconButtonSize } from './types';
+import { useForwardedRef, useRippleEffect } from 'core/hooks';
+import type { Classes } from 'jss';
+import { mergeClasses } from 'core/utils';
+import { useStyles } from './useStyles';
+import clsx from 'clsx';
 
-export interface IconButtonProps {
+export interface IconButtonProps extends React.PropsWithChildren {
   size?: IconButtonSize;
-  color?: ColorVariants;
+  color?: ThemeColorVariants;
   style?: React.CSSProperties;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  enableRippleEffect?: boolean;
+  enableBackground?: boolean;
+  disableTransform?: boolean;
   className?: string;
-  children?: React.ReactNode;
+  classes?: Classes<IconButtonClassKey>;
 }
 
 const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
-  ({ color = 'default', size = 'medium', className = '', style, onClick, children }, ref) => {
-    const classes = classNames(
-      'jds-icon-btn',
-      classNameColor('jds-icon-btn', color),
-      classNameSize('jds-icon-btn', size)
+  (
+    {
+      color = 'primary',
+      size = 'medium',
+      className = '',
+      classes = {},
+      style = {},
+      onClick = () => {},
+      enableRippleEffect = false,
+      enableBackground = false,
+      disableTransform = false,
+      children = null
+    },
+    ref
+  ) => {
+    const buttonRef = useForwardedRef<HTMLButtonElement>(ref);
+    const createRippleEffect = useRippleEffect(buttonRef, { center: true, color: color });
+    const classNames = classes
+      ? mergeClasses(useStyles({ color, enableBackground, disableTransform }), classes)
+      : useStyles({ color, enableBackground, disableTransform });
+    console.log(classNames);
+
+    const rootClassNames = clsx(classNames.root, classNames[size], className);
+
+    const buttonClickHandler = useCallback(
+      (event: React.MouseEvent<HTMLButtonElement>) => {
+        enableRippleEffect && createRippleEffect(event);
+        onClick(event);
+      },
+      [enableRippleEffect, createRippleEffect, onClick]
     );
 
     return (
-      <button ref={ref} className={classes + ' ' + className} style={style} onClick={onClick}>
+      <button ref={buttonRef} className={rootClassNames} style={style} onClick={buttonClickHandler}>
         {children}
       </button>
     );

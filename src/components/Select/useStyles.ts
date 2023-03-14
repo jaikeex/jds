@@ -34,7 +34,8 @@ export const useStyles = createStyles(
         }),
         control: {
           backgroundColor: 'transparent',
-          color: theme.palette.text.primary
+          color: theme.palette.text.primary,
+          fontSize: '0.937rem'
         },
         filled: (props: SelectProps) => ({
           border: 'none',

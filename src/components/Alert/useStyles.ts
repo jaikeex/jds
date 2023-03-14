@@ -57,11 +57,18 @@ export const useStyles = createStyles(
             marginRight: theme.spacing.margin[4]
           }
         }),
-        closeBtn: () => ({
-          marginLeft: 'auto'
+        closeBtn: (props: AlertProps) => ({
+          flexShrink: 0,
+          marginLeft: 'auto',
+          '&:hover svg': {
+            fill:
+              props.color === ('primary' || undefined)
+                ? theme.palette.text.contrast.light
+                : theme.palette[props.color || 'primary'].contrastText
+          }
         })
       },
       theme.overrides?.Alert || {}
     ),
-  { name: 'jds-alert' }
+  { name: 'jds-alert', index: 10 }
 );

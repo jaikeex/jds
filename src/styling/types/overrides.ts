@@ -9,7 +9,9 @@ import type {
   SelectClassKey,
   MenuClassKey,
   ListClassKey,
-  ListItemClassKey
+  ListItemClassKey,
+  LinkClassKey,
+  IconButtonClassKey
 } from 'components';
 import type { Styles } from 'react-jss';
 
@@ -21,6 +23,8 @@ export interface ComponentNameToClassKey {
   Alert: AlertClassKey;
   Button: ButtonClassKey;
   Icon: IconClassKey;
+  IconButton: IconButtonClassKey;
+  Link: LinkClassKey;
   List: ListClassKey;
   ListItem: ListItemClassKey;
   Menu: MenuClassKey;

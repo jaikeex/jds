@@ -61,6 +61,6 @@
   animation: ripple 600ms linear;
 
   @include themify() {
-    background-color: rgba(themed(text-color-primary), 0.25);
+    background-color: rgba(themed(text-color-primary), 0.35);
   }
 }

@@ -8,6 +8,7 @@ export * from './Checkbox';
 export * from './Code';
 export * from './Divider';
 export * from './IconButton';
+export * from './Link';
 export * from './List';
 export * from './ListItem';
 export * from './Loader';

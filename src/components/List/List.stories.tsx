@@ -104,7 +104,7 @@ CompactWithIcons.args = {
   children: generateListItems({
     elementBefore: (
       <IconButton size="small">
-        <EmailIcon />
+        <EmailIcon size={24} />
       </IconButton>
     ),
     children: <Typography>This is a list item</Typography>
@@ -119,6 +119,7 @@ Disabled.args = {
   ...Default.args,
   children: generateListItems({
     children: <Typography>This is a list item</Typography>,
+    clickable: true,
     disabled: true
   })
 };

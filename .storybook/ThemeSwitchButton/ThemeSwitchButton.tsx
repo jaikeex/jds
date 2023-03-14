@@ -16,11 +16,13 @@ const ThemeSwitchButton: React.FC<ThemeSwitchButtonProps> = () => {
   };
 
   return (
-    <IconButton onClick={themeChangeHandler} size="small" style={{ position: 'fixed', top: '10px', left: '10px' }}>
-      <Tooltip content={`Switch to ${theme === defaultDarkTheme ? 'light theme' : 'dark theme'}`}>
-        {theme === defaultDarkTheme ? <LightModeIcon /> : <DarkModeIcon />}
-      </Tooltip>
-    </IconButton>
+    <Tooltip position="right" content={`Switch to ${theme === defaultDarkTheme ? 'light theme' : 'dark theme'}`}>
+      <div style={{ position: 'fixed', top: '10px', left: '10px' }}>
+        <IconButton onClick={themeChangeHandler} size="small">
+          {theme === defaultDarkTheme ? <LightModeIcon size={24} /> : <DarkModeIcon size={24} />}
+        </IconButton>
+      </div>
+    </Tooltip>
   );
 };
 

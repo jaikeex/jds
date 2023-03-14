@@ -22,7 +22,7 @@ const SvgIcon = React.forwardRef<SVGSVGElement, SvgIconProps>(
       classes = {},
       style = {},
       testId = '',
-      size = 48,
+      size = 32,
       viewBox = '0 0 48 48',
       children,
       ...props
@@ -41,6 +41,7 @@ const SvgIcon = React.forwardRef<SVGSVGElement, SvgIconProps>(
         width={size}
         height={size}
         viewBox={viewBox}
+        shapeRendering="geometricPrecision"
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
         xmlSpace="preserve"

@@ -70,7 +70,6 @@ export const useStyles = createStyles(
             width: '1.2rem'
           }
         },
-
         small: {
           minWidth: '5rem',
           height: '1.8rem',

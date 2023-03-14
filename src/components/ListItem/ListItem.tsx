@@ -45,7 +45,7 @@ const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
     ref
   ) => {
     const innerRef = useForwardedRef<HTMLLIElement>(ref);
-    const createRippleEffect = useRippleEffect(innerRef, true);
+    const createRippleEffect = useRippleEffect(innerRef, { color: color, animationTime: 700 });
 
     const { isCompact } = useListContext();
     const classNames = classes ? mergeClasses(useStyles({ color }), classes) : useStyles({ color });

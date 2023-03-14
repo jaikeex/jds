@@ -24,7 +24,7 @@ export const useStyles = createStyles(
           outline: 'none',
           backgroundColor: 'transparent',
           fontFamily: 'inherit',
-          fontSize: '0.875rem',
+          fontSize: '0.937rem',
           color: theme.palette.text.primary,
           '&::-webkit-input-placeholder': {
             fontWeight: 400,

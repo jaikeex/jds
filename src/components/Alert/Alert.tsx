@@ -98,8 +98,8 @@ const Alert: React.FC<AlertProps> = ({
                 {getDisplayedIcon()}
                 {message && <Typography className={classNames.message}>{message}</Typography>}
                 {displayCloseButton && (
-                  <IconButton onClick={closeButtonClickHandler} size="small" className={classNames.closeBtn}>
-                    <CloseIcon />
+                  <IconButton onClick={closeButtonClickHandler} size="medium" className={classNames.closeBtn}>
+                    <CloseIcon size={24} />
                   </IconButton>
                 )}
               </div>

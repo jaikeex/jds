@@ -52,12 +52,6 @@ LabelTop.args = {
   transformLabel: true
 };
 
-export const LabelBottom = Template.bind({});
-LabelBottom.args = {
-  label: 'Select color',
-  transformLabel: true
-};
-
 export const WithPlaceholder = Template.bind({});
 WithPlaceholder.args = {
   ...Default.args,

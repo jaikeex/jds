@@ -11,7 +11,7 @@ export default {
 const Template: Story<LinkProps> = (args) => <Link {...args} />;
 
 export const Default = Template.bind({});
-Default.args = { children: 'Link', href: '#' };
+Default.args = { children: 'Link', href: '#', underline: 'allways' };
 
 export const OpenInNew = Template.bind({});
 OpenInNew.args = {
