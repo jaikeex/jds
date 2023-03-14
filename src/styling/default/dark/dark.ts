@@ -223,7 +223,7 @@ export const defaultDarkTheme: Theme = {
       textTransform: 'uppercase',
       letterSpacing: '0.031rem'
     },
-    fontFamily: 'OpenSans',
+    fontFamily: '"OpenSans", sans-serif',
     fontSize: 16,
     fontWeightLight: 300,
     fontWeightRegular: 400,

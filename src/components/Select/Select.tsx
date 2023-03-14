@@ -1,23 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import type { Selectable, SelectProps } from 'components/Select/types';
 import type { GroupBase, MultiValue, SingleValue } from 'react-select';
-import { default as RAsyncSelect } from 'react-select/async';
 import { makeId } from 'core/utils';
 import { useForwardedRef } from 'core/hooks';
 import { CValueContainer } from 'components/Select/custom-components';
 import { useSelectClasses } from 'components/Select/useSelectClasses';
-import type Select from 'react-select/dist/declarations/src/Select';
+import type SelectType from 'react-select/dist/declarations/src/Select';
+import { default as RSelect } from 'react-select';
 
-export interface AsyncSelectProps extends SelectProps {
-  cacheOptions?: boolean | ReadonlyArray<Selectable | GroupBase<Selectable>>;
-  defaultOptions?: boolean | ReadonlyArray<Selectable | GroupBase<Selectable>>;
-  loadOptions?: (
-    query: string,
-    callback: (options: ReadonlyArray<Selectable | GroupBase<Selectable>>) => void
-  ) => void | Promise<ReadonlyArray<Selectable | GroupBase<Selectable>>>;
-}
-
-const AsyncSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Selectable>>, AsyncSelectProps>(
+const Select = React.forwardRef<SelectType<Selectable, boolean, GroupBase<Selectable>>, SelectProps>(
   (
     {
       appearance = 'outlined',
@@ -39,23 +30,12 @@ const AsyncSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Selec
     },
     ref
   ) => {
-    const inputRef = useForwardedRef<Select<Selectable, boolean, GroupBase<Selectable>>>(ref);
+    const inputRef = useForwardedRef<SelectType<Selectable, boolean, GroupBase<Selectable>>>(ref);
     const [selectedValue, setSelectedValue] = useState<SingleValue<Selectable> | MultiValue<Selectable> | undefined>(
       value
     );
 
-    const classNames = useSelectClasses({ appearance, transformLabel, className, color, disabled }, classes);
-
-    const styles = () => {
-      const styles = { ...style };
-      if (width) {
-        styles.container = () => ({
-          width: typeof width === 'string' ? width : `${width}}px`
-        });
-
-        return styles;
-      }
-    };
+    const classNames = useSelectClasses({ appearance, transformLabel, className, color, disabled, width }, classes);
 
     const selectionChangeHandler = useCallback(
       (value: SingleValue<Selectable> | MultiValue<Selectable>) => {
@@ -70,7 +50,7 @@ const AsyncSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Selec
     }, [value]);
 
     return (
-      <RAsyncSelect
+      <RSelect
         ref={inputRef}
         components={{
           ValueContainer: CValueContainer,
@@ -81,7 +61,7 @@ const AsyncSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Selec
         isMulti={isMulti}
         onChange={selectionChangeHandler}
         placeholder={label}
-        styles={styles()}
+        styles={style}
         value={selectedValue}
         classNames={classNames}
         {...props}
@@ -90,5 +70,5 @@ const AsyncSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Selec
   }
 );
 
-AsyncSelect.displayName = 'AsyncSelect';
-export default AsyncSelect;
+Select.displayName = 'Select';
+export default Select;

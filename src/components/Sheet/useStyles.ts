@@ -7,7 +7,7 @@ export const useStyles = createStyles(
     mergeOverrides(
       {
         root: (props: SheetProps) => ({
-          borderRadius: props.sharpCorners ? 0 : theme.shape.borderRadius.medium,
+          borderRadius: props.sharpCorners ? 0 : theme.shape.borderRadius.small,
           backgroundColor:
             theme.name === 'dark'
               ? theme.palette.lighten(theme.palette.background.sheet, props.level || 0)

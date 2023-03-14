@@ -1,16 +1,18 @@
 import React, { useCallback } from 'react';
-import './ListItem.styles.scss';
-import classNames from 'classnames';
-import { makeId } from 'core/utils';
+import { makeId, mergeClasses } from 'core/utils';
 import { Divider } from 'components/Divider';
 import { useForwardedRef, useRippleEffect } from 'core/hooks';
 import { useListContext } from 'components/List';
-import type { ColorVariants } from 'core/types';
+import type { ListItemClassKey, ListItemColorVariants } from './types';
+import type { Classes } from 'jss';
+import { useStyles } from './useStyles';
+import clsx from 'clsx';
 
 export interface ListItemProps extends React.PropsWithChildren {
   className?: string;
+  classes?: Classes<ListItemClassKey>;
   clickable?: boolean;
-  color?: ColorVariants | `#${string}`;
+  color?: ListItemColorVariants;
   compact?: boolean;
   disabled?: boolean;
   divider?: boolean;
@@ -27,6 +29,7 @@ const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
     {
       children = null,
       className = '',
+      classes = {},
       clickable = false,
       color = 'default',
       compact = false,
@@ -45,28 +48,16 @@ const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
     const createRippleEffect = useRippleEffect(innerRef, true);
 
     const { isCompact } = useListContext();
+    const classNames = classes ? mergeClasses(useStyles({ color }), classes) : useStyles({ color });
 
-    const colorClassName = `jds-list-item--color--${color}`;
-
-    const classes = classNames('jds-list-item', className, {
-      'jds-list-item--clickable': clickable,
-      'jds-list-item--compact': isCompact || compact,
-      'jds-list-item--disabled': disabled,
-      'jds-list-item--selected': selected,
-      [colorClassName]: !color.startsWith('#')
-    });
-
-    const getStyles = () => {
-      const styles: React.CSSProperties = {
-        ...style
-      };
-
-      if (color.startsWith('#')) {
-        styles.color = color;
-      }
-
-      return styles;
-    };
+    const rootClasses = clsx(
+      classNames.root,
+      clickable && classNames.clickable,
+      isCompact || compact ? classNames.compact : classNames.wide,
+      disabled && classNames.disabled,
+      selected && classNames.selected,
+      className
+    );
 
     const clickHandler = useCallback(
       (event: React.MouseEvent<HTMLLIElement>) => {
@@ -80,12 +71,10 @@ const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
 
     return (
       <React.Fragment>
-        <li className={classes} style={getStyles()} key={key} ref={innerRef} onClick={clickHandler}>
-          {elementBefore && (
-            <div className="jds-list-item__element jds-list-item__element--before">{elementBefore}</div>
-          )}
-          {children}
-          {elementAfter && <div className="jds-list-item__element jds-list-item__element--after">{elementAfter}</div>}
+        <li className={rootClasses} style={style} key={key} ref={innerRef} onClick={clickHandler}>
+          {elementBefore && <div className={classNames.element}>{elementBefore}</div>}
+          <div className={classNames.children}>{children}</div>
+          {elementAfter && <div className={classNames.element}>{elementAfter}</div>}
         </li>
         {divider && <Divider flexItem />}
       </React.Fragment>

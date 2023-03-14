@@ -56,7 +56,7 @@ const MenuList: React.FC<MenuListProps> = ({
       delayHide={popperProps.trigger === 'hover' ? 200 : 0}
       {...popperProps}
     >
-      <Sheet {...sheetProps} style={getStyles()} level={6}>
+      <Sheet style={getStyles()} level={6} {...sheetProps}>
         <List compact={compact}>{children}</List>
       </Sheet>
     </Popper>

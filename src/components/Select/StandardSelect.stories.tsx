@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
-import StandardSelect from './StandardSelect';
+import StandardSelect from './Select';
 import type { SelectProps } from 'components/Select/types';
 
 export default {

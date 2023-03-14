@@ -33,7 +33,7 @@ Positioned.args = {
   ...Default.args,
   triggerComponent: (
     <Button disableRippleEffect style={{ minWidth: '1rem' }}>
-      <MoreHorizontalIcon />
+      <MoreHorizontalIcon size={28} />
     </Button>
   ),
   children: [
@@ -43,7 +43,7 @@ Positioned.args = {
     <MenuItem key={2} disabled divider>
       <Typography>Move</Typography>
     </MenuItem>,
-    <MenuItem key={3} elementBefore={<DeleteIcon size={16} />} color={'danger'}>
+    <MenuItem key={3} elementBefore={<DeleteIcon size={16} />} color={'error'}>
       <Typography>Delete</Typography>
     </MenuItem>
   ],

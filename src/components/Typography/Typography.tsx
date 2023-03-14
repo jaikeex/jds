@@ -7,8 +7,7 @@ import type { TypographyClassKey, TypographyColorVariants } from './types';
 import type { Classes } from 'jss';
 import { mergeClasses } from 'core/utils';
 
-export interface TypographyProps {
-  children?: React.ReactNode;
+export interface TypographyProps extends React.PropsWithChildren {
   classes?: Classes<TypographyClassKey>;
   className?: string;
   color?: TypographyColorVariants;

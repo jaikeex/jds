@@ -14,7 +14,6 @@ export default [
       {
         dir: 'dist/esm',
         format: 'esm',
-        preserveModules: true
       }
     ],
     plugins: [resolve(), json(), typescript({ tsconfig: './tsconfig.build.json' }), commonjs(), postcss()],

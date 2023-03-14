@@ -6,7 +6,10 @@ import type {
   TooltipClassKey,
   TypographyClassKey,
   IconClassKey,
-  SelectClassKey
+  SelectClassKey,
+  MenuClassKey,
+  ListClassKey,
+  ListItemClassKey
 } from 'components';
 import type { Styles } from 'react-jss';
 
@@ -18,6 +21,9 @@ export interface ComponentNameToClassKey {
   Alert: AlertClassKey;
   Button: ButtonClassKey;
   Icon: IconClassKey;
+  List: ListClassKey;
+  ListItem: ListItemClassKey;
+  Menu: MenuClassKey;
   Select: SelectClassKey;
   Sheet: SheetClassKey;
   TextField: TextFieldClassKey;

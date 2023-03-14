@@ -113,3 +113,21 @@ CompactWithIcons.args = {
 
 export const WithCheckbox = TemplateCheckbox.bind({});
 WithCheckbox.args = {};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+  ...Default.args,
+  children: generateListItems({
+    children: <Typography>This is a list item</Typography>,
+    disabled: true
+  })
+};
+
+export const ColorSuccess = Template.bind({});
+ColorSuccess.args = {
+  ...Default.args,
+  children: generateListItems({
+    children: <Typography>This is a list item</Typography>,
+    color: 'success'
+  })
+};

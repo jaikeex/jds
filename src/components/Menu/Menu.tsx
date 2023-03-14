@@ -1,13 +1,19 @@
 import React, { useState } from 'react';
-import './Menu.styles.scss';
 import type { Position } from 'core/types';
 import type { TriggerType } from 'react-popper-tooltip';
 import { MenuList } from 'components/MenuList';
 import { MenuContextProvider } from './MenuContextProvider';
 import type { SheetProps } from 'components/Sheet';
+import type { MenuClassKey } from './types';
+import type { Classes } from 'jss';
+import { mergeClasses } from 'core/utils';
+import clsx from 'clsx';
+import { useStyles } from './useStyles';
 
 export interface MenuProps extends React.PropsWithChildren {
   compact?: boolean;
+  className?: string;
+  classes?: Classes<MenuClassKey>;
   defaultOpen?: boolean | undefined;
   maxHeight?: number | string;
   minWidth?: number | string;
@@ -20,6 +26,8 @@ export interface MenuProps extends React.PropsWithChildren {
 
 const Menu: React.FC<MenuProps> = ({
   children = null,
+  className = '',
+  classes = {},
   defaultOpen = undefined,
   position = 'bottom-start',
   triggerComponent,
@@ -27,13 +35,15 @@ const Menu: React.FC<MenuProps> = ({
 }) => {
   const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(null);
 
+  const classNames = classes ? mergeClasses(useStyles(), classes) : useStyles();
+
   const triggerComponentWithProps = React.cloneElement(triggerComponent, {
     ref: setReferenceElement
   });
 
   return (
     <MenuContextProvider defaultIsOpen={defaultOpen}>
-      <div className="jds-menu">
+      <div className={clsx(classNames.root, className)}>
         {triggerComponentWithProps}
         <MenuList {...menuListProps} position={position} referenceElement={referenceElement}>
           {children}
