@@ -1,12 +1,13 @@
 import React from 'react';
-import type { IconClassKey, IconColorVariants } from './types';
+import type { IconClassKey } from './types';
 import type { Classes } from 'jss';
 import { mergeClasses } from 'core/utils';
 import { useStyles } from './useStyles';
+import type { ThemeColorVariantsWithDefault } from 'core/types';
 
 export interface SvgIconProps extends React.PropsWithChildren {
   size?: number;
-  color?: IconColorVariants;
+  color?: ThemeColorVariantsWithDefault;
   className?: string;
   classes?: Classes<IconClassKey>;
   style?: React.CSSProperties;

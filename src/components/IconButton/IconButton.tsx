@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import './IconButton.styles.scss';
 import type { ThemeColorVariants } from 'core/types';
 import type { IconButtonClassKey, IconButtonSize } from './types';
 import { useForwardedRef, useRippleEffect } from 'core/hooks';

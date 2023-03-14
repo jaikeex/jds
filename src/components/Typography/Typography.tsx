@@ -1,16 +1,16 @@
 import React from 'react';
-import type { TypographyVariants } from 'core/types';
+import type { ThemeColorVariantsWithDefault, TypographyVariants } from 'core/types';
 import { typographyVariantMap } from 'core/types';
 import { useStyles } from './useStyles';
 import clsx from 'clsx';
-import type { TypographyClassKey, TypographyColorVariants } from './types';
+import type { TypographyClassKey } from './types';
 import type { Classes } from 'jss';
 import { mergeClasses } from 'core/utils';
 
 export interface TypographyProps extends React.PropsWithChildren {
   classes?: Classes<TypographyClassKey>;
   className?: string;
-  color?: TypographyColorVariants;
+  color?: ThemeColorVariantsWithDefault;
   gutterBottom?: boolean;
   noWrap?: boolean;
   style?: React.CSSProperties;

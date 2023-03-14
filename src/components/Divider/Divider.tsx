@@ -1,11 +1,16 @@
 import React from 'react';
 import './Divider.styles.scss';
-import type { ColorVariants } from 'core/types';
-import classNames from 'classnames';
+import type { ThemeColorVariantsWithDefault } from 'core/types';
+import type { DividerClassKey } from './types';
+import type { Classes } from 'jss';
+import { mergeClasses } from 'core/utils';
+import { useStyles } from './useStyles';
+import clsx from 'clsx';
 
 export interface DividerProps {
   className?: string;
-  color?: ColorVariants;
+  classes?: Classes<DividerClassKey>;
+  color?: ThemeColorVariantsWithDefault;
   component?: keyof JSX.IntrinsicElements;
   flexItem?: boolean;
   lineStrength?: string | number;
@@ -15,6 +20,7 @@ export interface DividerProps {
 
 const Divider: React.FC<DividerProps> = ({
   className = '',
+  classes = {},
   color = 'default',
   component = 'div',
   flexItem = false,
@@ -23,11 +29,9 @@ const Divider: React.FC<DividerProps> = ({
   orientation = 'horizontal'
 }) => {
   const Component = component;
-
-  const classes = classNames('jds-divider', `jds-divider--color--${color}`, `jds-divider--${orientation}`, className, {
-    'jds-divider--flex': flexItem,
-    'jds-divider--no-margin': removeMargin
-  });
+  const classNames = classes
+    ? mergeClasses(useStyles({ color, removeMargin, flexItem, orientation }), classes)
+    : useStyles({ color, removeMargin, flexItem, orientation });
 
   const styles = () => {
     const styles: React.CSSProperties = {};
@@ -42,7 +46,7 @@ const Divider: React.FC<DividerProps> = ({
   };
 
   return (
-    <Component className={classes}>
+    <Component className={clsx(classNames.root, className)}>
       <hr style={styles()} />
     </Component>
   );

@@ -3,16 +3,17 @@ import { makeId, mergeClasses } from 'core/utils';
 import { Divider } from 'components/Divider';
 import { useForwardedRef, useRippleEffect } from 'core/hooks';
 import { useListContext } from 'components/List';
-import type { ListItemClassKey, ListItemColorVariants } from './types';
+import type { ListItemClassKey } from './types';
 import type { Classes } from 'jss';
 import { useStyles } from './useStyles';
 import clsx from 'clsx';
+import type { ThemeColorVariantsWithDefault } from 'core/types';
 
 export interface ListItemProps extends React.PropsWithChildren {
   className?: string;
   classes?: Classes<ListItemClassKey>;
   clickable?: boolean;
-  color?: ListItemColorVariants;
+  color?: ThemeColorVariantsWithDefault;
   compact?: boolean;
   disabled?: boolean;
   divider?: boolean;

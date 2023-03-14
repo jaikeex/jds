@@ -11,7 +11,8 @@ import type {
   ListClassKey,
   ListItemClassKey,
   LinkClassKey,
-  IconButtonClassKey
+  IconButtonClassKey,
+  DividerClassKey
 } from 'components';
 import type { Styles } from 'react-jss';
 
@@ -22,6 +23,7 @@ export type Overrides<Props = unknown> = {
 export interface ComponentNameToClassKey {
   Alert: AlertClassKey;
   Button: ButtonClassKey;
+  Divider: DividerClassKey;
   Icon: IconClassKey;
   IconButton: IconButtonClassKey;
   Link: LinkClassKey;

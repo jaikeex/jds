@@ -1,13 +1,13 @@
 import React from 'react';
-import type { Position } from 'core/types';
-import type { TooltipClassKey, TooltipColorVariants } from './types';
+import type { Position, ThemeColorVariantsWithDefault } from 'core/types';
+import type { TooltipClassKey } from './types';
 import { usePopperTooltip } from 'react-popper-tooltip';
 import type { Classes } from 'jss';
 import { mergeClasses } from 'core/utils';
 import { useStyles } from './useStyles';
 
 export interface TooltipProps {
-  color?: TooltipColorVariants;
+  color?: ThemeColorVariantsWithDefault;
   position?: Position;
   content?: React.ReactNode;
   className?: string;
