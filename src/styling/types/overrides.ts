@@ -15,7 +15,8 @@ import type {
   DividerClassKey,
   BackdropClassKey,
   DialogClassKey,
-  CheckboxClassKey
+  CheckboxClassKey,
+  ButtonGroupClassKey
 } from 'components';
 import type { Styles } from 'react-jss';
 
@@ -27,6 +28,7 @@ export interface ComponentNameToClassKey {
   Alert: AlertClassKey;
   Backdrop: BackdropClassKey;
   Button: ButtonClassKey;
+  ButtonGroup: ButtonGroupClassKey;
   Checkbox: CheckboxClassKey;
   Dialog: DialogClassKey;
   Divider: DividerClassKey;

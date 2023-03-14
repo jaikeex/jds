@@ -13,6 +13,7 @@ import type { JdsIcon, SvgColoredIconProps, SvgIconProps } from 'components/icon
 export interface ButtonProps extends React.PropsWithChildren {
   appearance?: ButtonAppearance;
   classes?: Classes<ButtonClassKey>;
+  className?: string;
   color?: ThemeColorVariants;
   disabled?: boolean;
   disableRippleEffect?: boolean;
@@ -36,6 +37,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       iconRight = null,
       type = 'button',
       classes = undefined,
+      className = '',
       appearance = 'filled',
       color = 'primary',
       style = {},
@@ -52,7 +54,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       classNames.root,
       classNames[size],
       classNames[appearance],
-      disabled && classNames.disabled
+      disabled && classNames.disabled,
+      className
     );
 
     const buttonClickHandler = useCallback(
