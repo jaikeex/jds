@@ -1,5 +1,4 @@
 import React from 'react';
-import './CValueContainer.styles.scss';
 import type { GroupBase, ValueContainerProps } from 'react-select';
 import { components } from 'react-select';
 import { CPlaceholder } from 'components/Select/custom-components/CPlaceholder';

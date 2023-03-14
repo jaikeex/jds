@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import './Popper.styles.scss';
 import type { Position } from 'core/types';
 import type { PopperOptions, TriggerType } from 'react-popper-tooltip';
 import { usePopperTooltip } from 'react-popper-tooltip';

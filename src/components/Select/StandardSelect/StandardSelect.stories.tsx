@@ -24,7 +24,7 @@ const options = [
 const Template: Story<SelectProps> = (args) => (
   <div
     style={{
-      width: '300px',
+      width: '350px',
       display: 'flex',
       flexDirection: 'column',
       gap: '2rem'
@@ -74,8 +74,8 @@ ColorSuccess.args = {
   color: 'success'
 };
 
-export const ColorDanger = Template.bind({});
-ColorDanger.args = {
+export const ColorError = Template.bind({});
+ColorError.args = {
   color: 'error'
 };
 

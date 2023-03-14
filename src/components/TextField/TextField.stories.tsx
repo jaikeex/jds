@@ -10,7 +10,7 @@ export default {
 } as ComponentMeta<typeof TextField>;
 
 const Template: Story<TextFieldProps> = (args) => (
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+  <div style={{ width: '350px', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
     <TextField appearance="outlined" label="Label - Outlined" {...args} />
     <TextField appearance="filled" label="Label - Filled" {...args} />
     <TextField appearance="subtle" label="Label - Subtle" {...args} />

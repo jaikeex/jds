@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import '../Select.styles.scss';
 import type { Selectable, SelectProps } from 'components/Select/types';
 import type { GroupBase, MultiValue, SingleValue } from 'react-select';
 import { makeId } from 'core/utils';
@@ -7,12 +6,13 @@ import { useForwardedRef } from 'core/hooks';
 import { CValueContainer } from 'components/Select/custom-components';
 import { useSelectClasses } from 'components/Select/useSelectClasses';
 import type Select from 'react-select/dist/declarations/src/Select';
-import { SelectBase } from '../SelectBase';
+import { default as RSelect } from 'react-select';
 
 const StandardSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Selectable>>, SelectProps>(
   (
     {
       appearance = 'outlined',
+      classes = {},
       className = '',
       color = 'primary',
       components = {},
@@ -35,6 +35,8 @@ const StandardSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Se
       value
     );
 
+    const classNames = useSelectClasses({ appearance, transformLabel, className, color, disabled, width }, classes);
+
     const selectionChangeHandler = useCallback(
       (value: SingleValue<Selectable> | MultiValue<Selectable>) => {
         setSelectedValue(value);
@@ -48,28 +50,25 @@ const StandardSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Se
     }, [value]);
 
     return (
-      <SelectBase
-        appearance={appearance}
-        color={color}
-        transformLabel={transformLabel}
-        className={className}
+      <RSelect
         ref={inputRef}
         components={{
           ValueContainer: CValueContainer,
           ...components
         }}
         id={id}
-        disabled={disabled}
+        isDisabled={disabled}
         isMulti={isMulti}
         onChange={selectionChangeHandler}
-        label={label}
-        style={style}
+        placeholder={label}
+        styles={style}
         value={selectedValue}
+        classNames={classNames}
         {...props}
       />
     );
   }
 );
 
-StandardSelect.displayName = 'StandardSelect';
+StandardSelect.displayName = 'Select';
 export default StandardSelect;

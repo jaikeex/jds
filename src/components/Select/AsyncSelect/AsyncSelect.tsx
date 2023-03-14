@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import '../Select.styles.scss';
 import type { Selectable, SelectProps } from 'components/Select/types';
 import type { GroupBase, MultiValue, SingleValue } from 'react-select';
 import { default as RAsyncSelect } from 'react-select/async';
@@ -22,8 +21,9 @@ const AsyncSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Selec
   (
     {
       appearance = 'outlined',
+      classes = {},
       className = '',
-      color = 'default',
+      color = 'primary',
       components = {},
       defaultValue = undefined,
       disabled = false,
@@ -44,14 +44,7 @@ const AsyncSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Selec
       value
     );
 
-    const classes = useSelectClasses({
-      ...props,
-      appearance,
-      className,
-      color,
-      isMulti,
-      transformLabel
-    });
+    const classNames = useSelectClasses({ appearance, transformLabel, className, color, disabled }, classes);
 
     const styles = () => {
       const styles = { ...style };
@@ -90,7 +83,7 @@ const AsyncSelect = React.forwardRef<Select<Selectable, boolean, GroupBase<Selec
         placeholder={label}
         styles={styles()}
         value={selectedValue}
-        classNames={classes}
+        classNames={classNames}
         {...props}
       />
     );

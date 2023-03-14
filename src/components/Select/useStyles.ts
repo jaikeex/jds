@@ -6,13 +6,13 @@ export const useStyles = createStyles(
   (theme: Theme) =>
     mergeOverrides(
       {
-        root: {
+        root: (props: SelectProps) => ({
           fontFamily: 'inherit',
           fontSize: '1rem',
           transition: 'all 0.2s',
-          width: '20rem',
+          width: props.width || '100%',
           outline: 'none'
-        },
+        }),
         option: (props: SelectProps) => ({
           height: '1.75rem',
           backgroundColor: 'transparent',
@@ -20,17 +20,20 @@ export const useStyles = createStyles(
           padding: [theme.spacing.padding[2], theme.spacing.padding[6]]
         }),
         optionDisabled: {
-          color: theme.palette.grey[300]
+          color: theme.palette.rgba(theme.palette.text.disabled, 0.8)
         },
         optionSelected: (props: SelectProps) => ({
           color: theme.palette.text.primary,
           backgroundColor: theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.5)
         }),
         optionFocused: (props: SelectProps) => ({
-          backgroundColor: theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.25)
+          backgroundColor: theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.25),
+          '&:active': {
+            backgroundColor: theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.8)
+          }
         }),
         control: {
-          backgroundColor: theme.palette.background.default,
+          backgroundColor: 'transparent',
           color: theme.palette.text.primary
         },
         filled: (props: SelectProps) => ({

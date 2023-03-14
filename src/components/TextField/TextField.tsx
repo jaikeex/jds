@@ -55,7 +55,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       style = {},
       transformLabel = true,
       value = defaultValue,
-      width = '20rem'
+      width = undefined
     },
     ref
   ) => {
@@ -69,15 +69,6 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     const labelClassNames = clsx(classNames.label, {
       [classNames.labelTransformed]: placeholder || inputValue || isFocused || elementBefore || !transformLabel
     });
-
-    const styles = () => {
-      const styles: React.CSSProperties = { ...style };
-      if (width) {
-        styles.width = typeof width === 'string' ? width : `${width}px`;
-      }
-
-      return styles;
-    };
 
     const inputChangeHandler = useCallback(
       (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -110,7 +101,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           placeholder={placeholder}
           readOnly={readOnly}
           required={required}
-          style={styles()}
+          style={style}
           value={inputValue}
         />
         {elementAfter && <div className={classNames.element}>{elementAfter}</div>}

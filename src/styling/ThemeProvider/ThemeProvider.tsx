@@ -3,6 +3,26 @@ import { defaultLightTheme } from 'styling/default/light';
 import { defaultDarkTheme } from 'styling/default/dark';
 import type { Theme, ThemeNameToTheme } from 'styling/types';
 import { ThemeProvider as JSSThemeProvider } from 'react-jss';
+import { CacheProvider } from '@emotion/react';
+import createCache from '@emotion/cache';
+
+interface CacheProps {
+  children: React.ReactNode;
+}
+
+const EmotionCacheProvider: React.FC<CacheProps> = ({ children }) => {
+  const cache = React.useMemo(
+    () =>
+      createCache({
+        key: 'jds',
+        insertionPoint: document.querySelector('title')!,
+        prepend: true
+      }),
+    []
+  );
+
+  return <CacheProvider value={cache}>{children}</CacheProvider>;
+};
 
 export interface ThemeContextProps {
   theme: Theme;
@@ -46,13 +66,12 @@ const ThemeProvider: React.FC<ThemeContextProviderProps> = ({
   const defaultProps = { theme: theme, setTheme: themeChangeHandler };
 
   return (
-    <ThemeContext.Provider value={defaultProps}>
-      {/* @ts-ignore */}
-      <JSSThemeProvider theme={theme}>
-        <style id="jds-select" />
-        {children}
-      </JSSThemeProvider>
-    </ThemeContext.Provider>
+    <EmotionCacheProvider>
+      <ThemeContext.Provider value={defaultProps}>
+        {/* @ts-ignore */}
+        <JSSThemeProvider theme={theme}>{children}</JSSThemeProvider>
+      </ThemeContext.Provider>
+    </EmotionCacheProvider>
   );
 };
 

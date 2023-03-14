@@ -33,7 +33,7 @@ const loadOptions = (inputValue: string, callback: (options: Selectable[]) => vo
 const Template: Story<AsyncSelectProps> = (args) => (
   <div
     style={{
-      width: '300px',
+      width: '350px',
       display: 'flex',
       flexDirection: 'column',
       gap: '2rem'
@@ -64,7 +64,6 @@ LabelTop.args = {
 export const LabelBottom = Template.bind({});
 LabelBottom.args = {
   label: 'Select color',
-  labelPosition: 'bottom',
   transformLabel: true
 };
 
@@ -84,9 +83,9 @@ ColorSuccess.args = {
   color: 'success'
 };
 
-export const ColorDanger = Template.bind({});
-ColorDanger.args = {
-  color: 'danger'
+export const ColorError = Template.bind({});
+ColorError.args = {
+  color: 'error'
 };
 
 export const Disabled = Template.bind({});

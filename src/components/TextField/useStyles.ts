@@ -12,13 +12,14 @@ export const useStyles = createStyles(
           alignItems: 'center',
           transition: 'all 0.15s ease-in-out',
           borderRadius: theme.shape.borderRadius.small,
-          width: props.width || '20rem',
+          width: props.width || '100%',
           height: '2.5rem',
           padding: [0, theme.spacing.padding[2]]
         }),
         input: (props: TextFieldProps) => ({
           display: 'block',
           padding: [theme.spacing.padding[4], theme.spacing.padding[3]],
+          flex: 1,
           border: 'none',
           outline: 'none',
           backgroundColor: 'transparent',

@@ -28,6 +28,7 @@
     "lint": "prettier --write . && eslint . --fix"
   },
   "dependencies": {
+    "@emotion/cache": "^11.10.5",
     "@emotion/react": "^11.10.6",
     "@popperjs/core": "^2.11.6",
     "@types/tinycolor2": "^1.4.3",

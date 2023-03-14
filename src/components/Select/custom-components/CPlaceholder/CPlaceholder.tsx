@@ -1,5 +1,4 @@
 import React from 'react';
-import './CPlaceholder.styles.scss';
 import type { GroupBase, PlaceholderProps } from 'react-select';
 import { components } from 'react-select';
 import type { Selectable } from 'components/Select';
