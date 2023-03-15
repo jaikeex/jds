@@ -8,7 +8,7 @@ import type { ButtonClassKey } from './types';
 import clsx from 'clsx';
 import type { Classes } from 'jss';
 import { mergeClasses } from 'core/utils';
-import type { JdsIcon, SvgColoredIconProps, SvgIconProps } from 'components/icons';
+import type { SvgColoredIconProps, SvgIconProps } from 'components/icons';
 
 export interface ButtonProps extends React.PropsWithChildren {
   appearance?: ButtonAppearance;

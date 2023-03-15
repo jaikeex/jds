@@ -77,13 +77,13 @@
     "react/no-danger": ["error"],
 
     //* General rules
-    "prefer-const": "off",
-    "arrow-body-style": ["error", "as-needed"]
-    // "no-restricted-imports": [
-    //   "error",
-    //   {
-    //     "patterns": ["../"]
-    //   }
-    // ]
+    "prefer-const": "error",
+    "arrow-body-style": ["error", "as-needed"],
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": ["../"]
+      }
+    ]
   }
 }

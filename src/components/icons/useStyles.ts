@@ -8,6 +8,7 @@ export const useStyles = createStyles(
     mergeOverrides(
       {
         root: (props: SvgIconProps) => ({
+          display: 'inline',
           fill:
             props.color === ('default' || undefined)
               ? theme.palette.text.primary
