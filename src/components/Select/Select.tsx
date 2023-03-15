@@ -18,7 +18,7 @@ const Select = React.forwardRef<SelectType<Selectable, boolean, GroupBase<Select
       components = {},
       defaultValue = undefined,
       disabled = false,
-      id = makeId(5),
+      id = undefined,
       isMulti = false,
       onChange = () => {},
       label = '',
@@ -34,6 +34,8 @@ const Select = React.forwardRef<SelectType<Selectable, boolean, GroupBase<Select
     const [selectedValue, setSelectedValue] = useState<SingleValue<Selectable> | MultiValue<Selectable> | undefined>(
       value
     );
+
+    id ??= React.useMemo(() => makeId(5), [id, makeId]);
 
     const classNames = useSelectClasses({ appearance, transformLabel, className, color, disabled, width }, classes);
 

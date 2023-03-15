@@ -18,9 +18,7 @@ export interface SheetProps {
 
 const Sheet = React.forwardRef<HTMLDivElement, SheetProps>(
   ({ children, classes = {}, className = '', level = 4, outlined = false, sharpCorners = false, style = {} }, ref) => {
-    const classNames = classes
-      ? mergeClasses(useStyles({ sharpCorners, outlined, level }), classes)
-      : useStyles({ sharpCorners, outlined, level });
+    const classNames = mergeClasses(useStyles({ sharpCorners, outlined, level }), classes);
 
     return (
       <div className={clsx(classNames.root, className)} style={style} ref={ref}>

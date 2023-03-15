@@ -30,7 +30,7 @@ const SvgIcon = React.forwardRef<SVGSVGElement, SvgIconProps>(
     },
     ref
   ) => {
-    const classNames = classes ? mergeClasses(useStyles({ color }), classes) : useStyles({ color });
+    const classNames = mergeClasses(useStyles({ color }), classes);
 
     return (
       <svg

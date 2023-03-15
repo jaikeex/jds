@@ -25,7 +25,7 @@ const Tooltip: React.FC<TooltipProps> = ({
   children = null
 }) => {
   const { getTooltipProps, setTooltipRef, setTriggerRef, visible } = usePopperTooltip({ placement: position });
-  const classNames = classes ? mergeClasses(useStyles({ color }), classes) : useStyles({ color });
+  const classNames = mergeClasses(useStyles({ color }), classes);
 
   const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {

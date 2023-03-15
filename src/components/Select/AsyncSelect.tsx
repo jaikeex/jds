@@ -27,7 +27,7 @@ const AsyncSelect = React.forwardRef<SelectType<Selectable, boolean, GroupBase<S
       components = {},
       defaultValue = undefined,
       disabled = false,
-      id = makeId(5),
+      id = undefined,
       isMulti = false,
       onChange = () => {},
       label = '',
@@ -43,6 +43,8 @@ const AsyncSelect = React.forwardRef<SelectType<Selectable, boolean, GroupBase<S
     const [selectedValue, setSelectedValue] = useState<SingleValue<Selectable> | MultiValue<Selectable> | undefined>(
       value
     );
+
+    id ??= React.useMemo(() => makeId(5), [id, makeId]);
 
     const classNames = useSelectClasses({ appearance, transformLabel, className, color, disabled }, classes);
 

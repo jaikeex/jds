@@ -28,7 +28,7 @@ const Link: React.FC<LinkProps> = ({
   underline = 'hover',
   ...anchorProps
 }) => {
-  const classNames = classes ? mergeClasses(useStyles({ underline }), classes) : useStyles({ underline });
+  const classNames = mergeClasses(useStyles({ underline }), classes);
 
   const getChildren = () =>
     typeof children === 'string' ? (

@@ -21,7 +21,7 @@ export interface TypographyProps extends React.PropsWithChildren {
 
 const Typography: React.FC<TypographyProps> = ({
   children = null,
-  classes = undefined,
+  classes = {},
   className = '',
   color = 'default',
   gutterBottom = false,
@@ -32,7 +32,7 @@ const Typography: React.FC<TypographyProps> = ({
   variant = 'body1'
 }) => {
   const Component = typographyVariantMap[variant] as keyof JSX.IntrinsicElements;
-  const classNames = classes ? mergeClasses(useStyles({ color }), classes) : useStyles({ color });
+  const classNames = mergeClasses(useStyles({ color }), classes);
 
   const getStyles = () => {
     const styles: React.CSSProperties = {

@@ -14,7 +14,7 @@ export interface ListProps {
 }
 
 const List: React.FC<ListProps> = ({ children, className = '', classes = {}, compact = false }) => {
-  const classNames = classes ? mergeClasses(useStyles(), classes) : useStyles();
+  const classNames = mergeClasses(useStyles(), classes);
 
   return (
     <ListContextProvider compact={compact}>

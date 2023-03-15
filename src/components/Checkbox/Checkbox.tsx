@@ -39,7 +39,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       defaultChecked = false,
       checked = defaultChecked,
       required = false,
-      id = makeId(5),
+      id = undefined,
       onChange = () => {},
       icon = null,
       iconChecked = icon,
@@ -49,6 +49,8 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   ) => {
     const [isChecked, setIsChecked] = useState<boolean>(checked);
     const classNames = mergeClasses(useStyles({ color, icon, size }), classes);
+
+    id ??= React.useMemo(() => makeId(5), [id, makeId]);
 
     const inputChangeHandler = useCallback(
       (event: React.ChangeEvent<HTMLInputElement>) => {

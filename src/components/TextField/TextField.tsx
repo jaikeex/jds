@@ -44,7 +44,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       disabled = false,
       elementAfter = null,
       elementBefore = null,
-      id = makeId(5),
+      id = undefined,
       label = '',
       onBlur = () => {},
       onChange = () => {},
@@ -62,15 +62,15 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     const inputRef = useForwardedRef<HTMLInputElement>(ref);
     const [inputValue, setInputValue] = useState<string>(value);
     const isFocused = useIsFocused(inputRef, autoFocus);
-    const classNames = classes
-      ? mergeClasses(useStyles({ color, disabled, width }), classes)
-      : useStyles({ color, disabled, width });
+    const classNames = mergeClasses(useStyles({ color, disabled, width }), classes);
 
     const rootClassNames = clsx(classNames.root, classNames[appearance], className);
     const inputClassNames = clsx(classNames.input);
     const labelClassNames = clsx(classNames.label, {
       [classNames.labelTransformed]: placeholder || inputValue || isFocused || elementBefore || !transformLabel
     });
+
+    id ??= React.useMemo(() => makeId(5), [id, makeId]);
 
     const inputChangeHandler = useCallback(
       (event: React.ChangeEvent<HTMLInputElement>) => {

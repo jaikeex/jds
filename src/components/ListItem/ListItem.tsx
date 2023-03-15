@@ -49,7 +49,7 @@ const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
     const createRippleEffect = useRippleEffect(innerRef, { color: color, animationTime: 700 });
 
     const { isCompact } = useListContext();
-    const classNames = classes ? mergeClasses(useStyles({ color }), classes) : useStyles({ color });
+    const classNames = mergeClasses(useStyles({ color }), classes);
 
     const rootClasses = clsx(
       classNames.root,

@@ -28,9 +28,7 @@ const Divider: React.FC<DividerProps> = ({
   orientation = 'horizontal'
 }) => {
   const Component = component;
-  const classNames = classes
-    ? mergeClasses(useStyles({ color, removeMargin, flexItem, orientation }), classes)
-    : useStyles({ color, removeMargin, flexItem, orientation });
+  const classNames = mergeClasses(useStyles({ color, removeMargin, flexItem, orientation }), classes);
 
   const styles = () => {
     const styles: React.CSSProperties = {};

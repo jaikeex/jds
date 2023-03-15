@@ -37,10 +37,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
   ) => {
     const buttonRef = useForwardedRef<HTMLButtonElement>(ref);
     const createRippleEffect = useRippleEffect(buttonRef, { center: true, color: color });
-    const classNames = classes
-      ? mergeClasses(useStyles({ color, enableBackground, disableTransform }), classes)
-      : useStyles({ color, enableBackground, disableTransform });
-    console.log(classNames);
+    const classNames = mergeClasses(useStyles({ color, enableBackground, disableTransform }), classes);
 
     const rootClassNames = clsx(classNames.root, classNames[size], className);
 

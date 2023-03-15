@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
-import './AlertProvider.styles.scss';
 import { AlertContext } from 'store/AlertContext';
 import type { AlertProps } from 'components/Alert';
 import { Alert } from 'components/Alert';
 import { makeId } from 'core/utils';
-import classNames from 'classnames';
 import type { AlertLocation } from 'components/Alert';
+import { useStyles } from './useStyles';
 
 export interface AlertProviderProps {
   location?: AlertLocation;
@@ -21,12 +20,7 @@ const AlertProvider: React.FC<AlertProviderProps> = ({
   children
 }) => {
   const [alertItems, setAlertItems] = useState<AlertProps[]>(items);
-
-  const classes = classNames(
-    'jds-alert-container',
-    `jds-alert-container--${location.horizontal}`,
-    `jds-alert-container--${location.vertical}`
-  );
+  const classNames = useStyles({ location });
 
   const removeAlertItemFromStack = (id: string) => {
     setAlertItems((prevState) => {
@@ -52,7 +46,7 @@ const AlertProvider: React.FC<AlertProviderProps> = ({
 
   return (
     <AlertContext.Provider value={contextState}>
-      <div className={classes}>
+      <div className={classNames.root}>
         {alertItems.slice(-maxItems).map((item, index) => (
           <Alert {...item} key={item.id} style={{ zIndex: (9999 - index).toString() }} />
         ))}

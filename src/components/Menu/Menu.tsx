@@ -34,8 +34,7 @@ const Menu: React.FC<MenuProps> = ({
   ...menuListProps
 }) => {
   const [referenceElement, setReferenceElement] = useState<HTMLElement | null>(null);
-
-  const classNames = classes ? mergeClasses(useStyles(), classes) : useStyles();
+  const classNames = mergeClasses(useStyles(), classes);
 
   const triggerComponentWithProps = React.cloneElement(triggerComponent, {
     ref: setReferenceElement
