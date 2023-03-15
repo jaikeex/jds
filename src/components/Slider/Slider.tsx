@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useOffset } from './useOffset';
 import type { SliderClassKey, SliderSize } from './types';
 import type { Position, ThemeColorVariants } from 'core/types';
 import { mergeClasses } from 'core/utils';
@@ -8,6 +7,9 @@ import type { Classes } from 'jss';
 import { useStyles } from './useStyles';
 import clsx from 'clsx';
 import { Typography } from 'components/Typography';
+import type { SliderMarksDefinition } from './SliderMarks/types';
+import { SliderMarks } from './SliderMarks';
+import { calculateAbsolutePostionPercentage, calculateOffsetAdjustment, offsetAdjustmentValues } from './utils';
 
 export interface SliderProps {
   min?: number;
@@ -18,14 +20,13 @@ export interface SliderProps {
   value?: number;
   size?: SliderSize;
   width?: string | number;
-  label?: string;
-  labelPosition?: Exclude<Position, 'right-start' | 'right-end' | 'left-start' | 'left-end'>;
+  marks?: SliderMarksDefinition;
   id?: string;
   displayValue?: boolean;
   style?: React.CSSProperties;
   className?: string;
   classes?: Classes<SliderClassKey>;
-  onChange?: React.FormEventHandler<HTMLInputElement>;
+  onChange?: (value: number) => void;
 }
 
 const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
@@ -41,8 +42,7 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
       displayValue = true,
       className = '',
       classes = {},
-      label = '',
-      labelPosition = 'bottom-start',
+      marks = undefined,
       id = '',
       onChange = () => {},
       width = '100%',
@@ -52,26 +52,28 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
   ) => {
     const inputRef = useForwardedRef<HTMLInputElement>(ref);
     const [inputValue, setInputValue] = useState<number>(value);
-    //const [selectorOffset, valueBoxOffset] = useOffset(inputRef);
 
     const classNames = mergeClasses(useStyles({ color, width }), classes);
 
     const inputChangeHandler = useCallback(
       (event: React.FormEvent<HTMLInputElement>) => {
         setInputValue(+event.currentTarget.value);
-        onChange(event);
+        onChange(+event.currentTarget.value);
       },
       [setInputValue, onChange]
     );
 
-    const fract = (Number(inputValue) - min) / (max - min);
-    const percentLeft = fract * 100;
-    const fractFromCentre = (fract - 0.5) * 2;
-    const adjustment = fractFromCentre * 15;
+    const minPosition = calculateAbsolutePostionPercentage(inputValue, min, max);
+    const valueBoxMinAdjustment = calculateOffsetAdjustment(
+      inputValue,
+      min,
+      max,
+      offsetAdjustmentValues.standardValueBox[size]
+    );
 
     const getStyles = (): React.CSSProperties => ({
       ...style,
-      backgroundSize: `${percentLeft}% 100%`
+      backgroundSize: `${minPosition}% 100%`
     });
 
     useEffect(() => {
@@ -99,7 +101,7 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
               <div
                 className={classNames.valueBox}
                 style={{
-                  left: `calc(${percentLeft}% + ${adjustment}px)`
+                  left: `calc(${minPosition}% + ${valueBoxMinAdjustment}px)`
                 }}
               >
                 <Typography variant="label">{inputValue}</Typography>
@@ -107,11 +109,7 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
             </div>
           </div>
         )}
-        {label && (
-          <label className={classNames.label} htmlFor={id}>
-            <Typography variant="label">{label}</Typography>
-          </label>
-        )}
+        {marks && <SliderMarks marks={marks} min={min} max={max} size={size} />}
       </div>
     );
   }

@@ -107,6 +107,9 @@ export const useStyles = createStyles(
               style: 'solid',
               color: [theme.palette.grey[700], 'transparent', 'transparent', 'transparent']
             }
+          },
+          '& span': {
+            color: theme.palette.common.white
           }
         }),
         label: {

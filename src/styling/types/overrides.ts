@@ -18,7 +18,8 @@ import type {
   CheckboxClassKey,
   ButtonGroupClassKey,
   LoaderClassKey,
-  SliderClassKey
+  SliderClassKey,
+  RangeSliderClassKey
 } from 'components';
 import type { Styles } from 'react-jss';
 
@@ -41,6 +42,7 @@ export interface ComponentNameToClassKey {
   ListItem: ListItemClassKey;
   Loader: LoaderClassKey;
   Menu: MenuClassKey;
+  RangeSlider: RangeSliderClassKey;
   Select: SelectClassKey;
   Sheet: SheetClassKey;
   Slider: SliderClassKey;

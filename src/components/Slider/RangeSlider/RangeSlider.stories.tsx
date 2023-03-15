@@ -1,22 +1,21 @@
 import React from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
-import type { SliderProps } from './Slider';
-import Slider from './Slider';
+import RangeSlider, { type RangeSliderProps } from './RangeSlider';
 
 export default {
-  title: 'Design System/Slider',
-  component: Slider
-} as ComponentMeta<typeof Slider>;
+  title: 'design System/RangeSlider',
+  component: RangeSlider
+} as ComponentMeta<typeof RangeSlider>;
 
-const Template: Story<SliderProps> = (args) => (
-  <div style={{ width: '40rem', display: 'flex', justifyContent: 'center' }}>
-    <Slider {...args} />
+const Template: Story<RangeSliderProps> = (args) => (
+  <div style={{ width: '40rem' }}>
+    <RangeSlider {...args} />
   </div>
 );
 
 export const Default = Template.bind({});
 Default.args = {
-  width: 500
+  width: 600
 };
 
 export const Small = Template.bind({});
@@ -52,7 +51,7 @@ Error.args = {
 export const WithMarks = Template.bind({});
 WithMarks.args = {
   ...Default.args,
-  size: 'large',
+  size: 'medium',
   marks: [
     {
       value: 0,
