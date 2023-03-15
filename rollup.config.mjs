@@ -1,7 +1,6 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
-import postcss from 'rollup-plugin-postcss';
 import json from '@rollup/plugin-json';
 import packageJson from './package.json' assert { type: 'json' };
 
@@ -13,10 +12,10 @@ export default [
     output: [
       {
         dir: 'dist/esm',
-        format: 'esm',
+        format: 'esm'
       }
     ],
-    plugins: [resolve(), json(), typescript({ tsconfig: './tsconfig.build.json' }), commonjs(), postcss()],
+    plugins: [resolve(), json(), typescript({ tsconfig: './tsconfig.build.json' }), commonjs()],
     external: [...EXTERNAL]
   }
 ];

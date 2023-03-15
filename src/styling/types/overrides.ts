@@ -1,3 +1,4 @@
+import type { Styles } from 'react-jss';
 import type {
   ButtonClassKey,
   AlertClassKey,
@@ -19,9 +20,11 @@ import type {
   ButtonGroupClassKey,
   LoaderClassKey,
   SliderClassKey,
-  RangeSliderClassKey
+  RangeSliderClassKey,
+  CodeClassKey,
+  TabsClassKey,
+  TabPanelClassKey
 } from 'components';
-import type { Styles } from 'react-jss';
 
 export type Overrides<Props = unknown> = {
   [Name in keyof ComponentNameToClassKey]?: Partial<Styles<ComponentNameToClassKey[Name], Props, undefined>>;
@@ -33,6 +36,7 @@ export interface ComponentNameToClassKey {
   Button: ButtonClassKey;
   ButtonGroup: ButtonGroupClassKey;
   Checkbox: CheckboxClassKey;
+  Code: CodeClassKey;
   Dialog: DialogClassKey;
   Divider: DividerClassKey;
   Icon: IconClassKey;
@@ -46,6 +50,8 @@ export interface ComponentNameToClassKey {
   Select: SelectClassKey;
   Sheet: SheetClassKey;
   Slider: SliderClassKey;
+  TabPanel: TabPanelClassKey;
+  Tabs: TabsClassKey;
   TextField: TextFieldClassKey;
   Tooltip: TooltipClassKey;
   Typography: TypographyClassKey;

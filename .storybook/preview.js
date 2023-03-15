@@ -1,4 +1,4 @@
-import '../src/styles/main.scss';
+import './styles/index.css';
 import { addDecorator } from '@storybook/react';
 import { defaultDarkTheme } from '../src/styling/default';
 import { ThemeProvider } from '../src/styling/ThemeProvider';

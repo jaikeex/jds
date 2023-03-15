@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import './Card.styles.scss';
 import classNames from 'classnames';
 import type { CardAppearance } from './types';
 

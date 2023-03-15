@@ -1,11 +1,17 @@
 import React from 'react';
-import './Code.styles.scss';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import * as SyntaxHighlighterThemes from 'react-syntax-highlighter/dist/esm/styles/prism';
 import type { SyntaxHighlighterLanguages } from './syntax-highlighter-languages';
+import type { CodeClassKey } from './types';
+import type { Classes } from 'jss';
+import { mergeClasses } from 'core/utils';
+import { useStyles } from './useStyles';
+import clsx from 'clsx';
 
 export interface CodeProps {
   children?: string | string[];
+  classes?: Classes<CodeClassKey>;
+  className?: string;
   codeTagProps?: React.HTMLProps<HTMLElement>;
   customStyle?: React.CSSProperties;
   language: SyntaxHighlighterLanguages;
@@ -19,12 +25,16 @@ export interface CodeProps {
   wrapLongLines?: boolean;
 }
 
-const Code: React.FC<CodeProps> = ({ children = '', style = 'darcula', ...props }) => (
-  <div className="jds-code">
-    <SyntaxHighlighter {...props} style={SyntaxHighlighterThemes[style]}>
-      {children}
-    </SyntaxHighlighter>
-  </div>
-);
+const Code: React.FC<CodeProps> = ({ children = '', className = '', classes = {}, style = 'darcula', ...props }) => {
+  const classNames = mergeClasses(useStyles(), classes);
+
+  return (
+    <div className={clsx(classNames.root, className)}>
+      <SyntaxHighlighter {...props} style={SyntaxHighlighterThemes[style]}>
+        {children}
+      </SyntaxHighlighter>
+    </div>
+  );
+};
 
 export default Code;

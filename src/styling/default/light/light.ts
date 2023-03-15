@@ -224,6 +224,7 @@ export const defaultLightTheme: Theme = {
       letterSpacing: '0.031rem'
     },
     fontFamily: 'OpenSans',
+    monospaceFontFamily: '"JetBrains Mono", monospace !important',
     fontSize: 16,
     fontWeightLight: 300,
     fontWeightRegular: 400,

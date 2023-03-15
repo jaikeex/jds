@@ -1,3 +1,14 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  box-sizing: inherit;
+}
+
+body {
+  box-sizing: border-box;
+}
+
 @font-face {
   font-family: 'OpenSans';
   font-style: normal;
@@ -84,7 +95,4 @@
 
 .jds-storybook {
   font-family: 'OpenSans';
-  font-weight: 400;
-  //-webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }

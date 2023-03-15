@@ -1,5 +1,4 @@
 import React from 'react';
-import './Navigation.styles.scss';
 
 export interface NavigationProps {
   children?: React.ReactNode;

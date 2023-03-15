@@ -1,9 +1,0 @@
-@function themed($key) {
-  @return map-get($theme-map, $key);
-}
-
-@function themed-variant($variant, $property) {
-  $variant-map: map-get($theme-map, map-get($color-variants, $variant));
-  $variant-theme-map: map-merge($theme-map, $variant-map);
-  @return map-get($variant-theme-map, $property);
-}

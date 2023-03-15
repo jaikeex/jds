@@ -13,6 +13,7 @@ export type FontStyleOptions = Partial<FontStyle>;
 
 export interface FontStyle {
   fontFamily: React.CSSProperties['fontFamily'];
+  monospaceFontFamily: React.CSSProperties['fontFamily'];
   fontSize: number;
   fontWeightLight: React.CSSProperties['fontWeight'];
   fontWeightRegular: React.CSSProperties['fontWeight'];

@@ -1,10 +1,15 @@
-import classNames from 'classnames';
 import React from 'react';
-import './TabPanel.styles.scss';
+import clsx from 'clsx';
+import { mergeClasses } from 'core/utils';
+import type { Classes } from 'jss';
+import { useStyles } from './useStyles';
+import type { TabPanelClassKey } from './types';
 
 export interface TabPanelProps extends React.PropsWithChildren {
   // disabled?: boolean;
   // label: string;
+  classes?: Classes<TabPanelClassKey>;
+  className?: '';
   removeHorizontalPadding?: boolean;
   removeVerticalPadding?: boolean;
 }
@@ -13,15 +18,14 @@ const TabPanel: React.FC<TabPanelProps> = ({
   children,
   // disabled = false,
   // label = '',
+  classes = {},
+  className = '',
   removeHorizontalPadding = false,
   removeVerticalPadding = false
 }) => {
-  const classes = classNames('jds-tab', {
-    'jds-tab--px-0': removeHorizontalPadding,
-    'jds-tab--py-0': removeVerticalPadding
-  });
+  const classNames = mergeClasses(useStyles({ removeHorizontalPadding, removeVerticalPadding }), classes);
 
-  return <div className={classes}>{children}</div>;
+  return <div className={clsx(classNames.root, className)}>{children}</div>;
 };
 
 export default TabPanel;

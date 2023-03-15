@@ -1,17 +1,30 @@
 import React, { useCallback, useState } from 'react';
-import './Tabs.styles.scss';
 import { TabButton } from './TabButton';
 import { Divider } from 'components/Divider';
+import { mergeClasses } from 'core/utils';
+import { useStyles } from './useStyles';
+import type { TabsClassKey } from './types';
+import type { Classes } from 'jss';
 
 export interface TabsProps {
   children?: React.ReactNode[];
+  classes?: Classes<TabsClassKey>;
+  className?: string;
   divider?: boolean;
   justifyButtons?: 'space-around' | 'space-between' | 'space-evenly' | 'stretch' | 'center' | 'flex-end' | 'flex-start';
   style?: React.CSSProperties;
 }
 
-const Tabs: React.FC<TabsProps> = ({ children, divider = false, justifyButtons = 'flex-start', style = {} }) => {
+const Tabs: React.FC<TabsProps> = ({
+  children,
+  classes = {},
+  className = '',
+  divider = false,
+  justifyButtons = 'flex-start',
+  style = {}
+}) => {
   const [activeTab, setActiveTab] = useState<number>(0);
+  const classNames = mergeClasses(useStyles(), classes);
 
   const labels = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
@@ -32,7 +45,7 @@ const Tabs: React.FC<TabsProps> = ({ children, divider = false, justifyButtons =
 
   return (
     <div>
-      <div style={styles()} className="jds-tabs">
+      <div style={styles()} className={classNames.root}>
         {labels &&
           labels.map((args, index) => (
             <div

@@ -1,5 +1,4 @@
 import React from 'react';
-import './NavigationItem.styles.scss';
 
 export interface NavigationItemProps extends React.PropsWithChildren {
   className: string;

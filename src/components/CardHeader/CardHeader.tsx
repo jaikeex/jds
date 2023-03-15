@@ -1,5 +1,4 @@
 import React from 'react';
-import './CardHeader.styles.scss';
 
 export interface CardHeaderProps {
   title?: React.ReactNode;
