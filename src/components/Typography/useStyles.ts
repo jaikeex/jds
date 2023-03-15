@@ -1,6 +1,6 @@
 import type { Theme } from 'styling/types';
 import type { TypographyProps } from './Typography';
-import { createStyles, mergeOverrides } from 'styling/ThemeProvider';
+import { createStyles, mergeOverrides } from 'styling';
 import type { ThemeColorVariants } from 'core/types';
 
 export const useStyles = createStyles(
