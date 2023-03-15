@@ -1,12 +1,12 @@
 import React from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
-import StandardSelect from './Select';
+import Select from './Select';
 import type { SelectProps } from 'components/Select/types';
 
 export default {
   title: 'Design System/Select/Standard',
-  component: StandardSelect
-} as ComponentMeta<typeof StandardSelect>;
+  component: Select
+} as ComponentMeta<typeof Select>;
 
 const options = [
   { value: 'ocean', label: 'Ocean', color: '#00B8D9', isFixed: true },
@@ -30,9 +30,9 @@ const Template: Story<SelectProps> = (args) => (
       gap: '2rem'
     }}
   >
-    <StandardSelect {...args} options={options} appearance="outlined" />
-    <StandardSelect {...args} options={options} appearance="filled" />
-    <StandardSelect {...args} options={options} appearance="subtle" />
+    <Select {...args} options={options} appearance="outlined" />
+    <Select {...args} options={options} appearance="filled" />
+    <Select {...args} options={options} appearance="subtle" />
   </div>
 );
 

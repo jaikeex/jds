@@ -9,13 +9,15 @@ export default {
 } as ComponentMeta<typeof Slider>;
 
 const Template: Story<SliderProps> = (args) => (
-  <div style={{ width: '25rem' }}>
+  <div style={{ width: '25rem', display: 'flex', justifyContent: 'center' }}>
     <Slider {...args} />
   </div>
 );
 
 export const Default = Template.bind({});
-Default.args = {};
+Default.args = {
+  width: 400
+};
 
 export const Small = Template.bind({});
 Small.args = {
