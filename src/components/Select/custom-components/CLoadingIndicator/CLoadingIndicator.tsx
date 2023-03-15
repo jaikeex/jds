@@ -4,7 +4,7 @@ import type { GroupBase, LoadingIndicatorProps } from 'react-select';
 import type { Selectable } from 'components/Select';
 
 const CLoadingIndicator: React.FC<LoadingIndicatorProps<Selectable, boolean, GroupBase<Selectable>>> = () => (
-  <Loader size="extra-small" />
+  <Loader size="small" />
 );
 
 export default CLoadingIndicator;

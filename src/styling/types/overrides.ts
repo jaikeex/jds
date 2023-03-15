@@ -16,7 +16,8 @@ import type {
   BackdropClassKey,
   DialogClassKey,
   CheckboxClassKey,
-  ButtonGroupClassKey
+  ButtonGroupClassKey,
+  LoaderClassKey
 } from 'components';
 import type { Styles } from 'react-jss';
 
@@ -37,6 +38,7 @@ export interface ComponentNameToClassKey {
   Link: LinkClassKey;
   List: ListClassKey;
   ListItem: ListItemClassKey;
+  Loader: LoaderClassKey;
   Menu: MenuClassKey;
   Select: SelectClassKey;
   Sheet: SheetClassKey;

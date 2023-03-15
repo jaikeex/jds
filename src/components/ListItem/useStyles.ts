@@ -1,5 +1,5 @@
 import type { Theme } from 'styling/types';
-import { createStyles, mergeOverrides } from 'styling/ThemeProvider';
+import { createStyles, mergeOverrides } from 'styling';
 import type { ThemeColorVariants } from 'core/types';
 import type { ListItemProps } from './ListItem';
 

@@ -24,3 +24,15 @@ Large.args = {
   ...Default.args,
   size: 'large'
 };
+
+export const Success = Template.bind({});
+Success.args = {
+  ...Default.args,
+  color: 'success'
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  ...Default.args,
+  color: 'error'
+};

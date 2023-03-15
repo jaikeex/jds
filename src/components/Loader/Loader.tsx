@@ -1,26 +1,22 @@
 import React from 'react';
-import './Loader.styles.scss';
-import type { ExtendedSize } from 'core/types';
-import classNames from 'classnames';
-import { classNameSize } from 'core/utils';
+import { mergeClasses } from 'core/utils';
+import type { LoaderSize, LoaderClassKey } from './types';
+import type { Classes } from 'jss';
+import { useStyles } from './useStyles';
+import clsx from 'clsx';
+import type { ThemeColorVariantsWithDefault } from 'core/types';
 
 export interface LoaderProps {
-  size?: ExtendedSize;
+  className?: string;
+  classes?: Classes<LoaderClassKey>;
+  color?: ThemeColorVariantsWithDefault;
+  size?: LoaderSize;
 }
 
-const Loader: React.FC<LoaderProps> = ({ size = 'medium' }) => {
-  const classes = classNames('jds-loader', classNameSize('jds-loader', size));
+const Loader: React.FC<LoaderProps> = ({ size = 'medium', classes = {}, className = '', color = 'default' }) => {
+  const classNames = mergeClasses(useStyles({ color }), classes);
 
-  return (
-    <div className={classes}>
-      <div className="jds-loader__container">
-        <div className="jds-loader__square jds-loader__square--top" />
-        <div className="jds-loader__square jds-loader__square--right" />
-        <div className="jds-loader__square jds-loader__square--left" />
-        <div className="jds-loader__square jds-loader__square--bottom" />
-      </div>
-    </div>
-  );
+  return <div className={clsx(classNames.root, classNames[size], className)} />;
 };
 
 export default Loader;

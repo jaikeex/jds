@@ -1,5 +1,5 @@
 import type { Theme } from 'styling/types';
-import { createStyles, mergeOverrides } from 'styling/ThemeProvider';
+import { createStyles, mergeOverrides } from 'styling';
 
 export const useStyles = createStyles(
   (theme: Theme) =>
