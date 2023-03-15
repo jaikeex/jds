@@ -1,6 +1,6 @@
 import * as React from 'react';
 import type { ThemeColorVariantsWithDefault } from 'core/types';
-import type { ToggleButtonClassKey } from './types';
+import type { ToggleButtonClassKey, ToggleButtonSize } from './types';
 import type { Classes } from 'jss';
 import { mergeClasses } from 'core/utils';
 import { useStyles } from './useStyles';
@@ -16,12 +16,13 @@ export interface ToggleButtonProps extends React.PropsWithChildren {
   disabled?: boolean;
   disableRippleEffect?: boolean;
   disableUpperCase?: boolean;
-  onChange?: (value: boolean) => void;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onChange?: (selected: boolean, value?: any) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>, value?: any) => void;
   removeBorder?: boolean;
   selected?: boolean;
-  size?: 'small' | 'medium' | 'large';
+  size?: ToggleButtonSize;
   style?: React.CSSProperties;
+  value?: any;
 }
 
 const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
@@ -39,7 +40,8 @@ const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
       removeBorder = false,
       selected = false,
       size = 'medium',
-      style = {}
+      style = {},
+      value = undefined
     },
     ref
   ): JSX.Element => {
@@ -60,7 +62,7 @@ const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
       (event: React.MouseEvent<HTMLButtonElement>) => {
         disableRippleEffect || disabled || createRippleEffect(event);
         setActive((prevState) => !prevState);
-        onClick(event);
+        onClick(event, value);
       },
       [setActive, disableRippleEffect, createRippleEffect, onClick]
     );
@@ -78,8 +80,7 @@ const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
     }, [children, disableUpperCase, classNames]);
 
     useEffect(() => {
-      console.log('LOL');
-      onChange(active);
+      onChange(active, value);
     }, [active]);
 
     useEffect(() => {
@@ -87,7 +88,7 @@ const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
     }, [selected]);
 
     return (
-      <button ref={buttonRef} className={rootClasses} style={style} onClick={buttonClickHandler}>
+      <button ref={buttonRef} className={rootClasses} style={style} onClick={buttonClickHandler} disabled={disabled}>
         {getChildren()}
       </button>
     );

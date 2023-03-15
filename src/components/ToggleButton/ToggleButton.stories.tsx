@@ -16,6 +16,37 @@ Default.args = {
   children: <LoginIcon />
 };
 
+export const Small = Template.bind({});
+Small.args = {
+  ...Default.args,
+  size: 'small',
+  children: <LoginIcon size={24} />
+};
+
+export const Large = Template.bind({});
+Large.args = {
+  ...Default.args,
+  size: 'large'
+};
+
+export const Primary = Template.bind({});
+Primary.args = {
+  ...Default.args,
+  color: 'primary'
+};
+
+export const Success = Template.bind({});
+Success.args = {
+  ...Default.args,
+  color: 'success'
+};
+
+export const Error = Template.bind({});
+Error.args = {
+  ...Default.args,
+  color: 'error'
+};
+
 export const WithoutBorder = Template.bind({});
 WithoutBorder.args = {
   ...Default.args,
