@@ -20,6 +20,7 @@ export * from './Navigation';
 export * from './NavigationItem';
 export * from './OutsideClickListener';
 export * from './Popper';
+export * from './Radio';
 export * from './Select';
 export * from './Sheet';
 export * from './Slider';

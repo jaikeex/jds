@@ -74,7 +74,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
 
     const inputChangeHandler = useCallback(
       (event: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(event.target.value);
+        setInputValue(event.currentTarget.value);
         onChange(event);
       },
       [setInputValue, onChange]

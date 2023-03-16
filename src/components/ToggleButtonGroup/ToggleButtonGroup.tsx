@@ -5,15 +5,16 @@ import type { ThemeColorVariantsWithDefault } from 'core/types';
 import { mergeClasses } from 'core/utils';
 import { useStyles } from './useStyles';
 import { useCallback, useEffect, useState } from 'react';
-import { useChildrenWithProps } from './useStyledChildren';
+import { useChildrenWithProps } from './useChildrenWithProps';
 import clsx from 'clsx';
-import isValueSelected from './isValueSelected';
+import isValueSelected from './utils/isValueSelected';
 
 export interface ToggleButtonGroupProps {
   children?: React.ReactElement | React.ReactElement[];
   className?: string;
   classes?: Classes<ToggleButtonGroupClassKey>;
   color?: ThemeColorVariantsWithDefault;
+  defaultValue?: any;
   disabled?: boolean;
   exclusive?: boolean;
   onChange?: (value: any) => void;
@@ -21,33 +22,31 @@ export interface ToggleButtonGroupProps {
   removeBorder?: boolean;
   size?: 'small' | 'medium' | 'large';
   style?: React.CSSProperties;
-  value?: any;
+  value?: string | string[];
 }
 
 const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
   children = null,
   className = '',
   classes = {},
+  defaultValue = undefined,
   exclusive = false,
   onChange = () => {},
   orientation = 'horizontal',
   removeBorder = false,
   style = {},
-  value = undefined,
+  value = defaultValue,
   ...props
 }): JSX.Element => {
-  const [selectedValue, setselectedValue] = useState<any>(value || []);
+  const [selectedValue, setselectedValue] = useState<string | string[]>(value);
 
   const classNames = mergeClasses(useStyles({ orientation, removeBorder }), classes);
 
   const buttonClickHandler = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>, value: any) => {
-      setselectedValue((prevState: any) => {
-        const index = prevState.indexOf(value);
-        if (index >= 0) {
-          const newValue = prevState.slice();
-          newValue.splice(index, 1);
-          return newValue;
+    (event: React.MouseEvent<HTMLButtonElement>, value: string) => {
+      setselectedValue((prevState) => {
+        if (Array.isArray(prevState) && prevState.includes(value)) {
+          return prevState.filter((val) => val !== value);
         } else {
           return prevState ? prevState.concat(value) : [value];
         }
@@ -57,8 +56,8 @@ const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
   );
 
   const buttonExclusiveClickHandler = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>, value: any) => {
-      setselectedValue((prevState: any) => (value === prevState ? null : value));
+    (event: React.MouseEvent<HTMLButtonElement>, value: string) => {
+      setselectedValue((prevState) => (value === prevState ? '' : value));
     },
     [setselectedValue]
   );
@@ -77,6 +76,10 @@ const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
   useEffect(() => {
     onChange(selectedValue);
   }, [selectedValue]);
+
+  useEffect(() => {
+    setselectedValue(value);
+  }, [value]);
 
   return (
     <div className={clsx(classNames.root, className)} style={style}>

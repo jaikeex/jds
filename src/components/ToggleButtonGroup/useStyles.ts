@@ -58,5 +58,5 @@ export const useStyles = createStyles(
       },
       theme.overrides?.ToggleButtonGroup || {}
     ),
-  { name: 'jds-toggle-btn' }
+  { name: 'jds-toggle-btn-group' }
 );

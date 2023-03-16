@@ -9,6 +9,7 @@ export const useStyledChildren = (
   children: React.ReactElement | React.ReactElement[] | null,
   size: ButtonSize,
   color: ThemeColorVariants,
+  disabled: boolean,
   appearance: ButtonAppearance,
   classNames: Classes<ButtonGroupClassKey>
 ) => {
@@ -24,7 +25,8 @@ export const useStyledChildren = (
               React.cloneElement(child, {
                 size: size,
                 appearance: appearance,
-                color: color,
+                color: child.props.color ? child.props.color : color,
+                disabled: child.props.disabled ? child.props.disabled : disabled,
                 className: classNames.firstElement
               })
             );
@@ -33,7 +35,8 @@ export const useStyledChildren = (
               React.cloneElement(child, {
                 size: size,
                 appearance: appearance,
-                color: color,
+                color: child.props.color ? child.props.color : color,
+                disabled: child.props.disabled ? child.props.disabled : disabled,
                 className: classNames.lastElement
               })
             );
@@ -42,7 +45,8 @@ export const useStyledChildren = (
               React.cloneElement(child, {
                 size: size,
                 appearance: appearance,
-                color: color,
+                color: child.props.color ? child.props.color : color,
+                disabled: child.props.disabled ? child.props.disabled : disabled,
                 className: classNames.midElement
               })
             );

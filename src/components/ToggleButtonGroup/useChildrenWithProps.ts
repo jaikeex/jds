@@ -26,8 +26,8 @@ export const useChildrenWithProps = (
           React.cloneElement(child, {
             size: props.size,
             removeBorder: removeBorder,
-            color: props.color,
-            disabled: props.disabled,
+            color: child.props.color ? child.props.color : props.color,
+            disabled: child.props.disabled ? child.props.disabled : props.disabled,
             onClick: changeHandler,
             selected: child.props.selected === undefined ? isChildActive(child.props.value) : child.props.selected,
             className: classNames.firstElement
@@ -38,8 +38,8 @@ export const useChildrenWithProps = (
           React.cloneElement(child, {
             size: props.size,
             removeBorder: removeBorder,
-            color: props.color,
-            disabled: props.disabled,
+            color: child.props.color ? child.props.color : props.color,
+            disabled: child.props.disabled ? child.props.disabled : props.disabled,
             onClick: changeHandler,
             selected: child.props.selected === undefined ? isChildActive(child.props.value) : child.props.selected,
             className: classNames.lastElement
@@ -50,8 +50,8 @@ export const useChildrenWithProps = (
           React.cloneElement(child, {
             size: props.size,
             removeBorder: removeBorder,
-            color: props.color,
-            disabled: props.disabled,
+            color: child.props.color ? child.props.color : props.color,
+            disabled: child.props.disabled ? child.props.disabled : props.disabled,
             onClick: changeHandler,
             selected: child.props.selected === undefined ? isChildActive(child.props.value) : child.props.selected,
             className: classNames.midElement

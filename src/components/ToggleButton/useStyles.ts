@@ -59,7 +59,13 @@ export const useStyles = createStyles(
         text: {},
         disabled: {
           cursor: 'default !important',
-          backgroundColor: 'transparent !important'
+          backgroundColor: 'transparent !important',
+          '& span': {
+            color: theme.palette.text.disabled
+          },
+          '& svg': {
+            fill: theme.palette.text.disabled
+          }
         }
       },
       theme.overrides?.ToggleButton || {}
