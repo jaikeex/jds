@@ -9,46 +9,48 @@ import { useStyles } from './useStyles';
 import clsx from 'clsx';
 
 export interface CheckboxProps {
-  size?: Size;
-  color?: ThemeColorVariants;
-  className?: string;
+  checked?: boolean;
   classes?: Classes<CheckboxClassKey>;
-  label?: string;
-  labelColor?: ThemeColorVariantsWithDefault;
+  className?: string;
+  color?: ThemeColorVariants;
+  defaultChecked?: boolean;
   disabled?: boolean;
   icon?: React.ReactNode;
   iconChecked?: React.ReactNode;
-  checked?: boolean;
-  defaultChecked?: boolean;
-  required?: boolean;
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
   id?: string;
+  label?: string;
+  labelColor?: ThemeColorVariantsWithDefault;
+  labelPosition?: 'right' | 'left' | 'top' | 'bottom';
+  onChange?: React.ChangeEventHandler<HTMLInputElement>;
+  required?: boolean;
+  size?: Size;
   style?: React.CSSProperties;
 }
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (
     {
-      size = 'medium',
-      color = 'primary',
-      className = '',
-      classes = {},
-      label = '',
-      labelColor = 'default',
-      disabled = false,
       defaultChecked = false,
       checked = defaultChecked,
-      required = false,
-      id = undefined,
-      onChange = () => {},
+      classes = {},
+      className = '',
+      color = 'primary',
+      disabled = false,
       icon = null,
       iconChecked = icon,
+      id = undefined,
+      label = '',
+      labelColor = 'default',
+      labelPosition = 'right',
+      onChange = () => {},
+      required = false,
+      size = 'medium',
       style = {}
     },
     ref
   ) => {
     const [isChecked, setIsChecked] = useState<boolean>(checked);
-    const classNames = mergeClasses(useStyles({ color, icon, size }), classes);
+    const classNames = mergeClasses(useStyles({ color, icon, size, labelPosition, disabled }), classes);
 
     id ??= React.useMemo(() => makeId(5), [id, makeId]);
 
@@ -65,7 +67,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     }, [checked]);
 
     return (
-      <div className={clsx(classNames.root, className)} style={style}>
+      <div className={clsx(classNames.root, disabled && classNames.disabled, className)} style={style}>
         <input
           type="checkbox"
           ref={ref}
@@ -76,7 +78,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           disabled={disabled}
           required={required}
         />
-        <label className={clsx(classNames.label, disabled && classNames.disabled)} htmlFor={id}>
+        <label className={classNames.label} htmlFor={id}>
           {icon && !isChecked ? icon : iconChecked}
           <div className={classNames.mark}>
             <CheckmarkThickIcon />

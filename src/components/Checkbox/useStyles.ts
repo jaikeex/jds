@@ -2,6 +2,30 @@ import { createStyles, mergeOverrides } from 'styling';
 import type { Theme } from 'styling/types';
 import type { CheckboxProps } from './Checkbox';
 
+const flexDirValues = {
+  left: 'row-reverse',
+  right: 'row',
+  bottom: 'column',
+  top: 'column-reverse'
+};
+
+const absolutePosMarkValues = {
+  left: {
+    right: 0
+  },
+  right: {
+    left: 0
+  },
+  bottom: {
+    left: '50%',
+    transform: 'translateX(-50%)'
+  },
+  top: {
+    left: '50%',
+    transform: 'translateX(-50%)'
+  }
+};
+
 export const useStyles = createStyles(
   (theme: Theme) =>
     mergeOverrides(
@@ -11,6 +35,8 @@ export const useStyles = createStyles(
           display: 'inline-flex',
           flex: '0 0 auto',
           alignItems: 'center',
+          justifyContent: 'flex-start',
+          flexDirection: flexDirValues[props.labelPosition || 'right'],
           gap: '0.4rem',
           height: props.size === 'small' ? '0.938rem' : props.size === 'medium' ? '1.125rem' : '1.313rem'
         }),
@@ -20,14 +46,15 @@ export const useStyles = createStyles(
           opacity: 0,
           '& svg': {
             position: 'absolute',
-            left: 0,
             top: 0,
+            ...absolutePosMarkValues[props.labelPosition || 'right'],
             fill: theme.palette.background.default,
             height: props.size === 'small' ? '0.938rem' : props.size === 'medium' ? '1.125rem' : '1.313rem',
             width: props.size === 'small' ? '0.938rem' : props.size === 'medium' ? '1.125rem' : '1.313rem'
           }
         }),
         input: (props: CheckboxProps) => ({
+          flexShrink: 0,
           display: props.icon ? 'none' : 'inline-block',
           border: props.icon ? 'none' : '2px solid',
           borderRadius: '2px',
@@ -50,7 +77,12 @@ export const useStyles = createStyles(
           }
         },
         disabled: {
-          cursor: 'not-allowed'
+          '& $label': {
+            cursor: 'not-allowed !important'
+          },
+          '& $input': {
+            borderColor: `${theme.palette.text.disabled} !important`
+          }
         },
         small: {
           width: '0.938rem',
