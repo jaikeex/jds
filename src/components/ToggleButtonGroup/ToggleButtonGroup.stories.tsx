@@ -11,10 +11,10 @@ export default {
 } as ComponentMeta<typeof ToggleButtonGroup>;
 
 const Template: Story<ToggleButtonGroupProps> = (args) => {
-  const [value, setValue] = useState<string[]>([]);
+  const [value, setValue] = useState<string | string[]>([]);
 
-  const valueChangeHandler = (value: string[]) => {
-    setValue(value);
+  const valueChangeHandler = (value: string | string[] | null) => {
+    value && setValue(value);
   };
 
   useEffect(() => {

@@ -14,10 +14,10 @@ export interface ToggleButtonGroupProps {
   className?: string;
   classes?: Classes<ToggleButtonGroupClassKey>;
   color?: ThemeColorVariantsWithDefault;
-  defaultValue?: any;
+  defaultValue?: string | string[];
   disabled?: boolean;
   exclusive?: boolean;
-  onChange?: (value: any) => void;
+  onChange?: (value: string | string[] | null) => void;
   orientation?: 'horizontal' | 'vertical';
   removeBorder?: boolean;
   size?: 'small' | 'medium' | 'large';
@@ -38,13 +38,13 @@ const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
   value = defaultValue,
   ...props
 }): JSX.Element => {
-  const [selectedValue, setselectedValue] = useState<string | string[]>(value);
+  const [selectedValue, setSelectedValue] = useState<string | string[] | undefined>(value);
 
   const classNames = mergeClasses(useStyles({ orientation, removeBorder }), classes);
 
   const buttonClickHandler = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>, value: string) => {
-      setselectedValue((prevState) => {
+      setSelectedValue((prevState) => {
         if (Array.isArray(prevState) && prevState.includes(value)) {
           return prevState.filter((val) => val !== value);
         } else {
@@ -52,17 +52,17 @@ const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
         }
       });
     },
-    [setselectedValue]
+    [setSelectedValue]
   );
 
   const buttonExclusiveClickHandler = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>, value: string) => {
-      setselectedValue((prevState) => (value === prevState ? '' : value));
+      setSelectedValue((prevState) => (value === prevState ? '' : value));
     },
-    [setselectedValue]
+    [setSelectedValue]
   );
 
-  const isChildActive = (value: any) => isValueSelected(selectedValue, value);
+  const isChildActive = (value: string) => isValueSelected(selectedValue, value);
 
   const childrenWithProps = useChildrenWithProps(
     children,
@@ -74,11 +74,11 @@ const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
   );
 
   useEffect(() => {
-    onChange(selectedValue);
+    onChange(selectedValue || null);
   }, [selectedValue]);
 
   useEffect(() => {
-    setselectedValue(value);
+    setSelectedValue(value);
   }, [value]);
 
   return (
@@ -88,4 +88,5 @@ const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
   );
 };
 
+ToggleButtonGroup.displayName = 'ToggleButtonGroup';
 export default ToggleButtonGroup;

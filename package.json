@@ -21,7 +21,7 @@
     "tsc-project": "tsc --project tsconfig.build.json",
     "tsc-alias": "tsc-alias",
     "generate-dts": "dts-bundle-generator -o dist/index.d.ts dist/esm/types/index.ts",
-    "storybook": "start-storybook -p 6006 -s public",
+    "storybook": "set DISABLE_ESLINT_PLUGIN=true& start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
     "test": "vitest --dom --root=./src",
     "prepare": "husky install",

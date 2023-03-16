@@ -25,7 +25,7 @@ export interface ToggleButtonProps extends React.PropsWithChildren {
   value?: any;
 }
 
-const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
+const ToggleButton: React.FC<ToggleButtonProps> = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
   (
     {
       children = null,
@@ -88,7 +88,14 @@ const ToggleButton = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
     }, [selected]);
 
     return (
-      <button ref={buttonRef} className={rootClasses} style={style} onClick={buttonClickHandler} disabled={disabled}>
+      <button
+        ref={buttonRef}
+        className={rootClasses}
+        style={style}
+        onClick={buttonClickHandler}
+        disabled={disabled}
+        value={value}
+      >
         {getChildren()}
       </button>
     );
