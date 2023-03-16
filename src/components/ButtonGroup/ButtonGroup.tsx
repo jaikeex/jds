@@ -12,6 +12,7 @@ export interface ButtonGroupProps {
   size?: ButtonSize;
   orientation?: 'horizontal' | 'vertical';
   className?: string;
+  disabled?: boolean;
   color?: ThemeColorVariants;
   classes?: Classes<ButtonGroupClassKey>;
   appearance?: ButtonAppearance;
@@ -23,6 +24,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
   size = 'medium',
   className = '',
   classes = {},
+  disabled = false,
   color = 'primary',
   orientation = 'horizontal',
   appearance = 'filled',
@@ -30,7 +32,7 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
   children = null
 }) => {
   const classNames = mergeClasses(useStyles({ orientation, appearance }), classes);
-  const styledChildren = useStyledChildren(children, size, color, appearance, classNames);
+  const styledChildren = useStyledChildren(children, size, color, disabled, appearance, classNames);
 
   return (
     <div className={clsx(classNames.root, className)} style={style}>

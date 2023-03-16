@@ -4,12 +4,14 @@ import type { Classes } from 'jss';
 import { mergeClasses } from 'core/utils';
 import { useStyles } from './useStyles';
 import type { ThemeColorVariantsWithDefault } from 'core/types';
+import clsx from 'clsx';
 
 export interface SvgIconProps extends React.PropsWithChildren {
   size?: number;
   color?: ThemeColorVariantsWithDefault;
   className?: string;
   classes?: Classes<IconClassKey>;
+  id?: string;
   style?: React.CSSProperties;
   testId?: string;
   viewBox?: string;
@@ -21,6 +23,7 @@ const SvgIcon = React.forwardRef<SVGSVGElement, SvgIconProps>(
       color = 'default',
       className = '',
       classes = {},
+      id = '',
       style = {},
       testId = '',
       size = 32,
@@ -36,7 +39,8 @@ const SvgIcon = React.forwardRef<SVGSVGElement, SvgIconProps>(
       <svg
         {...props}
         ref={ref}
-        className={classNames.root}
+        id={id}
+        className={clsx(classNames.root, className)}
         style={style}
         data-testid={testId}
         width={size}

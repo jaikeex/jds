@@ -22,53 +22,44 @@ const Template: Story<CheckboxProps> = (args) => (
 export const Default = Template.bind({});
 Default.args = {};
 
-export const Small = Template.bind({});
-Small.args = {
-  ...Default.args,
-  size: 'small'
+const SizesTemplate: Story<CheckboxProps> = (args) => (
+  <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
+    <Checkbox {...args} size="small" label="Small" />
+    <Checkbox {...args} size="medium" label="Medium" />
+    <Checkbox {...args} size="large" label="Large" />
+  </div>
+);
+
+export const Sizes = SizesTemplate.bind({});
+Sizes.args = {
+  labelPosition: 'top'
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  ...Default.args,
-  size: 'large'
-};
+const IconTemplate: Story<CheckboxProps> = (args) => <Checkbox {...args} />;
 
-export const Icon = Template.bind({});
+export const Icon = IconTemplate.bind({});
 Icon.args = {
-  ...Default.args,
   icon: <HeartIconOutlined />,
   iconChecked: <HeartIcon color="error" />
 };
 
-export const WithLabel = Template.bind({});
-WithLabel.args = {
-  ...Default.args,
-  label: 'Checkbox label'
-};
+const LabelsTemplate: Story<CheckboxProps> = (args) => (
+  <div style={{ display: 'flex', gap: '3rem', alignItems: 'center' }}>
+    <Checkbox {...args} labelPosition="right" label="Right" />
+    <Checkbox {...args} labelPosition="bottom" label="Bottom" />
+    <Checkbox {...args} labelPosition="left" label="Left" />
+    <Checkbox {...args} labelPosition="top" label="Top" />
+  </div>
+);
 
-export const SmallWithLabel = Template.bind({});
-SmallWithLabel.args = {
-  ...Default.args,
-  label: 'Checkbox label',
-  size: 'small'
-};
+export const LabelPositions = LabelsTemplate.bind({});
+LabelPositions.args = {};
 
-export const LargeWithLabel = Template.bind({});
-LargeWithLabel.args = {
-  ...Default.args,
-  label: 'Checkbox label',
-  size: 'large'
-};
+const DisabledTemplate: Story<CheckboxProps> = (args) => <Checkbox {...args} />;
 
-export const Disabled = Template.bind({});
+export const Disabled = DisabledTemplate.bind({});
 Disabled.args = {
   ...Default.args,
-  disabled: true
-};
-
-export const CheckedByDefault = Template.bind({});
-CheckedByDefault.args = {
-  ...Default.args,
-  defaultChecked: true
+  disabled: true,
+  size: 'large'
 };

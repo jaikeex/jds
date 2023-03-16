@@ -23,7 +23,11 @@ import type {
   RangeSliderClassKey,
   CodeClassKey,
   TabsClassKey,
-  TabPanelClassKey
+  TabPanelClassKey,
+  ToggleButtonClassKey,
+  ToggleButtonGroupClassKey,
+  RadioClassKey,
+  RadioGroupClassKey
 } from 'components';
 
 export type Overrides<Props = unknown> = {
@@ -46,6 +50,8 @@ export interface ComponentNameToClassKey {
   ListItem: ListItemClassKey;
   Loader: LoaderClassKey;
   Menu: MenuClassKey;
+  Radio: RadioClassKey;
+  RadioGroup: RadioGroupClassKey;
   RangeSlider: RangeSliderClassKey;
   Select: SelectClassKey;
   Sheet: SheetClassKey;
@@ -53,6 +59,8 @@ export interface ComponentNameToClassKey {
   TabPanel: TabPanelClassKey;
   Tabs: TabsClassKey;
   TextField: TextFieldClassKey;
+  ToggleButton: ToggleButtonClassKey;
+  ToggleButtonGroup: ToggleButtonGroupClassKey;
   Tooltip: TooltipClassKey;
   Typography: TypographyClassKey;
 }
