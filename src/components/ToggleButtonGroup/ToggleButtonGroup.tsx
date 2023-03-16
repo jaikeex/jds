@@ -17,7 +17,7 @@ export interface ToggleButtonGroupProps {
   defaultValue?: string | string[];
   disabled?: boolean;
   exclusive?: boolean;
-  onChange?: (value: string | string[] | null) => void;
+  onChange?: (event: React.MouseEvent<HTMLButtonElement>, value: string | string[] | null) => void;
   orientation?: 'horizontal' | 'vertical';
   removeBorder?: boolean;
   size?: 'small' | 'medium' | 'large';
@@ -44,20 +44,24 @@ const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
 
   const buttonClickHandler = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>, value: string) => {
-      setSelectedValue((prevState) => {
-        if (Array.isArray(prevState) && prevState.includes(value)) {
-          return prevState.filter((val) => val !== value);
-        } else {
-          return prevState ? prevState.concat(value) : [value];
-        }
-      });
+      let newValue: string | string[];
+
+      if (Array.isArray(selectedValue) && selectedValue.includes(value)) {
+        newValue = selectedValue.filter((val) => val !== value);
+      } else {
+        newValue = selectedValue ? selectedValue.concat(value) : [value];
+      }
+
+      setSelectedValue(newValue);
+      onChange(event, newValue);
     },
-    [setSelectedValue]
+    [setSelectedValue, onChange]
   );
 
   const buttonExclusiveClickHandler = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>, value: string) => {
       setSelectedValue((prevState) => (value === prevState ? '' : value));
+      onChange(event, value);
     },
     [setSelectedValue]
   );
@@ -72,10 +76,6 @@ const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
     classNames,
     props
   );
-
-  useEffect(() => {
-    onChange(selectedValue || null);
-  }, [selectedValue]);
 
   useEffect(() => {
     setSelectedValue(value);

@@ -6,7 +6,7 @@ import type { RadioClassKey } from './types';
 import { useStyles } from './useStyles';
 import { Typography } from 'components/Typography';
 import clsx from 'clsx';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useForwardedRef } from 'core/hooks';
 import RadioBackgroundIcon from './icons/RadioBackgroundIcon';
 import RadioCenterIcon from './icons/RadioCenterIcon';
@@ -56,10 +56,13 @@ const Radio: React.FC<RadioProps> = React.forwardRef<HTMLInputElement, RadioProp
 
     id ??= React.useMemo(() => makeId(5), [id, makeId]);
 
-    const radioChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-      setIsChecked(event.target.checked);
-      onChange(event, value);
-    };
+    const radioChangeHandler = useCallback(
+      (event: React.ChangeEvent<HTMLInputElement>) => {
+        setIsChecked(event.target.checked);
+        onChange(event, value);
+      },
+      [setIsChecked, onChange]
+    );
 
     useEffect(() => {
       setIsChecked(checked);

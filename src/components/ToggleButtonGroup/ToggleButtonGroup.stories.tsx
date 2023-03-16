@@ -13,7 +13,8 @@ export default {
 const Template: Story<ToggleButtonGroupProps> = (args) => {
   const [value, setValue] = useState<string | string[]>([]);
 
-  const valueChangeHandler = (value: string | string[] | null) => {
+  const valueChangeHandler = (event: React.MouseEvent<HTMLButtonElement>, value: string | string[] | null) => {
+    event.preventDefault();
     value && setValue(value);
   };
 
