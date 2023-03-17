@@ -13,6 +13,7 @@ export const useStyles = createStyles(
           position: 'relative',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
+          whiteSpace: 'nowrap',
           display: 'inline-flex',
           alignItems: 'center',
           justifyContent: 'center',

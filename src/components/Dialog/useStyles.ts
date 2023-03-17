@@ -1,6 +1,5 @@
 import { createStyles, mergeOverrides } from 'styling';
 import type { Theme } from 'styling/types';
-import type { DialogProps } from './Dialog';
 
 export const useStyles = createStyles(
   (theme: Theme) =>

@@ -1,5 +1,5 @@
 import React, { useCallback } from 'react';
-import type { ThemeColorVariants } from 'core/types';
+import type { ThemeColorVariantsWithDefault } from 'core/types';
 import type { IconButtonClassKey, IconButtonSize } from './types';
 import { useForwardedRef, useRippleEffect } from 'core/hooks';
 import type { Classes } from 'jss';
@@ -9,7 +9,7 @@ import clsx from 'clsx';
 
 export interface IconButtonProps extends React.PropsWithChildren {
   size?: IconButtonSize;
-  color?: ThemeColorVariants;
+  color?: ThemeColorVariantsWithDefault;
   style?: React.CSSProperties;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   enableRippleEffect?: boolean;
@@ -17,6 +17,7 @@ export interface IconButtonProps extends React.PropsWithChildren {
   disableTransform?: boolean;
   className?: string;
   classes?: Classes<IconButtonClassKey>;
+  disabled?: boolean;
 }
 
 const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
@@ -31,15 +32,16 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       enableRippleEffect = false,
       enableBackground = false,
       disableTransform = false,
-      children = null
+      children = null,
+      disabled = false
     },
     ref
   ) => {
     const buttonRef = useForwardedRef<HTMLButtonElement>(ref);
-    const createRippleEffect = useRippleEffect(buttonRef, { center: true, color: color });
-    const classNames = mergeClasses(useStyles({ color, enableBackground, disableTransform }), classes);
+    const createRippleEffect = useRippleEffect(buttonRef, { center: true, color: color, animationTime: 400 });
+    const classNames = mergeClasses(useStyles({ color, enableBackground, disableTransform, disabled }), classes);
 
-    const rootClassNames = clsx(classNames.root, classNames[size], className);
+    const rootClassNames = clsx(classNames.root, classNames[size], disabled && classNames.disabled, className);
 
     const buttonClickHandler = useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -50,7 +52,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
     );
 
     return (
-      <button ref={buttonRef} className={rootClassNames} style={style} onClick={buttonClickHandler}>
+      <button disabled={disabled} ref={buttonRef} className={rootClassNames} style={style} onClick={buttonClickHandler}>
         {children}
       </button>
     );

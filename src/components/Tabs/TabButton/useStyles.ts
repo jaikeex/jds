@@ -4,12 +4,15 @@ import type { Theme } from 'styling/types';
 export const useStyles = createStyles(
   (theme: Theme) => ({
     root: {
+      flexShrink: 0,
       borderRadius: 0,
       height: '2rem',
       paddingBottom: theme.spacing.padding[2],
       paddingTop: theme.spacing.padding[2],
       transition: 'all 0.15s',
       color: theme.palette.text.primary,
+      whiteSpace: 'nowrap',
+      width: 'max-content',
       '&:hover': {
         backgroundColor: 'transparent'
       }

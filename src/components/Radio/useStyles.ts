@@ -1,4 +1,3 @@
-import type { ThemeColorVariants } from 'core/types';
 import { createStyles, mergeOverrides } from 'styling';
 import type { Theme } from 'styling/types';
 import type { RadioProps } from './Radio';

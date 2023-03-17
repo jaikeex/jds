@@ -8,7 +8,7 @@ export const useStyles = createStyles(
       {
         root: (props: TabPanelProps) => ({
           padding: [
-            theme.spacing.padding[0],
+            props.removeVerticalPadding ? 0 : theme.spacing.padding[4],
             props.removeHorizontalPadding ? 0 : theme.spacing.padding[4],
             props.removeVerticalPadding ? 0 : theme.spacing.padding[8],
             props.removeHorizontalPadding ? 0 : theme.spacing.padding[4]

@@ -69,7 +69,7 @@ const Radio: React.FC<RadioProps> = React.forwardRef<HTMLInputElement, RadioProp
     }, [checked]);
 
     return (
-      <div className={clsx(classNames.root, className)}>
+      <div className={classNames.root}>
         <input
           ref={inputRef}
           checked={isChecked}
@@ -83,7 +83,7 @@ const Radio: React.FC<RadioProps> = React.forwardRef<HTMLInputElement, RadioProp
           disabled={disabled}
         />
         <label
-          className={clsx(classNames.label, classNames[size], disabled && classNames.disabled)}
+          className={clsx(classNames.label, classNames[size], disabled && classNames.disabled, className)}
           style={style}
           htmlFor={id}
         >

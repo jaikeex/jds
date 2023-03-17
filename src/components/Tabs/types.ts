@@ -1,1 +1,8 @@
-export type TabsClassKey = 'root';
+export type TabsClassKey =
+  | 'root'
+  | 'buttonPanel'
+  | 'tabPanel'
+  | 'scrollButtonWrapper'
+  | 'scrollButton'
+  | 'scrollButtonRight'
+  | 'scrollButtonLeft';

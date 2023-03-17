@@ -1,6 +1,6 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 import { useForwardedRef, useRippleEffect } from 'core/hooks';
-import type { ButtonAppearance, ButtonSize, ButtonType } from './types';
+import type { ButtonAppearance, ButtonSize } from './types';
 import type { ThemeColorVariants } from 'core/types';
 import { Typography } from 'components/Typography';
 import { useStyles } from './useStyles';
@@ -10,20 +10,16 @@ import type { Classes } from 'jss';
 import { mergeClasses } from 'core/utils';
 import type { SvgColoredIconProps, SvgIconProps } from 'components/icons';
 
-export interface ButtonProps extends React.PropsWithChildren {
+export interface ButtonProps extends React.PropsWithChildren, Omit<React.ComponentProps<'button'>, 'ref'> {
   appearance?: ButtonAppearance;
-  classes?: Classes<ButtonClassKey>;
-  className?: string;
+  classes?: Partial<Classes<ButtonClassKey>>;
   color?: ThemeColorVariants;
-  disabled?: boolean;
   disableRippleEffect?: boolean;
   disableUpperCase?: boolean;
   iconLeft?: React.ReactElement<SvgIconProps | SvgColoredIconProps>;
   iconRight?: React.ReactElement<SvgIconProps | SvgColoredIconProps>;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   size?: ButtonSize;
-  style?: React.CSSProperties;
-  type?: ButtonType;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -35,14 +31,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       disableUpperCase = false,
       iconLeft = null,
       iconRight = null,
-      type = 'button',
       classes = {},
       className = '',
       appearance = 'filled',
       color = 'primary',
-      style = {},
       onClick = () => {},
-      children = null
+      children = null,
+      ...props
     },
     ref
   ) => {
@@ -67,14 +62,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     return (
-      <button
-        className={rootClasses}
-        style={style}
-        ref={buttonRef}
-        disabled={disabled}
-        type={type}
-        onClick={buttonClickHandler}
-      >
+      <button className={rootClasses} ref={buttonRef} disabled={disabled} onClick={buttonClickHandler} {...props}>
         {iconLeft && <div className={classNames.icon}>{iconLeft}</div>}
         <Typography variant="button" upperCase={disableUpperCase ? false : true} className={classNames.text}>
           {children}

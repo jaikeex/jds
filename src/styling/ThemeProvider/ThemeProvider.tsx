@@ -63,11 +63,14 @@ const ThemeProvider: React.FC<ThemeContextProviderProps> = ({
     }
   }, []);
 
-  const defaultProps = { theme: theme, setTheme: themeChangeHandler };
+  const defaultValue = React.useMemo(
+    () => ({ theme: theme, setTheme: themeChangeHandler }),
+    [theme, themeChangeHandler]
+  );
 
   return (
     <EmotionCacheProvider>
-      <ThemeContext.Provider value={defaultProps}>
+      <ThemeContext.Provider value={defaultValue}>
         {/* @ts-ignore */}
         <JSSThemeProvider theme={theme}>{children}</JSSThemeProvider>
       </ThemeContext.Provider>

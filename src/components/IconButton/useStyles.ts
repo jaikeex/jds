@@ -1,3 +1,4 @@
+import type { ThemeColorVariants } from 'core/types';
 import { createStyles, mergeOverrides } from 'styling';
 import type { Theme } from 'styling/types';
 import type { IconButtonProps } from './IconButton';
@@ -21,16 +22,27 @@ export const useStyles = createStyles(
           '& svg': {
             flexShrink: 0,
             transition: 'fill 0.2s',
-            fill: theme.palette[props.color || 'primary'].main
+            fill:
+              props.color === ('default' || undefined)
+                ? theme.palette.text.primary
+                : theme.palette[props.color as ThemeColorVariants].main
           },
           '&:hover': {
             backgroundColor: props.enableBackground
-              ? theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.15)
+              ? theme.palette.rgba(
+                  props.color === ('default' || undefined)
+                    ? theme.palette.text.primary
+                    : theme.palette[props.color as ThemeColorVariants].main,
+                  0.15
+                )
               : 'transparent',
             transform: props.disableTransform || 'scale(1.1)'
           },
           '&:hover svg': {
-            fill: theme.palette[props.color || 'primary'].dark
+            fill:
+              props.color === ('default' || undefined)
+                ? theme.palette.text.primary
+                : theme.palette[props.color as ThemeColorVariants].dark
           },
           '&:active': {
             transform: props.disableTransform || 'scale(0.9)'
@@ -47,7 +59,22 @@ export const useStyles = createStyles(
         large: {
           width: '2.25rem',
           height: '2.25rem'
-        }
+        },
+        disabled: (props: IconButtonProps) => ({
+          cursor: 'default !important',
+          '& svg': {
+            fill: [theme.palette.rgba(theme.palette.text.disabled, 0.5), '!important']
+          },
+          '&:hover svg': {
+            fill: [theme.palette.rgba(theme.palette.text.disabled, 0.5), '!important']
+          },
+          '&:hover': {
+            transform: 'none !important'
+          },
+          '&:active': {
+            transform: 'none !important'
+          }
+        })
       },
       theme.overrides?.IconButton || {}
     ),

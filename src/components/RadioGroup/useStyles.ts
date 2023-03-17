@@ -1,4 +1,3 @@
-import type { ThemeColorVariants } from 'core/types';
 import { createStyles, mergeOverrides } from 'styling';
 import type { Theme } from 'styling/types';
 import type { RadioGroupProps } from './RadioGroup';
@@ -15,5 +14,5 @@ export const useStyles = createStyles(
       },
       theme.overrides?.RadioGroup || {}
     ),
-  { name: 'jds-radio' }
+  { name: 'jds-radio-group' }
 );

@@ -1,4 +1,3 @@
-import type { ThemeColorVariants } from 'core/types';
 import type { SvgColoredIconProps } from './SvgColoredIcon';
 import type { SvgIconProps } from './SvgIcon';
 

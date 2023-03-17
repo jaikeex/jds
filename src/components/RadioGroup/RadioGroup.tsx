@@ -47,7 +47,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
     [setSelectedValue, onChange]
   );
 
-  const isChildActive = (value: string) => isValueSelected(selectedValue, value);
+  const isChildActive = (value: string | undefined) => isValueSelected(selectedValue, value);
 
   const childrenWithProps = useChildrenWithProps(children, radioButtonClickHandler, isChildActive, props);
 
