@@ -8,7 +8,7 @@ import type { TextFieldClassKey } from './types';
 import type { Classes } from 'jss';
 import clsx from 'clsx';
 
-export interface TextFieldProps {
+export interface TextFieldProps extends Omit<React.ComponentProps<'input'>, 'ref'> {
   appearance?: 'outlined' | 'filled' | 'subtle';
   autoFocus?: boolean;
   classes?: Classes<TextFieldClassKey>;
@@ -55,7 +55,8 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       style = {},
       transformLabel = true,
       value = defaultValue,
-      width = undefined
+      width = undefined,
+      ...props
     },
     ref
   ) => {
@@ -91,6 +92,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           <Typography variant="label">{label}</Typography>
         </label>
         <input
+          {...props}
           type="text"
           className={inputClassNames}
           autoFocus={autoFocus}

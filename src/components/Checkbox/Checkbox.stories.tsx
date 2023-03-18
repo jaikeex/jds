@@ -12,10 +12,9 @@ export default {
 const Template: Story<CheckboxProps> = (args) => (
   <div style={{ display: 'flex', gap: '1rem' }}>
     <Checkbox {...args} />
-    <Checkbox {...args} color="success" />
-    <Checkbox {...args} color="error" />
-    <Checkbox {...args} color="warning" />
-    <Checkbox {...args} color="info" />
+    <Checkbox {...args} checked />
+    <Checkbox {...args} disabled />
+    <Checkbox {...args} disabled checked />
   </div>
 );
 
@@ -32,7 +31,23 @@ const SizesTemplate: Story<CheckboxProps> = (args) => (
 
 export const Sizes = SizesTemplate.bind({});
 Sizes.args = {
-  labelPosition: 'top'
+  labelPosition: 'top',
+  checked: true
+};
+
+const ColorsTemplate: Story<CheckboxProps> = (args) => (
+  <div style={{ display: 'flex', gap: '1rem' }}>
+    <Checkbox {...args} />
+    <Checkbox {...args} color="success" />
+    <Checkbox {...args} color="error" />
+    <Checkbox {...args} color="warning" />
+    <Checkbox {...args} color="info" />
+  </div>
+);
+
+export const Colors = ColorsTemplate.bind({});
+Colors.args = {
+  checked: true
 };
 
 const IconTemplate: Story<CheckboxProps> = (args) => <Checkbox {...args} />;
@@ -41,6 +56,20 @@ export const Icon = IconTemplate.bind({});
 Icon.args = {
   icon: <HeartIconOutlined />,
   iconChecked: <HeartIcon color="error" />
+};
+
+const LabelTemplate: Story<CheckboxProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+    <Checkbox {...args} />
+    <Checkbox {...args} checked />
+    <Checkbox {...args} disabled />
+    <Checkbox {...args} disabled checked />
+  </div>
+);
+
+export const Label = LabelTemplate.bind({});
+Label.args = {
+  label: 'CheckboxLabel'
 };
 
 const LabelsTemplate: Story<CheckboxProps> = (args) => (
@@ -53,13 +82,6 @@ const LabelsTemplate: Story<CheckboxProps> = (args) => (
 );
 
 export const LabelPositions = LabelsTemplate.bind({});
-LabelPositions.args = {};
-
-const DisabledTemplate: Story<CheckboxProps> = (args) => <Checkbox {...args} />;
-
-export const Disabled = DisabledTemplate.bind({});
-Disabled.args = {
-  ...Default.args,
-  disabled: true,
-  size: 'large'
+LabelPositions.args = {
+  checked: true
 };

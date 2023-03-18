@@ -17,7 +17,7 @@ export default {
 const generateTabPanels = (props: TabPanelProps, amount: number) =>
   Array.from({ length: amount }, (x, i) => i).map((el, i) => (
     <TabPanel {...props} value={`Tab ${i + 1}`} label={`Tab ${i + 1}`} key={el}>
-      <Sheet sharpCorners>
+      <Sheet style={{ padding: '2px' }} sharpCorners>
         <Typography variant="h3" textAlign="center" upperCase style={{ marginTop: '3rem' }}>
           Tab {i + 1}
         </Typography>
@@ -68,7 +68,7 @@ DisabledTab.args = {
   ...Default.args,
   children: Array.from({ length: 4 }, (x, i) => i).map((el, i) => (
     <TabPanel disabled={i === 3} value={`Tab ${i + 1}`} label={`Tab ${i + 1}`} key={el}>
-      <Sheet sharpCorners>
+      <Sheet style={{ padding: '2px' }} sharpCorners>
         <Typography variant="h3" textAlign="center" upperCase style={{ marginTop: '3rem' }}>
           Tab {i + 1}
         </Typography>
@@ -101,12 +101,13 @@ const ControlledTemplate: Story<TabsProps> = (args) => {
     </React.Fragment>
   );
 };
+
 export const ControlledTabs = ControlledTemplate.bind({});
 ControlledTabs.args = {
   ...Default.args,
   children: Array.from({ length: 4 }, (x, i) => i).map((el, i) => (
     <TabPanel value={`Tab ${i + 1}`} label={`Tab ${i + 1}`} key={el}>
-      <Sheet sharpCorners>
+      <Sheet style={{ padding: '2px' }} sharpCorners>
         <Typography variant="h3" textAlign="center" upperCase style={{ marginTop: '3rem' }}>
           Tab {i + 1}
         </Typography>

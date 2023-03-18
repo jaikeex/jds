@@ -9,27 +9,54 @@ export default {
   component: ButtonGroup
 } as ComponentMeta<typeof ButtonGroup>;
 
-const Template: Story<ButtonGroupProps> = (args) => <ButtonGroup {...args} />;
+const Template: Story<ButtonGroupProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
+    <ButtonGroup {...args} appearance="filled" />
+    <ButtonGroup {...args} appearance="outlined" />
+    <ButtonGroup {...args} appearance="subtle" />
+  </div>
+);
 
-export const Horizontal = Template.bind({});
-Horizontal.args = {
+export const ButtonVariants = Template.bind({});
+ButtonVariants.args = {
   children: [<Button key={1}>First</Button>, <Button key={2}>Second</Button>, <Button key={3}>Third</Button>]
 };
 
-export const Vertical = Template.bind({});
+const VerticalTemplate: Story<ButtonGroupProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '2rem' }}>
+    <ButtonGroup {...args} appearance="filled" />
+    <ButtonGroup {...args} appearance="outlined" />
+    <ButtonGroup {...args} appearance="subtle" />
+  </div>
+);
+
+export const Vertical = VerticalTemplate.bind({});
 Vertical.args = {
   children: [<Button key={1}>First</Button>, <Button key={2}>Second</Button>, <Button key={3}>Third</Button>],
   orientation: 'vertical'
 };
 
-export const Outlined = Template.bind({});
-Outlined.args = {
-  children: [<Button key={1}>First</Button>, <Button key={2}>Second</Button>, <Button key={3}>Third</Button>],
-  appearance: 'outlined'
-};
+const ColorsTemplate: Story<ButtonGroupProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '2rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
+      <ButtonGroup color="success" {...args} appearance="filled" />
+      <ButtonGroup color="success" {...args} appearance="outlined" />
+      <ButtonGroup color="success" {...args} appearance="subtle" />
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
+      <ButtonGroup color="error" {...args} appearance="filled" />
+      <ButtonGroup color="error" {...args} appearance="outlined" />
+      <ButtonGroup color="error" {...args} appearance="subtle" />
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
+      <ButtonGroup color="warning" {...args} appearance="filled" />
+      <ButtonGroup color="warning" {...args} appearance="outlined" />
+      <ButtonGroup color="warning" {...args} appearance="subtle" />
+    </div>
+  </div>
+);
 
-export const Subtle = Template.bind({});
-Subtle.args = {
-  children: [<Button key={1}>First</Button>, <Button key={2}>Second</Button>, <Button key={3}>Third</Button>],
-  appearance: 'subtle'
+export const Colors = ColorsTemplate.bind({});
+Colors.args = {
+  children: [<Button key={1}>First</Button>, <Button key={2}>Second</Button>, <Button key={3}>Third</Button>]
 };

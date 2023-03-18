@@ -19,6 +19,7 @@ const Template: Story<RadioGroupProps> = (args) => {
       <Radio label="First" value="first" />
       <Radio label="Second" value="second" />
       <Radio label="Third" value="third" />
+      <Radio label="Disabled" value="disabled" disabled />
     </RadioGroup>
   );
 };
@@ -51,14 +52,30 @@ LabelPositions.args = {
   orientation: 'horizontal'
 };
 
-export const Success = Template.bind({});
-Success.args = {
-  ...Default.args,
-  color: 'success'
-};
+const ColorsTemplate: Story<RadioGroupProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '4rem' }}>
+    <RadioGroup style={{ gap: '1rem' }} color="primary" {...args}>
+      <Radio label="First" value="first" />
+      <Radio label="Second" value="second" />
+      <Radio label="Third" value="third" />
+    </RadioGroup>
+    <RadioGroup style={{ gap: '1rem' }} color="success" {...args}>
+      <Radio label="First" value="first" />
+      <Radio label="Second" value="second" />
+      <Radio label="Third" value="third" />
+    </RadioGroup>
+    <RadioGroup style={{ gap: '1rem' }} color="error" {...args}>
+      <Radio label="First" value="first" />
+      <Radio label="Second" value="second" />
+      <Radio label="Third" value="third" />
+    </RadioGroup>
+    <RadioGroup style={{ gap: '1rem' }} color="warning" {...args}>
+      <Radio label="First" value="first" />
+      <Radio label="Second" value="second" />
+      <Radio label="Third" value="third" />
+    </RadioGroup>
+  </div>
+);
 
-export const Error = Template.bind({});
-Error.args = {
-  ...Default.args,
-  color: 'error'
-};
+export const Colors = ColorsTemplate.bind({});
+Colors.args = {};

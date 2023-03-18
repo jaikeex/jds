@@ -30,6 +30,7 @@ export const useStyles = createStyles(
     }
   }),
   {
-    name: 'jds-tab-button'
+    name: 'jds-tab-button',
+    index: 5
   }
 );

@@ -12,13 +12,8 @@ export const useStyles = createStyles(
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: 'center',
-          width: props.width ? props.width : '100%'
-          // padding: [
-          // theme.spacing.padding[28],
-          // theme.spacing.padding[8],
-          // theme.spacing.padding[8],
-          // theme.spacing.padding[8]
-          // ]
+          width: props.width ? props.width : '100%',
+          marginTop: theme.spacing.padding[28]
         }),
         inputMin: {
           '&:not(:active) ~$selector [id*="valueBoxMin"]': {

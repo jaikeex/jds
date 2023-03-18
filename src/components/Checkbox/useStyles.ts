@@ -78,10 +78,14 @@ export const useStyles = createStyles(
         },
         disabled: {
           '& $label': {
-            cursor: 'not-allowed !important'
+            cursor: 'default !important'
           },
           '& $input': {
-            borderColor: `${theme.palette.text.disabled} !important`
+            borderColor: `${theme.palette.text.disabled} !important`,
+            '&:checked': {
+              borderColor: `${theme.palette.text.disabled} !important`,
+              backgroundColor: `${theme.palette.text.disabled} !important`
+            }
           }
         },
         small: {

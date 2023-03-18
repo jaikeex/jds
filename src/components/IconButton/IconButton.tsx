@@ -14,7 +14,6 @@ export interface IconButtonProps extends React.PropsWithChildren {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   enableRippleEffect?: boolean;
   enableBackground?: boolean;
-  disableTransform?: boolean;
   className?: string;
   classes?: Classes<IconButtonClassKey>;
   disabled?: boolean;
@@ -31,7 +30,6 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       onClick = () => {},
       enableRippleEffect = false,
       enableBackground = false,
-      disableTransform = false,
       children = null,
       disabled = false
     },
@@ -39,13 +37,13 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
   ) => {
     const buttonRef = useForwardedRef<HTMLButtonElement>(ref);
     const createRippleEffect = useRippleEffect(buttonRef, { center: true, color: color, animationTime: 400 });
-    const classNames = mergeClasses(useStyles({ color, enableBackground, disableTransform, disabled }), classes);
+    const classNames = mergeClasses(useStyles({ color, enableBackground, disabled }), classes);
 
     const rootClassNames = clsx(classNames.root, classNames[size], disabled && classNames.disabled, className);
 
     const buttonClickHandler = useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
-        enableRippleEffect && createRippleEffect(event);
+        enableRippleEffect && enableBackground && createRippleEffect(event);
         onClick(event);
       },
       [enableRippleEffect, createRippleEffect, onClick]

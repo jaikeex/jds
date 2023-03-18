@@ -9,6 +9,7 @@ export const useStyles = createStyles(
       {
         root: (props: IconButtonProps) => ({
           border: 'none',
+          padding: 0,
           backgroundColor: 'transparent',
           cursor: 'pointer',
           position: 'relative',
@@ -16,7 +17,7 @@ export const useStyles = createStyles(
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          borderRadius: '9999px',
+          borderRadius: '50%',
           willChange: 'transform',
           transition: 'all 0.2s',
           '& svg': {
@@ -36,7 +37,7 @@ export const useStyles = createStyles(
                   0.15
                 )
               : 'transparent',
-            transform: props.disableTransform || 'scale(1.1)'
+            transform: props.enableBackground || 'scale(1.1)'
           },
           '&:hover svg': {
             fill:
@@ -45,21 +46,33 @@ export const useStyles = createStyles(
                 : theme.palette[props.color as ThemeColorVariants].dark
           },
           '&:active': {
-            transform: props.disableTransform || 'scale(0.9)'
+            transform: props.enableBackground || 'scale(0.9)'
           }
         }),
-        small: {
-          width: '1.6rem',
-          height: '1.6rem'
-        },
-        medium: {
-          width: '2rem',
-          height: '2rem'
-        },
-        large: {
-          width: '2.25rem',
-          height: '2.25rem'
-        },
+        small: (props: IconButtonProps) => ({
+          width: props.enableBackground ? '2.25rem' : '1.6rem',
+          height: props.enableBackground ? '2.25rem' : '1.6rem',
+          '& svg': {
+            width: '1.6rem',
+            height: '1.6rem'
+          }
+        }),
+        medium: (props: IconButtonProps) => ({
+          width: props.enableBackground ? '2.75rem' : '2rem',
+          height: props.enableBackground ? '2.75rem' : '2rem',
+          '& svg': {
+            width: '2rem',
+            height: '2rem'
+          }
+        }),
+        large: (props: IconButtonProps) => ({
+          width: props.enableBackground ? '3rem' : '2.25rem',
+          height: props.enableBackground ? '3rem' : '2.25rem',
+          '& svg': {
+            width: '2.25rem',
+            height: '2.25rem'
+          }
+        }),
         disabled: (props: IconButtonProps) => ({
           cursor: 'default !important',
           '& svg': {

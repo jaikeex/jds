@@ -34,28 +34,25 @@ export const useStyles = createStyles(
             flexGrow: props.justifyButtons === 'stretch' ? 1 : 0
           }
         }),
-        tabPanel: {
-          flexGrow: 1,
-          '& > *:first-child': {
-            height: '100%'
-          }
-        },
         scrollButtonWrapper: {
           display: 'flex',
           justifyContent: 'center',
           position: 'absolute',
           zIndex: 100,
           width: '3rem',
+          height: '2rem',
           backgroundColor: theme.palette.background.default
         },
         scrollButton: {
-          //borderRadius: 0
+          borderRadius: 0,
+          width: '2rem',
+          height: '2rem'
         },
         scrollButtonRight: {
-          paddingLeft: '0.5rem'
+          paddingLeft: '0.25rem'
         },
         scrollButtonLeft: {
-          paddingRight: '0.5rem'
+          paddingRight: '0.25rem'
         }
       },
       theme.overrides?.Tabs || {}

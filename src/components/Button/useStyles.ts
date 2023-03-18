@@ -6,7 +6,7 @@ export const useStyles = createStyles(
   (theme: Theme) =>
     mergeOverrides(
       {
-        root: {
+        root: (props: ButtonProps) => ({
           padding: '0.375rem 0.5rem',
           border: 'none',
           borderRadius: theme.shape.borderRadius.small,
@@ -19,18 +19,24 @@ export const useStyles = createStyles(
           justifyContent: 'center',
           gap: '0.25rem',
           transition: 'background-color 0.2s',
-          cursor: 'pointer'
-        },
+          cursor: props.disabled ? 'default' : 'pointer'
+        }),
         filled: (props: ButtonProps) => ({
-          backgroundColor: theme.palette[props.color || 'primary'].main,
+          backgroundColor: props.disabled
+            ? theme.palette.rgba(theme.palette.grey[300], 0.5)
+            : theme.palette[props.color || 'primary'].main,
           '& span': {
             color: theme.palette[props.color || 'primary'].contrastText
           },
           '& svg': {
-            fill: theme.palette[props.color || 'primary'].contrastText
+            fill: props.disabled
+              ? theme.palette.rgba(theme.palette.grey[300], 0.5)
+              : theme.palette[props.color || 'primary'].contrastText
           },
           '&:hover': {
-            backgroundColor: theme.palette[props.color || 'primary'].dark
+            backgroundColor: props.disabled
+              ? theme.palette.rgba(theme.palette.grey[300], 0.5)
+              : theme.palette[props.color || 'primary'].dark
           }
         }),
         outlined: (props: ButtonProps) => ({
@@ -38,28 +44,42 @@ export const useStyles = createStyles(
           border: {
             width: 1,
             style: 'solid',
-            color: theme.palette[props.color || 'primary'].main
+            color: props.disabled
+              ? theme.palette.rgba(theme.palette.grey[300], 0.5)
+              : theme.palette[props.color || 'primary'].main
           },
           '& span': {
-            color: theme.palette[props.color || 'primary'].dark
+            color: props.disabled
+              ? theme.palette.rgba(theme.palette.grey[300], 0.5)
+              : theme.palette[props.color || 'primary'].dark
           },
           '& svg': {
-            fill: theme.palette[props.color || 'primary'].dark
+            fill: props.disabled
+              ? theme.palette.rgba(theme.palette.grey[300], 0.5)
+              : theme.palette[props.color || 'primary'].dark
           },
           '&:hover': {
-            backgroundColor: theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.1)
+            backgroundColor: props.disabled
+              ? 'transparent'
+              : theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.1)
           }
         }),
         subtle: (props: ButtonProps) => ({
           backgroundColor: 'transparent',
           '& span': {
-            color: theme.palette[props.color || 'primary'].dark
+            color: props.disabled
+              ? theme.palette.rgba(theme.palette.grey[300], 0.5)
+              : theme.palette[props.color || 'primary'].dark
           },
           '& svg': {
-            fill: theme.palette[props.color || 'primary'].dark
+            fill: props.disabled
+              ? theme.palette.rgba(theme.palette.grey[300], 0.5)
+              : theme.palette[props.color || 'primary'].dark
           },
           '&:hover': {
-            backgroundColor: theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.1)
+            backgroundColor: props.disabled
+              ? 'transparent'
+              : theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.1)
           }
         }),
         icon: {
@@ -92,13 +112,6 @@ export const useStyles = createStyles(
             height: '1.5rem',
             width: '1.5rem'
           }
-        },
-        disabled: {
-          backgroundColor: `${theme.palette.grey[300]} !important`,
-          '& span': {
-            color: `${theme.palette.text.disabled} !important`
-          },
-          cursor: 'default'
         },
         text: {}
       },

@@ -44,14 +44,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const buttonRef = useForwardedRef<HTMLButtonElement>(ref);
 
     const createRippleEffect = useRippleEffect(buttonRef, { color: appearance === 'filled' ? 'default' : color });
-    const classNames = mergeClasses(useStyles({ color }), classes);
-    const rootClasses = clsx(
-      classNames.root,
-      classNames[size],
-      classNames[appearance],
-      disabled && classNames.disabled,
-      className
-    );
+    const classNames = mergeClasses(useStyles({ color, disabled }), classes);
+    const rootClasses = clsx(classNames.root, classNames[size], classNames[appearance], className);
 
     const buttonClickHandler = useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {

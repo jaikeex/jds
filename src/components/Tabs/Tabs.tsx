@@ -42,14 +42,18 @@ const Tabs: React.FC<TabsProps> = ({
   ...props
 }) => {
   const buttonPanelRef = useRef(null);
+
+  const classNames = mergeClasses(useStyles({ justifyButtons, scrollButtons, ...props }), classes);
+
   const { leftScrollButtonVisible, rightScrollButtonVisible, scrolledToLeft, scrolledToRight } = useSideScroll(
     buttonPanelRef,
     scrollButtons
   );
 
-  const classNames = mergeClasses(useStyles({ justifyButtons, scrollButtons, ...props }), classes);
+  const styleEls = document.querySelectorAll('[data-meta*="jds-button"]');
+  console.log(styleEls);
 
-  const { tabButtonProps, tabPanelProps } = useDistributedProps(children, classNames, props);
+  const { tabButtonProps, tabPanelProps } = useDistributedProps(children, props);
 
   return (
     <TabsContextProvider activeTab={value}>
@@ -57,8 +61,7 @@ const Tabs: React.FC<TabsProps> = ({
         {leftScrollButtonVisible && (
           <div className={clsx(classNames.scrollButtonWrapper, classNames.scrollButtonLeft)} style={{ left: 0 }}>
             <IconButton
-              enableRippleEffect
-              disableTransform
+              enableBackground
               className={classNames.scrollButton}
               color="default"
               disabled={scrolledToLeft}
@@ -71,8 +74,7 @@ const Tabs: React.FC<TabsProps> = ({
         {rightScrollButtonVisible && (
           <div className={clsx(classNames.scrollButtonWrapper, classNames.scrollButtonRight)} style={{ right: 0 }}>
             <IconButton
-              enableRippleEffect
-              disableTransform
+              enableBackground
               className={classNames.scrollButton}
               color="default"
               disabled={scrolledToRight}

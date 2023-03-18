@@ -10,27 +10,19 @@ export default {
 } as ComponentMeta<typeof Button>;
 
 const Template: Story<ButtonProps> = (args) => (
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-    <Button {...args} color="primary">
-      default
+  <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
+    <Button {...args}>Button</Button>
+    <Button {...args} iconLeft={<HomeIcon />}>
+      Home
     </Button>
-    <Button {...args} color="success">
-      success
-    </Button>
-    <Button {...args} color="warning">
-      warning
-    </Button>
-    <Button {...args} color="error">
-      error
-    </Button>
-    <Button {...args} color="info">
-      info
+    <Button {...args} disabled>
+      Disabled
     </Button>
   </div>
 );
 
-export const Contained = Template.bind({});
-Contained.args = {
+export const Filled = Template.bind({});
+Filled.args = {
   size: 'medium'
 };
 
@@ -44,66 +36,130 @@ Subtle.args = {
   appearance: 'subtle'
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small'
-};
-Small.storyName = 'Size - Small';
+const SizesTemplate: Story<ButtonProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem' }}>
+      <Button {...args} size="small">
+        Small
+      </Button>
+      <Button {...args} size="medium">
+        Medium
+      </Button>
+      <Button {...args} size="large">
+        Large
+      </Button>
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem' }}>
+      <Button {...args} appearance="outlined" size="small">
+        Small
+      </Button>
+      <Button {...args} appearance="outlined" size="medium">
+        Medium
+      </Button>
+      <Button {...args} appearance="outlined" size="large">
+        Large
+      </Button>
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1rem' }}>
+      <Button {...args} appearance="subtle" size="small">
+        Small
+      </Button>
+      <Button {...args} appearance="subtle" size="medium">
+        Medium
+      </Button>
+      <Button {...args} appearance="subtle" size="large">
+        Large
+      </Button>
+    </div>
+  </div>
+);
 
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large'
-};
-Large.storyName = 'Size - Large';
+export const Sizes = SizesTemplate.bind({});
+Sizes.args = {};
 
-export const OutlinedWithIconLeft = Template.bind({});
-OutlinedWithIconLeft.args = {
-  appearance: 'outlined',
-  iconLeft: <HomeIcon />
-};
+const ColorsTemplate: Story<ButtonProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
+      <Button {...args} color="primary">
+        primary
+      </Button>
+      <Button {...args} color="secondary">
+        secondary
+      </Button>
+      <Button {...args} color="success">
+        success
+      </Button>
+      <Button {...args} color="warning">
+        warning
+      </Button>
+      <Button {...args} color="error">
+        error
+      </Button>
+      <Button {...args} color="info">
+        info
+      </Button>
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
+      <Button {...args} appearance="outlined" color="primary">
+        primary
+      </Button>
+      <Button {...args} appearance="outlined" color="secondary">
+        secondary
+      </Button>
+      <Button {...args} appearance="outlined" color="success">
+        success
+      </Button>
+      <Button {...args} appearance="outlined" color="warning">
+        warning
+      </Button>
+      <Button {...args} appearance="outlined" color="error">
+        error
+      </Button>
+      <Button {...args} appearance="outlined" color="info">
+        info
+      </Button>
+    </div>
+    <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
+      <Button {...args} appearance="subtle" color="primary">
+        primary
+      </Button>
+      <Button {...args} appearance="subtle" color="secondary">
+        secondary
+      </Button>
+      <Button {...args} appearance="subtle" color="success">
+        success
+      </Button>
+      <Button {...args} appearance="subtle" color="warning">
+        warning
+      </Button>
+      <Button {...args} appearance="subtle" color="error">
+        error
+      </Button>
+      <Button {...args} appearance="subtle" color="info">
+        info
+      </Button>
+    </div>
+  </div>
+);
 
-export const SmallWithIconLeft = Template.bind({});
-SmallWithIconLeft.args = {
-  iconLeft: <HomeIcon />,
-  size: 'small'
-};
+export const Colors = ColorsTemplate.bind({});
+Colors.args = {};
 
-export const MediumWithIconLeft = Template.bind({});
-MediumWithIconLeft.args = {
-  iconLeft: <HomeIcon />
-};
+const AppearanceTemplate: Story<ButtonProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'row', gap: '1rem' }}>
+    <Button {...args} appearance="filled">
+      Button
+    </Button>
+    <Button {...args} appearance="outlined">
+      Button
+    </Button>
+    <Button {...args} appearance="subtle">
+      Button
+    </Button>
+  </div>
+);
 
-export const LargeWithIconLeft = Template.bind({});
-LargeWithIconLeft.args = {
-  iconLeft: <HomeIcon />,
-  size: 'large'
-};
-
-export const OutlinedWithIconRight = Template.bind({});
-OutlinedWithIconRight.args = {
-  appearance: 'outlined',
-  iconRight: <HomeIcon />
-};
-
-export const SmallWithIconRight = Template.bind({});
-SmallWithIconRight.args = {
-  iconRight: <HomeIcon />,
-  size: 'small'
-};
-
-export const MediumWithIconRight = Template.bind({});
-MediumWithIconRight.args = {
-  iconRight: <HomeIcon />
-};
-
-export const LargeWithIconRight = Template.bind({});
-LargeWithIconRight.args = {
-  iconRight: <HomeIcon />,
-  size: 'large'
-};
-
-export const Disabled = Template.bind({});
-Disabled.args = {
-  children: 'Disabled',
-  disabled: true
+export const WithoutRippleEffect = AppearanceTemplate.bind({});
+WithoutRippleEffect.args = {
+  disableRippleEffect: true
 };

@@ -7,7 +7,6 @@ export const useStyles = createStyles(
     mergeOverrides(
       {
         root: (props: SheetProps) => ({
-          padding: theme.spacing.padding[2],
           borderRadius: props.sharpCorners ? 0 : theme.shape.borderRadius.small,
           backgroundColor:
             theme.name === 'dark'

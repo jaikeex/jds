@@ -8,13 +8,21 @@ export default {
   component: Link
 } as ComponentMeta<typeof Link>;
 
-const Template: Story<LinkProps> = (args) => <Link {...args} />;
+const Template: Story<LinkProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '1.5rem' }}>
+    <Link {...args} underline="allways">
+      Underlined
+    </Link>
+    <Link {...args} underline="hover">
+      Underlined on hover
+    </Link>
+    <Link {...args} underline="none">
+      No underline
+    </Link>
+  </div>
+);
 
 export const Default = Template.bind({});
-Default.args = { children: 'Link', href: '#', underline: 'allways' };
-
-export const OpenInNew = Template.bind({});
-OpenInNew.args = {
-  ...Default.args,
-  openInNew: true
+Default.args = {
+  href: '#'
 };
