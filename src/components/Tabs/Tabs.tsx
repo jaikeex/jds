@@ -50,9 +50,6 @@ const Tabs: React.FC<TabsProps> = ({
     scrollButtons
   );
 
-  const styleEls = document.querySelectorAll('[data-meta*="jds-button"]');
-  console.log(styleEls);
-
   const { tabButtonProps, tabPanelProps } = useDistributedProps(children, props);
 
   return (
@@ -84,7 +81,7 @@ const Tabs: React.FC<TabsProps> = ({
             </IconButton>
           </div>
         )}
-        <div id={`button-panel`} ref={buttonPanelRef} className={classNames.buttonPanel}>
+        <div id={`button-panel-${classNames.root}`} ref={buttonPanelRef} className={classNames.buttonPanel}>
           {tabButtonProps.map((props, index) => {
             const { classes, ...rest } = props;
             return <TabButton {...rest} key={`${index}-${value}`} index={index} />;

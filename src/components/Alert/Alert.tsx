@@ -25,6 +25,7 @@ export interface AlertProps extends React.PropsWithChildren {
   onOpen?: () => void;
   resumeHideDuration?: number;
   style?: React.CSSProperties;
+  title?: string;
 }
 
 const Alert: React.FC<AlertProps> = ({
@@ -42,28 +43,36 @@ const Alert: React.FC<AlertProps> = ({
   onClose = () => {},
   onOpen = () => {},
   resumeHideDuration = 1500,
-  style = {}
+  style = {},
+  title = ''
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const { isVisible, closeAlert, stopClose } = useAlertTimers(ref, autoHide, autoHideDuration);
   const classNames = classes ? mergeClasses(useStyles({ color }), classes) : useStyles({ color });
+  console.log(color);
+  const getDisplayedIcon = useCallback(() => {
+    let iconElement: React.ReactNode = null;
 
-  const getDisplayedIcon = () => {
     if (icon) {
-      return React.cloneElement(icon, { size: 24 });
+      iconElement = React.cloneElement(icon, { size: 24 });
+    } else {
+      switch (color) {
+        case 'success':
+          iconElement = <CheckmarkCircleIcon size={24} />;
+          break;
+        case 'warning':
+          iconElement = <WarningIconOutlined size={24} />;
+          break;
+        case 'error':
+          iconElement = <ErrorIconOutlined size={24} />;
+          break;
+        default:
+          return null;
+      }
     }
 
-    switch (color) {
-      case 'success':
-        return <CheckmarkCircleIcon size={24} />;
-      case 'warning':
-        return <WarningIconOutlined size={24} />;
-      case 'error':
-        return <ErrorIconOutlined size={24} />;
-      default:
-        return null;
-    }
-  };
+    return <div className={classNames.icon}>{iconElement}</div>;
+  }, [icon, color, classNames]);
 
   const closeButtonClickHandler = useCallback(() => {
     closeAlert(0);
@@ -96,7 +105,18 @@ const Alert: React.FC<AlertProps> = ({
             <React.Fragment>
               <div className={classNames.info}>
                 {getDisplayedIcon()}
-                {message && <Typography className={classNames.message}>{message}</Typography>}
+                <div>
+                  {title && (
+                    <Typography variant="h5" className={classNames.message}>
+                      {title}
+                    </Typography>
+                  )}
+                  {message && (
+                    <Typography hyphens className={classNames.message}>
+                      {message}
+                    </Typography>
+                  )}
+                </div>
                 {displayCloseButton && (
                   <IconButton onClick={closeButtonClickHandler} size="medium" className={classNames.closeBtn}>
                     <CloseIcon size={24} />

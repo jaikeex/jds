@@ -223,7 +223,7 @@ export const defaultLightTheme: Theme = {
       textTransform: 'uppercase',
       letterSpacing: '0.031rem'
     },
-    fontFamily: 'OpenSans',
+    fontFamily: '"OpenSans", sans-serif',
     monospaceFontFamily: '"JetBrains Mono", monospace !important',
     fontSize: 16,
     fontWeightLight: 300,

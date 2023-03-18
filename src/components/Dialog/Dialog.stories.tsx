@@ -42,3 +42,4 @@ const Template: Story<DialogProps> = (args) => {
 
 export const Default = Template.bind({});
 Default.args = {};
+Default.storyName = 'Dialog';

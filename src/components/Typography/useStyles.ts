@@ -10,6 +10,8 @@ export const useStyles = createStyles(
         root: (props: TypographyProps) => ({
           fontFamily: theme.typography.fontFamily,
           marginTop: 0,
+          marginBottom: props.gutterBottom ? theme.typography[props.variant || 'body3'].marginBottom : 0,
+          hyphens: props.hyphens ? 'auto' : 'none',
           color:
             props.color === ('default' || undefined)
               ? theme.palette.text.primary

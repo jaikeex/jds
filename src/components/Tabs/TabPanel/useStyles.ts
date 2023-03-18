@@ -11,12 +11,9 @@ export const useStyles = createStyles(
           padding: [
             props.removeVerticalPadding ? 0 : theme.spacing.padding[4],
             props.removeHorizontalPadding ? 0 : theme.spacing.padding[4],
-            props.removeVerticalPadding ? 0 : theme.spacing.padding[8],
+            props.removeVerticalPadding ? 0 : theme.spacing.padding[4],
             props.removeHorizontalPadding ? 0 : theme.spacing.padding[4]
-          ],
-          '& > *:first-child': {
-            height: '100%'
-          }
+          ]
         })
       },
       theme.overrides?.TabPanel || {}

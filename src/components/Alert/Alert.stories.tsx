@@ -25,8 +25,25 @@ const Template: Story<AlertProps> = (args) => {
   const defaultClickHandler = () => {
     displayAlert({
       ...args,
+      message: 'This is an alert bar'
+    });
+  };
+
+  const actionClickHandler = () => {
+    displayAlert({
+      ...args,
       message: 'This is an alert bar',
       action: <Button>Action</Button>,
+      icon: <AppsIcon />
+    });
+  };
+
+  const withMessageClickHandler = () => {
+    displayAlert({
+      title: 'Title',
+      message:
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque obcaecati accusantium tempore dolor doloribus, explicabo accusamus illum praesentium exercitationem eveniet veritatis, at non animi fugit officiis!',
+      color: 'secondary',
       icon: <AppsIcon />
     });
   };
@@ -54,7 +71,11 @@ const Template: Story<AlertProps> = (args) => {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-      <Button onClick={defaultClickHandler}>Show Alert (default)</Button>
+      <Button onClick={defaultClickHandler}>Show alert</Button>
+      <Button onClick={actionClickHandler}>Show alert with action</Button>
+      <Button onClick={withMessageClickHandler} color="secondary">
+        Show Alert With Title and Message
+      </Button>
       <Button onClick={successClickHandler} color="success">
         Show Alert (success)
       </Button>
@@ -69,6 +90,5 @@ const Template: Story<AlertProps> = (args) => {
 };
 
 export const Default = Template.bind({});
-Default.args = {
-  message: 'This is an alert bar'
-};
+Default.args = {};
+Default.storyName = 'Alert';

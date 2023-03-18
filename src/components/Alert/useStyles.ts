@@ -36,29 +36,34 @@ export const useStyles = createStyles(
                 : theme.palette[props.color || 'primary'].contrastText
           }
         }),
-        info: () => ({
+        info: {
           width: '100%',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center'
-        }),
-        action: () => ({
+        },
+        action: {
           margin: `${theme.spacing.margin[4]} auto 0 0`
-        }),
+        },
+        icon: {
+          flexShrink: 0,
+          marginRight: '0.5rem'
+        },
         message: (props: AlertProps) => ({
           paddingRight: theme.spacing.padding[4],
           display: 'flex',
           alignItems: 'center',
           color:
             props.color === ('primary' || undefined)
-              ? theme.palette.text.contrast.light
-              : [theme.palette.getContrastText(theme.palette[props.color as ThemeColorVariants].main), '!important'],
+              ? [theme.palette.common.white, '!important']
+              : [theme.palette[props.color as ThemeColorVariants].contrastText, '!important'],
           '& svg': {
             marginRight: theme.spacing.margin[4]
           }
         }),
         closeBtn: (props: AlertProps) => ({
           flexShrink: 0,
+          alignSelf: 'flex-start',
           marginLeft: 'auto',
           '&:hover svg': {
             fill:
@@ -70,5 +75,5 @@ export const useStyles = createStyles(
       },
       theme.overrides?.Alert || {}
     ),
-  { name: 'jds-alert', index: 10 }
+  { name: 'jds-alert' }
 );

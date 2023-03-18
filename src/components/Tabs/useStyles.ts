@@ -9,7 +9,9 @@ export const useStyles = createStyles(
         root: {
           position: 'relative',
           display: 'flex',
-          flexDirection: 'column'
+          flexDirection: 'column',
+          backgroundColor: theme.palette.background.default,
+          paddingTop: theme.spacing.padding[4]
         },
         buttonPanel: (props: TabsProps) => ({
           position: 'relative',
@@ -35,13 +37,14 @@ export const useStyles = createStyles(
           }
         }),
         scrollButtonWrapper: {
+          backgroundColor: 'inherit',
           display: 'flex',
           justifyContent: 'center',
           position: 'absolute',
           zIndex: 100,
           width: '3rem',
-          height: '2rem',
-          backgroundColor: theme.palette.background.default
+          height: '2rem'
+          //backgroundColor: theme.palette.background.default
         },
         scrollButton: {
           borderRadius: 0,

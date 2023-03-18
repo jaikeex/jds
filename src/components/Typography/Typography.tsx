@@ -12,6 +12,7 @@ export interface TypographyProps extends React.PropsWithChildren {
   className?: string;
   color?: ThemeColorVariantsWithDefault;
   gutterBottom?: boolean;
+  hyphens?: boolean;
   noWrap?: boolean;
   style?: React.CSSProperties;
   textAlign?: 'center' | 'inherit' | 'justify' | 'left' | 'right';
@@ -25,6 +26,7 @@ const Typography: React.FC<TypographyProps> = ({
   className = '',
   color = 'default',
   gutterBottom = false,
+  hyphens = false,
   noWrap = false,
   style = {},
   textAlign = 'inherit',
@@ -32,17 +34,13 @@ const Typography: React.FC<TypographyProps> = ({
   variant = 'body1'
 }) => {
   const Component = typographyVariantMap[variant] as keyof JSX.IntrinsicElements;
-  const classNames = mergeClasses(useStyles({ color }), classes);
+  const classNames = mergeClasses(useStyles({ color, hyphens, gutterBottom, variant }), classes);
 
   const getStyles = () => {
     const styles: React.CSSProperties = {
       textAlign: textAlign,
       ...style
     };
-
-    if (!gutterBottom) {
-      styles.marginBottom = 0;
-    }
 
     if (noWrap) {
       styles.overflow = 'hidden';

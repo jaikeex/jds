@@ -45,6 +45,6 @@ export const useStyles = createStyles(
     ),
   {
     name: 'jds-button-group',
-    index: 5
+    index: 4
   }
 );

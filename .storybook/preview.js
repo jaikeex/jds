@@ -7,7 +7,7 @@ import ThemeSwitchButton from './ThemeSwitchButton/ThemeSwitchButton';
 addDecorator((story) => {
   return (
     <div className="jds-storybook">
-      <ThemeProvider defaultTheme={defaultLightTheme}>
+      <ThemeProvider defaultTheme={defaultDarkTheme}>
         <ThemeSwitchButton /> {story()}
       </ThemeProvider>
     </div>
@@ -32,7 +32,7 @@ export const parameters = {
       },
       {
         name: 'dark',
-        value: '#202020'
+        value: '#1e293b'
       }
     ]
   },

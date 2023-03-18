@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import type { TabPanelProps } from 'components/Tabs/TabPanel';
 import { useTabsContext } from 'components/Tabs/TabsContextProvider';
+import { useStyles } from './useStyles';
 
 export interface TabPanelsContainerProps extends React.PropsWithChildren {
   value?: string | null;
@@ -9,6 +10,8 @@ export interface TabPanelsContainerProps extends React.PropsWithChildren {
 const TabPanelsContainer: React.FC<TabPanelsContainerProps> = ({ children = [], value = '' }): JSX.Element => {
   const { activeTab, setActiveTab } = useTabsContext();
   const [activeTabComponent, setActiveTabComponent] = useState<React.ReactNode | null>(null);
+
+  const classNames = useStyles();
 
   useEffect(() => {
     if (!Array.isArray(children)) {
@@ -32,7 +35,7 @@ const TabPanelsContainer: React.FC<TabPanelsContainerProps> = ({ children = [], 
     value && setActiveTab(value);
   }, [value]);
 
-  return <React.Fragment>{activeTabComponent}</React.Fragment>;
+  return <div className={classNames.root}>{activeTabComponent}</div>;
 };
 
 TabPanelsContainer.displayName = 'TabPanelsContainer';

@@ -69,12 +69,14 @@ const ThemeProvider: React.FC<ThemeContextProviderProps> = ({
   );
 
   return (
-    <EmotionCacheProvider>
-      <ThemeContext.Provider value={defaultValue}>
-        {/* @ts-ignore */}
-        <JSSThemeProvider theme={theme}>{children}</JSSThemeProvider>
-      </ThemeContext.Provider>
-    </EmotionCacheProvider>
+    <div className={theme.name}>
+      <EmotionCacheProvider>
+        <ThemeContext.Provider value={defaultValue}>
+          {/* @ts-ignore */}
+          <JSSThemeProvider theme={theme}>{children}</JSSThemeProvider>
+        </ThemeContext.Provider>
+      </EmotionCacheProvider>
+    </div>
   );
 };
 

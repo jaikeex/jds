@@ -26,3 +26,4 @@ export const Default = Template.bind({});
 Default.args = {
   href: '#'
 };
+Default.storyName = 'Link';

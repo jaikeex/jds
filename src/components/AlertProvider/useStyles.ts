@@ -5,7 +5,7 @@ import type { AlertProviderProps } from './AlertProvider';
 export const useStyles = createStyles(
   {
     root: (props: AlertProviderProps) => ({
-      width: '32rem',
+      width: '31rem',
       position: 'fixed',
       zIndex: 10000,
       [props.location?.horizontal || 'right']: 0,
