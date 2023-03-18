@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import type { RangeSliderClassKey, RangeSliderSize, RangeSliderValue } from './types';
-import type { Position, ThemeColorVariants } from 'core/types';
+import type { ThemeColorVariants } from 'core/types';
 import { mergeClasses } from 'core/utils';
 import type { Classes } from 'jss';
 import { useStyles } from './useStyles';

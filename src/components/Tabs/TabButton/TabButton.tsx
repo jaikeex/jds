@@ -8,38 +8,26 @@ import { useForwardedRef } from 'core/hooks';
 import type { Classes } from 'jss';
 import type { TabButtonClassKey } from './types';
 import { useScrollToView } from 'core/hooks';
+import { useCallback } from 'react';
 
 export interface TabButtonProps extends Omit<ButtonProps, 'ref' | 'classes'> {
   classes?: Classes<TabButtonClassKey>;
-  index?: number;
   label?: string;
-  onTabPanelSwitch?: (event: React.MouseEvent<HTMLButtonElement>, index: number, value: string | undefined) => void;
   value?: string;
 }
 
 const TabButton: React.FC<TabButtonProps> = React.forwardRef<HTMLButtonElement, TabButtonProps>(
-  (
-    {
-      children = null,
-      index = 0,
-      label = '',
-      onClick = () => {},
-      onTabPanelSwitch = () => {},
-      value = undefined,
-      ...props
-    },
-    ref
-  ) => {
+  ({ label = '', value = undefined, ...props }, ref) => {
     const buttonRef = useForwardedRef<HTMLButtonElement>(ref);
     const scrollToView = useScrollToView(buttonRef.current, 'left', 48);
     const { setActiveTab, activeTab } = useTabsContext();
 
     const classNames = useStyles();
 
-    const buttonClickHandler = (event: React.MouseEvent<HTMLButtonElement>) => {
+    const buttonClickHandler = useCallback(() => {
       value && setActiveTab(value);
       scrollToView();
-    };
+    }, [setActiveTab, scrollToView, value]);
 
     return (
       <Button

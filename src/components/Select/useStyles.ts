@@ -11,26 +11,9 @@ export const useStyles = createStyles(
           fontSize: '1rem',
           transition: 'all 0.2s',
           width: props.width || '100%',
-          outline: 'none'
-        }),
-        option: (props: SelectProps) => ({
-          height: '1.75rem',
-          backgroundColor: 'transparent',
-          transition: 'background-color 0.1s',
-          padding: [theme.spacing.padding[2], theme.spacing.padding[6]]
-        }),
-        optionDisabled: {
-          color: theme.palette.rgba(theme.palette.text.disabled, 0.8)
-        },
-        optionSelected: (props: SelectProps) => ({
-          color: theme.palette.text.primary,
-          backgroundColor: theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.5)
-        }),
-        optionFocused: (props: SelectProps) => ({
-          backgroundColor: theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.25),
-          '&:active': {
-            backgroundColor: theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.8)
-          }
+          outline: 'none',
+          minHeight: '2.5rem',
+          position: 'relative'
         }),
         control: {
           backgroundColor: 'transparent',
@@ -41,16 +24,20 @@ export const useStyles = createStyles(
           border: 'none',
           borderBottomLeftRadius: 0,
           borderBottomRightRadius: 0,
-          backgroundColor: theme.palette.rgba(theme.palette[props.color || 'primary'].light, 0.1),
+          backgroundColor: props.disabled
+            ? theme.palette.rgba(theme.palette.text.disabled, 0.1)
+            : theme.palette.rgba(theme.palette[props.color || 'primary'].light, 0.1),
           borderBottom: {
             width: '1px',
             style: 'solid',
             color: props.disabled
-              ? theme.palette.grey[400]
+              ? theme.palette.rgba(theme.palette.text.disabled, 0.5)
               : theme.palette.rgba(theme.palette[props.color || 'primary'].light, 0.6)
           },
           '&:hover': {
-            borderColor: props.disabled ? theme.palette.grey[400] : theme.palette[props.color || 'primary'].main,
+            borderColor: props.disabled
+              ? theme.palette.rgba(theme.palette.text.disabled, 0.5)
+              : theme.palette[props.color || 'primary'].main,
             backgroundColor: props.disabled
               ? theme.palette.rgba(theme.palette[props.color || 'primary'].light, 0.1)
               : theme.palette.rgba(theme.palette[props.color || 'primary'].light, 0.15)
@@ -75,11 +62,13 @@ export const useStyles = createStyles(
             width: '1px',
             style: 'solid',
             color: props.disabled
-              ? theme.palette.grey[400]
+              ? theme.palette.rgba(theme.palette.text.disabled, 0.5)
               : theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.6)
           },
           '&:hover': {
-            borderColor: props.disabled ? theme.palette.grey[400] : theme.palette[props.color || 'primary'].main
+            borderColor: props.disabled
+              ? theme.palette.rgba(theme.palette.text.disabled, 0.5)
+              : theme.palette[props.color || 'primary'].main
           },
           '&:focus-within': {
             borderColor: theme.palette[props.color || 'primary'].main,
@@ -101,11 +90,13 @@ export const useStyles = createStyles(
             width: '1px',
             style: 'solid',
             color: props.disabled
-              ? theme.palette.grey[400]
+              ? theme.palette.rgba(theme.palette.text.disabled, 0.5)
               : theme.palette.rgba(theme.palette[props.color || 'primary'].light, 0.6)
           },
           '&:hover': {
-            borderColor: props.disabled ? theme.palette.grey[400] : theme.palette[props.color || 'primary'].main
+            borderColor: props.disabled
+              ? theme.palette.rgba(theme.palette.text.disabled, 0.5)
+              : theme.palette[props.color || 'primary'].main
           },
           '&:focus-within': {
             borderColor: theme.palette[props.color || 'primary'].main,
@@ -119,19 +110,21 @@ export const useStyles = createStyles(
             }
           }
         }),
-        value: {
-          color: theme.palette.text.primary
-        },
-        multiValue: {
+        value: (props: SelectProps) => ({
+          color: props.disabled ? theme.palette.text.disabled : theme.palette.text.primary
+        }),
+        multiValue: (props: SelectProps) => ({
           backgroundColor:
             theme.name === 'dark'
               ? theme.palette.lighten(theme.palette.background.default, 15)
               : theme.palette.darken(theme.palette.background.default, 15)
-        },
-        multiValueLabel: {
-          color: theme.palette.text.primary
-        },
-        multiValueRemove: {
+        }),
+        multiValueLabel: (props: SelectProps) => ({
+          paddingRight: props.readonly ? theme.spacing.padding[3] : theme.spacing.padding[2],
+          color: props.disabled ? theme.palette.lighten(theme.palette.text.disabled, 15) : theme.palette.text.primary
+        }),
+        multiValueRemove: (props: SelectProps) => ({
+          display: props.readonly ? 'none' : 'inline-flex',
           '&:hover': {
             backgroundColor:
               theme.name === 'dark'
@@ -139,9 +132,9 @@ export const useStyles = createStyles(
                 : theme.palette.darken(theme.palette.background.default, 20)
           },
           '& path': {
-            fill: theme.palette.text.primary
+            fill: props.disabled ? theme.palette.text.disabled : theme.palette.text.primary
           }
-        },
+        }),
         separator: {
           display: 'none'
         },
@@ -157,6 +150,23 @@ export const useStyles = createStyles(
             color: theme.palette.rgba(theme.palette.text.primary, 0.5)
           }
         },
+        input: {
+          backgroundColor: 'transparent',
+          fontFamily: 'inherit',
+          fontSize: '0.937rem',
+          color: theme.palette.text.primary
+        },
+        placeholder: (props: SelectProps) => ({
+          '&::after': {
+            content: `"${props.placeholder}"`,
+            color: theme.palette.rgba(theme.palette.text.primary, 0.5),
+            position: 'absolute',
+            width: 'max-content',
+            left: '0.75rem',
+            top: '1.8rem',
+            fontSize: '0.938rem'
+          }
+        }),
         label: {
           fontWeight: 500,
           display: 'block',
@@ -165,28 +175,33 @@ export const useStyles = createStyles(
           cursor: 'text',
           top: '0.25rem',
           left: '0.1rem',
+          whiteSpace: 'nowrap',
           color: theme.palette.rgba(theme.palette.text.primary, 0.5)
         },
-        labelTransformed: {
+        labelTransformed: (props: SelectProps) => ({
           fontSize: '0.875rem',
           marginLeft: 0,
           cursor: 'default',
-          color: theme.palette.text.primary,
+          color: props.disabled ? theme.palette.rgba(theme.palette.text.disabled, 0.5) : theme.palette.text.primary,
           top: '-1.5rem',
-          left: '-0.5rem'
-        },
-        labelHidden: {
-          transition: 'all 0s',
-          opacity: 0
-        },
-        valueContainer: {
-          overflow: 'visible'
-        }
+          left: props.isMulti ? '0' : '-0.5rem'
+        }),
+        labelStripped: (props: SelectProps) => ({
+          '&::after': {
+            content: ['""', '!important']
+          }
+        }),
+        valueContainer: (props: SelectProps) => ({
+          maxHeight: props.preventOverflow ? '2rem' : '',
+          overflow: 'hidden'
+        }),
+        clearIndicator: (props: SelectProps) => ({
+          display: props.readonly ? 'none' : 'inline-flex'
+        })
       },
       theme.overrides?.Select || {}
     ),
   {
-    name: 'jds-select',
-    element: document.getElementById('jds-select') as HTMLStyleElement
+    name: 'jds-select'
   }
 );

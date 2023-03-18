@@ -9,9 +9,7 @@ export default {
   component: IconButton
 } as ComponentMeta<typeof IconButton>;
 
-const Template: Story<IconButtonProps> = (args) => <IconButton {...args} />;
-
-const StandardTemplate: Story<IconButtonProps> = (args) => (
+const Template: Story<IconButtonProps> = (args) => (
   <div style={{ display: 'flex', flexDirection: 'row', gap: '1.5rem' }}>
     <IconButton {...args} />
     <IconButton {...args}>
@@ -21,7 +19,7 @@ const StandardTemplate: Story<IconButtonProps> = (args) => (
   </div>
 );
 
-export const Default = StandardTemplate.bind({});
+export const Default = Template.bind({});
 Default.args = {
   children: <LightModeIcon />
 };

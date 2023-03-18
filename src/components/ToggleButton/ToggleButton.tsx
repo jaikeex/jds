@@ -16,13 +16,13 @@ export interface ToggleButtonProps extends React.PropsWithChildren {
   disabled?: boolean;
   disableRippleEffect?: boolean;
   disableUpperCase?: boolean;
-  onChange?: (selected: boolean, value?: any) => void;
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>, value?: any) => void;
+  onChange?: (selected: boolean, value: string) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>, value: string) => void;
   removeBorder?: boolean;
   selected?: boolean;
   size?: ToggleButtonSize;
   style?: React.CSSProperties;
-  value?: any;
+  value?: string;
 }
 
 const ToggleButton: React.FC<ToggleButtonProps> = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
@@ -41,7 +41,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = React.forwardRef<HTMLButtonEle
       selected = false,
       size = 'medium',
       style = {},
-      value = undefined
+      value = ''
     },
     ref
   ): JSX.Element => {

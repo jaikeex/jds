@@ -11,12 +11,19 @@ export interface LoaderProps {
   classes?: Classes<LoaderClassKey>;
   color?: ThemeColorVariantsWithDefault;
   size?: LoaderSize;
+  style?: React.CSSProperties;
 }
 
-const Loader: React.FC<LoaderProps> = ({ size = 'medium', classes = {}, className = '', color = 'default' }) => {
+const Loader: React.FC<LoaderProps> = ({
+  classes = {},
+  className = '',
+  color = 'default',
+  size = 'medium',
+  style = {}
+}) => {
   const classNames = mergeClasses(useStyles({ color }), classes);
 
-  return <div className={clsx(classNames.root, classNames[size], className)} />;
+  return <div style={style} className={clsx(classNames.root, classNames[size], className)} />;
 };
 
 export default Loader;

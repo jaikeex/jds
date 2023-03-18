@@ -1,4 +1,3 @@
-import type { Classes } from 'jss';
 import React from 'react';
 import type { TabButtonProps } from './TabButton';
 import type { TabPanelProps } from './TabPanel';

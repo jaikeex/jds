@@ -19,6 +19,7 @@ export const useChildrenWithProps = (
       }
       childrenWithProps.push(
         React.cloneElement(child, {
+          key: `${index}-${child.props.value}`,
           size: child.props.size ? child.props.size : props.size,
           color: child.props.color ? child.props.color : props.color,
           disabled: child.props.disabled ? child.props.disabled : props.disabled,

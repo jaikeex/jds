@@ -8,6 +8,7 @@ export interface TabsContextProps {
 
 export interface TabsContextProviderProps extends React.PropsWithChildren {
   activeTab?: string | null;
+  onChange?: (value: string) => void;
 }
 
 export const TabsContext = React.createContext<TabsContextProps>({
@@ -17,11 +18,20 @@ export const TabsContext = React.createContext<TabsContextProps>({
 
 export const useTabsContext = () => useContext(TabsContext);
 
-export const TabsContextProvider: React.FC<TabsContextProviderProps> = ({ children = null, activeTab = '' }) => {
+export const TabsContextProvider: React.FC<TabsContextProviderProps> = ({
+  children = null,
+  activeTab = '',
+  onChange = () => {}
+}) => {
   const [activeTabValue, setActiveTabValue] = useState<string>(activeTab || '');
 
+  const activeTabChangeHandler = (value: string) => {
+    setActiveTabValue(value);
+    onChange(value);
+  };
+
   const value = React.useMemo(
-    () => ({ activeTab: activeTabValue, setActiveTab: setActiveTabValue }),
+    () => ({ activeTab: activeTabValue, setActiveTab: activeTabChangeHandler }),
     [activeTabValue, setActiveTabValue]
   );
 

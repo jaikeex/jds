@@ -7,11 +7,16 @@ import { CLoadingIndicator, CValueContainer } from 'components/Select/custom-com
 import { useSelectClasses } from 'components/Select/useSelectClasses';
 import type SelectType from 'react-select/dist/declarations/src/Select';
 import { default as RSelect } from 'react-select';
-import { COption } from './custom-components/COption';
-import { CInput } from './custom-components/CInput';
-import SelectContextProvider from './SelectContextProvider';
+import CheckboxOption from './CheckboxOption';
+import { CInput } from 'components/Select/custom-components/CInput';
+import SelectContextProvider from 'components/Select/SelectContextProvider';
 
-const Select = React.forwardRef<SelectType<Selectable, boolean, GroupBase<Selectable>>, SelectProps>(
+export type CheckboxSelectProps = Omit<SelectProps, 'isMulti'>;
+
+const CheckboxSelect: React.FC<CheckboxSelectProps> = React.forwardRef<
+  SelectType<Selectable, boolean, GroupBase<Selectable>>,
+  CheckboxSelectProps
+>(
   (
     {
       appearance = 'outlined',
@@ -22,7 +27,6 @@ const Select = React.forwardRef<SelectType<Selectable, boolean, GroupBase<Select
       defaultValue = undefined,
       disabled = false,
       id = undefined,
-      isMulti = false,
       onChange = () => {},
       label = '',
       placeholder = '',
@@ -35,7 +39,7 @@ const Select = React.forwardRef<SelectType<Selectable, boolean, GroupBase<Select
       ...props
     },
     ref
-  ) => {
+  ): JSX.Element => {
     const inputRef = useForwardedRef<SelectType<Selectable, boolean, GroupBase<Selectable>>>(ref);
     const [menuIsOpen, setMenuIsOpen] = useState<boolean | undefined>(false);
     const [selectedValue, setSelectedValue] = useState<SingleValue<Selectable> | MultiValue<Selectable> | undefined>(
@@ -53,13 +57,12 @@ const Select = React.forwardRef<SelectType<Selectable, boolean, GroupBase<Select
         disabled,
         width,
         placeholder,
-        isMulti,
+        isMulti: true,
         readonly,
         preventOverflow
       },
       classes
     );
-
     const selectionChangeHandler = useCallback(
       (value: SingleValue<Selectable> | MultiValue<Selectable>, actionMeta: ActionMeta<Selectable>) => {
         setSelectedValue(value);
@@ -83,16 +86,16 @@ const Select = React.forwardRef<SelectType<Selectable, boolean, GroupBase<Select
           ref={inputRef}
           components={{
             ValueContainer: CValueContainer,
-            Option: COption,
+            Option: CheckboxOption,
             LoadingIndicator: CLoadingIndicator,
             Input: CInput,
             ...components
           }}
           id={id}
           isDisabled={disabled}
-          isMulti={isMulti}
-          closeMenuOnSelect={!isMulti}
+          isMulti
           hideSelectedOptions={false}
+          closeMenuOnSelect={false}
           onChange={selectionChangeHandler}
           placeholder={label}
           styles={style}
@@ -105,5 +108,5 @@ const Select = React.forwardRef<SelectType<Selectable, boolean, GroupBase<Select
   }
 );
 
-Select.displayName = 'Select';
-export default Select;
+CheckboxSelect.displayName = 'ChgeckboxSelect';
+export default CheckboxSelect;

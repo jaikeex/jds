@@ -1,5 +1,4 @@
 import { createStyles } from 'styling';
-import type { Theme } from 'styling/types';
 import type { AlertProviderProps } from './AlertProvider';
 
 export const useStyles = createStyles(

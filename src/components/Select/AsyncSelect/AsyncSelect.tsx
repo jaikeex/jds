@@ -1,12 +1,15 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import type { Selectable, SelectProps } from 'components/Select/types';
-import type { GroupBase, MultiValue, SingleValue } from 'react-select';
+import type { ActionMeta, GroupBase, MultiValue, SingleValue } from 'react-select';
 import { default as RAsyncSelect } from 'react-select/async';
 import { makeId } from 'core/utils';
 import { useForwardedRef } from 'core/hooks';
-import { CValueContainer } from 'components/Select/custom-components';
+import { CLoadingIndicator, CValueContainer } from 'components/Select/custom-components';
 import { useSelectClasses } from 'components/Select/useSelectClasses';
 import type SelectType from 'react-select/dist/declarations/src/Select';
+import { CInput } from 'components/Select/custom-components/CInput';
+import { COption } from 'components/Select/custom-components/COption';
+import SelectContextProvider from 'components/Select/SelectContextProvider';
 
 export interface AsyncSelectProps extends SelectProps {
   cacheOptions?: boolean | ReadonlyArray<Selectable | GroupBase<Selectable>>;
@@ -31,7 +34,10 @@ const AsyncSelect = React.forwardRef<SelectType<Selectable, boolean, GroupBase<S
       isMulti = false,
       onChange = () => {},
       label = '',
+      placeholder = '',
+      preventOverflow = false,
       style = {},
+      readonly = false,
       transformLabel = false,
       value = defaultValue,
       width = undefined,
@@ -40,29 +46,33 @@ const AsyncSelect = React.forwardRef<SelectType<Selectable, boolean, GroupBase<S
     ref
   ) => {
     const inputRef = useForwardedRef<SelectType<Selectable, boolean, GroupBase<Selectable>>>(ref);
+    const [menuIsOpen, setMenuIsOpen] = useState<boolean | undefined>(false);
     const [selectedValue, setSelectedValue] = useState<SingleValue<Selectable> | MultiValue<Selectable> | undefined>(
       value
     );
 
     id ??= React.useMemo(() => makeId(5), [id, makeId]);
 
-    const classNames = useSelectClasses({ appearance, transformLabel, className, color, disabled }, classes);
-
-    const styles = () => {
-      const styles = { ...style };
-      if (width) {
-        styles.container = () => ({
-          width: typeof width === 'string' ? width : `${width}}px`
-        });
-
-        return styles;
-      }
-    };
+    const classNames = useSelectClasses(
+      {
+        appearance,
+        transformLabel,
+        className,
+        color,
+        disabled,
+        width,
+        placeholder,
+        isMulti,
+        readonly,
+        preventOverflow
+      },
+      classes
+    );
 
     const selectionChangeHandler = useCallback(
-      (value: SingleValue<Selectable> | MultiValue<Selectable>) => {
+      (value: SingleValue<Selectable> | MultiValue<Selectable>, actionMeta: ActionMeta<Selectable>) => {
         setSelectedValue(value);
-        onChange(value);
+        onChange(value, actionMeta);
       },
       [setSelectedValue, onChange]
     );
@@ -71,23 +81,35 @@ const AsyncSelect = React.forwardRef<SelectType<Selectable, boolean, GroupBase<S
       setSelectedValue(value);
     }, [value]);
 
+    useEffect(() => {
+      setMenuIsOpen(readonly ? false : undefined);
+    }, []);
+
     return (
-      <RAsyncSelect
-        ref={inputRef}
-        components={{
-          ValueContainer: CValueContainer,
-          ...components
-        }}
-        id={id}
-        isDisabled={disabled}
-        isMulti={isMulti}
-        onChange={selectionChangeHandler}
-        placeholder={label}
-        styles={styles()}
-        value={selectedValue}
-        classNames={classNames}
-        {...props}
-      />
+      <SelectContextProvider color={color} readonly={readonly}>
+        <RAsyncSelect
+          {...props}
+          ref={inputRef}
+          components={{
+            ValueContainer: CValueContainer,
+            Option: COption,
+            LoadingIndicator: CLoadingIndicator,
+            Input: CInput,
+            ...components
+          }}
+          id={id}
+          isDisabled={disabled}
+          isMulti={isMulti}
+          closeMenuOnSelect={!isMulti}
+          hideSelectedOptions={false}
+          onChange={selectionChangeHandler}
+          placeholder={label}
+          styles={style}
+          value={selectedValue}
+          classNames={classNames}
+          menuIsOpen={menuIsOpen}
+        />
+      </SelectContextProvider>
     );
   }
 );

@@ -80,6 +80,10 @@ DisabledTab.args = {
 const ControlledTemplate: Story<TabsProps> = (args) => {
   const [value, setValue] = useState<string>('Tab 1');
 
+  const changeHandler = (value: string) => {
+    console.log(value);
+  };
+
   return (
     <React.Fragment>
       <div style={{ width: '500px', display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
@@ -88,6 +92,7 @@ const ControlledTemplate: Story<TabsProps> = (args) => {
           orientation="horizontal"
           labelPosition="top"
           style={{ gap: '5.5rem' }}
+          value={value}
         >
           <Radio key="Tab 1" label="Tab 1" value="Tab 1" />
           <Radio key="Tab 2" label="Tab 2" value="Tab 2" />
@@ -96,7 +101,7 @@ const ControlledTemplate: Story<TabsProps> = (args) => {
         </RadioGroup>
       </div>
       <div style={{ width: '500px', height: '20rem' }}>
-        <Tabs value={value} {...args} />
+        <Tabs value={value} {...args} onChange={changeHandler} />
       </div>
     </React.Fragment>
   );

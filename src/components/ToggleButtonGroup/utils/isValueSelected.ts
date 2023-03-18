@@ -1,4 +1,4 @@
-export default function isValueSelected(value: string | string[] | undefined, candidate: string) {
+export default function isValueSelected(value: string | string[] | undefined, candidate: string | undefined) {
   if (candidate === undefined || value === undefined) {
     return false;
   }

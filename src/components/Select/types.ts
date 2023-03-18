@@ -1,20 +1,26 @@
 import type React from 'react';
-import type { GroupBase, MenuPlacement, MultiValue, Options, SingleValue, StylesConfig } from 'react-select';
+import type {
+  ActionMeta,
+  GroupBase,
+  MenuPlacement,
+  MultiValue,
+  Options,
+  SingleValue,
+  StylesConfig
+} from 'react-select';
 import type { ThemeColorVariants } from 'core/types';
 import type { SelectComponents } from 'react-select/dist/declarations/src/components';
 import type { Classes } from 'jss';
 
 export interface Selectable {
   label: React.ReactNode;
-  value: string | number;
+  value: string;
+  color?: ThemeColorVariants;
+  isDisabled?: boolean;
 }
 
 export type SelectClassKey =
   | 'root'
-  | 'option'
-  | 'optionDisabled'
-  | 'optionSelected'
-  | 'optionFocused'
   | 'control'
   | 'filled'
   | 'outlined'
@@ -25,10 +31,13 @@ export type SelectClassKey =
   | 'multiValueRemove'
   | 'separator'
   | 'menu'
+  | 'input'
+  | 'placeholder'
   | 'label'
   | 'labelTransformed'
-  | 'labelHidden'
-  | 'valueContainer';
+  | 'labelStripped'
+  | 'valueContainer'
+  | 'clearIndicator';
 
 export interface SelectProps {
   appearance?: 'outlined' | 'filled' | 'subtle';
@@ -55,13 +64,16 @@ export interface SelectProps {
   maxMenuHeight?: number;
   menuPlacement?: MenuPlacement;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
-  onChange?: (a: SingleValue<Selectable> | MultiValue<Selectable>) => void;
+  onChange?: (a: SingleValue<Selectable> | MultiValue<Selectable>, actionMeta: ActionMeta<Selectable>) => void;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
   onMenuScrollToBottom?: (a: TouchEvent | WheelEvent) => void;
   onMenuScrollToTop?: (a: TouchEvent | WheelEvent) => void;
   openMenuOnFocus?: boolean;
   options?: Options<Selectable>;
   label?: string;
+  placeholder?: string;
+  preventOverflow?: boolean;
+  readonly?: boolean;
   required?: boolean;
   style?: StylesConfig<Selectable, false | true, GroupBase<Selectable>>;
   transformLabel?: boolean;

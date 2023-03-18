@@ -27,12 +27,13 @@ const TabPanelsContainer: React.FC<TabPanelsContainerProps> = ({ children = [], 
       }
     });
 
-    setActiveTab(tab.props.value);
     setActiveTabComponent(tab);
-  }, [activeTab, setActiveTab]);
+  }, [activeTab]);
 
   useEffect(() => {
-    value && setActiveTab(value);
+    if (value && value !== activeTab) {
+      setActiveTab(value);
+    }
   }, [value]);
 
   return <div className={classNames.root}>{activeTabComponent}</div>;

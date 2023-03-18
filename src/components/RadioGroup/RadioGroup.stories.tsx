@@ -9,20 +9,14 @@ export default {
   component: RadioGroup
 } as ComponentMeta<typeof RadioGroup>;
 
-const Template: Story<RadioGroupProps> = (args) => {
-  const changeHandler = (value: any) => {
-    console.log(value);
-  };
-
-  return (
-    <RadioGroup {...args} onChange={changeHandler}>
-      <Radio label="First" value="first" />
-      <Radio label="Second" value="second" />
-      <Radio label="Third" value="third" />
-      <Radio label="Disabled" value="disabled" disabled />
-    </RadioGroup>
-  );
-};
+const Template: Story<RadioGroupProps> = (args) => (
+  <RadioGroup {...args}>
+    <Radio label="First" value="first" />
+    <Radio label="Second" value="second" />
+    <Radio label="Third" value="third" />
+    <Radio label="Disabled" value="disabled" disabled />
+  </RadioGroup>
+);
 
 export const Default = Template.bind({});
 Default.args = {};

@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { TabButton } from './TabButton';
 import { Divider } from 'components/Divider';
 import { mergeClasses, scrollToSide } from 'core/utils';
@@ -20,7 +20,7 @@ export interface TabsProps {
   defaultValue?: string;
   divider?: boolean;
   justifyButtons?: 'space-around' | 'space-between' | 'space-evenly' | 'stretch' | 'center' | 'flex-end' | 'flex-start';
-  onChange?: (event: React.SyntheticEvent<HTMLElement>, value: string | undefined) => void;
+  onChange?: (value: string) => void;
   removeHorizontalPadding?: boolean;
   removeVerticalPadding?: boolean;
   scrollButtons?: 'auto' | 'allways' | 'never';
@@ -50,10 +50,20 @@ const Tabs: React.FC<TabsProps> = ({
     scrollButtons
   );
 
+  const scrollButtonPanelRight = useCallback(
+    () => scrollToSide(buttonPanelRef.current, { behavior: 'smooth' }, 'right'),
+    [scrollToSide, buttonPanelRef]
+  );
+
+  const scrollButtonPanelLeft = useCallback(
+    () => scrollToSide(buttonPanelRef.current, { behavior: 'smooth' }, 'left'),
+    [scrollToSide, buttonPanelRef]
+  );
+
   const { tabButtonProps, tabPanelProps } = useDistributedProps(children, props);
 
   return (
-    <TabsContextProvider activeTab={value}>
+    <TabsContextProvider activeTab={value} onChange={onChange}>
       <div className={clsx(classNames.root, className)} style={style}>
         {leftScrollButtonVisible && (
           <div className={clsx(classNames.scrollButtonWrapper, classNames.scrollButtonLeft)} style={{ left: 0 }}>
@@ -62,7 +72,7 @@ const Tabs: React.FC<TabsProps> = ({
               className={classNames.scrollButton}
               color="default"
               disabled={scrolledToLeft}
-              onClick={() => scrollToSide(buttonPanelRef.current, { behavior: 'smooth' }, 'left')}
+              onClick={scrollButtonPanelLeft}
             >
               <ChevronLeftIcon />
             </IconButton>
@@ -75,7 +85,7 @@ const Tabs: React.FC<TabsProps> = ({
               className={classNames.scrollButton}
               color="default"
               disabled={scrolledToRight}
-              onClick={() => scrollToSide(buttonPanelRef.current, { behavior: 'smooth' }, 'right')}
+              onClick={scrollButtonPanelRight}
             >
               <ChevronRightIcon />
             </IconButton>
@@ -84,7 +94,7 @@ const Tabs: React.FC<TabsProps> = ({
         <div id={`button-panel-${classNames.root}`} ref={buttonPanelRef} className={classNames.buttonPanel}>
           {tabButtonProps.map((props, index) => {
             const { classes, ...rest } = props;
-            return <TabButton {...rest} key={`${index}-${value}`} index={index} />;
+            return <TabButton {...rest} key={`${index}-${value}`} />;
           })}
         </div>
         {divider && <Divider removeMargin />}

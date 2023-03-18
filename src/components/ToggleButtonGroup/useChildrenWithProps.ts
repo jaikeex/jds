@@ -6,8 +6,8 @@ import type { ToggleButtonGroupClassKey } from './types';
 export const useChildrenWithProps = (
   children: React.ReactElement | React.ReactElement[] | null,
   removeBorder: boolean,
-  changeHandler: (event: React.MouseEvent<HTMLButtonElement>, value: any) => void,
-  isChildActive: (value: any) => boolean,
+  changeHandler: (event: React.MouseEvent<HTMLButtonElement>, value: string) => void,
+  isChildActive: (value?: string) => boolean,
   classNames: Classes<ToggleButtonGroupClassKey>,
   props: ToggleButtonProps
 ) => {

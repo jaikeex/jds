@@ -66,7 +66,7 @@ const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
     [setSelectedValue]
   );
 
-  const isChildActive = (value: string) => isValueSelected(selectedValue, value);
+  const isChildActive = (value?: string) => isValueSelected(selectedValue, value);
 
   const childrenWithProps = useChildrenWithProps(
     children,
