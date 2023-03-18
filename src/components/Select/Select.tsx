@@ -27,7 +27,6 @@ const Select = React.forwardRef<SelectType<Selectable, boolean, GroupBase<Select
       label = '',
       placeholder = '',
       style = {},
-      preventOverflow = false,
       readonly = false,
       transformLabel = false,
       value = defaultValue,
@@ -54,8 +53,7 @@ const Select = React.forwardRef<SelectType<Selectable, boolean, GroupBase<Select
         width,
         placeholder,
         isMulti,
-        readonly,
-        preventOverflow
+        readonly
       },
       classes
     );

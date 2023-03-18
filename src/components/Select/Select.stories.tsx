@@ -234,7 +234,7 @@ const CheckboxTemplate: Story<CheckboxSelectProps> = (args) => (
       gap: '2rem'
     }}
   >
-    <CheckboxSelect {...args} preventOverflow options={options} appearance="outlined" />
+    <CheckboxSelect {...args} options={options} appearance="outlined" />
     <CheckboxSelect {...args} options={options} appearance="filled" />
     <CheckboxSelect {...args} options={options} appearance="subtle" />
   </div>

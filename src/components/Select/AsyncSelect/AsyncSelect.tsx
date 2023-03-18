@@ -35,7 +35,6 @@ const AsyncSelect = React.forwardRef<SelectType<Selectable, boolean, GroupBase<S
       onChange = () => {},
       label = '',
       placeholder = '',
-      preventOverflow = false,
       style = {},
       readonly = false,
       transformLabel = false,
@@ -63,8 +62,7 @@ const AsyncSelect = React.forwardRef<SelectType<Selectable, boolean, GroupBase<S
         width,
         placeholder,
         isMulti,
-        readonly,
-        preventOverflow
+        readonly
       },
       classes
     );

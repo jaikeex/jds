@@ -192,8 +192,7 @@ export const useStyles = createStyles(
           }
         }),
         valueContainer: (props: SelectProps) => ({
-          maxHeight: props.preventOverflow ? '2rem' : '',
-          overflow: 'hidden'
+          overflow: 'visible'
         }),
         clearIndicator: (props: SelectProps) => ({
           display: props.readonly ? 'none' : 'inline-flex'

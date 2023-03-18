@@ -72,7 +72,7 @@ export interface SelectProps {
   options?: Options<Selectable>;
   label?: string;
   placeholder?: string;
-  preventOverflow?: boolean;
+  //preventOverflow?: boolean;
   readonly?: boolean;
   required?: boolean;
   style?: StylesConfig<Selectable, false | true, GroupBase<Selectable>>;

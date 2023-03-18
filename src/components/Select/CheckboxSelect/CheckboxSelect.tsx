@@ -31,7 +31,6 @@ const CheckboxSelect: React.FC<CheckboxSelectProps> = React.forwardRef<
       label = '',
       placeholder = '',
       style = {},
-      preventOverflow = false,
       readonly = false,
       transformLabel = false,
       value = defaultValue,
@@ -58,8 +57,7 @@ const CheckboxSelect: React.FC<CheckboxSelectProps> = React.forwardRef<
         width,
         placeholder,
         isMulti: true,
-        readonly,
-        preventOverflow
+        readonly
       },
       classes
     );
