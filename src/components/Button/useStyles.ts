@@ -23,19 +23,19 @@ export const useStyles = createStyles(
         }),
         filled: (props: ButtonProps) => ({
           backgroundColor: props.disabled
-            ? theme.palette.rgba(theme.palette.grey[300], 0.5)
+            ? theme.palette.rgba(theme.palette.text.disabled, 0.5)
             : theme.palette[props.color || 'primary'].main,
           '& span': {
-            color: theme.palette[props.color || 'primary'].contrastText
+            color: props.disabled ? theme.palette.text.disabled : theme.palette[props.color || 'primary'].contrastText
           },
           '& svg': {
             fill: props.disabled
-              ? theme.palette.rgba(theme.palette.grey[300], 0.5)
+              ? theme.palette.rgba(theme.palette.text.disabled, 0.5)
               : theme.palette[props.color || 'primary'].contrastText
           },
           '&:hover': {
             backgroundColor: props.disabled
-              ? theme.palette.rgba(theme.palette.grey[300], 0.5)
+              ? theme.palette.rgba(theme.palette.text.disabled, 0.5)
               : theme.palette[props.color || 'primary'].dark
           }
         }),
@@ -45,17 +45,17 @@ export const useStyles = createStyles(
             width: 1,
             style: 'solid',
             color: props.disabled
-              ? theme.palette.rgba(theme.palette.grey[300], 0.5)
+              ? theme.palette.rgba(theme.palette.text.disabled, 0.5)
               : theme.palette[props.color || 'primary'].main
           },
           '& span': {
             color: props.disabled
-              ? theme.palette.rgba(theme.palette.grey[300], 0.5)
+              ? theme.palette.rgba(theme.palette.text.disabled, 0.5)
               : theme.palette[props.color || 'primary'].dark
           },
           '& svg': {
             fill: props.disabled
-              ? theme.palette.rgba(theme.palette.grey[300], 0.5)
+              ? theme.palette.rgba(theme.palette.text.disabled, 0.5)
               : theme.palette[props.color || 'primary'].dark
           },
           '&:hover': {
@@ -68,12 +68,12 @@ export const useStyles = createStyles(
           backgroundColor: 'transparent',
           '& span': {
             color: props.disabled
-              ? theme.palette.rgba(theme.palette.grey[300], 0.5)
+              ? theme.palette.rgba(theme.palette.text.disabled, 0.5)
               : theme.palette[props.color || 'primary'].dark
           },
           '& svg': {
             fill: props.disabled
-              ? theme.palette.rgba(theme.palette.grey[300], 0.5)
+              ? theme.palette.rgba(theme.palette.text.disabled, 0.5)
               : theme.palette[props.color || 'primary'].dark
           },
           '&:hover': {
