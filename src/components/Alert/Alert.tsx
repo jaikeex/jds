@@ -1,20 +1,13 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { IconButton } from 'components/IconButton';
 import { CheckmarkCircleIcon, CloseIcon, ErrorIconOutlined, WarningIconOutlined } from 'components/icons';
 import { useAlertTimers } from './useAlertTimers';
 import type { ThemeColorVariants } from 'core/types';
-import { useStyles } from './useStyles';
-import type { AlertClassKey } from './types';
-import { mergeClasses } from 'core/utils';
-import type { Classes } from 'jss';
-import clsx from 'clsx';
-import { Typography } from 'components/Typography';
+import * as Styled from './styles';
 
 export interface AlertProps extends React.PropsWithChildren {
   action?: React.ReactNode;
   autoHide?: boolean;
   autoHideDuration?: number;
-  classes?: Classes<AlertClassKey>;
   className?: string;
   color?: ThemeColorVariants;
   displayCloseButton?: boolean;
@@ -33,7 +26,6 @@ const Alert: React.FC<AlertProps> = ({
   autoHide = true,
   autoHideDuration = 4000,
   children = null,
-  classes = undefined,
   className = '',
   color = 'primary',
   displayCloseButton = true,
@@ -48,8 +40,6 @@ const Alert: React.FC<AlertProps> = ({
 }) => {
   const ref = useRef<HTMLDivElement>(null);
   const { isVisible, closeAlert, stopClose } = useAlertTimers(ref, autoHide, autoHideDuration);
-  const classNames = classes ? mergeClasses(useStyles({ color }), classes) : useStyles({ color });
-  console.log(color);
   const getDisplayedIcon = useCallback(() => {
     let iconElement: React.ReactNode = null;
 
@@ -71,8 +61,8 @@ const Alert: React.FC<AlertProps> = ({
       }
     }
 
-    return <div className={classNames.icon}>{iconElement}</div>;
-  }, [icon, color, classNames]);
+    return <Styled.AlertIcon>{iconElement}</Styled.AlertIcon>;
+  }, [icon, color]);
 
   const closeButtonClickHandler = useCallback(() => {
     closeAlert(0);
@@ -93,41 +83,42 @@ const Alert: React.FC<AlertProps> = ({
   return (
     <React.Fragment>
       {isVisible && (
-        <div
+        <Styled.Alert
+          color={color}
           ref={ref}
           id={id}
           style={style}
-          className={clsx(classNames.root, className)}
+          className={className}
           onMouseEnter={mouseOverHandler}
           onMouseLeave={mouseLeaveHandler}
         >
           {!children && (
             <React.Fragment>
-              <div className={classNames.info}>
+              <Styled.AlertInfo>
                 {getDisplayedIcon()}
                 <div>
                   {title && (
-                    <Typography variant="h5" className={classNames.message}>
+                    <Styled.AlertMessage color={color} variant="h5">
                       {title}
-                    </Typography>
+                    </Styled.AlertMessage>
                   )}
                   {message && (
-                    <Typography hyphens className={classNames.message}>
+                    <Styled.AlertMessage color={color} hyphens>
                       {message}
-                    </Typography>
+                    </Styled.AlertMessage>
                   )}
                 </div>
                 {displayCloseButton && (
-                  <IconButton onClick={closeButtonClickHandler} size="medium" className={classNames.closeBtn}>
+                  <Styled.AlertCloseButton color={color} onClick={closeButtonClickHandler} size="medium">
                     <CloseIcon size={24} />
-                  </IconButton>
+                  </Styled.AlertCloseButton>
                 )}
-              </div>
-              {action && <div className={classNames.action}>{action}</div>}
+              </Styled.AlertInfo>
+              {action && <Styled.AlertAction>{action}</Styled.AlertAction>}
             </React.Fragment>
           )}
           {children}
-        </div>
+        </Styled.Alert>
       )}
     </React.Fragment>
   );

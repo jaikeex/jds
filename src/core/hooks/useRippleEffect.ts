@@ -1,6 +1,7 @@
 import React from 'react';
 import type { RippleEffectOptions } from 'core/types';
-import { useRippleEffectStyles } from './useRippleEffectStyles';
+import { css, keyframes } from '@emotion/css';
+import { useTheme } from 'styling';
 
 export const useRippleEffect = <T extends HTMLElement>(ref: React.RefObject<T>, options?: RippleEffectOptions) => {
   const rippleOptions: RippleEffectOptions = {
@@ -10,7 +11,25 @@ export const useRippleEffect = <T extends HTMLElement>(ref: React.RefObject<T>, 
     ...options
   };
 
-  const classes = useRippleEffectStyles(rippleOptions);
+  const { theme } = useTheme();
+
+  const animation = keyframes({
+    to: {
+      transform: 'scale(4)',
+      opacity: 0
+    }
+  });
+
+  const rootClass = css({
+    position: 'absolute',
+    borderRadius: '50%',
+    transform: 'scale(0)',
+    animation: `${animation} ${rippleOptions.animationTime}ms linear`,
+    backgroundColor:
+      rippleOptions.color === 'default' || undefined
+        ? theme.palette.rgba(theme.palette.text.primary, 0.35)
+        : theme.palette.rgba(theme.palette[rippleOptions.color || 'primary'].main, 0.35)
+  });
 
   const createRippleEffect = React.useCallback(
     (event: React.MouseEvent<T>) => {
@@ -31,17 +50,15 @@ export const useRippleEffect = <T extends HTMLElement>(ref: React.RefObject<T>, 
           ? `${target.offsetHeight / 2 - radius}px`
           : `${event.clientY - (rect.top + radius)}px`;
 
-        circle.classList.add(...classes.root.split(' '));
+        circle.classList.add(rootClass);
+
+        const ripple = document.getElementsByClassName(rootClass)[0];
+        if (ripple) ripple.remove();
 
         target.appendChild(circle);
-
-        setTimeout(() => {
-          const ripple = document.getElementsByClassName(classes.root)[0];
-          if (ripple) ripple.remove();
-        }, 500);
       }
     },
-    [ref.current, rippleOptions.animationTime, rippleOptions.color, rippleOptions.center, classes]
+    [ref.current, rippleOptions.animationTime, rippleOptions.color, rippleOptions.center]
   );
 
   return createRippleEffect;

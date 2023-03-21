@@ -1,5 +1,3 @@
-import type { Classes } from 'jss';
-
 export const makeId = (length: number) => {
   let result = '';
   const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
@@ -10,18 +8,6 @@ export const makeId = (length: number) => {
     counter += 1;
   }
   return result;
-};
-
-export const mergeClasses = <C extends string = string>(
-  defaultClasses: Classes<C>,
-  userClasses: Partial<Classes<C>>
-) => {
-  const mergedClasses = {} as Classes<C>;
-
-  Object.entries(userClasses).forEach(
-    ([key, value]) => (mergedClasses[key as C] = defaultClasses[key as C].concat(' ', value as string))
-  );
-  return { ...defaultClasses, ...mergedClasses };
 };
 
 export const scrollToSide = (
@@ -47,4 +33,41 @@ export const checkOverflow = (element: HTMLElement | null) => {
   element.style.overflow = currentOverflow;
 
   return isOverflowing;
+};
+
+export const shouldForwardProp = (prop: string) => {
+  const stylePropNames = [
+    'orientation',
+    'color',
+    'location',
+    'enableBackground',
+    'upperCase',
+    'hyphens',
+    'gutterBottom',
+    'noWrap',
+    'textAlign',
+    'labelPosition',
+    'outlined',
+    'sharpCorners',
+    'flexItem',
+    'removeMargin',
+    'compact',
+    'clickable',
+    'visible',
+    'active',
+    'scrollButtons',
+    'justifyButtons',
+    'removeHorizontalPadding',
+    'removeVerticalPadding',
+    'inputValue',
+    'isFocused',
+    'transformLabel',
+    'elementBefore',
+    'removeBorder',
+    'as',
+    'variant'
+    // 'appearance'
+  ];
+
+  return !stylePropNames.includes(prop);
 };

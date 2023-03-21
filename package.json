@@ -1,7 +1,7 @@
 {
   "name": "@jaikeex/jds",
   "description": "A simple React design system to be used in my projects",
-  "version": "0.4.17",
+  "version": "0.4.28",
   "private": false,
   "license": "ISC",
   "publishConfig": {
@@ -29,7 +29,9 @@
   },
   "dependencies": {
     "@emotion/cache": "^11.10.5",
+    "@emotion/css": "^11.10.6",
     "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
     "@popperjs/core": "^2.11.6",
     "@types/tinycolor2": "^1.4.3",
     "classnames": "^2.3.2",

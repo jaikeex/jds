@@ -1,17 +1,12 @@
 import * as React from 'react';
-import type { ThemeColorVariantsWithDefault } from 'core/types';
-import type { ToggleButtonClassKey, ToggleButtonSize } from './types';
-import type { Classes } from 'jss';
-import { mergeClasses } from 'core/utils';
-import { useStyles } from './useStyles';
-import clsx from 'clsx';
+import type { Size, ThemeColorVariantsWithDefault } from 'core/types';
 import { Typography } from 'components/Typography';
 import { useForwardedRef, useRippleEffect } from 'core/hooks';
 import { useCallback, useEffect, useState } from 'react';
+import * as Styled from './styles';
 
 export interface ToggleButtonProps extends React.PropsWithChildren {
   className?: string;
-  classes?: Classes<ToggleButtonClassKey>;
   color?: ThemeColorVariantsWithDefault;
   disabled?: boolean;
   disableRippleEffect?: boolean;
@@ -20,7 +15,7 @@ export interface ToggleButtonProps extends React.PropsWithChildren {
   onClick?: (event: React.MouseEvent<HTMLButtonElement>, value: string) => void;
   removeBorder?: boolean;
   selected?: boolean;
-  size?: ToggleButtonSize;
+  size?: Size;
   style?: React.CSSProperties;
   value?: string;
 }
@@ -30,7 +25,6 @@ const ToggleButton: React.FC<ToggleButtonProps> = React.forwardRef<HTMLButtonEle
     {
       children = null,
       className = '',
-      classes = {},
       color = 'default',
       disabled = false,
       disableRippleEffect = false,
@@ -49,14 +43,13 @@ const ToggleButton: React.FC<ToggleButtonProps> = React.forwardRef<HTMLButtonEle
     const createRippleEffect = useRippleEffect(buttonRef, { color: color, animationTime: 400 });
     const [active, setActive] = useState<boolean>(selected);
 
-    const classNames = mergeClasses(useStyles({ color, removeBorder }), classes);
-    const rootClasses = clsx(
-      classNames.root,
-      classNames[size],
-      active && classNames.active,
-      disabled && classNames.disabled,
-      className
-    );
+    const styleProps = {
+      color,
+      removeBorder,
+      active,
+      size,
+      disabled
+    };
 
     const buttonClickHandler = useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -70,14 +63,14 @@ const ToggleButton: React.FC<ToggleButtonProps> = React.forwardRef<HTMLButtonEle
     const getChildren = useCallback(() => {
       if (typeof children === 'string') {
         return (
-          <Typography variant="button" upperCase={disableUpperCase ? false : true} className={classNames.text}>
+          <Typography variant="button" upperCase={disableUpperCase ? false : true}>
             {children}
           </Typography>
         );
       } else {
         return children;
       }
-    }, [children, disableUpperCase, classNames]);
+    }, [children, disableUpperCase]);
 
     useEffect(() => {
       onChange(active, value);
@@ -88,16 +81,17 @@ const ToggleButton: React.FC<ToggleButtonProps> = React.forwardRef<HTMLButtonEle
     }, [selected]);
 
     return (
-      <button
+      <Styled.ToggleButtonRoot
+        {...styleProps}
         ref={buttonRef}
-        className={rootClasses}
+        className={className}
         style={style}
         onClick={buttonClickHandler}
         disabled={disabled}
         value={value}
       >
         {getChildren()}
-      </button>
+      </Styled.ToggleButtonRoot>
     );
   }
 );

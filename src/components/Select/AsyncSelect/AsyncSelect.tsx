@@ -5,7 +5,7 @@ import { default as RAsyncSelect } from 'react-select/async';
 import { makeId } from 'core/utils';
 import { useForwardedRef } from 'core/hooks';
 import { CLoadingIndicator, CValueContainer } from 'components/Select/custom-components';
-import { useSelectClasses } from 'components/Select/useSelectClasses';
+import { useSelectStyles } from 'components/Select/useSelectStyles';
 import type SelectType from 'react-select/dist/declarations/src/Select';
 import { CInput } from 'components/Select/custom-components/CInput';
 import { COption } from 'components/Select/custom-components/COption';
@@ -24,7 +24,6 @@ const AsyncSelect = React.forwardRef<SelectType<Selectable, boolean, GroupBase<S
   (
     {
       appearance = 'outlined',
-      classes = {},
       className = '',
       color = 'primary',
       components = {},
@@ -52,11 +51,10 @@ const AsyncSelect = React.forwardRef<SelectType<Selectable, boolean, GroupBase<S
 
     id ??= React.useMemo(() => makeId(5), [id, makeId]);
 
-    const classNames = useSelectClasses(
+    const styles = useSelectStyles(
       {
         appearance,
         transformLabel,
-        className,
         color,
         disabled,
         width,
@@ -64,7 +62,7 @@ const AsyncSelect = React.forwardRef<SelectType<Selectable, boolean, GroupBase<S
         isMulti,
         readonly
       },
-      classes
+      style
     );
 
     const selectionChangeHandler = useCallback(
@@ -102,9 +100,9 @@ const AsyncSelect = React.forwardRef<SelectType<Selectable, boolean, GroupBase<S
           hideSelectedOptions={false}
           onChange={selectionChangeHandler}
           placeholder={label}
-          styles={style}
+          styles={styles}
           value={selectedValue}
-          classNames={classNames}
+          className={className}
           menuIsOpen={menuIsOpen}
         />
       </SelectContextProvider>

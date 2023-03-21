@@ -53,10 +53,10 @@ const SizesTemplate: Story<ButtonProps> = (args) => (
       <Button {...args} appearance="outlined" size="small">
         Small
       </Button>
-      <Button {...args} appearance="outlined" size="medium">
+      <Button {...args} iconLeft={<HomeIcon />} appearance="outlined" size="medium">
         Medium
       </Button>
-      <Button {...args} appearance="outlined" size="large">
+      <Button {...args} iconLeft={<HomeIcon />} appearance="outlined" size="large">
         Large
       </Button>
     </div>

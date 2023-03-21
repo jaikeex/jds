@@ -10,7 +10,6 @@ import type {
 } from 'react-select';
 import type { ThemeColorVariants } from 'core/types';
 import type { SelectComponents } from 'react-select/dist/declarations/src/components';
-import type { Classes } from 'jss';
 
 export interface Selectable {
   label: React.ReactNode;
@@ -19,32 +18,11 @@ export interface Selectable {
   isDisabled?: boolean;
 }
 
-export type SelectClassKey =
-  | 'root'
-  | 'control'
-  | 'filled'
-  | 'outlined'
-  | 'subtle'
-  | 'value'
-  | 'multiValue'
-  | 'multiValueLabel'
-  | 'multiValueRemove'
-  | 'separator'
-  | 'menu'
-  | 'input'
-  | 'placeholder'
-  | 'label'
-  | 'labelTransformed'
-  | 'labelStripped'
-  | 'valueContainer'
-  | 'clearIndicator';
-
 export interface SelectProps {
   appearance?: 'outlined' | 'filled' | 'subtle';
   autoFocus?: boolean;
   backspaceRemovesValue?: boolean;
   blurInputOnSelect?: boolean;
-  classes?: Classes<SelectClassKey>;
   className?: string;
   closeMenuOnSelect?: boolean;
   color?: ThemeColorVariants;

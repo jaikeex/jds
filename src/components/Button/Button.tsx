@@ -1,25 +1,20 @@
 import React, { useCallback } from 'react';
 import { useForwardedRef, useRippleEffect } from 'core/hooks';
-import type { ButtonAppearance, ButtonSize } from './types';
-import type { ThemeColorVariants } from 'core/types';
+import type { ButtonAppearance } from './types';
+import type { Size, ThemeColorVariants } from 'core/types';
 import { Typography } from 'components/Typography';
-import { useStyles } from './useStyles';
-import type { ButtonClassKey } from './types';
-import clsx from 'clsx';
-import type { Classes } from 'jss';
-import { mergeClasses } from 'core/utils';
 import type { SvgColoredIconProps, SvgIconProps } from 'components/icons';
+import * as Styled from './styles';
 
 export interface ButtonProps extends React.PropsWithChildren, Omit<React.ComponentProps<'button'>, 'ref'> {
   appearance?: ButtonAppearance;
-  classes?: Partial<Classes<ButtonClassKey>>;
   color?: ThemeColorVariants;
   disableRippleEffect?: boolean;
   disableUpperCase?: boolean;
   iconLeft?: React.ReactElement<SvgIconProps | SvgColoredIconProps>;
   iconRight?: React.ReactElement<SvgIconProps | SvgColoredIconProps>;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  size?: ButtonSize;
+  size?: Size;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
@@ -31,7 +26,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       disableUpperCase = false,
       iconLeft = null,
       iconRight = null,
-      classes = {},
       className = '',
       appearance = 'filled',
       color = 'primary',
@@ -42,10 +36,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ) => {
     const buttonRef = useForwardedRef<HTMLButtonElement>(ref);
-
     const createRippleEffect = useRippleEffect(buttonRef, { color: appearance === 'filled' ? 'default' : color });
-    const classNames = mergeClasses(useStyles({ color, disabled }), classes);
-    const rootClasses = clsx(classNames.root, classNames[size], classNames[appearance], className);
+
+    const styleProps = {
+      size,
+      appearance,
+      disabled,
+      color
+    };
 
     const buttonClickHandler = useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -56,13 +54,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     return (
-      <button className={rootClasses} ref={buttonRef} disabled={disabled} onClick={buttonClickHandler} {...props}>
-        {iconLeft && <div className={classNames.icon}>{iconLeft}</div>}
-        <Typography variant="button" upperCase={disableUpperCase ? false : true} className={classNames.text}>
+      <Styled.ButtonRoot className={className} ref={buttonRef} onClick={buttonClickHandler} {...styleProps} {...props}>
+        {iconLeft && <Styled.ButtonIcon {...styleProps}>{iconLeft}</Styled.ButtonIcon>}
+        <Typography variant="button" upperCase={disableUpperCase ? false : true}>
           {children}
         </Typography>
-        {iconRight && <div className={classNames.icon}>{iconRight}</div>}
-      </button>
+        {iconRight && <Styled.ButtonIcon {...styleProps}>{iconRight}</Styled.ButtonIcon>}
+      </Styled.ButtonRoot>
     );
   }
 );

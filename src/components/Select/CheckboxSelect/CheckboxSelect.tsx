@@ -4,7 +4,7 @@ import type { ActionMeta, GroupBase, MultiValue, SingleValue } from 'react-selec
 import { makeId } from 'core/utils';
 import { useForwardedRef } from 'core/hooks';
 import { CLoadingIndicator, CValueContainer } from 'components/Select/custom-components';
-import { useSelectClasses } from 'components/Select/useSelectClasses';
+import { useSelectStyles } from 'components/Select/useSelectStyles';
 import type SelectType from 'react-select/dist/declarations/src/Select';
 import { default as RSelect } from 'react-select';
 import CheckboxOption from './CheckboxOption';
@@ -20,7 +20,6 @@ const CheckboxSelect: React.FC<CheckboxSelectProps> = React.forwardRef<
   (
     {
       appearance = 'outlined',
-      classes = {},
       className = '',
       color = 'primary',
       components = {},
@@ -47,11 +46,10 @@ const CheckboxSelect: React.FC<CheckboxSelectProps> = React.forwardRef<
 
     id ??= React.useMemo(() => makeId(5), [id, makeId]);
 
-    const classNames = useSelectClasses(
+    const styles = useSelectStyles(
       {
         appearance,
         transformLabel,
-        className,
         color,
         disabled,
         width,
@@ -59,7 +57,7 @@ const CheckboxSelect: React.FC<CheckboxSelectProps> = React.forwardRef<
         isMulti: true,
         readonly
       },
-      classes
+      style
     );
     const selectionChangeHandler = useCallback(
       (value: SingleValue<Selectable> | MultiValue<Selectable>, actionMeta: ActionMeta<Selectable>) => {
@@ -96,9 +94,9 @@ const CheckboxSelect: React.FC<CheckboxSelectProps> = React.forwardRef<
           closeMenuOnSelect={false}
           onChange={selectionChangeHandler}
           placeholder={label}
-          styles={style}
+          styles={styles}
           value={selectedValue}
-          classNames={classNames}
+          className={className}
           menuIsOpen={menuIsOpen}
         />
       </SelectContextProvider>

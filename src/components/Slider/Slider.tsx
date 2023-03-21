@@ -1,15 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import type { SliderClassKey, SliderSize } from './types';
-import type { Position, ThemeColorVariants } from 'core/types';
-import { mergeClasses } from 'core/utils';
+import type { Size, ThemeColorVariants } from 'core/types';
 import { useForwardedRef } from 'core/hooks';
-import type { Classes } from 'jss';
-import { useStyles } from './useStyles';
-import clsx from 'clsx';
 import { Typography } from 'components/Typography';
 import type { SliderMarksDefinition } from './SliderMarks/types';
 import { SliderMarks } from './SliderMarks';
 import { calculateAbsolutePostionPercentage, calculateOffsetAdjustment, offsetAdjustmentValues } from './utils';
+import * as Styled from './styles';
 
 export interface SliderProps {
   min?: number;
@@ -18,14 +14,13 @@ export interface SliderProps {
   defaultValue?: number;
   color?: ThemeColorVariants;
   value?: number;
-  size?: SliderSize;
+  size?: Size;
   width?: string | number;
   marks?: SliderMarksDefinition;
   id?: string;
   displayValue?: boolean;
   style?: React.CSSProperties;
   className?: string;
-  classes?: Classes<SliderClassKey>;
   onChange?: (value: number) => void;
 }
 
@@ -41,7 +36,6 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
       size = 'medium',
       displayValue = true,
       className = '',
-      classes = {},
       marks = undefined,
       id = '',
       onChange = () => {},
@@ -52,8 +46,6 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
   ) => {
     const inputRef = useForwardedRef<HTMLInputElement>(ref);
     const [inputValue, setInputValue] = useState<number>(value);
-
-    const classNames = mergeClasses(useStyles({ color, width }), classes);
 
     const inputChangeHandler = useCallback(
       (event: React.FormEvent<HTMLInputElement>) => {
@@ -81,11 +73,13 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
     }, [value]);
 
     return (
-      <div className={clsx(classNames.root, className)}>
-        <input
+      <Styled.SliderRoot className={className} width={width}>
+        <Styled.SliderInput
+          /* @ts-ignore */
+          size={size}
+          color={color}
           data-thumbwidth={20}
           ref={inputRef}
-          className={clsx(classNames.input, classNames[size])}
           type="range"
           id={id}
           min={min}
@@ -96,21 +90,21 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
           onInput={inputChangeHandler}
         />
         {displayValue && (
-          <div className={classNames.selector}>
-            <div className={classNames.selectorWrapper}>
-              <div
-                className={classNames.valueBox}
+          <Styled.SliderSelectorWrapper>
+            <Styled.SliderSelector>
+              <Styled.SliderValueBox
+                data-box-id="valueBox"
                 style={{
                   left: `calc(${minPosition}% + ${valueBoxMinAdjustment}px)`
                 }}
               >
                 <Typography variant="label">{inputValue}</Typography>
-              </div>
-            </div>
-          </div>
+              </Styled.SliderValueBox>
+            </Styled.SliderSelector>
+          </Styled.SliderSelectorWrapper>
         )}
         {marks && <SliderMarks marks={marks} min={min} max={max} size={size} />}
-      </div>
+      </Styled.SliderRoot>
     );
   }
 );

@@ -8,7 +8,8 @@ addDecorator((story) => {
   return (
     <div className="jds-storybook">
       <ThemeProvider defaultTheme={defaultDarkTheme}>
-        <ThemeSwitchButton /> {story()}
+        <ThemeSwitchButton />
+        {story()}
       </ThemeProvider>
     </div>
   );

@@ -1,17 +1,14 @@
 import * as React from 'react';
 import type { ButtonProps } from 'components/Button';
-import type { ButtonAppearance, ButtonSize } from 'components/Button';
-import type { Classes } from 'jss';
-import type { ButtonGroupClassKey } from './types';
-import type { ThemeColorVariants } from 'core/types';
+import type { ButtonAppearance } from 'components/Button';
+import type { Size, ThemeColorVariants } from 'core/types';
 
 export const useStyledChildren = (
-  children: React.ReactElement | React.ReactElement[] | null,
-  size: ButtonSize,
+  children: React.ReactNode,
+  size: Size,
   color: ThemeColorVariants,
   disabled: boolean,
-  appearance: ButtonAppearance,
-  classNames: Classes<ButtonGroupClassKey>
+  appearance: ButtonAppearance
 ) => {
   const styledChildren = React.useMemo(() => {
     if (!Array.isArray(children)) {
@@ -26,8 +23,7 @@ export const useStyledChildren = (
                 size: size,
                 appearance: appearance,
                 color: child.props.color ? child.props.color : color,
-                disabled: child.props.disabled ? child.props.disabled : disabled,
-                className: classNames.firstElement
+                disabled: child.props.disabled ? child.props.disabled : disabled
               })
             );
           } else if (index === children.length - 1) {
@@ -36,8 +32,7 @@ export const useStyledChildren = (
                 size: size,
                 appearance: appearance,
                 color: child.props.color ? child.props.color : color,
-                disabled: child.props.disabled ? child.props.disabled : disabled,
-                className: classNames.lastElement
+                disabled: child.props.disabled ? child.props.disabled : disabled
               })
             );
           } else {
@@ -46,8 +41,7 @@ export const useStyledChildren = (
                 size: size,
                 appearance: appearance,
                 color: child.props.color ? child.props.color : color,
-                disabled: child.props.disabled ? child.props.disabled : disabled,
-                className: classNames.midElement
+                disabled: child.props.disabled ? child.props.disabled : disabled
               })
             );
           }
@@ -55,7 +49,7 @@ export const useStyledChildren = (
       });
       return styledChildrenArray;
     }
-  }, [children, color, size, appearance, classNames]);
+  }, [children, color, size, appearance]);
 
   return styledChildren;
 };

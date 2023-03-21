@@ -1,23 +1,19 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import type { ThemeColorVariants } from 'core/types';
-import { makeId, mergeClasses } from 'core/utils';
+import { makeId } from 'core/utils';
 import { useForwardedRef, useIsFocused } from 'core/hooks';
 import { Typography } from 'components/Typography';
-import { useStyles } from './useStyles';
-import type { TextFieldClassKey } from './types';
-import type { Classes } from 'jss';
-import clsx from 'clsx';
+import * as Styled from './styles';
 
 export interface TextFieldProps extends Omit<React.ComponentProps<'input'>, 'ref'> {
   appearance?: 'outlined' | 'filled' | 'subtle';
   autoFocus?: boolean;
-  classes?: Classes<TextFieldClassKey>;
   className?: string;
   color?: ThemeColorVariants;
   defaultValue?: string;
   disabled?: boolean;
-  elementAfter?: React.ReactElement;
-  elementBefore?: React.ReactElement;
+  elementAfter?: React.ReactElement | null;
+  elementBefore?: React.ReactElement | null;
   id?: string;
   label?: string;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
@@ -37,7 +33,6 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     {
       appearance = 'outlined',
       autoFocus = false,
-      classes = {},
       className = '',
       color = 'primary',
       defaultValue = '',
@@ -61,15 +56,20 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     ref
   ) => {
     const inputRef = useForwardedRef<HTMLInputElement>(ref);
+
     const [inputValue, setInputValue] = useState<string>(value);
     const isFocused = useIsFocused(inputRef, autoFocus);
-    const classNames = mergeClasses(useStyles({ color, disabled, width }), classes);
 
-    const rootClassNames = clsx(classNames.root, classNames[appearance], className);
-    const inputClassNames = clsx(classNames.input);
-    const labelClassNames = clsx(classNames.label, {
-      [classNames.labelTransformed]: placeholder || inputValue || isFocused || elementBefore || !transformLabel
-    });
+    const styleProps = {
+      color,
+      disabled,
+      width,
+      appearance,
+      inputValue,
+      isFocused,
+      transformLabel,
+      elementBefore
+    };
 
     id ??= React.useMemo(() => makeId(5), [id, makeId]);
 
@@ -86,15 +86,15 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
     }, [value]);
 
     return (
-      <div className={rootClassNames}>
-        {elementBefore && <div className={classNames.element}>{elementBefore}</div>}
-        <label htmlFor={id} className={labelClassNames}>
+      <Styled.TextFieldRoot className={className} {...styleProps}>
+        {elementBefore && <Styled.TextFieldDecorator {...styleProps}>{elementBefore}</Styled.TextFieldDecorator>}
+        <Styled.Label {...styleProps} htmlFor={id}>
           <Typography variant="label">{label}</Typography>
-        </label>
-        <input
+        </Styled.Label>
+        <Styled.TextFieldInput
           {...props}
+          {...styleProps}
           type="text"
-          className={inputClassNames}
           autoFocus={autoFocus}
           disabled={disabled}
           id={id}
@@ -108,8 +108,8 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           style={style}
           value={inputValue}
         />
-        {elementAfter && <div className={classNames.element}>{elementAfter}</div>}
-      </div>
+        {elementAfter && <Styled.TextFieldDecorator {...styleProps}>{elementAfter}</Styled.TextFieldDecorator>}
+      </Styled.TextFieldRoot>
     );
   }
 );

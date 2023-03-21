@@ -1,16 +1,11 @@
 import React from 'react';
-import type { IconClassKey } from './types';
-import type { Classes } from 'jss';
-import { mergeClasses } from 'core/utils';
-import { useStyles } from './useStyles';
 import type { ThemeColorVariantsWithDefault } from 'core/types';
-import clsx from 'clsx';
+import * as Styled from './styles';
 
 export interface SvgIconProps extends React.PropsWithChildren {
   size?: number;
   color?: ThemeColorVariantsWithDefault;
   className?: string;
-  classes?: Classes<IconClassKey>;
   id?: string;
   style?: React.CSSProperties;
   testId?: string;
@@ -22,7 +17,6 @@ const SvgIcon = React.forwardRef<SVGSVGElement, SvgIconProps>(
     {
       color = 'default',
       className = '',
-      classes = {},
       id = '',
       style = {},
       testId = '',
@@ -32,29 +26,27 @@ const SvgIcon = React.forwardRef<SVGSVGElement, SvgIconProps>(
       ...props
     },
     ref
-  ) => {
-    const classNames = mergeClasses(useStyles({ color }), classes);
-
-    return (
-      <svg
-        {...props}
-        ref={ref}
-        id={id}
-        className={clsx(classNames.root, className)}
-        style={style}
-        data-testid={testId}
-        width={size}
-        height={size}
-        viewBox={viewBox}
-        shapeRendering="geometricPrecision"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlnsXlink="http://www.w3.org/1999/xlink"
-        xmlSpace="preserve"
-      >
-        {children}
-      </svg>
-    );
-  }
+  ) => (
+    <Styled.IconRoot
+      {...props}
+      as={'svg'}
+      color={color}
+      ref={ref}
+      id={id}
+      className={className}
+      style={style}
+      data-testid={testId}
+      width={size}
+      height={size}
+      viewBox={viewBox}
+      shapeRendering="geometricPrecision"
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      xmlSpace="preserve"
+    >
+      {children}
+    </Styled.IconRoot>
+  )
 );
 
 export default SvgIcon;

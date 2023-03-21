@@ -1,10 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import type { RangeSliderClassKey, RangeSliderSize, RangeSliderValue } from './types';
-import type { ThemeColorVariants } from 'core/types';
-import { mergeClasses } from 'core/utils';
-import type { Classes } from 'jss';
-import { useStyles } from './useStyles';
-import clsx from 'clsx';
+import type { RangeSliderValue } from './types';
+import type { Size, ThemeColorVariants } from 'core/types';
 import { Typography } from 'components/Typography';
 import type { SliderMarksDefinition } from 'components/Slider/SliderMarks/types';
 import { SliderMarks } from 'components/Slider/SliderMarks';
@@ -13,6 +9,7 @@ import {
   calculateAbsolutePostionPercentage,
   calculateOffsetAdjustment
 } from 'components/Slider/utils';
+import * as Styled from './styles';
 
 export interface RangeSliderProps {
   min?: number;
@@ -21,14 +18,13 @@ export interface RangeSliderProps {
   defaultValue?: RangeSliderValue;
   color?: ThemeColorVariants;
   value?: RangeSliderValue;
-  size?: RangeSliderSize;
+  size?: Size;
   width?: string | number;
   marks?: SliderMarksDefinition;
   id?: string;
   displayValue?: boolean;
   style?: React.CSSProperties;
   className?: string;
-  classes?: Classes<RangeSliderClassKey>;
   onChange?: (value: RangeSliderValue) => void;
 }
 
@@ -42,7 +38,6 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
   size = 'medium',
   displayValue = true,
   className = '',
-  classes = {},
   marks = undefined,
   id = '',
   onChange = () => {},
@@ -51,8 +46,6 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
 }): JSX.Element => {
   const [inputMinValue, setInputMinValue] = useState<number>(value.min);
   const [inputMaxValue, setInputMaxValue] = useState<number>(value.max);
-
-  const classNames = mergeClasses(useStyles({ color, width }), classes);
 
   const inputMinChangeHandler = useCallback(
     (event: React.FormEvent<HTMLInputElement>) => {
@@ -109,72 +102,80 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
   }, [value.min, value.max]);
 
   return (
-    <div className={clsx(classNames.root, classNames[size], className)} style={style}>
-      <div className={classNames.inputWrapper}>
-        <input
+    <Styled.RangeSliderRoot className={className} style={style} width={width}>
+      <Styled.RangeSliderInputWrapper size={size}>
+        <Styled.RangeSiderInput
+          /* @ts-ignore */
+          value={inputMinValue}
+          /* @ts-ignore */
+          size={size}
+          color={color}
+          position={'min'}
           data-thumbwidth={20}
-          className={clsx(classNames.input, classNames.inputMin)}
           type="range"
           id={id}
           min={min}
           max={max}
           step={step}
-          value={inputMinValue}
           onInput={inputMinChangeHandler}
         />
-        <input
+        <Styled.RangeSiderInput
+          /* @ts-ignore */
+          value={inputMaxValue}
+          /* @ts-ignore */
+          size={size}
+          color={color}
+          position={'max'}
           data-thumbwidth={20}
-          className={clsx(classNames.input, classNames.inputMax)}
           type="range"
           id={id}
           min={min}
           max={max}
           step={step}
-          value={inputMaxValue}
           onInput={inputMaxChangeHandler}
         />
         {displayValue && (
-          <div className={classNames.selector}>
-            <div className={classNames.selectorWrapper}>
-              <div
-                className={classNames.valueBox}
-                id={`${id}-valueBoxMin`}
+          <Styled.RangedSliderSelectorWrapper>
+            <Styled.RangeSliderSelector>
+              <Styled.RangeSliderValueBox
+                data-box-id={`valueBoxMin`}
                 style={{
                   left: `calc(${minPosition}% + ${valueBoxMinAdjustment}px)`
                 }}
               >
                 <Typography variant="label">{inputMinValue}</Typography>
-              </div>
-              <div
-                className={classNames.valueBox}
-                id={`${id}-valueBoxMax`}
+              </Styled.RangeSliderValueBox>
+              <Styled.RangeSliderValueBox
+                data-box-id={`valueBoxMax`}
                 style={{
                   left: `calc(${maxPosition}% + ${valueBoxMaxAdjustment}px)`
                 }}
               >
                 <Typography variant="label">{inputMaxValue}</Typography>
-              </div>
-            </div>
-          </div>
+              </Styled.RangeSliderValueBox>
+            </Styled.RangeSliderSelector>
+          </Styled.RangedSliderSelectorWrapper>
         )}
-      </div>
-      <div className={classNames.controlWrapper}>
-        <div
-          className={classNames.control}
-          id={`${id}-controlMin`}
+      </Styled.RangeSliderInputWrapper>
+      <Styled.RangeSliderControlWrapper size={size}>
+        <Styled.RangeSliderControl
+          size={size}
+          color={color}
+          data-control-id={`controlMin`}
           style={{ left: `calc(${minPosition}% - ${controlMinAdjustment}px)` }}
         />
-        <div className={classNames.track}>
-          <div className={classNames.innerTrack} style={{ left: `${minPosition}%`, right: `${100 - maxPosition}%` }} />
-        </div>
-        <div
-          className={classNames.control}
-          id={`${id}-controlMax`}
+        <Styled.RangeSliderTrack size={size} color={color}>
+          <Styled.RangeSliderInnerTrack style={{ left: `${minPosition}%`, right: `${100 - maxPosition}%` }} />
+        </Styled.RangeSliderTrack>
+        <Styled.RangeSliderControl
+          size={size}
+          color={color}
+          data-control-id={`controlMax`}
           style={{ left: `calc(${maxPosition}% - ${controlMaxAdjustment}px)` }}
         />
-      </div>
+      </Styled.RangeSliderControlWrapper>
       {marks && <SliderMarks marks={marks} min={min} max={max} size={size} />}
-    </div>
+    </Styled.RangeSliderRoot>
   );
 };
 

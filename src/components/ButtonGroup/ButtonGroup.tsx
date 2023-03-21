@@ -1,29 +1,22 @@
 import React from 'react';
-import type { ButtonAppearance, ButtonSize } from 'components/Button';
-import { mergeClasses } from 'core/utils';
-import type { ButtonGroupClassKey } from './types';
-import type { Classes } from 'jss';
-import { useStyles } from './useStyles';
-import type { ThemeColorVariants } from 'core/types';
+import type { ButtonAppearance } from 'components/Button';
+import type { Size, ThemeColorVariants } from 'core/types';
 import { useStyledChildren } from './useStyledChildren';
-import clsx from 'clsx';
+import * as Styled from './styles';
 
-export interface ButtonGroupProps {
-  size?: ButtonSize;
+export interface ButtonGroupProps extends React.PropsWithChildren {
+  size?: Size;
   orientation?: 'horizontal' | 'vertical';
   className?: string;
   disabled?: boolean;
   color?: ThemeColorVariants;
-  classes?: Classes<ButtonGroupClassKey>;
   appearance?: ButtonAppearance;
   style?: React.CSSProperties;
-  children?: React.ReactElement | React.ReactElement[];
 }
 
 const ButtonGroup: React.FC<ButtonGroupProps> = ({
   size = 'medium',
   className = '',
-  classes = {},
   disabled = false,
   color = 'primary',
   orientation = 'horizontal',
@@ -31,13 +24,12 @@ const ButtonGroup: React.FC<ButtonGroupProps> = ({
   style = {},
   children = null
 }) => {
-  const classNames = mergeClasses(useStyles({ orientation, appearance }), classes);
-  const styledChildren = useStyledChildren(children, size, color, disabled, appearance, classNames);
+  const styledChildren = useStyledChildren(children, size, color, disabled, appearance);
 
   return (
-    <div className={clsx(classNames.root, className)} style={style}>
+    <Styled.ButtonGroupRoot orientation={orientation} className={className} style={style}>
       {styledChildren}
-    </div>
+    </Styled.ButtonGroupRoot>
   );
 };
 

@@ -1,17 +1,12 @@
 import React from 'react';
 import type { ButtonProps } from 'components/Button';
-import { Button } from 'components/Button';
-import { useStyles } from './useStyles';
-import clsx from 'clsx';
 import { useTabsContext } from 'components/Tabs/TabsContextProvider';
 import { useForwardedRef } from 'core/hooks';
-import type { Classes } from 'jss';
-import type { TabButtonClassKey } from './types';
 import { useScrollToView } from 'core/hooks';
 import { useCallback } from 'react';
+import * as Styled from './styles';
 
 export interface TabButtonProps extends Omit<ButtonProps, 'ref' | 'classes'> {
-  classes?: Classes<TabButtonClassKey>;
   label?: string;
   value?: string;
 }
@@ -22,7 +17,9 @@ const TabButton: React.FC<TabButtonProps> = React.forwardRef<HTMLButtonElement, 
     const scrollToView = useScrollToView(buttonRef.current, 'left', 48);
     const { setActiveTab, activeTab } = useTabsContext();
 
-    const classNames = useStyles();
+    const styleProps = {
+      active: activeTab === value
+    };
 
     const buttonClickHandler = useCallback(() => {
       value && setActiveTab(value);
@@ -30,15 +27,9 @@ const TabButton: React.FC<TabButtonProps> = React.forwardRef<HTMLButtonElement, 
     }, [setActiveTab, scrollToView, value]);
 
     return (
-      <Button
-        {...props}
-        appearance="subtle"
-        ref={buttonRef}
-        onClick={buttonClickHandler}
-        className={clsx(classNames.root, activeTab === value && classNames.active)}
-      >
+      <Styled.TabButtonRoot {...props} {...styleProps} appearance="subtle" ref={buttonRef} onClick={buttonClickHandler}>
         {label}
-      </Button>
+      </Styled.TabButtonRoot>
     );
   }
 );

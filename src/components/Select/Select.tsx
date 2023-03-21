@@ -4,18 +4,17 @@ import type { ActionMeta, GroupBase, MultiValue, SingleValue } from 'react-selec
 import { makeId } from 'core/utils';
 import { useForwardedRef } from 'core/hooks';
 import { CLoadingIndicator, CValueContainer } from 'components/Select/custom-components';
-import { useSelectClasses } from 'components/Select/useSelectClasses';
+import { useSelectStyles } from 'components/Select/useSelectStyles';
 import type SelectType from 'react-select/dist/declarations/src/Select';
-import { default as RSelect } from 'react-select';
 import { COption } from './custom-components/COption';
 import { CInput } from './custom-components/CInput';
 import SelectContextProvider from './SelectContextProvider';
+import * as Styled from './styles';
 
 const Select = React.forwardRef<SelectType<Selectable, boolean, GroupBase<Selectable>>, SelectProps>(
   (
     {
       appearance = 'outlined',
-      classes = {},
       className = '',
       color = 'primary',
       components = {},
@@ -43,11 +42,10 @@ const Select = React.forwardRef<SelectType<Selectable, boolean, GroupBase<Select
 
     id ??= React.useMemo(() => makeId(5), [id, makeId]);
 
-    const classNames = useSelectClasses(
+    const styles = useSelectStyles(
       {
         appearance,
         transformLabel,
-        className,
         color,
         disabled,
         width,
@@ -55,7 +53,7 @@ const Select = React.forwardRef<SelectType<Selectable, boolean, GroupBase<Select
         isMulti,
         readonly
       },
-      classes
+      style
     );
 
     const selectionChangeHandler = useCallback(
@@ -76,7 +74,7 @@ const Select = React.forwardRef<SelectType<Selectable, boolean, GroupBase<Select
 
     return (
       <SelectContextProvider color={color} readonly={readonly}>
-        <RSelect
+        <Styled.Select
           {...props}
           ref={inputRef}
           components={{
@@ -87,15 +85,15 @@ const Select = React.forwardRef<SelectType<Selectable, boolean, GroupBase<Select
             ...components
           }}
           id={id}
+          styles={styles}
           isDisabled={disabled}
           isMulti={isMulti}
           closeMenuOnSelect={!isMulti}
           hideSelectedOptions={false}
           onChange={selectionChangeHandler}
           placeholder={label}
-          styles={style}
           value={selectedValue}
-          classNames={classNames}
+          className={className}
           menuIsOpen={menuIsOpen}
         />
       </SelectContextProvider>

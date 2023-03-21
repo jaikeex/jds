@@ -4,7 +4,7 @@ import type { AlertProps } from 'components/Alert';
 import { Alert } from 'components/Alert';
 import { makeId } from 'core/utils';
 import type { AlertLocation } from 'components/Alert';
-import { useStyles } from './useStyles';
+import * as Styled from './styles';
 
 export interface AlertProviderProps {
   location?: AlertLocation;
@@ -20,7 +20,6 @@ const AlertProvider: React.FC<AlertProviderProps> = ({
   children
 }) => {
   const [alertItems, setAlertItems] = useState<AlertProps[]>(items);
-  const classNames = useStyles({ location });
 
   const removeAlertItemFromStack = (id: string) => {
     setAlertItems((prevState) => {
@@ -46,11 +45,11 @@ const AlertProvider: React.FC<AlertProviderProps> = ({
 
   return (
     <AlertContext.Provider value={contextState}>
-      <div className={classNames.root}>
+      <Styled.AlertProviderBox location={location}>
         {alertItems.slice(-maxItems).map((item, index) => (
           <Alert {...item} key={item.id} style={{ zIndex: (9999 - index).toString() }} />
         ))}
-      </div>
+      </Styled.AlertProviderBox>
       {children}
     </AlertContext.Provider>
   );

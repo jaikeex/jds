@@ -1,17 +1,13 @@
 import React, { useCallback } from 'react';
-import { makeId, mergeClasses } from 'core/utils';
+import { makeId } from 'core/utils';
 import { Divider } from 'components/Divider';
 import { useForwardedRef, useRippleEffect } from 'core/hooks';
 import { useListContext } from 'components/List';
-import type { ListItemClassKey } from './types';
-import type { Classes } from 'jss';
-import { useStyles } from './useStyles';
-import clsx from 'clsx';
 import type { ThemeColorVariantsWithDefault } from 'core/types';
+import * as Styled from './styles';
 
 export interface ListItemProps extends React.PropsWithChildren {
   className?: string;
-  classes?: Classes<ListItemClassKey>;
   clickable?: boolean;
   color?: ThemeColorVariantsWithDefault;
   compact?: boolean;
@@ -30,7 +26,6 @@ const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
     {
       children = null,
       className = '',
-      classes = {},
       clickable = false,
       color = 'default',
       compact = false,
@@ -49,16 +44,6 @@ const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
     const createRippleEffect = useRippleEffect(innerRef, { color: color, animationTime: 700 });
 
     const { isCompact } = useListContext();
-    const classNames = mergeClasses(useStyles({ color }), classes);
-
-    const rootClasses = clsx(
-      classNames.root,
-      clickable && classNames.clickable,
-      isCompact || compact ? classNames.compact : classNames.wide,
-      disabled && classNames.disabled,
-      selected && classNames.selected,
-      className
-    );
 
     const clickHandler = useCallback(
       (event: React.MouseEvent<HTMLLIElement>) => {
@@ -72,11 +57,22 @@ const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
 
     return (
       <React.Fragment>
-        <li className={rootClasses} style={style} key={key} ref={innerRef} onClick={clickHandler}>
-          {elementBefore && <div className={classNames.element}>{elementBefore}</div>}
-          <div className={classNames.children}>{children}</div>
-          {elementAfter && <div className={classNames.element}>{elementAfter}</div>}
-        </li>
+        <Styled.ListItemRoot
+          color={color}
+          compact={compact || isCompact}
+          selected={selected}
+          disabled={disabled}
+          clickable={clickable}
+          className={className}
+          style={style}
+          key={key}
+          ref={innerRef}
+          onClick={clickHandler}
+        >
+          {elementBefore && <Styled.ListItemDecorator>{elementBefore}</Styled.ListItemDecorator>}
+          <Styled.ListItemContent>{children}</Styled.ListItemContent>
+          {elementAfter && <Styled.ListItemDecorator>{elementAfter}</Styled.ListItemDecorator>}
+        </Styled.ListItemRoot>
         {divider && <Divider flexItem />}
       </React.Fragment>
     );

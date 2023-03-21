@@ -1,17 +1,10 @@
 import React, { useCallback, useEffect } from 'react';
 import type { SheetProps } from 'components/Sheet';
-import { Sheet } from 'components/Sheet';
-import { Backdrop } from 'components/Backdrop';
 import type { NumericRange } from 'core/types';
-import { mergeClasses } from 'core/utils';
-import { useStyles } from './useStyles';
-import type { DialogClassKey } from './types';
-import type { Classes } from 'jss';
-import clsx from 'clsx';
+import * as Styled from './styles';
 
 export interface DialogProps extends React.PropsWithChildren {
   backdropLevel?: NumericRange<0, 10>;
-  classes?: Classes<DialogClassKey>;
   className?: string;
   disableBackdropClickClose?: boolean;
   disableEscapeKeyClose?: boolean;
@@ -29,7 +22,6 @@ export interface DialogProps extends React.PropsWithChildren {
 
 const Dialog: React.FC<DialogProps> = ({
   backdropLevel = 6,
-  classes = {},
   className = '',
   children = null,
   disableBackdropClickClose = false,
@@ -45,8 +37,6 @@ const Dialog: React.FC<DialogProps> = ({
   open = false,
   sheetProps = {}
 }) => {
-  const classNames = mergeClasses(useStyles(), classes);
-
   const getSheetStyles = () => {
     const styles: React.CSSProperties = {
       ...sheetProps.style
@@ -88,13 +78,13 @@ const Dialog: React.FC<DialogProps> = ({
 
   return (
     <React.Fragment>
-      <Backdrop visible={open} level={backdropLevel} className={classNames.backdrop} onClick={backdropClickHandler}>
+      <Styled.DialogBackdrop visible={open} level={backdropLevel} onClick={backdropClickHandler}>
         <div style={{ zIndex: 2000 }} className={className}>
-          <Sheet {...sheetProps} className={clsx(classNames.sheet, sheetProps.className)} style={getSheetStyles()}>
+          <Styled.DialogSheet {...sheetProps} style={getSheetStyles()}>
             {children}
-          </Sheet>
+          </Styled.DialogSheet>
         </div>
-      </Backdrop>
+      </Styled.DialogBackdrop>
     </React.Fragment>
   );
 };

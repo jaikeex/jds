@@ -1,16 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import type { Size, ThemeColorVariants, ThemeColorVariantsWithDefault } from 'core/types';
 import { CheckmarkThickIcon } from 'components/icons';
-import { makeId, mergeClasses } from 'core/utils';
+import { makeId } from 'core/utils';
 import { Typography } from 'components/Typography';
-import type { CheckboxClassKey } from './types';
-import type { Classes } from 'jss';
-import { useStyles } from './useStyles';
-import clsx from 'clsx';
+import * as Styled from './styles';
 
 export interface CheckboxProps {
   checked?: boolean;
-  classes?: Classes<CheckboxClassKey>;
   className?: string;
   color?: ThemeColorVariants;
   defaultChecked?: boolean;
@@ -32,7 +28,6 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     {
       defaultChecked = false,
       checked = defaultChecked,
-      classes = {},
       className = '',
       color = 'primary',
       disabled = false,
@@ -50,7 +45,14 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     ref
   ) => {
     const [isChecked, setIsChecked] = useState<boolean>(checked);
-    const classNames = mergeClasses(useStyles({ color, icon, size, labelPosition, disabled }), classes);
+
+    const styleProps = {
+      color,
+      icon,
+      size,
+      disabled,
+      labelPosition
+    };
 
     id ??= React.useMemo(() => makeId(5), [id, makeId]);
 
@@ -67,27 +69,27 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
     }, [checked]);
 
     return (
-      <div className={clsx(classNames.root, disabled && classNames.disabled, className)} style={style}>
-        <input
+      <Styled.CheckboxRoot className={className} size={size} labelPosition={labelPosition} style={style}>
+        {/* @ts-ignore */}
+        <Styled.CheckboxInput
           type="checkbox"
           ref={ref}
-          className={clsx(classNames.input, classNames[size])}
           id={id}
           checked={isChecked}
           onChange={inputChangeHandler}
-          disabled={disabled}
           required={required}
+          {...styleProps}
         />
-        <label className={classNames.label} htmlFor={id}>
+        <Styled.CheckboxLabel disabled={disabled} htmlFor={id}>
           {icon && !isChecked ? icon : iconChecked}
-          <div className={classNames.mark}>
+          <Styled.CheckboxMark data-id="checkbox-mark" {...styleProps}>
             <CheckmarkThickIcon />
-          </div>
+          </Styled.CheckboxMark>
           <Typography variant="label" color={labelColor}>
             {label}
           </Typography>
-        </label>
-      </div>
+        </Styled.CheckboxLabel>
+      </Styled.CheckboxRoot>
     );
   }
 );
