@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
-import { shouldForwardProp } from 'core/utils';
+import { shouldForwardPropDefault } from 'core/utils';
 import type { ToggleButtonGroupProps } from './ToggleButtonGroup';
 
 export const ToggleButtonGroupRoot = styled('div', {
   label: 'toggle-button-group',
-  shouldForwardProp
+  shouldForwardProp: shouldForwardPropDefault
 })<ToggleButtonGroupProps>((props) => ({
   display: 'flex',
   flexDirection: props.orientation === 'horizontal' ? 'row' : 'column',

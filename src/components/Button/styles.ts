@@ -1,8 +1,11 @@
 import styled from '@emotion/styled';
-import { shouldForwardProp } from 'core/utils';
+import { shouldForwardPropDefault } from 'core/utils';
 import type { ButtonProps } from './Button';
 
-export const ButtonRoot = styled('button', { label: 'button', shouldForwardProp })<ButtonProps>((props) => ({
+export const ButtonRoot = styled('button', {
+  label: 'button',
+  shouldForwardProp: shouldForwardPropDefault
+})<ButtonProps>((props) => ({
   border: 'none',
   borderRadius: props.theme.shape.borderRadius.small,
   minWidth: '5rem',
@@ -95,7 +98,10 @@ export const ButtonRoot = styled('button', { label: 'button', shouldForwardProp 
   })
 }));
 
-export const ButtonIcon = styled('div', { label: 'button-icon', shouldForwardProp })<ButtonProps>((props) => ({
+export const ButtonIcon = styled('div', {
+  label: 'button-icon',
+  shouldForwardProp: shouldForwardPropDefault
+})<ButtonProps>((props) => ({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'center',

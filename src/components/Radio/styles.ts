@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import type { RadioProps } from './Radio';
-import { shouldForwardProp } from 'core/utils';
+import { shouldForwardPropDefault } from 'core/utils';
 
 const flexDirValues = Object.freeze({
   left: 'row-reverse',
@@ -9,9 +9,17 @@ const flexDirValues = Object.freeze({
   top: 'column-reverse'
 });
 
-export const RadioInput = styled('input', { label: 'radio-input', shouldForwardProp })({ display: 'none' });
+export const RadioInput = styled('input', {
+  label: 'radio-input',
+  shouldForwardProp: shouldForwardPropDefault
+})({
+  display: 'none'
+});
 
-export const RadioLabel = styled('label', { label: 'radio-label', shouldForwardProp })<RadioProps>((props) => ({
+export const RadioLabel = styled('label', {
+  label: 'radio-label',
+  shouldForwardProp: shouldForwardPropDefault
+})<RadioProps>((props) => ({
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
@@ -30,7 +38,10 @@ export const RadioLabel = styled('label', { label: 'radio-label', shouldForwardP
   })
 }));
 
-export const RadioButton = styled('div', { label: 'radio-btn', shouldForwardProp })<RadioProps>((props) => ({
+export const RadioButton = styled('div', {
+  label: 'radio-btn',
+  shouldForwardProp: shouldForwardPropDefault
+})<RadioProps>((props) => ({
   position: 'relative',
 
   ...(props.size === 'small' && {

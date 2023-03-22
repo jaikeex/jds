@@ -1,11 +1,12 @@
 import styled from '@emotion/styled';
 import type { ThemeColorVariants } from 'core/types';
-import { shouldForwardProp } from 'core/utils';
+import { shouldForwardPropDefault } from 'core/utils';
 import type { ToggleButtonProps } from './ToggleButton';
 
-export const ToggleButtonRoot = styled('button', { label: 'toggle-button', shouldForwardProp })<
-  ToggleButtonProps & { active: boolean; }
->((props) => ({
+export const ToggleButtonRoot = styled('button', {
+  label: 'toggle-button',
+  shouldForwardProp: shouldForwardPropDefault
+})<ToggleButtonProps & { active: boolean; }>((props) => ({
   position: 'relative',
   overflow: 'hidden',
   textOverflow: 'ellipsis',

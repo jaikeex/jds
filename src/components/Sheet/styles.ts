@@ -1,8 +1,11 @@
 import styled from '@emotion/styled';
 import type { SheetProps } from './Sheet';
-import { shouldForwardProp } from 'core/utils';
+import { shouldForwardPropDefault } from 'core/utils';
 
-export const SheetRoot = styled('div', { label: 'sheet', shouldForwardProp })<SheetProps>((props) => ({
+export const SheetRoot = styled('div', {
+  label: 'sheet',
+  shouldForwardProp: shouldForwardPropDefault
+})<SheetProps>((props) => ({
   borderRadius: props.sharpCorners ? 0 : props.theme.shape.borderRadius.small,
   backgroundColor:
     props.theme.name === 'dark'

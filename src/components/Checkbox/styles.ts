@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { shouldForwardProp } from 'core/utils';
+import { shouldForwardPropDefault } from 'core/utils';
 import type { CheckboxProps } from './Checkbox';
 
 const flexDirValues = Object.freeze({
@@ -26,7 +26,10 @@ const absolutePosMarkValues = Object.freeze({
   }
 });
 
-export const CheckboxRoot = styled('div', { label: 'checkbox', shouldForwardProp })<CheckboxProps>((props) => ({
+export const CheckboxRoot = styled('div', {
+  label: 'checkbox',
+  shouldForwardProp: shouldForwardPropDefault
+})<CheckboxProps>((props) => ({
   position: 'relative',
   display: 'inline-flex',
   flex: '0 0 auto',
@@ -37,7 +40,10 @@ export const CheckboxRoot = styled('div', { label: 'checkbox', shouldForwardProp
   height: props.size === 'small' ? '0.938rem' : props.size === 'medium' ? '1.125rem' : '1.313rem'
 }));
 
-export const CheckboxMark = styled('div', { label: 'checkbox-mark', shouldForwardProp })<CheckboxProps>((props) => ({
+export const CheckboxMark = styled('div', {
+  label: 'checkbox-mark',
+  shouldForwardProp: shouldForwardPropDefault
+})<CheckboxProps>((props) => ({
   display: props.icon ? 'none' : 'inline-block',
   transition: 'all 0.1s ease-out',
   opacity: 0,
@@ -51,58 +57,60 @@ export const CheckboxMark = styled('div', { label: 'checkbox-mark', shouldForwar
   }
 }));
 
-export const CheckboxInput = styled('input', { label: 'checkbox-input', shouldForwardProp })<CheckboxProps>(
-  (props) => ({
-    flexShrink: 0,
-    display: props.icon ? 'none' : 'inline-block',
-    border: props.icon ? 'none' : '2px solid',
-    borderRadius: '2px',
-    appearance: 'none',
-    outline: 0,
-    transition: 'all 0.1s ease-out',
-    borderColor: props.theme.palette.text.primary,
+export const CheckboxInput = styled('input', {
+  label: 'checkbox-input',
+  shouldForwardProp: shouldForwardPropDefault
+})<CheckboxProps>((props) => ({
+  flexShrink: 0,
+  display: props.icon ? 'none' : 'inline-block',
+  border: props.icon ? 'none' : '2px solid',
+  borderRadius: '2px',
+  appearance: 'none',
+  outline: 0,
+  transition: 'all 0.1s ease-out',
+  borderColor: props.theme.palette.text.primary,
+  '&:checked': {
+    borderColor: props.theme.palette[props.color || 'primary'].main,
+    backgroundColor: props.theme.palette[props.color || 'primary'].main
+  },
+  '&:checked ~label [data-id="checkbox-mark"]': {
+    opacity: 1
+  },
+
+  ...(props.size === 'small' && {
+    width: '0.938rem',
+    height: '0.938rem'
+  }),
+
+  ...(props.size === 'medium' && {
+    width: '1.125rem',
+    height: '1.125rem'
+  }),
+
+  ...(props.size === 'large' && {
+    width: '1.313rem',
+    height: '1.313rem'
+  }),
+
+  ...(props.disabled && {
+    borderColor: `${props.theme.palette.text.disabled} !important`,
     '&:checked': {
-      borderColor: props.theme.palette[props.color || 'primary'].main,
-      backgroundColor: props.theme.palette[props.color || 'primary'].main
-    },
-    '&:checked ~label [data-id="checkbox-mark"]': {
-      opacity: 1
-    },
-
-    ...(props.size === 'small' && {
-      width: '0.938rem',
-      height: '0.938rem'
-    }),
-
-    ...(props.size === 'medium' && {
-      width: '1.125rem',
-      height: '1.125rem'
-    }),
-
-    ...(props.size === 'large' && {
-      width: '1.313rem',
-      height: '1.313rem'
-    }),
-
-    ...(props.disabled && {
       borderColor: `${props.theme.palette.text.disabled} !important`,
-      '&:checked': {
-        borderColor: `${props.theme.palette.text.disabled} !important`,
-        backgroundColor: `${props.theme.palette.text.disabled} !important`
-      }
-    })
+      backgroundColor: `${props.theme.palette.text.disabled} !important`
+    }
   })
-);
+}));
 
-export const CheckboxLabel = styled('label', { label: 'checkbox-label', shouldForwardProp })<CheckboxProps>(
-  (props) => ({
-    cursor: 'pointer',
-    '& svg': {
-      transition: 'all 0.1s ease-out'
-    },
+export const CheckboxLabel = styled('label', {
+  label: 'checkbox-label',
+  shouldForwardProp: shouldForwardPropDefault
+})<CheckboxProps>((props) => ({
+  cursor: 'pointer',
+  '& svg': {
+    transition: 'all 0.1s ease-out'
+  },
 
-    ...(props.disabled && {
-      cursor: 'default !important'
-    })
+  ...(props.disabled && {
+    cursor: 'default !important'
   })
-);
+}));

@@ -1,9 +1,12 @@
 import styled from '@emotion/styled';
 import type { ThemeColorVariants } from 'core/types';
 import type { ListItemProps } from './ListItem';
-import { shouldForwardProp } from 'core/utils';
+import { shouldForwardPropDefault } from 'core/utils';
 
-export const ListItemRoot = styled('li', { label: 'list-item', shouldForwardProp })<ListItemProps>((props) => ({
+export const ListItemRoot = styled('li', {
+  label: 'list-item',
+  shouldForwardProp: shouldForwardPropDefault
+})<ListItemProps>((props) => ({
   width: '100%',
   position: 'relative',
   overflow: 'hidden',
@@ -52,13 +55,19 @@ export const ListItemRoot = styled('li', { label: 'list-item', shouldForwardProp
       })
 }));
 
-export const ListItemDecorator = styled('div', { label: 'list-item-deco', shouldForwardProp })({
+export const ListItemDecorator = styled('div', {
+  label: 'list-item-deco',
+  shouldForwardProp: shouldForwardPropDefault
+})({
   display: 'flex',
   alignItems: 'center',
   justifyItems: 'center'
 });
 
-export const ListItemContent = styled('div', { label: 'list-item-content', shouldForwardProp })((props) => ({
+export const ListItemContent = styled('div', {
+  label: 'list-item-content',
+  shouldForwardProp: shouldForwardPropDefault
+})((props) => ({
   flexGrow: 1,
   padding: `0 ${props.theme.spacing[3]}`
 }));

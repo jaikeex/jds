@@ -30,6 +30,7 @@
   "dependencies": {
     "@emotion/cache": "^11.10.5",
     "@emotion/css": "^11.10.6",
+    "@emotion/is-prop-valid": "^1.2.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@popperjs/core": "^2.11.6",

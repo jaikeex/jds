@@ -1,22 +1,24 @@
 import styled from '@emotion/styled';
-import { shouldForwardProp } from 'core/utils';
+import { shouldForwardPropDefault } from 'core/utils';
 import type { RangeSliderProps } from './RangeSlider';
 
-export const RangeSliderRoot = styled('div', { label: 'range-slider', shouldForwardProp })<RangeSliderProps>(
-  (props) => ({
-    position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: props.width ? props.width : '100%',
-    marginTop: props.theme.spacing[28]
-  })
-);
+export const RangeSliderRoot = styled('div', {
+  label: 'range-slider',
+  shouldForwardProp: shouldForwardPropDefault
+})<RangeSliderProps>((props) => ({
+  position: 'relative',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: props.width ? props.width : '100%',
+  marginTop: props.theme.spacing[28]
+}));
 
-export const RangeSiderInput = styled('input', { label: 'range-slider-input', shouldForwardProp })<
-  RangeSliderProps & { position: 'min' | 'max'; }
->((props) => ({
+export const RangeSiderInput = styled('input', {
+  label: 'range-slider-input',
+  shouldForwardProp: shouldForwardPropDefault
+})<RangeSliderProps & { position: 'min' | 'max'; }>((props) => ({
   position: 'absolute',
   pointerEvents: 'none',
   opacity: 0,
@@ -124,7 +126,7 @@ export const RangeSiderInput = styled('input', { label: 'range-slider-input', sh
 
 export const RangeSliderInputWrapper = styled('div', {
   label: 'range-slider-input-wr',
-  shouldForwardProp
+  shouldForwardProp: shouldForwardPropDefault
 })<RangeSliderProps>((props) => ({
   position: 'absolute',
   top: '0.375rem',
@@ -145,21 +147,24 @@ export const RangeSliderInputWrapper = styled('div', {
 
 export const RangedSliderSelectorWrapper = styled('div', {
   label: 'range-slider-selector-wr',
-  shouldForwardProp
+  shouldForwardProp: shouldForwardPropDefault
 })<RangeSliderProps>((props) => ({
   position: 'relative',
   width: '100%',
   padding: `${props.theme.spacing[0]} ${props.theme.spacing[10]}`
 }));
 
-export const RangeSliderSelector = styled('div', { label: 'range-slider-selector', shouldForwardProp })({
+export const RangeSliderSelector = styled('div', {
+  label: 'range-slider-selector',
+  shouldForwardProp: shouldForwardPropDefault
+})({
   position: 'relative',
   width: '100%'
 });
 
 export const RangeSliderValueBox = styled('div', {
   label: 'range-slider-valueBox',
-  shouldForwardProp
+  shouldForwardProp: shouldForwardPropDefault
 })<RangeSliderProps>((props) => ({
   position: 'absolute',
   cursor: 'default',
@@ -193,7 +198,7 @@ export const RangeSliderValueBox = styled('div', {
 
 export const RangeSliderControlWrapper = styled('div', {
   label: 'range-slider-control-wr',
-  shouldForwardProp
+  shouldForwardProp: shouldForwardPropDefault
 })<RangeSliderProps>((props) => ({
   position: 'relative',
   width: '100%',
@@ -227,58 +232,60 @@ export const RangeSliderControlWrapper = styled('div', {
   })
 }));
 
-export const RangeSliderControl = styled('div', { label: 'range-slider-control', shouldForwardProp })<RangeSliderProps>(
-  (props) => ({
-    position: 'absolute',
-    backgroundColor: props.theme.palette[props.color || 'primary'].main,
-    top: '50%',
-    borderRadius: '50%',
-    transform: 'translateY(-50%)',
-    zIndex: 2,
+export const RangeSliderControl = styled('div', {
+  label: 'range-slider-control',
+  shouldForwardProp: shouldForwardPropDefault
+})<RangeSliderProps>((props) => ({
+  position: 'absolute',
+  backgroundColor: props.theme.palette[props.color || 'primary'].main,
+  top: '50%',
+  borderRadius: '50%',
+  transform: 'translateY(-50%)',
+  zIndex: 2,
 
-    ...(props.size === 'small' && {
-      width: '0.875rem',
-      height: '0.875rem'
-    }),
+  ...(props.size === 'small' && {
+    width: '0.875rem',
+    height: '0.875rem'
+  }),
 
-    ...(props.size === 'medium' && {
-      width: '1.2rem',
-      height: '1.2rem'
-    }),
+  ...(props.size === 'medium' && {
+    width: '1.2rem',
+    height: '1.2rem'
+  }),
 
-    ...(props.size === 'large' && {
-      width: '1.4rem',
-      height: '1.4rem'
-    })
+  ...(props.size === 'large' && {
+    width: '1.4rem',
+    height: '1.4rem'
   })
-);
+}));
 
-export const RangeSliderTrack = styled('div', { label: 'range-slider-track', shouldForwardProp })<RangeSliderProps>(
-  (props) => ({
-    position: 'absolute',
-    width: '100%',
-    top: '50%',
-    transform: 'translateY(-50%)',
-    borderRadius: '500px',
-    background: props.theme.palette.rgba(props.theme.palette[props.color || 'primary'].main, 0.3),
+export const RangeSliderTrack = styled('div', {
+  label: 'range-slider-track',
+  shouldForwardProp: shouldForwardPropDefault
+})<RangeSliderProps>((props) => ({
+  position: 'absolute',
+  width: '100%',
+  top: '50%',
+  transform: 'translateY(-50%)',
+  borderRadius: '500px',
+  background: props.theme.palette.rgba(props.theme.palette[props.color || 'primary'].main, 0.3),
 
-    ...(props.size === 'small' && {
-      height: '0.25rem'
-    }),
+  ...(props.size === 'small' && {
+    height: '0.25rem'
+  }),
 
-    ...(props.size === 'medium' && {
-      height: '0.375rem'
-    }),
+  ...(props.size === 'medium' && {
+    height: '0.375rem'
+  }),
 
-    ...(props.size === 'large' && {
-      height: '0.5rem'
-    })
+  ...(props.size === 'large' && {
+    height: '0.5rem'
   })
-);
+}));
 
 export const RangeSliderInnerTrack = styled('div', {
   label: 'range-slider-inner-track',
-  shouldForwardProp
+  shouldForwardProp: shouldForwardPropDefault
 })<RangeSliderProps>((props) => ({
   position: 'absolute',
   height: '100%',
@@ -286,7 +293,10 @@ export const RangeSliderInnerTrack = styled('div', {
   background: props.theme.palette[props.color || 'primary'].main
 }));
 
-export const RangeSliderLabel = styled('label', { label: 'range-slider-label', shouldForwardProp })({
+export const RangeSliderLabel = styled('label', {
+  label: 'range-slider-label',
+  shouldForwardProp: shouldForwardPropDefault
+})({
   alignSelf: 'flex-start',
   width: 'max-content'
 });

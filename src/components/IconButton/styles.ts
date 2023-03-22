@@ -1,9 +1,12 @@
 import styled from '@emotion/styled';
 import type { ThemeColorVariants } from 'core/types';
 import type { IconButtonProps } from './IconButton';
-import { shouldForwardProp } from 'core/utils';
+import { shouldForwardPropDefault } from 'core/utils';
 
-export const IconButtonRoot = styled('button', { label: 'icon-btn', shouldForwardProp })<IconButtonProps>((props) => ({
+export const IconButtonRoot = styled('button', {
+  label: 'icon-btn',
+  shouldForwardProp: shouldForwardPropDefault
+})<IconButtonProps>((props) => ({
   border: 'none',
   padding: 0,
   backgroundColor: 'transparent',
@@ -61,18 +64,18 @@ export const IconButtonRoot = styled('button', { label: 'icon-btn', shouldForwar
   },
 
   ...(props.size === 'small' && {
-    width: props.enableBackground ? '2.25rem' : '1.6rem',
-    height: props.enableBackground ? '2.25rem' : '1.6rem'
+    width: '2.25rem',
+    height: '2.25rem'
   }),
 
   ...(props.size === 'medium' && {
-    width: props.enableBackground ? '2.75rem' : '2rem',
-    height: props.enableBackground ? '2.75rem' : '2rem'
+    width: '2.75rem',
+    height: '2.75rem'
   }),
 
   ...(props.size === 'large' && {
-    width: props.enableBackground ? '3rem' : '2.25rem',
-    height: props.enableBackground ? '3rem' : '2.25rem'
+    width: '3rem',
+    height: '3rem'
   }),
 
   ...(props.disabled && {

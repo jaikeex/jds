@@ -1,8 +1,11 @@
 import styled from '@emotion/styled';
 import type { SliderProps } from './Slider';
-import { shouldForwardProp } from 'core/utils';
+import { shouldForwardPropDefault } from 'core/utils';
 
-export const SliderRoot = styled('div', { label: 'slider', shouldForwardProp })<SliderProps>((props) => ({
+export const SliderRoot = styled('div', {
+  label: 'slider',
+  shouldForwardProp: shouldForwardPropDefault
+})<SliderProps>((props) => ({
   position: 'relative',
   display: 'flex',
   flexDirection: 'column',
@@ -16,7 +19,10 @@ export const SliderRoot = styled('div', { label: 'slider', shouldForwardProp })<
   }
 }));
 
-export const SliderInput = styled('input', { label: 'slider-input', shouldForwardProp })<SliderProps>((props) => ({
+export const SliderInput = styled('input', {
+  label: 'slider-input',
+  shouldForwardProp: shouldForwardPropDefault
+})<SliderProps>((props) => ({
   appearance: 'none',
   width: '100%',
   borderRadius: '500px',
@@ -99,20 +105,27 @@ export const SliderInput = styled('input', { label: 'slider-input', shouldForwar
   })
 }));
 
-export const SliderSelectorWrapper = styled('div', { label: 'slider-selector-wr', shouldForwardProp })<SliderProps>(
-  (props) => ({
-    position: 'relative',
-    width: '100%',
-    padding: `${props.theme.spacing[0]} ${props.theme.spacing[10]}`
-  })
-);
+export const SliderSelectorWrapper = styled('div', {
+  label: 'slider-selector-wr',
+  shouldForwardProp: shouldForwardPropDefault
+})<SliderProps>((props) => ({
+  position: 'relative',
+  width: '100%',
+  padding: `${props.theme.spacing[0]} ${props.theme.spacing[10]}`
+}));
 
-export const SliderSelector = styled('div', { label: 'slider-selector', shouldForwardProp })({
+export const SliderSelector = styled('div', {
+  label: 'slider-selector',
+  shouldForwardProp: shouldForwardPropDefault
+})({
   position: 'relative',
   width: '100%'
 });
 
-export const SliderValueBox = styled('div', { label: 'slider-value-box', shouldForwardProp })<SliderProps>((props) => ({
+export const SliderValueBox = styled('div', {
+  label: 'slider-value-box',
+  shouldForwardProp: shouldForwardPropDefault
+})<SliderProps>((props) => ({
   position: 'absolute',
   left: '50%',
   height: '2rem',
@@ -142,7 +155,10 @@ export const SliderValueBox = styled('div', { label: 'slider-value-box', shouldF
   }
 }));
 
-export const SliderLabel = styled('div', { label: 'slider-label', shouldForwardProp })({
+export const SliderLabel = styled('div', {
+  label: 'slider-label',
+  shouldForwardProp: shouldForwardPropDefault
+})({
   alignSelf: 'flex-start',
   width: 'max-content'
 });

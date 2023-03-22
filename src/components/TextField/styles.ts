@@ -1,8 +1,11 @@
 import styled from '@emotion/styled';
 import type { TextFieldProps } from './TextField';
-import { shouldForwardProp } from 'core/utils';
+import { shouldForwardPropDefault } from 'core/utils';
 
-export const TextFieldRoot = styled('div', { label: 'textfield', shouldForwardProp })<TextFieldProps>((props) => ({
+export const TextFieldRoot = styled('div', {
+  label: 'textfield',
+  shouldForwardProp: shouldForwardPropDefault
+})<TextFieldProps>((props) => ({
   position: 'relative',
   display: 'flex',
   alignItems: 'center',
@@ -68,25 +71,29 @@ export const TextFieldRoot = styled('div', { label: 'textfield', shouldForwardPr
   })
 }));
 
-export const TextFieldInput = styled('input', { label: 'textfield-input', shouldForwardProp })<TextFieldProps>(
-  (props) => ({
-    display: 'block',
-    padding: `${props.theme.spacing[4]} ${props.theme.spacing[3]}`,
-    flex: 1,
-    border: 'none',
-    outline: 'none',
-    backgroundColor: 'transparent',
-    fontFamily: 'inherit',
-    fontSize: '0.937rem',
-    color: props.theme.palette.text.primary,
-    '&::-webkit-input-placeholder': {
-      fontWeight: 400,
-      color: props.theme.palette.rgba(props.theme.palette.text.primary, 0.5)
-    }
-  })
-);
+export const TextFieldInput = styled('input', {
+  label: 'textfield-input',
+  shouldForwardProp: shouldForwardPropDefault
+})<TextFieldProps>((props) => ({
+  display: 'block',
+  padding: `${props.theme.spacing[4]} ${props.theme.spacing[3]}`,
+  flex: 1,
+  border: 'none',
+  outline: 'none',
+  backgroundColor: 'transparent',
+  fontFamily: 'inherit',
+  fontSize: '0.937rem',
+  color: props.theme.palette.text.primary,
+  '&::-webkit-input-placeholder': {
+    fontWeight: 400,
+    color: props.theme.palette.rgba(props.theme.palette.text.primary, 0.5)
+  }
+}));
 
-export const Label = styled('label', { label: 'textfield-label', shouldForwardProp })<
+export const Label = styled('label', {
+  label: 'textfield-label',
+  shouldForwardProp: shouldForwardPropDefault
+})<
   TextFieldProps & {
     inputValue: string;
     isFocused: boolean;
@@ -112,17 +119,18 @@ export const Label = styled('label', { label: 'textfield-label', shouldForwardPr
   })
 }));
 
-export const TextFieldDecorator = styled('div', { label: 'textfield-element', shouldForwardProp })<TextFieldProps>(
-  (props) => ({
-    lineHeight: '1.5rem',
-    textAlign: 'center',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    color: props.theme.palette.rgba(props.theme.palette.text.primary, 0.6),
-    whiteSpace: 'nowrap',
-    '& span': {
-      fontSize: '0.875rem'
-    }
-  })
-);
+export const TextFieldDecorator = styled('div', {
+  label: 'textfield-element',
+  shouldForwardProp: shouldForwardPropDefault
+})<TextFieldProps>((props) => ({
+  lineHeight: '1.5rem',
+  textAlign: 'center',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  color: props.theme.palette.rgba(props.theme.palette.text.primary, 0.6),
+  whiteSpace: 'nowrap',
+  '& span': {
+    fontSize: '0.875rem'
+  }
+}));

@@ -1,9 +1,12 @@
 import styled from '@emotion/styled';
 import { Typography } from 'components/Typography';
 import type { LinkProps } from './Link';
-import { shouldForwardProp } from 'core/utils';
+import { shouldForwardPropDefault } from 'core/utils';
 
-export const LinkRoot = styled('a', { label: 'link', shouldForwardProp })<LinkProps>((props) => ({
+export const LinkRoot = styled('a', {
+  label: 'link',
+  shouldForwardProp: shouldForwardPropDefault
+})<LinkProps>((props) => ({
   cursor: 'pointer',
   textDecoration: 'none',
   '&:link': {

@@ -1,3 +1,5 @@
+import isPropValid from '@emotion/is-prop-valid';
+
 export const makeId = (length: number) => {
   let result = '';
   const characters = 'abcdefghijklmnopqrstuvwxyz0123456789';
@@ -35,39 +37,4 @@ export const checkOverflow = (element: HTMLElement | null) => {
   return isOverflowing;
 };
 
-export const shouldForwardProp = (prop: string) => {
-  const stylePropNames = [
-    'orientation',
-    'color',
-    'location',
-    'enableBackground',
-    'upperCase',
-    'hyphens',
-    'gutterBottom',
-    'noWrap',
-    'textAlign',
-    'labelPosition',
-    'outlined',
-    'sharpCorners',
-    'flexItem',
-    'removeMargin',
-    'compact',
-    'clickable',
-    'visible',
-    'active',
-    'scrollButtons',
-    'justifyButtons',
-    'removeHorizontalPadding',
-    'removeVerticalPadding',
-    'inputValue',
-    'isFocused',
-    'transformLabel',
-    'elementBefore',
-    'removeBorder',
-    'as',
-    'variant'
-    // 'appearance'
-  ];
-
-  return !stylePropNames.includes(prop);
-};
+export const shouldForwardPropDefault = (propName: string) => isPropValid(propName);

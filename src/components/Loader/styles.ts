@@ -2,7 +2,7 @@ import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import type { ThemeColorVariants } from 'core/types';
 import type { LoaderProps } from './Loader';
-import { shouldForwardProp } from 'core/utils';
+import { shouldForwardPropDefault } from 'core/utils';
 
 const loaderAnimation = keyframes({
   from: {
@@ -13,7 +13,10 @@ const loaderAnimation = keyframes({
   }
 });
 
-export const LoaderRoot = styled('div', { label: 'loader', shouldForwardProp })<LoaderProps>((props) => ({
+export const LoaderRoot = styled('div', {
+  label: 'loader',
+  shouldForwardProp: shouldForwardPropDefault
+})<LoaderProps>((props) => ({
   border: `5px solid ${
     props.color === ('default' || undefined)
       ? props.theme.palette.text.primary

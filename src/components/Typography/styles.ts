@@ -1,9 +1,12 @@
 import styled from '@emotion/styled';
 import type { ThemeColorVariants } from 'core/types';
 import type { TypographyProps } from './Typography';
-import { shouldForwardProp } from 'core/utils';
+import { shouldForwardPropDefault } from 'core/utils';
 
-export const TypographyRoot = styled('div', { label: 'typography', shouldForwardProp })<TypographyProps>((props) => ({
+export const TypographyRoot = styled('div', {
+  label: 'typography',
+  shouldForwardProp: shouldForwardPropDefault
+})<TypographyProps>((props) => ({
   ...(props.variant && props.theme.typography[props.variant]),
 
   fontFamily: props.theme.typography.fontFamily,

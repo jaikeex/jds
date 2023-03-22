@@ -1,11 +1,8 @@
 import styled from '@emotion/styled';
 import { Button } from 'components/Button';
 import type { TabButtonProps } from './TabButton';
-import { shouldForwardProp } from 'core/utils';
 
-export const TabButtonRoot = styled(Button, { label: 'tab-button', shouldForwardProp })<
-  TabButtonProps & { active: boolean; }
->((props) => ({
+export const TabButtonRoot = styled(Button, { label: 'tab-button' })<TabButtonProps & { active: boolean; }>((props) => ({
   flexShrink: 0,
   borderRadius: 0,
   height: '2rem',

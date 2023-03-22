@@ -1,9 +1,12 @@
 import styled from '@emotion/styled';
 import type { ThemeColorVariants } from 'core/types';
 import type { TooltipProps } from './Tooltip';
-import { shouldForwardProp } from 'core/utils';
+import { shouldForwardPropDefault } from 'core/utils';
 
-export const TooltipRoot = styled('div', { label: 'tooltip', shouldForwardProp })<TooltipProps>((props) => ({
+export const TooltipRoot = styled('div', {
+  label: 'tooltip',
+  shouldForwardProp: shouldForwardPropDefault
+})<TooltipProps>((props) => ({
   position: 'absolute',
   padding: [props.theme.spacing[2], props.theme.spacing[2]],
   width: 'fit-content',
