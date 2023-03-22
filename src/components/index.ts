@@ -1,3 +1,4 @@
+export * from './Accordion';
 export * from './Alert';
 export * from './AlertProvider';
 export * from './Backdrop';
@@ -25,6 +26,7 @@ export * from './RadioGroup';
 export * from './Select';
 export * from './Sheet';
 export * from './Slider';
+export * from './Table';
 export * from './Tabs';
 export * from './TextField';
 export * from './ToggleButton';

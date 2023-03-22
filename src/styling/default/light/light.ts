@@ -32,6 +32,12 @@ export const defaultLightTheme: Theme = {
       dark: '#1565c0',
       contrastText: '#e1e1e1'
     },
+    supplementary: {
+      main: '#1976d2',
+      light: '#42a5f5',
+      dark: '#1565c0',
+      contrastText: '#e1e1e1'
+    },
     error: {
       main: '#d32f2f',
       light: '#ff9800',

@@ -3,10 +3,11 @@ import type { NumericRange } from 'core/types';
 export interface Palette {
   primary: PaletteColor;
   secondary: PaletteColor;
+  supplementary: PaletteColor;
+  success: PaletteColor;
   error: PaletteColor;
   warning: PaletteColor;
   info: PaletteColor;
-  success: PaletteColor;
   common: CommonColor;
   grey: Color;
   text: TextColor;
@@ -23,10 +24,11 @@ export interface Palette {
 export interface PaletteOptions {
   primary?: PaletteColorOptions;
   secondary?: PaletteColorOptions;
+  supplementary?: PaletteColorOptions;
+  success?: PaletteColorOptions;
   error?: PaletteColorOptions;
   warning?: PaletteColorOptions;
   info?: PaletteColorOptions;
-  success?: PaletteColorOptions;
   common?: CommonColorOptions;
   grey?: ColorOptions;
   text?: TextColorOptions;
