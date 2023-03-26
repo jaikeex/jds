@@ -6,6 +6,7 @@ export interface SvgIconProps extends React.PropsWithChildren {
   size?: number;
   color?: ThemeColorVariantsWithDefault;
   className?: string;
+  disabled?: boolean;
   id?: string;
   style?: React.CSSProperties;
   testId?: string;
@@ -17,6 +18,7 @@ const SvgIcon = React.forwardRef<SVGSVGElement, SvgIconProps>(
     {
       color = 'default',
       className = '',
+      disabled = false,
       id = '',
       style = {},
       testId = '',
@@ -32,6 +34,7 @@ const SvgIcon = React.forwardRef<SVGSVGElement, SvgIconProps>(
       as={'svg'}
       color={color}
       ref={ref}
+      disabled={disabled}
       id={id}
       className={className}
       style={style}

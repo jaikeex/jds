@@ -12,9 +12,9 @@ export default {
 const Template: Story<CheckboxProps> = (args) => (
   <div style={{ display: 'flex', gap: '1rem' }}>
     <Checkbox {...args} />
-    <Checkbox {...args} checked />
+    <Checkbox {...args} defaultChecked />
     <Checkbox {...args} disabled />
-    <Checkbox {...args} disabled checked />
+    <Checkbox {...args} disabled defaultChecked />
   </div>
 );
 
@@ -32,7 +32,7 @@ const SizesTemplate: Story<CheckboxProps> = (args) => (
 export const Sizes = SizesTemplate.bind({});
 Sizes.args = {
   labelPosition: 'top',
-  checked: true
+  defaultChecked: true
 };
 
 const ColorsTemplate: Story<CheckboxProps> = (args) => (
@@ -47,7 +47,7 @@ const ColorsTemplate: Story<CheckboxProps> = (args) => (
 
 export const Colors = ColorsTemplate.bind({});
 Colors.args = {
-  checked: true
+  defaultChecked: true
 };
 
 const IconTemplate: Story<CheckboxProps> = (args) => <Checkbox {...args} />;
@@ -61,9 +61,9 @@ Icon.args = {
 const LabelTemplate: Story<CheckboxProps> = (args) => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
     <Checkbox {...args} />
-    <Checkbox {...args} checked />
+    <Checkbox {...args} defaultChecked />
     <Checkbox {...args} disabled />
-    <Checkbox {...args} disabled checked />
+    <Checkbox {...args} disabled defaultChecked />
   </div>
 );
 
@@ -83,5 +83,5 @@ const LabelsTemplate: Story<CheckboxProps> = (args) => (
 
 export const LabelPositions = LabelsTemplate.bind({});
 LabelPositions.args = {
-  checked: true
+  defaultChecked: true
 };

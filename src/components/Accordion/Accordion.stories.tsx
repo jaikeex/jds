@@ -9,7 +9,7 @@ const text =
   'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Unde officia omnis quos debitis tenetur ipsam illo, quasi ab! Ducimus accusantium quaerat numquam ut laborum quos velit et aliquid laudantium provident doloresalias impedit saepe est porro, nesciunt, cumque aperiam asperiores voluptatibus mollitia. Fugiat repellendussapiente aspernatur dolor. ';
 
 export default {
-  title: 'Accordion',
+  title: 'Design System/Accordion',
   component: Accordion
 } as ComponentMeta<typeof Accordion>;
 

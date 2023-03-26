@@ -1,147 +1,131 @@
 import * as React from 'react';
+import type { Column, DefaultFilterTypes, PluginHook, CellProps, HeaderProps } from 'react-table';
+import { useTable, useSortBy, usePagination, useFilters, useRowSelect } from 'react-table';
+import { TableContextProvider } from './TableContextProvider';
+import { TableBody } from './TableBody';
+import { TableHead } from './TableHead';
+import styled from '@emotion/styled';
+import { ColumnTextFilter } from './ColumnTextFilter';
+import { ColumnRangeFilter } from './ColumnRangeFilter';
+import { TablePagination } from './TablePagination';
+import { Checkbox } from 'components/Checkbox';
+import { useEffect } from 'react';
+import { ColumnSelectFilter } from './ColumnSelectFilter';
+import type { ColumnFilterProps } from './types';
 
-export interface TableProps {
-  className: string;
+export interface TableProps<D extends object> {
+  className?: string;
+  columns?: readonly Column<D>[];
+  data?: D[];
+  removeRowBorders?: boolean;
+  removeHeadBorder?: boolean;
+  padding?: 'none' | 'small' | 'medium' | 'large';
+  paginated?: boolean;
+  disableRowHighlight?: boolean;
+  selectableRows?: boolean;
+  disableSelectOnRowClick?: boolean;
+  onSelectionChange?: (selectedRows: D[]) => void;
 }
 
-const Table: React.FC<TableProps> = ({ className = '' }): JSX.Element => (
-  <div className="root">
-    <table>
-      <thead>
-        <tr>
-          <th>id</th>
-          <th>Customer</th>
-          <th>Location</th>
-          <th>Amount</th>
-          <th>Status</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td> 1 </td>
-          <td>Avatar</td>
-          <td> Brno </td>
-          <td>51</td>
-          <td>
-            <p>lost</p>
-          </td>
-          <td> 59kč </td>
-        </tr>
-        <tr>
-          <td> 1 </td>
-          <td>Avatar</td>
-          <td> Brno </td>
-          <td>51</td>
-          <td>
-            <p>lost</p>
-          </td>
-          <td> 59kč </td>
-        </tr>
-        <tr>
-          <td> 1 </td>
-          <td>Avatar</td>
-          <td> Brno </td>
-          <td>51</td>
-          <td>
-            <p>lost</p>
-          </td>
-          <td> 59kč </td>
-        </tr>
-        <tr>
-          <td> 1 </td>
-          <td>Avatar</td>
-          <td> Brno </td>
-          <td>51</td>
-          <td>
-            <p>lost</p>
-          </td>
-          <td> 59kč </td>
-        </tr>
-        <tr>
-          <td> 1 </td>
-          <td>Avatar</td>
-          <td> Brno </td>
-          <td>51</td>
-          <td>
-            <p>lost</p>
-          </td>
-          <td> 59kč </td>
-        </tr>{' '}
-        <tr>
-          <td> 1 </td>
-          <td>Avatar</td>
-          <td> Brno </td>
-          <td>51</td>
-          <td>
-            <p>lost</p>
-          </td>
-          <td> 59kč </td>
-        </tr>{' '}
-        <tr>
-          <td> 1 </td>
-          <td>Avatar</td>
-          <td> Brno </td>
-          <td>51</td>
-          <td>
-            <p>lost</p>
-          </td>
-          <td> 59kč </td>
-        </tr>{' '}
-        <tr>
-          <td> 1 </td>
-          <td>Avatar</td>
-          <td> Brno </td>
-          <td>51</td>
-          <td>
-            <p>lost</p>
-          </td>
-          <td> 59kč </td>
-        </tr>{' '}
-        <tr>
-          <td> 1 </td>
-          <td>Avatar</td>
-          <td> Brno </td>
-          <td>51</td>
-          <td>
-            <p>lost</p>
-          </td>
-          <td> 59kč </td>
-        </tr>{' '}
-        <tr>
-          <td> 1 </td>
-          <td>Avatar</td>
-          <td> Brno </td>
-          <td>51</td>
-          <td>
-            <p>lost</p>
-          </td>
-          <td> 59kč </td>
-        </tr>{' '}
-        <tr>
-          <td> 1 </td>
-          <td>Avatar</td>
-          <td> Brno </td>
-          <td>51</td>
-          <td>
-            <p>lost</p>
-          </td>
-          <td> 59kč </td>
-        </tr>{' '}
-        <tr>
-          <td> 1 </td>
-          <td>Avatar</td>
-          <td> Brno </td>
-          <td>51</td>
-          <td>
-            <p>lost</p>
-          </td>
-          <td> 59kč </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-);
+const Table = <D extends object>({
+  className = '',
+  columns = [],
+  removeHeadBorder = false,
+  removeRowBorders = false,
+  data = [],
+  padding = 'medium',
+  paginated = false,
+  disableRowHighlight = false,
+  selectableRows = false,
+  onSelectionChange = () => {}
+}: TableProps<D>): JSX.Element => {
+  const columnFilterComponentsMap: Partial<Record<DefaultFilterTypes, React.FC<ColumnFilterProps<D>>>> = {
+    text: ColumnTextFilter,
+    between: ColumnRangeFilter,
+    exact: ColumnSelectFilter
+  };
+
+  const columnsWithOptions: readonly Column<D>[] = React.useMemo(
+    () =>
+      columns.map((col) => {
+        if (!col.sortable) {
+          col.disableSortBy = true;
+        }
+
+        if (!col.filter) {
+          col.disableFilters = true;
+        } else {
+          col.Filter = columnFilterComponentsMap[col.filter];
+        }
+
+        return col;
+      }),
+    [columns]
+  );
+
+  const useTableArgs: Array<PluginHook<D>> = [];
+
+  if (paginated) {
+    useTableArgs.push(usePagination);
+  }
+
+  if (selectableRows) {
+    useTableArgs.push(useRowSelect, (hooks) => {
+      hooks.visibleColumns.push((columns) => [
+        {
+          id: 'selection',
+          Header: ({ getToggleAllRowsSelectedProps }: HeaderProps<D>) => (
+            <Checkbox {...getToggleAllRowsSelectedProps()} />
+          ),
+          Cell: ({ row }: CellProps<D, any>) => <Checkbox {...row.getToggleRowSelectedProps()} />
+        },
+        ...columns
+      ]);
+    });
+  }
+
+  const tableInstance = useTable<D>(
+    {
+      columns: columnsWithOptions,
+      data: data,
+      disableSortRemove: true
+    },
+    useFilters,
+    useSortBy,
+    ...useTableArgs
+  );
+
+  const { getTableProps, selectedFlatRows } = tableInstance;
+
+  useEffect(() => {
+    if (selectableRows) {
+      onSelectionChange(selectedFlatRows.map((row) => row.original));
+    }
+  }, [selectedFlatRows]);
+
+  return (
+    <TableContextProvider
+      tableInstance={tableInstance}
+      padding={padding}
+      disableRowHighlight={disableRowHighlight}
+      removeRowBorders={removeRowBorders}
+    >
+      <StyledTable className={className} {...getTableProps()}>
+        <TableHead removeHeadBorder={removeHeadBorder} />
+        <TableBody />
+      </StyledTable>
+      {paginated && <TablePagination />}
+    </TableContextProvider>
+  );
+};
 
 Table.displayName = 'Table';
 export default Table;
+
+const StyledTable = styled('table')<TableProps<Record<string, never>>>((props) => ({
+  width: '100%',
+  backgroundColor: props.theme.palette.background.default,
+  position: 'relative',
+  overflow: 'auto',
+  borderCollapse: 'collapse'
+}));

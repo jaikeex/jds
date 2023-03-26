@@ -12,7 +12,7 @@ export default {
 const Template: Story<ToggleButtonProps> = (args) => (
   <div style={{ display: 'flex', flexDirection: 'row', gap: '1.5rem' }}>
     <ToggleButton {...args} />
-    <ToggleButton {...args} selected />
+    <ToggleButton {...args} defaultSelected={true} />
     <ToggleButton {...args} disabled />
   </div>
 );
@@ -43,13 +43,13 @@ Sizes.args = {
 
 const ColorsTemplate: Story<ToggleButtonProps> = (args) => (
   <div style={{ display: 'flex', flexDirection: 'row', gap: '1.5rem' }}>
-    <ToggleButton {...args} selected color="default" />
-    <ToggleButton {...args} selected color="primary" />
-    <ToggleButton {...args} selected color="secondary" />
-    <ToggleButton {...args} selected color="success" />
-    <ToggleButton {...args} selected color="error" />
-    <ToggleButton {...args} selected color="warning" />
-    <ToggleButton {...args} selected color="info" />
+    <ToggleButton {...args} defaultSelected appearance="filled" color="default" />
+    <ToggleButton {...args} defaultSelected color="primary" />
+    <ToggleButton {...args} defaultSelected color="secondary" />
+    <ToggleButton {...args} defaultSelected color="success" />
+    <ToggleButton {...args} defaultSelected color="error" />
+    <ToggleButton {...args} defaultSelected color="warning" />
+    <ToggleButton {...args} defaultSelected color="info" />
   </div>
 );
 
@@ -59,20 +59,15 @@ Colors.args = {
   color: 'primary'
 };
 
-const BordersTemplate: Story<ToggleButtonProps> = (args) => (
+const AppearanceTemplate: Story<ToggleButtonProps> = (args) => (
   <div style={{ display: 'flex', flexDirection: 'row', gap: '1.5rem' }}>
-    <ToggleButton {...args} color="default" />
-    <ToggleButton {...args} color="primary" />
-    <ToggleButton {...args} color="secondary" />
-    <ToggleButton {...args} color="success" />
-    <ToggleButton {...args} color="error" />
-    <ToggleButton {...args} color="warning" />
-    <ToggleButton {...args} color="info" />
+    <ToggleButton {...args} appearance="filled" />
+    <ToggleButton {...args} appearance="outlined" />
+    <ToggleButton {...args} appearance="subtle" />
   </div>
 );
 
-export const WithoutBorder = BordersTemplate.bind({});
-WithoutBorder.args = {
-  ...Default.args,
-  removeBorder: true
+export const Variants = AppearanceTemplate.bind({});
+Variants.args = {
+  ...Default.args
 };

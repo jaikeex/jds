@@ -29,7 +29,7 @@ const CheckboxOption: React.FC<OptionProps<Selectable, boolean, GroupBase<Select
 
   return (
     <COption {...props} innerProps={customProps}>
-      <Checkbox color={checkboxColor} checked={props.isSelected} />
+      <Checkbox color={checkboxColor} checked={props.isSelected} disabled={props.isDisabled} />
       {props.children}
     </COption>
   );

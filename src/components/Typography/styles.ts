@@ -27,6 +27,10 @@ export const TypographyRoot = styled('div', {
     textTransform: 'uppercase'
   }),
 
+  ...(props.bold && {
+    fontWeight: 'bold'
+  }),
+
   ...(props.noWrap && {
     overflow: 'hidden',
     whiteSpace: 'nowrap',

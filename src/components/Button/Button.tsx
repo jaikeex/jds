@@ -7,13 +7,37 @@ import type { SvgColoredIconProps, SvgIconProps } from 'components/icons';
 import * as Styled from './styles';
 
 export interface ButtonProps extends React.PropsWithChildren, Omit<React.ComponentProps<'button'>, 'ref'> {
+  /**
+   * The appearance of the button.
+   */
   appearance?: ButtonAppearance;
+  /**
+   * The color of the button. Can be any of the theme colors.
+   */
   color?: ThemeColorVariants;
+  /**
+   * If true, no ripple effect will appear upon clicking the button.
+   */
   disableRippleEffect?: boolean;
+  /**
+   * If true, the text of the button will not be forced to uppercase.
+   */
   disableUpperCase?: boolean;
+  /**
+   * Element placed before the children
+   */
   iconLeft?: React.ReactElement<SvgIconProps | SvgColoredIconProps>;
+  /**
+   * Ëlement placed after the children
+   */
   iconRight?: React.ReactElement<SvgIconProps | SvgColoredIconProps>;
+  /**
+   * Function called when clicking the button.
+   */
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  /**
+   * Size of the button.
+   */
   size?: Size;
 }
 

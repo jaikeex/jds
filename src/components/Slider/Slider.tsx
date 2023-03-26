@@ -32,7 +32,7 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
       step = 1,
       defaultValue = 50,
       color = 'primary',
-      value = defaultValue,
+      value = undefined,
       size = 'medium',
       displayValue = true,
       className = '',
@@ -45,11 +45,13 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
     ref
   ) => {
     const inputRef = useForwardedRef<HTMLInputElement>(ref);
-    const [inputValue, setInputValue] = useState<number>(value);
+    const [inputValue, setInputValue] = useState<number>(defaultValue);
 
     const inputChangeHandler = useCallback(
       (event: React.FormEvent<HTMLInputElement>) => {
-        setInputValue(+event.currentTarget.value);
+        if (value === undefined) {
+          setInputValue(+event.currentTarget.value);
+        }
         onChange(+event.currentTarget.value);
       },
       [setInputValue, onChange]
@@ -69,7 +71,9 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
     });
 
     useEffect(() => {
-      setInputValue(value);
+      if (value !== undefined) {
+        setInputValue(value);
+      }
     }, [value]);
 
     return (

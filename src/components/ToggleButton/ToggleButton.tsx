@@ -4,10 +4,13 @@ import { Typography } from 'components/Typography';
 import { useForwardedRef, useRippleEffect } from 'core/hooks';
 import { useCallback, useEffect, useState } from 'react';
 import * as Styled from './styles';
+import type { ButtonAppearance } from 'components/Button';
 
 export interface ToggleButtonProps extends React.PropsWithChildren {
+  appearance?: ButtonAppearance;
   className?: string;
   color?: ThemeColorVariantsWithDefault;
+  defaultSelected?: boolean;
   disabled?: boolean;
   disableRippleEffect?: boolean;
   disableUpperCase?: boolean;
@@ -23,16 +26,18 @@ export interface ToggleButtonProps extends React.PropsWithChildren {
 const ToggleButton: React.FC<ToggleButtonProps> = React.forwardRef<HTMLButtonElement, ToggleButtonProps>(
   (
     {
+      appearance = 'outlined',
       children = null,
       className = '',
       color = 'default',
+      defaultSelected = undefined,
       disabled = false,
       disableRippleEffect = false,
       disableUpperCase = false,
       onChange = () => {},
       onClick = () => {},
       removeBorder = false,
-      selected = false,
+      selected = undefined,
       size = 'medium',
       style = {},
       value = ''
@@ -41,7 +46,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = React.forwardRef<HTMLButtonEle
   ): JSX.Element => {
     const buttonRef = useForwardedRef<HTMLButtonElement>(ref);
     const createRippleEffect = useRippleEffect(buttonRef, { color: color, animationTime: 400 });
-    const [active, setActive] = useState<boolean>(selected);
+    const [active, setActive] = useState<boolean>(defaultSelected || false);
 
     const styleProps = {
       color,
@@ -54,7 +59,7 @@ const ToggleButton: React.FC<ToggleButtonProps> = React.forwardRef<HTMLButtonEle
     const buttonClickHandler = useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
         disableRippleEffect || disabled || createRippleEffect(event);
-        setActive((prevState) => !prevState);
+        selected === undefined && setActive((prevState) => !prevState);
         onClick(event, value);
       },
       [setActive, disableRippleEffect, createRippleEffect, onClick]
@@ -77,12 +82,15 @@ const ToggleButton: React.FC<ToggleButtonProps> = React.forwardRef<HTMLButtonEle
     }, [active]);
 
     useEffect(() => {
-      setActive(selected);
+      if (selected !== undefined) {
+        setActive(selected);
+      }
     }, [selected]);
 
     return (
       <Styled.ToggleButtonRoot
         {...styleProps}
+        appearance={appearance}
         ref={buttonRef}
         className={className}
         style={style}

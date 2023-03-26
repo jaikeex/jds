@@ -10,6 +10,7 @@ export interface DividerProps {
   lineStrength?: string | number;
   removeMargin?: boolean;
   orientation?: 'horizontal' | 'vertical';
+  style?: React.CSSProperties;
 }
 
 const Divider: React.FC<DividerProps> = ({
@@ -19,6 +20,7 @@ const Divider: React.FC<DividerProps> = ({
   flexItem = false,
   lineStrength = 1,
   removeMargin = false,
+  style = {},
   orientation = 'horizontal'
 }) => {
   const Component = component;
@@ -31,7 +33,7 @@ const Divider: React.FC<DividerProps> = ({
   };
 
   const styles = () => {
-    const styles: React.CSSProperties = {};
+    const styles: React.CSSProperties = { ...style };
     if (orientation === 'horizontal') {
       styles.height = typeof lineStrength === 'string' ? lineStrength : `${lineStrength}px`;
     }
@@ -43,7 +45,7 @@ const Divider: React.FC<DividerProps> = ({
   };
 
   return (
-    <Styled.DividerRoot {...styleProps} as={Component} className={className}>
+    <Styled.DividerRoot {...styleProps} style={style} as={Component} className={className}>
       <hr style={styles()} />
     </Styled.DividerRoot>
   );

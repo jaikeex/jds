@@ -93,13 +93,12 @@ const MultiTemplate: Story<SelectProps> = (args) => (
       gap: '2rem'
     }}
   >
-    <Select {...args} options={options} />
+    <Select {...args} isMulti options={options} />
   </div>
 );
 
 export const Multi = MultiTemplate.bind({});
 Multi.args = {
-  isMulti: true,
   label: 'Select multiple values',
   transformLabel: true
 };

@@ -11,5 +11,9 @@ export const IconRoot = styled('svg', {
   fill:
     props.color === ('default' || undefined)
       ? props.theme.palette.text.primary
-      : props.theme.palette[props.color as ThemeColorVariants].main
+      : props.theme.palette[props.color as ThemeColorVariants].main,
+
+  ...(props.disabled && {
+    fill: props.theme.palette.rgba(props.theme.palette.text.primary, 0.3)
+  })
 }));

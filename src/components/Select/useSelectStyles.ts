@@ -4,17 +4,19 @@ import { defaultLightTheme } from 'styling/default';
 import { useTheme } from 'styling';
 
 export const useSelectStyles = (
-  props: SelectProps,
-  style: StylesConfig<Selectable, false | true, GroupBase<Selectable>>
+  props: SelectProps<boolean>,
+  style: StylesConfig<Selectable, boolean, GroupBase<Selectable>>
 ) => {
   const { theme } = useTheme() || { defaultLightTheme };
 
   const selectStyles: StylesConfig<Selectable, boolean, GroupBase<Selectable>> = {
-    control: (provided) => ({
+    control: (provided, state) => ({
       ...provided,
       backgroundColor: 'transparent',
       color: theme.palette.text.primary,
       fontSize: '0.937rem',
+      height: props.height || '2,5rem',
+      minHeight: props.height || '2,5rem',
 
       ...(props.appearance === 'filled' && {
         border: 'none',
@@ -80,7 +82,9 @@ export const useSelectStyles = (
           borderColor: theme.palette[props.color || 'primary'].main,
           boxShadow: `inset 0 -2px 2px -2px ${theme.palette[props.color || 'primary'].main}`
         }
-      })
+      }),
+
+      ...(style.control && style.control(provided, state))
     }),
 
     option: (provided, state) => ({
@@ -95,6 +99,7 @@ export const useSelectStyles = (
       backgroundColor: 'transparent',
       transition: 'background-color 0.15s',
       padding: `${theme.spacing[2]} ${theme.spacing[6]}`,
+      fontWeight: 'normal',
 
       ...(state.isDisabled && {
         cursor: 'default !important',
@@ -117,42 +122,62 @@ export const useSelectStyles = (
             ? theme.palette.rgba(theme.palette[props.color || 'primary'].main, 0.3)
             : theme.palette.rgba(theme.palette[state.data.color || 'primary'].main, 0.3)
         }
-      })
+      }),
+
+      ...(style.option && style.option(provided, state))
     }),
 
-    input: (provided) => ({
+    input: (provided, state) => ({
       ...provided,
       backgroundColor: 'transparent',
       fontFamily: 'inherit',
       fontSize: '0.937rem',
-      color: theme.palette.text.primary
+      fontWeight: 'normal',
+      color: theme.palette.text.primary,
+
+      ...(style.input && style.input(provided, state))
     }),
 
-    valueContainer: (provided) => ({
+    valueContainer: (provided, state) => ({
       ...provided,
-      overflow: 'visible'
+      overflow: 'visible',
+      fontWeight: 'normal',
+      maxWidth: '85%',
+
+      ...(props.height && {
+        height: props.height,
+        minHeight: props.height
+      }),
+
+      ...(style.valueContainer && style.valueContainer(provided, state))
     }),
 
-    singleValue: (provided) => ({
+    singleValue: (provided, state) => ({
       ...provided,
-      color: props.disabled ? theme.palette.text.disabled : theme.palette.text.primary
+      color: props.disabled ? theme.palette.text.disabled : theme.palette.text.primary,
+
+      ...(style.singleValue && style.singleValue(provided, state))
     }),
 
-    multiValue: (provided) => ({
+    multiValue: (provided, state) => ({
       ...provided,
       backgroundColor:
         theme.name === 'dark'
           ? theme.palette.lighten(theme.palette.background.default, 15)
-          : theme.palette.darken(theme.palette.background.default, 15)
+          : theme.palette.darken(theme.palette.background.default, 15),
+
+      ...(style.multiValue && style.multiValue(provided, state))
     }),
 
-    multiValueLabel: (provided) => ({
+    multiValueLabel: (provided, state) => ({
       ...provided,
       paddingRight: props.readonly ? theme.spacing[3] : theme.spacing[2],
-      color: props.disabled ? theme.palette.lighten(theme.palette.text.disabled, 15) : theme.palette.text.primary
+      color: props.disabled ? theme.palette.lighten(theme.palette.text.disabled, 15) : theme.palette.text.primary,
+
+      ...(style.multiValueLabel && style.multiValueLabel(provided, state))
     }),
 
-    multiValueRemove: (provided) => ({
+    multiValueRemove: (provided, state) => ({
       ...provided,
       display: props.readonly ? 'none' : 'inline-flex',
       '&:hover': {
@@ -163,26 +188,34 @@ export const useSelectStyles = (
       },
       '& path': {
         fill: props.disabled ? theme.palette.text.disabled : theme.palette.text.primary
-      }
+      },
+
+      ...(style.multiValueRemove && style.multiValueRemove(provided, state))
     }),
 
-    indicatorSeparator: () => ({
-      display: 'none'
+    indicatorSeparator: (provided, state) => ({
+      display: 'none',
+
+      ...(style.indicatorSeparator && style.indicatorSeparator(provided, state))
     }),
 
-    menu: (provided) => ({
+    menu: (provided, state) => ({
       ...provided,
       fontSize: '0.875rem',
       transition: 'all 0.15s',
       marginTop: theme.spacing[2],
       backgroundColor: theme.palette.background.default,
       color: theme.palette.text.primary,
-      border: `1px  solid ${theme.palette.rgba(theme.palette.text.primary, 0.5)}`
+      border: `1px  solid ${theme.palette.rgba(theme.palette.text.primary, 0.5)}`,
+
+      ...(style.menu && style.menu(provided, state))
     }),
 
-    clearIndicator: (provided) => ({
+    clearIndicator: (provided, state) => ({
       ...provided,
-      display: props.readonly ? 'none' : 'inline-flex'
+      display: props.readonly ? 'none' : 'inline-flex',
+
+      ...(style.clearIndicator && style.clearIndicator(provided, state))
     }),
 
     placeholder: (provided, state) => {
@@ -227,11 +260,21 @@ export const useSelectStyles = (
           '&::after': {
             content: '""""'
           }
-        })
+        }),
+
+        ...(style.placeholder && style.placeholder(provided, state))
       };
     },
 
-    ...style
+    indicatorsContainer: (provided, state) => ({
+      ...provided,
+      ...(style.indicatorsContainer && style.indicatorsContainer(provided, state))
+    }),
+
+    dropdownIndicator: (provided, state) => ({
+      ...provided,
+      ...(style.dropdownIndicator && style.dropdownIndicator(provided, state))
+    })
   };
 
   return selectStyles;

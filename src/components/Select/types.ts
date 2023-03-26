@@ -18,7 +18,7 @@ export interface Selectable {
   isDisabled?: boolean;
 }
 
-export interface SelectProps {
+export interface SelectProps<IsMulti extends boolean = false> {
   appearance?: 'outlined' | 'filled' | 'subtle';
   autoFocus?: boolean;
   backspaceRemovesValue?: boolean;
@@ -33,16 +33,19 @@ export interface SelectProps {
   escapeClearsValue?: boolean;
   filterOption?: null | (() => boolean);
   form?: string;
+  height?: string | number;
   id?: string;
   isClearable?: boolean;
   isLoading?: boolean;
-  isMulti?: boolean;
+  isMulti?: IsMulti;
   isSearchable?: boolean;
   minMenuHeight?: number;
   maxMenuHeight?: number;
   menuPlacement?: MenuPlacement;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
-  onChange?: (a: SingleValue<Selectable> | MultiValue<Selectable>, actionMeta: ActionMeta<Selectable>) => void;
+  onChange?: IsMulti extends true
+    ? (value: Selectable[], actionMeta: ActionMeta<Selectable>) => void
+    : (value: Selectable, actionMeta: ActionMeta<Selectable>) => void;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
   onMenuScrollToBottom?: (a: TouchEvent | WheelEvent) => void;
   onMenuScrollToTop?: (a: TouchEvent | WheelEvent) => void;

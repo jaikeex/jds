@@ -77,6 +77,14 @@ export const CheckboxInput = styled('input', {
     opacity: 1
   },
 
+  '&:indeterminate': {
+    borderColor: props.theme.palette[props.color || 'primary'].main,
+    backgroundColor: props.theme.palette[props.color || 'primary'].main
+  },
+  '&:indeterminate ~label [data-id="checkbox-mark"]': {
+    opacity: 1
+  },
+
   ...(props.size === 'small' && {
     width: '0.938rem',
     height: '0.938rem'

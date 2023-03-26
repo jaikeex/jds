@@ -49,7 +49,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
       required = false,
       style = {},
       transformLabel = true,
-      value = defaultValue,
+      value = undefined,
       width = undefined,
       ...props
     },
@@ -57,7 +57,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
   ) => {
     const inputRef = useForwardedRef<HTMLInputElement>(ref);
 
-    const [inputValue, setInputValue] = useState<string>(value);
+    const [inputValue, setInputValue] = useState<string>(defaultValue);
     const isFocused = useIsFocused(inputRef, autoFocus);
 
     const styleProps = {
@@ -75,18 +75,22 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
 
     const inputChangeHandler = useCallback(
       (event: React.ChangeEvent<HTMLInputElement>) => {
-        setInputValue(event.currentTarget.value);
+        if (value === undefined) {
+          setInputValue(event.currentTarget.value);
+        }
         onChange(event);
       },
       [setInputValue, onChange]
     );
 
     useEffect(() => {
-      setInputValue(value);
+      if (value !== undefined) {
+        setInputValue(value);
+      }
     }, [value]);
 
     return (
-      <Styled.TextFieldRoot className={className} {...styleProps}>
+      <Styled.TextFieldRoot className={className} {...styleProps} style={style}>
         {elementBefore && <Styled.TextFieldDecorator {...styleProps}>{elementBefore}</Styled.TextFieldDecorator>}
         <Styled.Label {...styleProps} htmlFor={id}>
           <Typography variant="label">{label}</Typography>
@@ -105,7 +109,6 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
           placeholder={placeholder}
           readOnly={readOnly}
           required={required}
-          style={style}
           value={inputValue}
         />
         {elementAfter && <Styled.TextFieldDecorator {...styleProps}>{elementAfter}</Styled.TextFieldDecorator>}

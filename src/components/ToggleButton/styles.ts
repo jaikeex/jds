@@ -17,7 +17,15 @@ export const ToggleButtonRoot = styled('button', {
   alignItems: 'center',
   cursor: 'pointer',
   padding: props.theme.spacing[3],
-  border: props.removeBorder ? 'none' : `1px solid ${props.theme.palette.rgba(props.theme.palette.text.primary, 0.2)}`,
+  transition: 'background-color 0.1s',
+  '& svg': {
+    transition: 'fill 0.1s'
+  },
+  border: `1px solid ${
+    props.color === ('default' || undefined)
+      ? props.theme.palette.rgba(props.theme.palette.text.primary, 0.1)
+      : props.theme.palette.rgba(props.theme.palette[props.color as ThemeColorVariants].main, 0.2)
+  }`,
   '&:hover': {
     backgroundColor:
       props.color === ('default' || undefined)
@@ -25,17 +33,62 @@ export const ToggleButtonRoot = styled('button', {
         : props.theme.palette.rgba(props.theme.palette[props.color as ThemeColorVariants].main, 0.1)
   },
 
-  ...(props.active && {
-    backgroundColor:
-      props.color === ('default' || undefined)
-        ? props.theme.palette.rgba(props.theme.palette.text.primary, 0.25)
-        : props.theme.palette.rgba(props.theme.palette[props.color as ThemeColorVariants].main, 0.25),
-    '&:hover': {
+  ...(props.appearance === 'filled' && {
+    ...(props.active && {
+      backgroundColor:
+        props.color === 'default'
+          ? props.theme.palette.primary.main
+          : props.theme.palette[props.color || 'primary'].main,
+      '&:hover': {
+        backgroundColor:
+          props.color === 'default'
+            ? props.theme.palette.primary.dark
+            : props.theme.palette[props.color || 'primary'].dark
+      },
+      'span': {
+        color:
+          props.color === 'default'
+            ? props.theme.palette.primary.contrastText
+            : props.theme.palette[props.color || 'primary'].contrastText
+      },
+      'svg': {
+        fill:
+          props.color === 'default'
+            ? props.theme.palette.primary.contrastText
+            : props.theme.palette[props.color || 'primary'].contrastText
+      }
+    })
+  }),
+
+  ...(props.appearance === 'outlined' && {
+    ...(props.active && {
       backgroundColor:
         props.color === ('default' || undefined)
-          ? props.theme.palette.rgba(props.theme.palette.text.primary, 0.35)
-          : props.theme.palette.rgba(props.theme.palette[props.color as ThemeColorVariants].main, 0.35)
-    }
+          ? props.theme.palette.rgba(props.theme.palette.text.primary, 0.25)
+          : props.theme.palette.rgba(props.theme.palette[props.color as ThemeColorVariants].main, 0.25),
+      '&:hover': {
+        backgroundColor:
+          props.color === ('default' || undefined)
+            ? props.theme.palette.rgba(props.theme.palette.text.primary, 0.35)
+            : props.theme.palette.rgba(props.theme.palette[props.color as ThemeColorVariants].main, 0.35)
+      }
+    })
+  }),
+
+  ...(props.appearance === 'subtle' && {
+    border: 'none',
+    ...(props.active && {
+      backgroundColor:
+        props.color === ('default' || undefined)
+          ? props.theme.palette.rgba(props.theme.palette.text.primary, 0.25)
+          : props.theme.palette.rgba(props.theme.palette[props.color as ThemeColorVariants].main, 0.25),
+      '&:hover': {
+        backgroundColor:
+          props.color === ('default' || undefined)
+            ? props.theme.palette.rgba(props.theme.palette.text.primary, 0.35)
+            : props.theme.palette.rgba(props.theme.palette[props.color as ThemeColorVariants].main, 0.35)
+      }
+    })
   }),
 
   ...(props.size === 'small' && {
