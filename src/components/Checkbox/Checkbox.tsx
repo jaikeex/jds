@@ -6,23 +6,63 @@ import { Typography } from 'components/Typography';
 import * as Styled from './styles';
 import { useForwardedRef } from 'core/hooks';
 
-export interface CheckboxProps {
+export interface CheckboxProps extends React.PropsWithChildren, Omit<React.ComponentProps<'input'>, 'ref' | 'size'> {
+  /**
+   * If true, the component is in the "checked" state.
+   */
   checked?: boolean;
+  /**
+   * Css class passed to the root element.
+   */
   className?: string;
+  /**
+   * The color of the checkbox. Can be any of the theme colors.
+   */
   color?: ThemeColorVariants;
+  /**
+   * If true, the component will be checked by default.
+   */
   defaultChecked?: boolean;
+  /**
+   * If true, the component will be disabled
+   */
   disabled?: boolean;
+  /**
+   * If provided, the icon will be displayed instead of the default checkbox appearance in its unchecked state.
+   */
   icon?: React.ReactNode;
+  /**
+   * If provided, the icon will be displayed instead of the default checkbox appearance in its checked state.
+   */
   iconChecked?: React.ReactNode;
+  /**
+   * Id of the input element.
+   */
   id?: string;
+  /**
+   * If true, the input will appear in the "indeterminate" state.
+   */
   indeterminate?: boolean;
+  /**
+   * Label of the input.
+   */
   label?: string;
+  /**
+   * Text color of the input label.
+   */
   labelColor?: ThemeColorVariantsWithDefault;
+  /**
+   * Sets the position in which the label will be displayed.
+   */
   labelPosition?: 'right' | 'left' | 'top' | 'bottom';
+  /**
+   * Function called when the input changes.
+   */
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  required?: boolean;
+  /**
+   * Size of the checkbox.
+   */
   size?: Size;
-  style?: React.CSSProperties;
 }
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
@@ -43,7 +83,8 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       onChange = () => {},
       required = false,
       size = 'medium',
-      style = {}
+      style = {},
+      ...props
     },
     ref
   ) => {
@@ -86,13 +127,14 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       <Styled.CheckboxRoot className={className} size={size} labelPosition={labelPosition} style={style}>
         {/* @ts-ignore */}
         <Styled.CheckboxInput
+          {...props}
+          {...styleProps}
           type="checkbox"
           ref={inputRef}
           id={id}
           checked={isChecked}
           onChange={inputChangeHandler}
           required={required}
-          {...styleProps}
         />
         <Styled.CheckboxLabel disabled={disabled} htmlFor={id}>
           {icon && !isChecked ? icon : iconChecked}

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import type { PaginationProps } from 'components/Pagination';
 import { Pagination } from 'components/Pagination';
 import type { Selectable } from 'components/Select';
 import { Select } from 'components/Select';
@@ -8,7 +9,9 @@ import type { UsePaginationState } from 'react-table';
 import { useTableContext } from 'components/Table/TableContextProvider';
 import { useCallback } from 'react';
 
-const TablePagination = <D extends object>(): JSX.Element => {
+export type TablePaginationProps = PaginationProps;
+
+const TablePagination = <D extends object>(props: TablePaginationProps): JSX.Element => {
   const { state, pageCount, setPageSize, gotoPage } = useTableContext();
   const { pageIndex } = state as UsePaginationState<D>;
 
@@ -55,7 +58,9 @@ const TablePagination = <D extends object>(): JSX.Element => {
           onChange={pageSizeChangeHandler}
         />
       </StyledPagesOptions>
-      {pageCount > 1 && <Pagination page={pageIndex + 1} totalPages={pageCount} onChange={pageNumberChangeHandler} />}
+      {pageCount > 1 && (
+        <Pagination {...props} page={pageIndex + 1} totalPages={pageCount} onChange={pageNumberChangeHandler} />
+      )}
     </StyledTablePagination>
   );
 };

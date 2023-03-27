@@ -13,28 +13,35 @@ export default {
   component: Accordion
 } as ComponentMeta<typeof Accordion>;
 
-const Template: Story<AccordionProps> = (args) => (
-  <div style={{ width: '40rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-    <Accordion {...args} title={'Accordion 1'}>
+const Template: Story<AccordionProps> = () => (
+  <div
+    style={{
+      width: '40rem',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      gap: '1rem',
+      height: 'max-content'
+    }}
+  >
+    <Accordion title={'Accordion 1'}>
       <div>
         <Typography variant="body3">{text}</Typography>
       </div>
     </Accordion>
-    <Accordion {...args} divider title={'Accordion 2'} titleIcon={<SettingsIconOutlined size={24} />}>
+    <Accordion divider title={'Accordion 2'} titleIcon={<SettingsIconOutlined size={24} />}>
       <div>
         <Typography variant="body3">{text}</Typography>
       </div>
     </Accordion>
-    <Accordion {...args} title={'Disabled'} disabled />
+    <Accordion title={'Disabled'} disabled />
   </div>
 );
 
 export const Default = Template.bind({});
-Default.args = {
-  title: 'Accordion'
-};
+Default.args = {};
 
-const ControlledTemplate: Story<AccordionProps> = (args) => {
+const ControlledTemplate: Story<AccordionProps> = () => {
   const [expanded, setExpanded] = useState<string | false>(false);
 
   const accordionExpandHandler = (acc: string) => (isExpanded: boolean) => {
@@ -42,9 +49,8 @@ const ControlledTemplate: Story<AccordionProps> = (args) => {
   };
 
   return (
-    <div style={{ width: '40rem' }}>
+    <div style={{ width: '40rem', height: 'max-content' }}>
       <Accordion
-        {...args}
         title={'Accordion 1'}
         expanded={expanded === 'acc1'}
         onChange={accordionExpandHandler('acc1')}
@@ -55,7 +61,6 @@ const ControlledTemplate: Story<AccordionProps> = (args) => {
         </div>
       </Accordion>
       <Accordion
-        {...args}
         title={'Accordion 2'}
         titleIcon={<SettingsIconOutlined size={24} />}
         divider
@@ -67,7 +72,7 @@ const ControlledTemplate: Story<AccordionProps> = (args) => {
           <Typography variant="body3">{text}</Typography>
         </div>
       </Accordion>
-      <Accordion {...args} title={'Disabled'} disabled sharpCorners />
+      <Accordion title={'Disabled'} disabled sharpCorners />
     </div>
   );
 };

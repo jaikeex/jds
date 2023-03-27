@@ -2,8 +2,8 @@ import * as React from 'react';
 import { useTableContext } from 'components/Table/TableContextProvider';
 import styled from '@emotion/styled';
 import { TableCell } from 'components/Table/TableCell';
-import { UpArrowIcon, DownArrowIcon } from 'components/icons';
 import type { Column, UseSortByColumnProps } from 'react-table';
+import { ColumnSortControl } from 'components/Table/ColumnSortControl';
 
 export interface TableHeadProps {
   removeHeadBorder?: boolean;
@@ -32,19 +32,9 @@ const TableHead: React.FC<TableHeadProps> = ({ removeHeadBorder = false }): JSX.
                   column={column}
                 >
                   {column.render('Header')}
-                  {column.canSort ? (
-                    <span style={{ display: 'flex' }}>
-                      {column.isSortedDesc ? (
-                        <DownArrowIcon size={14} disabled={!column.isSortedDesc} />
-                      ) : (
-                        <UpArrowIcon size={14} disabled={!column.isSorted || column.isSortedDesc} />
-                      )}
-                    </span>
-                  ) : (
-                    ''
-                  )}
+                  {column.canSort ? <ColumnSortControl column={column} /> : null}
                 </StyledTh>
-                <div style={{ marginTop: '0.5rem' }}>{column.canFilter ? column.render('Filter') : null}</div>
+                {column.canFilter ? <div style={{ marginTop: '0.5rem' }}>{column.render('Filter')}</div> : null}
               </div>
             </TableCell>
           ))}

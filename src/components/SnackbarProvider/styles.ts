@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
-import type { AlertProviderProps } from './AlertProvider';
+import type { SnackbarProviderProps } from './SnackbarProvider';
 import { shouldForwardPropDefault } from 'core/utils';
 
-export const AlertProviderBox = styled('div', {
-  label: 'alert-provider',
+export const SnackbarProviderBox = styled('div', {
+  label: 'snackbar-provider',
   shouldForwardProp: shouldForwardPropDefault
-})<AlertProviderProps>((props) => ({
+})<SnackbarProviderProps>((props) => ({
   width: '31rem',
   position: 'fixed',
   zIndex: 10000,

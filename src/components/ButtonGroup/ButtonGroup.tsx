@@ -4,30 +4,47 @@ import type { Size, ThemeColorVariants } from 'core/types';
 import { useStyledChildren } from './useStyledChildren';
 import * as Styled from './styles';
 
-export interface ButtonGroupProps extends React.PropsWithChildren {
-  size?: Size;
-  orientation?: 'horizontal' | 'vertical';
-  className?: string;
-  disabled?: boolean;
-  color?: ThemeColorVariants;
+export interface ButtonGroupProps extends React.PropsWithChildren, React.ComponentProps<'div'> {
+  /**
+   * The appearance of child buttons.
+   */
   appearance?: ButtonAppearance;
-  style?: React.CSSProperties;
+  /**
+   * Css class passed to the root component.
+   */
+  className?: string;
+  /**
+   * The color of child buttons. Can be any of the theme colors.
+   */
+  color?: ThemeColorVariants;
+  /**
+   * Size of child buttons.
+   */
+  size?: Size;
+  /**
+   * Dictates whether the buttons are lined up horizontally or vertically
+   */
+  orientation?: 'horizontal' | 'vertical';
+  /**
+   * If true, all buttons inside the group are disabled.
+   */
+  disabled?: boolean;
 }
 
 const ButtonGroup: React.FC<ButtonGroupProps> = ({
-  size = 'medium',
-  className = '',
-  disabled = false,
-  color = 'primary',
-  orientation = 'horizontal',
   appearance = 'filled',
-  style = {},
-  children = null
+  className = '',
+  color = 'primary',
+  disabled = false,
+  orientation = 'horizontal',
+  size = 'medium',
+  children = null,
+  ...props
 }) => {
   const styledChildren = useStyledChildren(children, size, color, disabled, appearance);
 
   return (
-    <Styled.ButtonGroupRoot orientation={orientation} className={className} style={style}>
+    <Styled.ButtonGroupRoot orientation={orientation} className={className} {...props}>
       {styledChildren}
     </Styled.ButtonGroupRoot>
   );

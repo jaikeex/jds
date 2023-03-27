@@ -96,3 +96,7 @@ body {
 .jds-storybook {
   font-family: 'OpenSans';
 }
+
+p[class*='sbdocs'] {
+  font-size: 0.913rem !important;
+}

@@ -35,8 +35,10 @@ export const ListItemRoot = styled('li', {
 
   ...(props.disabled && {
     cursor: 'not-allowed',
-    '& *': {
-      color: props.theme.palette.text.disabled,
+    '& p, span, h1, h2, h3, h4, h5, h6': {
+      color: props.theme.palette.text.disabled
+    },
+    '& svg': {
       fill: props.theme.palette.text.disabled
     },
     '&:hover': {

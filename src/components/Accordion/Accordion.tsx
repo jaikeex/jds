@@ -7,15 +7,47 @@ import { useForwardedRef } from 'core/hooks';
 import * as Styled from './styles';
 
 export interface AccordionProps extends React.PropsWithChildren {
+  /**
+   * Css class passed to the root element.
+   */
   className?: string;
+  /**
+   * If true, the component is expanded by default.
+   */
   defaultExpanded?: boolean;
+  /**
+   * If true, the component is disabled.
+   */
   disabled?: boolean;
+  /**
+   * If true, the header and children will be separated by a horizontal line.
+   */
   divider?: boolean;
+  /**
+   * dictates whether the component is expanded or not. Use to create a fully controlled behavior.
+   */
   expanded?: boolean;
+  /**
+   * Function called when changing the expanded state of the component.
+   * @param expanded true if expanded, false otherwise
+   * @returns void
+   */
   onChange?: (expanded: boolean) => void;
+  /**
+   * If true, removes the top and bottom margin when expanded.
+   */
   removeGutter?: boolean;
+  /**
+   * If true, the component will have 0 border-radius.
+   */
   sharpCorners?: boolean;
+  /**
+   * Text or React component displayed as the title in the header.
+   */
   title?: string | React.ReactNode;
+  /**
+   * Icon displayed before the title of the component.
+   */
   titleIcon?: React.ReactNode;
 }
 
@@ -27,7 +59,7 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       defaultExpanded = false,
       disabled = false,
       divider = false,
-      expanded = defaultExpanded,
+      expanded = undefined,
       onChange = () => {},
       removeGutter = false,
       sharpCorners = false,
@@ -38,7 +70,7 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
   ): JSX.Element => {
     const contentRef = React.useRef<HTMLDivElement>(null);
     const innerRef = useForwardedRef(ref);
-    const [isExpanded, setIsExpanded] = useState<boolean>(expanded);
+    const [isExpanded, setIsExpanded] = useState<boolean>(defaultExpanded);
     const [contentHeight, setContentHeight] = useState<number>(0);
 
     const getTitleElement = () => {
@@ -55,14 +87,16 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       }
 
       setIsExpanded((prevState) => !prevState);
-    }, [setIsExpanded]);
+    }, [setIsExpanded, disabled]);
 
     useEffect(() => {
       onChange(isExpanded);
     }, [isExpanded]);
 
     useEffect(() => {
-      setIsExpanded(expanded);
+      if (expanded !== undefined) {
+        setIsExpanded(expanded);
+      }
     }, [expanded, setIsExpanded]);
 
     useEffect(() => {

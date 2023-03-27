@@ -18,7 +18,7 @@ export const IconButtonRoot = styled('button', {
   justifyContent: 'center',
   borderRadius: '50%',
   willChange: 'transform',
-  transition: 'all 0.2s',
+  transition: 'all 0.1s',
   'svg': {
     flexShrink: 0,
     transition: 'fill 0.2s',

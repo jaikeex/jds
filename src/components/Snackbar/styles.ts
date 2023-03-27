@@ -1,22 +1,22 @@
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
 import type { ThemeColorVariants } from 'core/types';
-import type { AlertProps } from './Alert';
+import type { SnackbarProps } from './Snackbar';
 import { Typography } from 'components/Typography';
 import { IconButton } from 'components/IconButton';
 import { shouldForwardPropDefault } from 'core/utils';
 
-const showAlertAnimation = keyframes({
+const showSnackbarAnimation = keyframes({
   from: { opacity: 0.5, transform: 'scale(0.5)' },
   to: { opacity: 1, transform: 'scale(1)' }
 });
 
-export const Alert = styled('div', {
-  label: 'alert',
+export const Snackbar = styled('div', {
+  label: 'snackbar',
   shouldForwardProp: shouldForwardPropDefault
-})<AlertProps>((props) => ({
+})<SnackbarProps>((props) => ({
   width: '30rem',
-  padding: `${props.theme.spacing[8]} ${props.theme.spacing[4]} ${props.theme.spacing[8]} ${props.theme.spacing[10]}`,
+  padding: `${props.theme.spacing[4]} ${props.theme.spacing[4]} ${props.theme.spacing[4]} ${props.theme.spacing[10]}`,
   border: 'none',
   borderRadius: props.theme.shape.borderRadius.medium,
   margin: props.theme.spacing[4],
@@ -25,7 +25,7 @@ export const Alert = styled('div', {
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'flex-start',
-  animation: `${showAlertAnimation} 0.1s`,
+  animation: `${showSnackbarAnimation} 0.1s`,
   backgroundColor:
     props.color === ('primary' || undefined)
       ? props.theme.palette.grey[800]
@@ -39,8 +39,8 @@ export const Alert = styled('div', {
   }
 }));
 
-export const AlertInfo = styled('div', {
-  label: 'alert-info',
+export const SnackbarInfo = styled('div', {
+  label: 'snackbar-info',
   shouldForwardProp: shouldForwardPropDefault
 })({
   width: '100%',
@@ -49,23 +49,26 @@ export const AlertInfo = styled('div', {
   justifyContent: 'center'
 });
 
-export const AlertAction = styled('div', {
-  label: 'alert-action',
+export const SnackbarAction = styled('div', {
+  label: 'snackbar-action',
   shouldForwardProp: shouldForwardPropDefault
 })((props) => ({
-  margin: `${props.theme.spacing[4]} auto 0 0`
+  margin: `0 auto 0 0`
 }));
 
-export const AlertIcon = styled('div', {
-  label: 'alert-icon',
+export const SnackbarIcon = styled('div', {
+  label: 'snackbar-icon',
   shouldForwardProp: shouldForwardPropDefault
 })({
   flexShrink: 0,
-  marginRight: '0.5rem'
+  marginRight: '0.5rem',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center'
 });
 
-export const AlertMessage = styled(Typography, {
-  label: 'alert-message'
+export const SnackbarMessage = styled(Typography, {
+  label: 'snackbar-message'
 })((props) => ({
   paddingRight: props.theme.spacing[4],
   display: 'flex',
@@ -79,9 +82,9 @@ export const AlertMessage = styled(Typography, {
   }
 }));
 
-export const AlertCloseButton = styled(IconButton, {
-  label: 'alert-close-btn'
-})<AlertProps>((props) => ({
+export const SnackbarCloseButton = styled(IconButton, {
+  label: 'snackbar-close-btn'
+})<SnackbarProps>((props) => ({
   flexShrink: 0,
   alignSelf: 'flex-start',
   marginLeft: 'auto',

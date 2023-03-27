@@ -9,9 +9,9 @@ export interface ColumnSortControlProps {
 const ColumnSortControl: React.FC<ColumnSortControlProps> = ({ column }): JSX.Element => (
   <span style={{ display: 'flex' }}>
     {column.isSortedDesc ? (
-      <DownArrowIcon size={14} disabled={!column.isSortedDesc} />
+      <DownArrowIcon size={14} disabled={!column.isSortedDesc} color={'primary'} />
     ) : (
-      <UpArrowIcon size={14} disabled={!column.isSorted || column.isSortedDesc} />
+      <UpArrowIcon size={14} disabled={!column.isSorted || column.isSortedDesc} color={'primary'} />
     )}
   </span>
 );

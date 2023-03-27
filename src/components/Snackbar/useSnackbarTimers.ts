@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react';
-import { useAlertContext } from 'store/AlertContext';
+import { useSnackbarContext } from 'components/SnackbarProvider';
 
-export const useAlertTimers = (ref: React.RefObject<HTMLDivElement>, autoHide: boolean, autoHideDuration: number) => {
+export const useSnackbarTimers = (id: string, disableAutoHide: boolean, autoHideDuration: number) => {
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [closeTimeoutId, setCloseTimeoutId] = useState<number>();
   const [isMidHiding, setIsMidHiding] = useState<boolean>(false);
 
-  const { removeItem } = useAlertContext();
+  const { removeItem } = useSnackbarContext();
 
   const stopClose = () => {
     clearTimeout(closeTimeoutId);
   };
 
-  const closeAlert = (duration: number) => {
+  const closeSnackbar = (duration: number) => {
     stopClose();
 
     if (!isMidHiding) {
@@ -28,14 +28,14 @@ export const useAlertTimers = (ref: React.RefObject<HTMLDivElement>, autoHide: b
   const setHideAnimationTimeout = () => {
     setIsMidHiding(false);
     setIsVisible(false);
-    ref.current && removeItem(ref.current.id);
+    removeItem(id);
   };
 
   useEffect(() => {
-    if (autoHide) {
-      closeAlert(autoHideDuration);
+    if (!disableAutoHide) {
+      closeSnackbar(autoHideDuration);
     }
   }, [isVisible]);
 
-  return { isVisible, closeAlert, stopClose };
+  return { isVisible, closeAlert: closeSnackbar, stopClose };
 };

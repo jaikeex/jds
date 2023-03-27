@@ -199,7 +199,6 @@ export const defaultLightTheme: Theme = {
     button: {
       fontSize: '0.938rem',
       fontWeight: 600,
-      textTransform: 'uppercase',
       letterSpacing: '0.031rem'
     },
     fontFamily: '"OpenSans", sans-serif',

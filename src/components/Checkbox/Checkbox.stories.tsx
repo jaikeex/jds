@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import type { Story, ComponentMeta } from '@storybook/react';
 import type { CheckboxProps } from './Checkbox';
 import Checkbox from './Checkbox';
@@ -9,79 +9,107 @@ export default {
   component: Checkbox
 } as ComponentMeta<typeof Checkbox>;
 
-const Template: Story<CheckboxProps> = (args) => (
+const Template: Story<CheckboxProps> = () => (
   <div style={{ display: 'flex', gap: '1rem' }}>
-    <Checkbox {...args} />
-    <Checkbox {...args} defaultChecked />
-    <Checkbox {...args} disabled />
-    <Checkbox {...args} disabled defaultChecked />
+    <Checkbox />
+    <Checkbox defaultChecked />
+    <Checkbox disabled />
+    <Checkbox disabled defaultChecked />
   </div>
 );
 
 export const Default = Template.bind({});
 Default.args = {};
 
-const SizesTemplate: Story<CheckboxProps> = (args) => (
+const SizesTemplate: Story<CheckboxProps> = () => (
   <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-    <Checkbox {...args} size="small" label="Small" />
-    <Checkbox {...args} size="medium" label="Medium" />
-    <Checkbox {...args} size="large" label="Large" />
+    <Checkbox size="small" defaultChecked />
+    <Checkbox size="medium" defaultChecked />
+    <Checkbox size="large" defaultChecked />
   </div>
 );
 
 export const Sizes = SizesTemplate.bind({});
-Sizes.args = {
-  labelPosition: 'top',
-  defaultChecked: true
-};
+Sizes.args = {};
 
-const ColorsTemplate: Story<CheckboxProps> = (args) => (
+const ColorsTemplate: Story<CheckboxProps> = () => (
   <div style={{ display: 'flex', gap: '1rem' }}>
-    <Checkbox {...args} />
-    <Checkbox {...args} color="success" />
-    <Checkbox {...args} color="error" />
-    <Checkbox {...args} color="warning" />
-    <Checkbox {...args} color="info" />
+    <Checkbox defaultChecked color="primary" />
+    <Checkbox defaultChecked color="secondary" />
+    <Checkbox defaultChecked color="success" />
+    <Checkbox defaultChecked color="error" />
+    <Checkbox defaultChecked color="warning" />
+    <Checkbox defaultChecked color="info" />
   </div>
 );
 
 export const Colors = ColorsTemplate.bind({});
-Colors.args = {
-  defaultChecked: true
-};
+Colors.args = {};
 
-const IconTemplate: Story<CheckboxProps> = (args) => <Checkbox {...args} />;
+const IconTemplate: Story<CheckboxProps> = () => (
+  <Checkbox icon={<HeartIconOutlined size={32} />} iconChecked={<HeartIcon size={32} color="error" />} />
+);
 
 export const Icon = IconTemplate.bind({});
-Icon.args = {
-  icon: <HeartIconOutlined />,
-  iconChecked: <HeartIcon color="error" />
-};
+Icon.args = {};
 
-const LabelTemplate: Story<CheckboxProps> = (args) => (
+const LabelTemplate: Story<CheckboxProps> = () => (
   <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-    <Checkbox {...args} />
-    <Checkbox {...args} defaultChecked />
-    <Checkbox {...args} disabled />
-    <Checkbox {...args} disabled defaultChecked />
+    <Checkbox label="Checkbox label 1" />
+    <Checkbox label="Checkbox label 2" defaultChecked />
+    <Checkbox label="Checkbox label 3" disabled />
+    <Checkbox label="Checkbox label 4" disabled defaultChecked />
   </div>
 );
 
 export const Label = LabelTemplate.bind({});
-Label.args = {
-  label: 'CheckboxLabel'
-};
+Label.args = {};
 
-const LabelsTemplate: Story<CheckboxProps> = (args) => (
+const LabelsTemplate: Story<CheckboxProps> = () => (
   <div style={{ display: 'flex', gap: '3rem', alignItems: 'center' }}>
-    <Checkbox {...args} labelPosition="right" label="Right" />
-    <Checkbox {...args} labelPosition="bottom" label="Bottom" />
-    <Checkbox {...args} labelPosition="left" label="Left" />
-    <Checkbox {...args} labelPosition="top" label="Top" />
+    <Checkbox defaultChecked labelPosition="right" label="Right" />
+    <Checkbox defaultChecked labelPosition="bottom" label="Bottom" />
+    <Checkbox defaultChecked labelPosition="left" label="Left" />
+    <Checkbox defaultChecked labelPosition="top" label="Top" />
   </div>
 );
 
 export const LabelPositions = LabelsTemplate.bind({});
-LabelPositions.args = {
-  defaultChecked: true
+LabelPositions.args = {};
+
+const GroupTemplate: Story<CheckboxProps> = () => {
+  const [checked, setChecked] = useState<boolean[]>([true, false, false]);
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+      <Checkbox
+        checked={checked[0] && checked[1] && checked[2]}
+        indeterminate={checked[0] !== checked[1] || checked[1] !== checked[2] || checked[0] !== checked[2]}
+        onChange={(event) => setChecked([event.target.checked, event.target.checked, event.target.checked])}
+        label="Parent"
+      />
+      <Checkbox
+        checked={checked[0]}
+        onChange={(event) => setChecked([event.target.checked, checked[1], checked[2]])}
+        label="Option 1"
+        style={{ marginLeft: '1.5rem' }}
+      />
+      <Checkbox
+        checked={checked[1]}
+        onChange={(event) => setChecked([checked[0], event.target.checked, checked[2]])}
+        label="Option 2"
+        style={{ marginLeft: '1.5rem' }}
+      />
+      <Checkbox
+        checked={checked[2]}
+        onChange={(event) => setChecked([checked[0], checked[1], event.target.checked])}
+        label="Option 3"
+        style={{ marginLeft: '1.5rem' }}
+      />
+    </div>
+  );
+};
+export const CheckboxGroup = GroupTemplate.bind({});
+CheckboxGroup.args = {
+  ...Default.args
 };

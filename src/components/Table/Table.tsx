@@ -12,6 +12,7 @@ import { Checkbox } from 'components/Checkbox';
 import { useEffect } from 'react';
 import { ColumnSelectFilter } from './ColumnSelectFilter';
 import type { ColumnFilterProps } from './types';
+import type { PaginationProps } from 'components/Pagination';
 
 export interface TableProps<D extends object> {
   className?: string;
@@ -21,6 +22,7 @@ export interface TableProps<D extends object> {
   removeHeadBorder?: boolean;
   padding?: 'none' | 'small' | 'medium' | 'large';
   paginated?: boolean;
+  paginationProps?: PaginationProps;
   disableRowHighlight?: boolean;
   selectableRows?: boolean;
   disableSelectOnRowClick?: boolean;
@@ -36,6 +38,7 @@ const Table = <D extends object>({
   padding = 'medium',
   paginated = false,
   disableRowHighlight = false,
+  paginationProps = {},
   selectableRows = false,
   onSelectionChange = () => {}
 }: TableProps<D>): JSX.Element => {
@@ -114,7 +117,7 @@ const Table = <D extends object>({
         <TableHead removeHeadBorder={removeHeadBorder} />
         <TableBody />
       </StyledTable>
-      {paginated && <TablePagination />}
+      {paginated && <TablePagination {...paginationProps} />}
     </TableContextProvider>
   );
 };

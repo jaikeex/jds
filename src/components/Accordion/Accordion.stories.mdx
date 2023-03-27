@@ -1,0 +1,38 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import Accordion from './Accordion';
+
+<Meta
+  title="Design System/Accordion/Overview"
+  component={Accordion}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true }
+    }
+  }}
+/>
+
+## Accordion
+
+Accordion is a container which displays only its header when folded, but can be expanded to display all of its
+content.
+
+<br />
+
+### Simple accordion
+
+<Canvas>
+  <Story id="design-system-accordion--default" />
+</Canvas>
+
+### Controlled accordion
+
+Use the `expanded` prop to control the state of a particular accordion.
+
+<Canvas>
+  <Story id="design-system-accordion--controlled" />
+</Canvas>
+
+## Available props
+
+<ArgsTable of={Accordion} />

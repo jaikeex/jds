@@ -7,6 +7,7 @@ export const ButtonRoot = styled('button', {
   shouldForwardProp: shouldForwardPropDefault
 })<ButtonProps>((props) => ({
   border: 'none',
+  boxSizing: 'border-box',
   borderRadius: props.theme.shape.borderRadius.small,
   minWidth: '5rem',
   position: 'relative',
@@ -43,7 +44,7 @@ export const ButtonRoot = styled('button', {
 
   ...(props.appearance === 'outlined' && {
     backgroundColor: 'transparent',
-    border: `1px solid ${
+    outline: `1px solid ${
       props.disabled
         ? props.theme.palette.rgba(props.theme.palette.text.disabled, 0.5)
         : props.theme.palette[props.color || 'primary'].main
