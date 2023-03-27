@@ -1,16 +1,4 @@
 export interface Spacing {
-  margin: SpacingSizes;
-  padding: SpacingSizes;
-}
-
-export interface SpacingOptions {
-  margin?: SpacingSizesOptions;
-  padding?: SpacingSizesOptions;
-}
-
-export type SpacingSizesOptions = Partial<SpacingSizes>;
-
-export interface SpacingSizes {
   0: string;
   1: string;
   2: string;
@@ -35,3 +23,5 @@ export interface SpacingSizes {
   44: string;
   48: string;
 }
+
+export type SpacingOptions = Partial<Spacing>;

@@ -1,4 +1,4 @@
-import type { Classes } from 'jss';
+import isPropValid from '@emotion/is-prop-valid';
 
 export const makeId = (length: number) => {
   let result = '';
@@ -10,18 +10,6 @@ export const makeId = (length: number) => {
     counter += 1;
   }
   return result;
-};
-
-export const mergeClasses = <C extends string = string>(
-  defaultClasses: Classes<C>,
-  userClasses: Partial<Classes<C>>
-) => {
-  const mergedClasses = {} as Classes<C>;
-
-  Object.entries(userClasses).forEach(
-    ([key, value]) => (mergedClasses[key as C] = defaultClasses[key as C].concat(' ', value as string))
-  );
-  return { ...defaultClasses, ...mergedClasses };
 };
 
 export const scrollToSide = (
@@ -48,3 +36,5 @@ export const checkOverflow = (element: HTMLElement | null) => {
 
   return isOverflowing;
 };
+
+export const shouldForwardPropDefault = (propName: string) => isPropValid(propName);

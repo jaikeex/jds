@@ -1,30 +1,30 @@
 import React from 'react';
-import type { ThemeColorVariantsWithDefault, TypographyVariants } from 'core/types';
-import { typographyVariantMap } from 'core/types';
-import { useStyles } from './useStyles';
-import clsx from 'clsx';
-import type { TypographyClassKey } from './types';
-import type { Classes } from 'jss';
-import { mergeClasses } from 'core/utils';
+import type { TypographyVariants } from './types';
+import { typographyVariantMap } from './types';
+import * as Styled from './styles';
+import type { ThemeColorVariantsWithDefault } from 'core/types';
+import type { Property } from 'csstype';
 
 export interface TypographyProps extends React.PropsWithChildren {
-  classes?: Classes<TypographyClassKey>;
+  bold?: boolean;
   className?: string;
   color?: ThemeColorVariantsWithDefault;
+  component?: React.ElementType;
   gutterBottom?: boolean;
   hyphens?: boolean;
   noWrap?: boolean;
   style?: React.CSSProperties;
-  textAlign?: 'center' | 'inherit' | 'justify' | 'left' | 'right';
+  textAlign?: Property.TextAlign;
   upperCase?: boolean;
   variant?: TypographyVariants;
 }
 
 const Typography: React.FC<TypographyProps> = ({
+  bold = false,
   children = null,
-  classes = {},
   className = '',
   color = 'default',
+  component = undefined,
   gutterBottom = false,
   hyphens = false,
   noWrap = false,
@@ -33,32 +33,25 @@ const Typography: React.FC<TypographyProps> = ({
   upperCase = false,
   variant = 'body1'
 }) => {
-  const Component = typographyVariantMap[variant] as keyof JSX.IntrinsicElements;
-  const classNames = mergeClasses(useStyles({ color, hyphens, gutterBottom, variant }), classes);
+  const Component = component || (typographyVariantMap[variant] as keyof JSX.IntrinsicElements);
 
-  const getStyles = () => {
-    const styles: React.CSSProperties = {
-      textAlign: textAlign,
-      ...style
-    };
-
-    if (noWrap) {
-      styles.overflow = 'hidden';
-      styles.whiteSpace = 'nowrap';
-      styles.textOverflow = 'ellipsis';
-    }
-
-    return styles;
+  const styleProps = {
+    variant,
+    color,
+    upperCase,
+    bold,
+    hyphens,
+    gutterBottom,
+    noWrap,
+    textAlign
   };
 
   return (
-    <Component
-      className={clsx(classNames.root, classNames[variant], upperCase && classNames.uppercase, className)}
-      style={getStyles()}
-    >
+    <Styled.TypographyRoot {...styleProps} as={Component} style={style} className={className}>
       {children}
-    </Component>
+    </Styled.TypographyRoot>
   );
 };
 
+Typography.displayName = 'Typography';
 export default Typography;

@@ -1,14 +1,16 @@
 import './styles/index.css';
 import { addDecorator } from '@storybook/react';
-import { defaultDarkTheme, defaultLightTheme } from '../src/styling/default';
+import { defaultDarkTheme } from '../src/styling/default';
 import { ThemeProvider } from '../src/styling/ThemeProvider';
 import ThemeSwitchButton from './ThemeSwitchButton/ThemeSwitchButton';
+import { themes } from '@storybook/theming';
 
 addDecorator((story) => {
   return (
     <div className="jds-storybook">
       <ThemeProvider defaultTheme={defaultDarkTheme}>
-        <ThemeSwitchButton /> {story()}
+        {/* <ThemeSwitchButton /> */}
+        {story()}
       </ThemeProvider>
     </div>
   );
@@ -22,6 +24,9 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/
     }
+  },
+  docs: {
+    theme: themes.dark
   },
   backgrounds: {
     default: 'dark',

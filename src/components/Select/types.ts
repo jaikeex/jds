@@ -10,7 +10,6 @@ import type {
 } from 'react-select';
 import type { ThemeColorVariants } from 'core/types';
 import type { SelectComponents } from 'react-select/dist/declarations/src/components';
-import type { Classes } from 'jss';
 
 export interface Selectable {
   label: React.ReactNode;
@@ -19,32 +18,11 @@ export interface Selectable {
   isDisabled?: boolean;
 }
 
-export type SelectClassKey =
-  | 'root'
-  | 'control'
-  | 'filled'
-  | 'outlined'
-  | 'subtle'
-  | 'value'
-  | 'multiValue'
-  | 'multiValueLabel'
-  | 'multiValueRemove'
-  | 'separator'
-  | 'menu'
-  | 'input'
-  | 'placeholder'
-  | 'label'
-  | 'labelTransformed'
-  | 'labelStripped'
-  | 'valueContainer'
-  | 'clearIndicator';
-
-export interface SelectProps {
+export interface SelectProps<IsMulti extends boolean = false> {
   appearance?: 'outlined' | 'filled' | 'subtle';
   autoFocus?: boolean;
   backspaceRemovesValue?: boolean;
   blurInputOnSelect?: boolean;
-  classes?: Classes<SelectClassKey>;
   className?: string;
   closeMenuOnSelect?: boolean;
   color?: ThemeColorVariants;
@@ -55,16 +33,19 @@ export interface SelectProps {
   escapeClearsValue?: boolean;
   filterOption?: null | (() => boolean);
   form?: string;
+  height?: string | number;
   id?: string;
   isClearable?: boolean;
   isLoading?: boolean;
-  isMulti?: boolean;
+  isMulti?: IsMulti;
   isSearchable?: boolean;
   minMenuHeight?: number;
   maxMenuHeight?: number;
   menuPlacement?: MenuPlacement;
   onBlur?: React.FocusEventHandler<HTMLInputElement>;
-  onChange?: (a: SingleValue<Selectable> | MultiValue<Selectable>, actionMeta: ActionMeta<Selectable>) => void;
+  onChange?: IsMulti extends true
+    ? (value: Selectable[], actionMeta: ActionMeta<Selectable>) => void
+    : (value: Selectable, actionMeta: ActionMeta<Selectable>) => void;
   onFocus?: React.FocusEventHandler<HTMLInputElement>;
   onMenuScrollToBottom?: (a: TouchEvent | WheelEvent) => void;
   onMenuScrollToTop?: (a: TouchEvent | WheelEvent) => void;

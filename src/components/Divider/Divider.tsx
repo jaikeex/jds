@@ -1,37 +1,39 @@
 import React from 'react';
 import type { ThemeColorVariantsWithDefault } from 'core/types';
-import type { DividerClassKey } from './types';
-import type { Classes } from 'jss';
-import { mergeClasses } from 'core/utils';
-import { useStyles } from './useStyles';
-import clsx from 'clsx';
+import * as Styled from './styles';
 
 export interface DividerProps {
   className?: string;
-  classes?: Classes<DividerClassKey>;
   color?: ThemeColorVariantsWithDefault;
   component?: keyof JSX.IntrinsicElements;
   flexItem?: boolean;
   lineStrength?: string | number;
   removeMargin?: boolean;
   orientation?: 'horizontal' | 'vertical';
+  style?: React.CSSProperties;
 }
 
 const Divider: React.FC<DividerProps> = ({
   className = '',
-  classes = {},
   color = 'default',
   component = 'div',
   flexItem = false,
   lineStrength = 1,
   removeMargin = false,
+  style = {},
   orientation = 'horizontal'
 }) => {
   const Component = component;
-  const classNames = mergeClasses(useStyles({ color, removeMargin, flexItem, orientation }), classes);
+
+  const styleProps = {
+    color,
+    flexItem,
+    removeMargin,
+    orientation
+  };
 
   const styles = () => {
-    const styles: React.CSSProperties = {};
+    const styles: React.CSSProperties = { ...style };
     if (orientation === 'horizontal') {
       styles.height = typeof lineStrength === 'string' ? lineStrength : `${lineStrength}px`;
     }
@@ -43,9 +45,9 @@ const Divider: React.FC<DividerProps> = ({
   };
 
   return (
-    <Component className={clsx(classNames.root, className)}>
+    <Styled.DividerRoot {...styleProps} style={style} as={Component} className={className}>
       <hr style={styles()} />
-    </Component>
+    </Styled.DividerRoot>
   );
 };
 

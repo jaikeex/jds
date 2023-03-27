@@ -30,7 +30,7 @@ const Template: Story<DialogProps> = (args) => {
             felis congue commodo. Nullam lectus justo, vulputate eget mollis sed, tempor sed magna.
           </Typography>
           <div style={{ display: 'flex', marginTop: '1rem' }}>
-            <Button style={{ marginLeft: 'auto' }} onClick={() => setIsOpen(false)}>
+            <Button appearance="subtle" style={{ marginLeft: 'auto' }} onClick={() => setIsOpen(false)}>
               Close
             </Button>
           </div>

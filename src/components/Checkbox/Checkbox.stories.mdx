@@ -1,0 +1,83 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import Checkbox from './Checkbox';
+
+<Meta
+  title="Design System/Checkbox/Overview"
+  component={Checkbox}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true }
+    }
+  }}
+/>
+
+## Checkbox
+
+Basic checkbox component used to turn a single option on or off.
+
+### Simple checkbox
+
+<Canvas>
+  <Story id="design-system-checkbox--default" />
+</Canvas>
+
+### Sizes
+
+The `size` prop can be used to create larger or smaller boxes.
+
+<Canvas>
+  <Story id="design-system-checkbox--sizes" />
+</Canvas>
+
+### Colors
+
+Checkbox supports all available color theme variants.
+
+<Canvas>
+  <Story id="design-system-checkbox--colors" />
+</Canvas>
+
+### Label
+
+The string passed in a `label` prop will be used as an input label for the given checkbox.
+
+<Canvas>
+  <Story id="design-system-checkbox--label" />
+</Canvas>
+
+### Label positions
+
+The `labelPosition` prop controls the position at which the label will be displayed .
+
+<Canvas>
+  <Story id="design-system-checkbox--label-positions" />
+</Canvas>
+
+### Custom icon
+
+Custom checkbox appearance can be set by passing a `icon` and `iconChecked` props, which will be used as a default and checked state, respectively.
+
+<Canvas>
+  <Story id="design-system-checkbox--icon" />
+</Canvas>
+
+### Controlled checkbox group
+
+By manually setting the `checked` prop of an individual checkboxes a controlled group can be created. In the example below, the controlling checkbox is set to indeterminate if the values of group members are not aligned, and can itself be used to control their state.
+
+<Canvas>
+  <Story id="design-system-checkbox--checkbox-group" />
+</Canvas>
+
+### Handling input changes
+
+Every checkbox accepts the `onClick(event: React.ChangeEvent<HtmlInputElement>)` function as a prop.
+
+<br />
+
+## Available props
+
+In addition to the props mentioned below, you can also pass any props available on the native html input element.
+
+<ArgsTable of={Checkbox} />

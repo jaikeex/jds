@@ -34,6 +34,7 @@ const Template: Story<TabsProps> = (args) => (
 export const Default = Template.bind({});
 Default.args = {
   children: [...generateTabPanels({}, 4)],
+  defaultValue: 'Tab 2',
   style: { height: '100%' }
 };
 

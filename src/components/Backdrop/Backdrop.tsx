@@ -1,15 +1,10 @@
 import * as React from 'react';
 import type { NumericRange } from 'core/types';
-import type { BackdropClassKey } from './types';
-import { mergeClasses } from 'core/utils';
-import { useStyles } from './useStyles';
-import type { Classes } from 'jss';
-import clsx from 'clsx';
 import { createPortal } from 'react-dom';
 import { OutsideClickListener } from 'components/OutsideClickListener';
+import * as Styled from './styles';
 
 export interface BackdropProps extends React.PropsWithChildren {
-  classes?: Classes<BackdropClassKey>;
   className?: string;
   level?: NumericRange<0, 10>;
   onClick?: (event: MouseEvent) => void;
@@ -18,21 +13,22 @@ export interface BackdropProps extends React.PropsWithChildren {
 
 const Backdrop: React.FC<BackdropProps> = ({
   children = null,
-  classes = {},
   className = '',
   level = 6,
   onClick = () => {},
   visible = false
 }): JSX.Element => {
-  const classNames = mergeClasses(useStyles({ level }), classes);
+  const styleProps = {
+    level
+  };
 
   return (
     <React.Fragment>
       {visible &&
         createPortal(
-          <div className={clsx(classNames.root, className)}>
+          <Styled.BackdropRoot {...styleProps} className={className}>
             <OutsideClickListener onOutsideClick={onClick}>{children}</OutsideClickListener>
-          </div>,
+          </Styled.BackdropRoot>,
           document.body
         )}
     </React.Fragment>

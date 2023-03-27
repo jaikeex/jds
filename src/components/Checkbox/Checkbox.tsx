@@ -1,93 +1,151 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import type { Size, ThemeColorVariants, ThemeColorVariantsWithDefault } from 'core/types';
-import { CheckmarkThickIcon } from 'components/icons';
-import { makeId, mergeClasses } from 'core/utils';
+import { CheckmarkThickIcon, RemoveIcon } from 'components/icons';
+import { makeId } from 'core/utils';
 import { Typography } from 'components/Typography';
-import type { CheckboxClassKey } from './types';
-import type { Classes } from 'jss';
-import { useStyles } from './useStyles';
-import clsx from 'clsx';
+import * as Styled from './styles';
+import { useForwardedRef } from 'core/hooks';
 
-export interface CheckboxProps {
+export interface CheckboxProps extends React.PropsWithChildren, Omit<React.ComponentProps<'input'>, 'ref' | 'size'> {
+  /**
+   * If true, the component is in the "checked" state.
+   */
   checked?: boolean;
-  classes?: Classes<CheckboxClassKey>;
+  /**
+   * Css class passed to the root element.
+   */
   className?: string;
+  /**
+   * The color of the checkbox. Can be any of the theme colors.
+   */
   color?: ThemeColorVariants;
+  /**
+   * If true, the component will be checked by default.
+   */
   defaultChecked?: boolean;
+  /**
+   * If true, the component will be disabled
+   */
   disabled?: boolean;
+  /**
+   * If provided, the icon will be displayed instead of the default checkbox appearance in its unchecked state.
+   */
   icon?: React.ReactNode;
+  /**
+   * If provided, the icon will be displayed instead of the default checkbox appearance in its checked state.
+   */
   iconChecked?: React.ReactNode;
+  /**
+   * Id of the input element.
+   */
   id?: string;
+  /**
+   * If true, the input will appear in the "indeterminate" state.
+   */
+  indeterminate?: boolean;
+  /**
+   * Label of the input.
+   */
   label?: string;
+  /**
+   * Text color of the input label.
+   */
   labelColor?: ThemeColorVariantsWithDefault;
+  /**
+   * Sets the position in which the label will be displayed.
+   */
   labelPosition?: 'right' | 'left' | 'top' | 'bottom';
+  /**
+   * Function called when the input changes.
+   */
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  required?: boolean;
+  /**
+   * Size of the checkbox.
+   */
   size?: Size;
-  style?: React.CSSProperties;
 }
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (
     {
       defaultChecked = false,
-      checked = defaultChecked,
-      classes = {},
+      checked = undefined,
       className = '',
       color = 'primary',
       disabled = false,
       icon = null,
       iconChecked = icon,
       id = undefined,
+      indeterminate = false,
       label = '',
       labelColor = 'default',
       labelPosition = 'right',
       onChange = () => {},
       required = false,
       size = 'medium',
-      style = {}
+      style = {},
+      ...props
     },
     ref
   ) => {
-    const [isChecked, setIsChecked] = useState<boolean>(checked);
-    const classNames = mergeClasses(useStyles({ color, icon, size, labelPosition, disabled }), classes);
+    const inputRef = useForwardedRef<HTMLInputElement>(ref);
+    const [isChecked, setIsChecked] = useState<boolean>(defaultChecked);
+
+    const styleProps = {
+      color,
+      icon,
+      size,
+      disabled,
+      labelPosition
+    };
 
     id ??= React.useMemo(() => makeId(5), [id, makeId]);
 
     const inputChangeHandler = useCallback(
       (event: React.ChangeEvent<HTMLInputElement>) => {
-        setIsChecked(event.target.checked);
+        if (checked === undefined) {
+          setIsChecked(event.target.checked);
+        }
         onChange(event);
       },
       [setIsChecked, onChange]
     );
 
     useEffect(() => {
-      setIsChecked(checked);
+      if (checked !== undefined) {
+        setIsChecked(checked);
+      }
     }, [checked]);
 
+    useEffect(() => {
+      if (inputRef.current) {
+        inputRef.current.indeterminate = indeterminate;
+      }
+    }, [inputRef, indeterminate]);
+
     return (
-      <div className={clsx(classNames.root, disabled && classNames.disabled, className)} style={style}>
-        <input
+      <Styled.CheckboxRoot className={className} size={size} labelPosition={labelPosition} style={style}>
+        {/* @ts-ignore */}
+        <Styled.CheckboxInput
+          {...props}
+          {...styleProps}
           type="checkbox"
-          ref={ref}
-          className={clsx(classNames.input, classNames[size])}
+          ref={inputRef}
           id={id}
           checked={isChecked}
           onChange={inputChangeHandler}
-          disabled={disabled}
           required={required}
         />
-        <label className={classNames.label} htmlFor={id}>
+        <Styled.CheckboxLabel disabled={disabled} htmlFor={id}>
           {icon && !isChecked ? icon : iconChecked}
-          <div className={classNames.mark}>
-            <CheckmarkThickIcon />
-          </div>
+          <Styled.CheckboxMark data-id="checkbox-mark" {...styleProps}>
+            {indeterminate ? <RemoveIcon /> : <CheckmarkThickIcon />}
+          </Styled.CheckboxMark>
           <Typography variant="label" color={labelColor}>
             {label}
           </Typography>
-        </label>
-      </div>
+        </Styled.CheckboxLabel>
+      </Styled.CheckboxRoot>
     );
   }
 );

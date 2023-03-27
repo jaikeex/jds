@@ -1,29 +1,16 @@
 import React from 'react';
-import { mergeClasses } from 'core/utils';
-import type { LoaderSize, LoaderClassKey } from './types';
-import type { Classes } from 'jss';
-import { useStyles } from './useStyles';
-import clsx from 'clsx';
-import type { ThemeColorVariantsWithDefault } from 'core/types';
+import type { Size, ThemeColorVariantsWithDefault } from 'core/types';
+import * as Styled from './styles';
 
 export interface LoaderProps {
   className?: string;
-  classes?: Classes<LoaderClassKey>;
   color?: ThemeColorVariantsWithDefault;
-  size?: LoaderSize;
+  size?: Size;
   style?: React.CSSProperties;
 }
 
-const Loader: React.FC<LoaderProps> = ({
-  classes = {},
-  className = '',
-  color = 'default',
-  size = 'medium',
-  style = {}
-}) => {
-  const classNames = mergeClasses(useStyles({ color }), classes);
-
-  return <div style={style} className={clsx(classNames.root, classNames[size], className)} />;
-};
+const Loader: React.FC<LoaderProps> = ({ className = '', color = 'default', size = 'medium', style = {} }) => (
+  <Styled.LoaderRoot style={style} color={color} size={size} className={className} />
+);
 
 export default Loader;

@@ -1,21 +1,15 @@
 import React, { useCallback, useRef } from 'react';
 import { TabButton } from './TabButton';
 import { Divider } from 'components/Divider';
-import { mergeClasses, scrollToSide } from 'core/utils';
-import { useStyles } from './useStyles';
-import type { TabsClassKey } from './types';
-import type { Classes } from 'jss';
+import { scrollToSide } from 'core/utils';
 import { TabsContextProvider } from './TabsContextProvider';
 import { useDistributedProps } from './useDistributedProps';
-import clsx from 'clsx';
-import { IconButton } from 'components/IconButton';
 import { ChevronLeftIcon, ChevronRightIcon } from 'components/icons';
 import { useSideScroll } from './useSideScroll';
 import { TabPanelsContainer } from './TabPanelsContainer';
+import * as Styled from './styles';
 
-export interface TabsProps {
-  children?: React.ReactElement[];
-  classes?: Classes<TabsClassKey>;
+export interface TabsProps extends React.PropsWithChildren {
   className?: string;
   defaultValue?: string;
   divider?: boolean;
@@ -30,7 +24,6 @@ export interface TabsProps {
 
 const Tabs: React.FC<TabsProps> = ({
   children = [],
-  classes = {},
   className = '',
   defaultValue = undefined,
   divider = false,
@@ -43,12 +36,16 @@ const Tabs: React.FC<TabsProps> = ({
 }) => {
   const buttonPanelRef = useRef(null);
 
-  const classNames = mergeClasses(useStyles({ justifyButtons, scrollButtons, ...props }), classes);
-
   const { leftScrollButtonVisible, rightScrollButtonVisible, scrolledToLeft, scrolledToRight } = useSideScroll(
     buttonPanelRef,
     scrollButtons
   );
+
+  const styleProps = {
+    scrollButtons,
+    justifyButtons,
+    removeHorizontalPadding: props.removeHorizontalPadding
+  };
 
   const scrollButtonPanelRight = useCallback(
     () => scrollToSide(buttonPanelRef.current, { behavior: 'smooth' }, 'right'),
@@ -63,43 +60,41 @@ const Tabs: React.FC<TabsProps> = ({
   const { tabButtonProps, tabPanelProps } = useDistributedProps(children, props);
 
   return (
-    <TabsContextProvider activeTab={value} onChange={onChange}>
-      <div className={clsx(classNames.root, className)} style={style}>
+    <TabsContextProvider activeTab={value || tabButtonProps[0].value} onChange={onChange}>
+      <Styled.TabsRoot className={className} {...styleProps} style={style}>
         {leftScrollButtonVisible && (
-          <div className={clsx(classNames.scrollButtonWrapper, classNames.scrollButtonLeft)} style={{ left: 0 }}>
-            <IconButton
+          <Styled.TabsScrollButtonWrapper {...styleProps} direction={'left'} style={{ left: 0 }}>
+            <Styled.TabsScrollButton
               enableBackground
-              className={classNames.scrollButton}
               color="default"
               disabled={scrolledToLeft}
               onClick={scrollButtonPanelLeft}
             >
               <ChevronLeftIcon />
-            </IconButton>
-          </div>
+            </Styled.TabsScrollButton>
+          </Styled.TabsScrollButtonWrapper>
         )}
         {rightScrollButtonVisible && (
-          <div className={clsx(classNames.scrollButtonWrapper, classNames.scrollButtonRight)} style={{ right: 0 }}>
-            <IconButton
+          <Styled.TabsScrollButtonWrapper {...styleProps} direction={'right'} style={{ right: 0 }}>
+            <Styled.TabsScrollButton
               enableBackground
-              className={classNames.scrollButton}
               color="default"
               disabled={scrolledToRight}
               onClick={scrollButtonPanelRight}
             >
               <ChevronRightIcon />
-            </IconButton>
-          </div>
+            </Styled.TabsScrollButton>
+          </Styled.TabsScrollButtonWrapper>
         )}
-        <div id={`button-panel-${classNames.root}`} ref={buttonPanelRef} className={classNames.buttonPanel}>
+        <Styled.TabsButtonPanel {...styleProps} id={`button-panel-`} ref={buttonPanelRef}>
           {tabButtonProps.map((props, index) => {
-            const { classes, ...rest } = props;
+            const { ...rest } = props;
             return <TabButton {...rest} key={`${index}-${value}`} />;
           })}
-        </div>
+        </Styled.TabsButtonPanel>
         {divider && <Divider removeMargin />}
         <TabPanelsContainer value={value}>{tabPanelProps}</TabPanelsContainer>
-      </div>
+      </Styled.TabsRoot>
     </TabsContextProvider>
   );
 };

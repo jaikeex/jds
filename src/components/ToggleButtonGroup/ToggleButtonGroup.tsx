@@ -1,18 +1,13 @@
 import * as React from 'react';
-import type { Classes } from 'jss';
-import type { ToggleButtonGroupClassKey } from './types';
-import type { ThemeColorVariantsWithDefault } from 'core/types';
-import { mergeClasses } from 'core/utils';
-import { useStyles } from './useStyles';
+import type { Size, ThemeColorVariantsWithDefault } from 'core/types';
 import { useCallback, useEffect, useState } from 'react';
 import { useChildrenWithProps } from './useChildrenWithProps';
-import clsx from 'clsx';
 import isValueSelected from './utils/isValueSelected';
+import * as Styled from './styles';
 
 export interface ToggleButtonGroupProps {
   children?: React.ReactElement | React.ReactElement[];
   className?: string;
-  classes?: Classes<ToggleButtonGroupClassKey>;
   color?: ThemeColorVariantsWithDefault;
   defaultValue?: string | string[];
   disabled?: boolean;
@@ -20,15 +15,14 @@ export interface ToggleButtonGroupProps {
   onChange?: (event: React.MouseEvent<HTMLButtonElement>, value: string | string[] | null) => void;
   orientation?: 'horizontal' | 'vertical';
   removeBorder?: boolean;
-  size?: 'small' | 'medium' | 'large';
+  size?: Size;
   style?: React.CSSProperties;
   value?: string | string[];
 }
 
 const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
-  children = null,
+  children = [],
   className = '',
-  classes = {},
   defaultValue = undefined,
   exclusive = false,
   onChange = () => {},
@@ -40,7 +34,10 @@ const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
 }): JSX.Element => {
   const [selectedValue, setSelectedValue] = useState<string | string[] | undefined>(value);
 
-  const classNames = mergeClasses(useStyles({ orientation, removeBorder }), classes);
+  const styleProps = {
+    orientation,
+    removeBorder
+  };
 
   const buttonClickHandler = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>, value: string) => {
@@ -73,7 +70,6 @@ const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
     removeBorder,
     exclusive ? buttonExclusiveClickHandler : buttonClickHandler,
     isChildActive,
-    classNames,
     props
   );
 
@@ -82,9 +78,9 @@ const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
   }, [value]);
 
   return (
-    <div className={clsx(classNames.root, className)} style={style}>
+    <Styled.ToggleButtonGroupRoot {...styleProps} className={className} style={style}>
       {childrenWithProps}
-    </div>
+    </Styled.ToggleButtonGroupRoot>
   );
 };
 

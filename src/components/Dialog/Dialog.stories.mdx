@@ -1,0 +1,31 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import Dialog from './Dialog';
+
+<Meta
+  title="Design System/Dialog/Overview"
+  component={Dialog}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true }
+    }
+  }}
+/>
+
+## Dialog
+
+Dialog is a modal component displayed in front of the rest of the page. It is a common user interface pattern for filling in forms or requiring confirmation from the user.
+
+<br />
+
+### Example
+
+<Canvas>
+  <Story id="design-system-dialog--default" />
+</Canvas>
+
+<br />
+
+## Available props
+
+<ArgsTable of={Dialog} />

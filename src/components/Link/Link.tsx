@@ -1,16 +1,11 @@
 import React from 'react';
-import type { ThemeColorVariants, TypographyVariants } from 'core/types';
-import { Typography } from 'components/Typography';
-import type { LinkClassKey } from './types';
-import type { Classes } from 'jss';
-import { mergeClasses } from 'core/utils';
-import { useStyles } from './useStyles';
-import clsx from 'clsx';
+import type { ThemeColorVariants } from 'core/types';
+import * as Styled from './styles';
+import type { TypographyVariants } from 'components/Typography';
 
 export interface LinkProps extends React.PropsWithChildren {
   color?: ThemeColorVariants;
   className?: string;
-  classes?: Classes<LinkClassKey>;
   href?: string;
   level?: TypographyVariants;
   openInNew?: boolean;
@@ -21,20 +16,17 @@ export interface LinkProps extends React.PropsWithChildren {
 const Link: React.FC<LinkProps> = ({
   children = null,
   className = '',
-  classes = {},
   color = 'primary',
   level = 'body1',
   openInNew = false,
   underline = 'hover',
   ...anchorProps
 }) => {
-  const classNames = mergeClasses(useStyles({ underline }), classes);
-
   const getChildren = () =>
     typeof children === 'string' ? (
-      <Typography variant={level} color={color} className={clsx(classNames.root, className)}>
+      <Styled.LinkText variant={level} underline={underline} color={color} className={className}>
         {children}
-      </Typography>
+      </Styled.LinkText>
     ) : (
       children
     );
@@ -50,9 +42,15 @@ const Link: React.FC<LinkProps> = ({
   };
 
   return (
-    <a {...getAnchorProps()} target={openInNew ? '_blank' : '_self'} className={clsx(classNames.root, className)}>
+    <Styled.LinkRoot
+      {...getAnchorProps()}
+      as={'a'}
+      target={openInNew ? '_blank' : '_self'}
+      underline={underline}
+      className={className}
+    >
       {getChildren()}
-    </a>
+    </Styled.LinkRoot>
   );
 };
 

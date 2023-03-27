@@ -25,7 +25,7 @@ Default.args = {
 };
 
 const SizesTemplate: Story<IconButtonProps> = (args) => (
-  <div style={{ display: 'flex', flexDirection: 'row', gap: '1.5rem' }}>
+  <div style={{ display: 'flex', flexDirection: 'row', gap: '1.5rem', alignItems: 'center' }}>
     <IconButton {...args} size="small" />
     <IconButton {...args} size="medium" />
     <IconButton {...args} size="large" />
