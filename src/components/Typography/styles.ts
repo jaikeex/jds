@@ -35,5 +35,10 @@ export const TypographyRoot = styled('div', {
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis'
+  }),
+
+  ...(props.disabled && {
+    color: props.theme.palette.text.disabled,
+    textDecorationColor: props.theme.palette.text.disabled
   })
 }));

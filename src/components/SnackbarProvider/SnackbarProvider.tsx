@@ -54,7 +54,7 @@ const SnackbarProvider: React.FC<SnackbarProviderProps> = ({
   return (
     <SnackbarContext.Provider value={contextState}>
       <Styled.SnackbarProviderBox location={location}>
-        {snackbarItems.slice(-maxItems).map((item, index) => (
+        {snackbarItems.slice(-maxItems).map((item) => (
           <Snackbar {...item} key={item.id} style={{ zIndex: 9999 }} />
         ))}
       </Styled.SnackbarProviderBox>

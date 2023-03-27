@@ -5,6 +5,7 @@ import { Typography } from 'components/Typography';
 import { Divider } from 'components/Divider';
 import { useForwardedRef } from 'core/hooks';
 import * as Styled from './styles';
+import type { ThemeColorVariantsWithDefault } from 'core/types';
 
 export interface AccordionProps extends React.PropsWithChildren {
   /**
@@ -46,6 +47,10 @@ export interface AccordionProps extends React.PropsWithChildren {
    */
   title?: string | React.ReactNode;
   /**
+   * The color of the title text.
+   */
+  titleColor?: ThemeColorVariantsWithDefault;
+  /**
    * Icon displayed before the title of the component.
    */
   titleIcon?: React.ReactNode;
@@ -64,6 +69,7 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
       removeGutter = false,
       sharpCorners = false,
       title = '',
+      titleColor = 'default',
       titleIcon = null
     },
     ref
@@ -75,7 +81,11 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
 
     const getTitleElement = () => {
       if (typeof title === 'string') {
-        return <Typography>{title}</Typography>;
+        return (
+          <Typography color={titleColor} disabled={disabled}>
+            {title}
+          </Typography>
+        );
       } else {
         return title;
       }

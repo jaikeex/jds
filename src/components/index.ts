@@ -26,6 +26,7 @@ export * from './Sheet';
 export * from './Slider';
 export * from './Snackbar';
 export * from './SnackbarProvider';
+export * from './Switch';
 export * from './Table';
 export * from './Tabs';
 export * from './TextField';

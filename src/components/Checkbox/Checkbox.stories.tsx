@@ -84,7 +84,7 @@ const GroupTemplate: Story<CheckboxProps> = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
       <Checkbox
         checked={checked[0] && checked[1] && checked[2]}
-        indeterminate={checked[0] !== checked[1] || checked[1] !== checked[2] || checked[0] !== checked[2]}
+        indeterminate={[...new Set(checked)].length > 1}
         onChange={(event) => setChecked([event.target.checked, event.target.checked, event.target.checked])}
         label="Parent"
       />

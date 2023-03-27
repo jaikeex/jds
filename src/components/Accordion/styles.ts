@@ -32,9 +32,6 @@ export const AccordionHeader = styled('div', {
   padding: `0 ${props.theme.spacing[8]}`,
 
   ...(props.disabled && {
-    '*': {
-      color: `${props.theme.palette.rgba(props.theme.palette.text.disabled, 0.8)} !important`
-    },
     'svg': {
       fill: props.theme.palette.rgba(props.theme.palette.text.disabled, 0.8)
     }

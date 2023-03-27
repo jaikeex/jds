@@ -10,6 +10,7 @@ export interface TypographyProps extends React.PropsWithChildren {
   className?: string;
   color?: ThemeColorVariantsWithDefault;
   component?: React.ElementType;
+  disabled?: boolean;
   gutterBottom?: boolean;
   hyphens?: boolean;
   noWrap?: boolean;
@@ -25,6 +26,7 @@ const Typography: React.FC<TypographyProps> = ({
   className = '',
   color = 'default',
   component = undefined,
+  disabled = false,
   gutterBottom = false,
   hyphens = false,
   noWrap = false,
@@ -47,7 +49,7 @@ const Typography: React.FC<TypographyProps> = ({
   };
 
   return (
-    <Styled.TypographyRoot {...styleProps} as={Component} style={style} className={className}>
+    <Styled.TypographyRoot {...styleProps} as={Component} style={style} className={className} disabled={disabled}>
       {children}
     </Styled.TypographyRoot>
   );

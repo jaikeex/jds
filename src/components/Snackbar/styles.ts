@@ -52,9 +52,9 @@ export const SnackbarInfo = styled('div', {
 export const SnackbarAction = styled('div', {
   label: 'snackbar-action',
   shouldForwardProp: shouldForwardPropDefault
-})((props) => ({
+})({
   margin: `0 auto 0 0`
-}));
+});
 
 export const SnackbarIcon = styled('div', {
   label: 'snackbar-icon',

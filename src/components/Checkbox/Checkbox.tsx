@@ -6,7 +6,7 @@ import { Typography } from 'components/Typography';
 import * as Styled from './styles';
 import { useForwardedRef } from 'core/hooks';
 
-export interface CheckboxProps extends React.PropsWithChildren, Omit<React.ComponentProps<'input'>, 'ref' | 'size'> {
+export interface CheckboxProps extends Omit<React.ComponentProps<'input'>, 'ref' | 'size'> {
   /**
    * If true, the component is in the "checked" state.
    */
@@ -44,7 +44,7 @@ export interface CheckboxProps extends React.PropsWithChildren, Omit<React.Compo
    */
   indeterminate?: boolean;
   /**
-   * Label of the input.
+   * Label for the input.
    */
   label?: string;
   /**
@@ -81,7 +81,6 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
       labelColor = 'default',
       labelPosition = 'right',
       onChange = () => {},
-      required = false,
       size = 'medium',
       style = {},
       ...props
@@ -134,14 +133,13 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           id={id}
           checked={isChecked}
           onChange={inputChangeHandler}
-          required={required}
         />
         <Styled.CheckboxLabel disabled={disabled} htmlFor={id}>
           {icon && !isChecked ? icon : iconChecked}
           <Styled.CheckboxMark data-id="checkbox-mark" {...styleProps}>
             {indeterminate ? <RemoveIcon /> : <CheckmarkThickIcon />}
           </Styled.CheckboxMark>
-          <Typography variant="label" color={labelColor}>
+          <Typography variant="label" color={labelColor} disabled={disabled}>
             {label}
           </Typography>
         </Styled.CheckboxLabel>
