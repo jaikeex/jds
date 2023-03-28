@@ -6,7 +6,10 @@ import { EmailIcon, LightModeIcon } from 'components/icons';
 
 export default {
   title: 'Design System/IconButton',
-  component: IconButton
+  component: IconButton,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof IconButton>;
 
 const Template: Story<IconButtonProps> = (args) => (

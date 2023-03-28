@@ -7,7 +7,10 @@ import { Sheet } from 'components/Sheet';
 
 export default {
   title: 'Design System/Popper',
-  component: Popper
+  component: Popper,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Popper>;
 
 const Template: Story<PopperProps> = (args) => {

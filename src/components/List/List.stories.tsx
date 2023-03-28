@@ -12,7 +12,10 @@ import { EmailIcon } from 'components/icons';
 
 export default {
   title: 'Design System/List',
-  component: List
+  component: List,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof List>;
 
 const generateListItems = (props: ListItemProps) => [1, 2, 3, 4].map((el) => <ListItem {...props} key={el} />);

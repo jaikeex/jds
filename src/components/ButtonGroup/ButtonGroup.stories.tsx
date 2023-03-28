@@ -6,7 +6,10 @@ import { Button } from 'components/Button';
 
 export default {
   title: 'Design System/ButtonGroup',
-  component: ButtonGroup
+  component: ButtonGroup,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof ButtonGroup>;
 
 const Template: Story<ButtonGroupProps> = () => (

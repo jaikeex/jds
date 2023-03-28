@@ -5,7 +5,10 @@ import Divider from './Divider';
 
 export default {
   title: 'Design System/Divider',
-  component: Divider
+  component: Divider,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Divider>;
 
 const Template: Story<DividerProps> = (args) => {

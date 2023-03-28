@@ -7,7 +7,10 @@ import { RangeSlider } from './RangeSlider';
 
 export default {
   title: 'Design System/Slider',
-  component: Slider
+  component: Slider,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Slider>;
 
 const Template: Story<SliderProps> = (args) => (

@@ -7,7 +7,10 @@ import { HomeIcon, SearchIcon } from 'components/icons';
 
 export default {
   title: 'Design System/Card',
-  component: Card
+  component: Card,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Card>;
 
 const Template: Story<CardProps> = (args) => <Card {...args} />;

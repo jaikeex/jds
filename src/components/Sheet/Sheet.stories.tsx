@@ -4,7 +4,10 @@ import Sheet, { type SheetProps } from './Sheet';
 
 export default {
   title: 'Design System/Sheet',
-  component: Sheet
+  component: Sheet,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Sheet>;
 
 const Template: Story<SheetProps> = (args) => <Sheet {...args} style={{ width: '200px', height: '200px' }} />;

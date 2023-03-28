@@ -6,7 +6,10 @@ import { HeartIcon, HeartIconOutlined } from 'components/icons';
 
 export default {
   title: 'Design System/Checkbox',
-  component: Checkbox
+  component: Checkbox,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Checkbox>;
 
 const Template: Story<CheckboxProps> = () => (

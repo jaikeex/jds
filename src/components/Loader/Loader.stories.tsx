@@ -5,7 +5,10 @@ import Loader from './Loader';
 
 export default {
   title: 'Design System/Loader',
-  component: Loader
+  component: Loader,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Loader>;
 
 const Template: Story<LoaderProps> = (args) => <Loader {...args} />;

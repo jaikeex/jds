@@ -11,7 +11,10 @@ import { Radio } from 'components/Radio';
 
 export default {
   title: 'Design System/Tabs',
-  component: Tabs
+  component: Tabs,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Tabs>;
 
 const generateTabPanels = (props: TabPanelProps, amount: number) =>

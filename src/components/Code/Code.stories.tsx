@@ -5,7 +5,10 @@ import Code from './Code';
 
 export default {
   title: 'Design System/Code',
-  component: Code
+  component: Code,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Code>;
 
 const Template: Story<CodeProps> = (args) => <Code {...args} />;
