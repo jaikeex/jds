@@ -103,4 +103,4 @@ p[class*='sbdocs'] {
 
 .story-container{width:45rem;height:200px;display:grid;grid-template-rows:repeat(5, 1fr);grid-template-columns:repeat(5, 1fr);grid-row-gap:1rem}.story-item{display:flex}.story-item--1{justify-content:center;grid-column:2/3}.story-item--2{justify-content:center;grid-column:3/4}.story-item--3{justify-content:center;grid-column:4/5}.story-item--4{justify-content:flex-end;grid-row:2/3;grid-column:5/6}.story-item--5{justify-content:flex-end;grid-row:3/4;grid-column:5/6}.story-item--6{justify-content:flex-end;grid-row:4/5;grid-column:5/6}.story-item--7{justify-content:center;grid-row:5/6;grid-column:4/5}.story-item--8{justify-content:center;grid-row:5/6;grid-column:3/4}.story-item--9{justify-content:center;grid-row:5/6;grid-column:2/3}.story-item--10{justify-content:flex-start;grid-row:4/5;grid-column:1/2}.story-item--11{justify-content:flex-start;grid-row:3/4;grid-column:1/2}.story-item--12{justify-content:flex-start;grid-row:2/3;grid-column:1/2}
 
-/*# sourceMappingURL=main.66d5bc55.css.map*/
+/*# sourceMappingURL=main.5ccc82d1.css.map*/
