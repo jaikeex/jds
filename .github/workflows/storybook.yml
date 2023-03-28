@@ -14,9 +14,6 @@ jobs:
       - name: set npm config
         run: echo legacy-peer-deps=true > ~/.npmrc
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Install and Build
         run: |
           npm ci
