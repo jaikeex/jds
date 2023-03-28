@@ -1,6 +1,7 @@
 {
   "name": "@jaikeex/jds",
   "description": "A simple React design system to be used in my projects",
+  "homepage": "http://jaikeex.github.io/jds",
   "version": "0.4.28",
   "private": false,
   "license": "ISC",
@@ -22,7 +23,9 @@
     "tsc-alias": "tsc-alias",
     "generate-dts": "dts-bundle-generator -o dist/index.d.ts dist/esm/types/index.ts",
     "storybook": "set DISABLE_ESLINT_PLUGIN=true& start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
+    "build-storybook": "build-storybook",
+    "predeploy": "npm run build-storybook",
+    "deploy-storybook": "gh-pages -d storybook-static",
     "test": "vitest --dom --root=./src",
     "prepare": "husky install",
     "lint": "prettier --write . && eslint . --fix"
@@ -84,6 +87,7 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-storybook": "^0.6.11",
+    "gh-pages": "^5.0.0",
     "happy-dom": "^8.9.0",
     "husky": "^8.0.0",
     "lint-staged": "^13.1.2",

@@ -32,7 +32,7 @@ export const SwitchToggle = styled('div', {
 })<SwitchProps>((props) => ({
   display: 'inline-block',
   backgroundColor: props.theme.palette.rgba(props.theme.palette[props.color || 'primary'].main, 0.25),
-  borderRadius: '16px',
+  borderRadius: '500px',
   position: 'relative',
   verticalAlign: 'middle',
   transition: 'background 0.15s',
