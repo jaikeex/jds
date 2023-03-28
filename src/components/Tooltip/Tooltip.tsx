@@ -1,31 +1,30 @@
 import React from 'react';
 import type { Position, ThemeColorVariantsWithDefault } from 'core/types';
-import type { TooltipClassKey } from './types';
 import { usePopperTooltip } from 'react-popper-tooltip';
-import type { Classes } from 'jss';
-import { mergeClasses } from 'core/utils';
-import { useStyles } from './useStyles';
+import * as Styled from './styles';
 
 export interface TooltipProps {
   color?: ThemeColorVariantsWithDefault;
   position?: Position;
   content?: React.ReactNode;
   className?: string;
-  classes?: Classes<TooltipClassKey>;
   style?: React.CSSProperties;
   children?: React.ReactNode | React.ReactNode[];
 }
 
 const Tooltip: React.FC<TooltipProps> = ({
+  className = '',
   color = 'default',
   position = 'right',
-  classes = {},
   style = {},
   content = null,
   children = null
 }) => {
   const { getTooltipProps, setTooltipRef, setTriggerRef, visible } = usePopperTooltip({ placement: position });
-  const classNames = mergeClasses(useStyles({ color }), classes);
+
+  const styleProps = {
+    color
+  };
 
   const childrenWithProps = React.Children.map(children, (child) => {
     if (React.isValidElement(child)) {
@@ -40,9 +39,13 @@ const Tooltip: React.FC<TooltipProps> = ({
     <React.Fragment>
       {childrenWithProps}
       {visible && (
-        <div ref={setTooltipRef} {...getTooltipProps({ style: style, className: classNames.content })}>
+        <Styled.TooltipRoot
+          ref={setTooltipRef}
+          {...styleProps}
+          {...getTooltipProps({ style: style, className: className })}
+        >
           {content}
-        </div>
+        </Styled.TooltipRoot>
       )}
     </React.Fragment>
   );

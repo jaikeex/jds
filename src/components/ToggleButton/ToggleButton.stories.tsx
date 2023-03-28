@@ -9,52 +9,65 @@ export default {
   component: ToggleButton
 } as ComponentMeta<typeof ToggleButton>;
 
-const Template: Story<ToggleButtonProps> = (args) => <ToggleButton {...args} />;
+const Template: Story<ToggleButtonProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'row', gap: '1.5rem' }}>
+    <ToggleButton {...args} />
+    <ToggleButton {...args} defaultSelected={true} />
+    <ToggleButton {...args} disabled />
+  </div>
+);
 
 export const Default = Template.bind({});
 Default.args = {
   children: <LoginIcon />
 };
 
-export const Small = Template.bind({});
-Small.args = {
-  ...Default.args,
-  size: 'small',
-  children: <LoginIcon size={24} />
+const SizesTemplate: Story<ToggleButtonProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'row', gap: '1.5rem', alignItems: 'center' }}>
+    <ToggleButton {...args} size="small">
+      <LoginIcon size={24} />
+    </ToggleButton>
+    <ToggleButton {...args} size="medium">
+      <LoginIcon size={28} />
+    </ToggleButton>
+    <ToggleButton {...args} size="large">
+      <LoginIcon size={32} />
+    </ToggleButton>
+  </div>
+);
+
+export const Sizes = SizesTemplate.bind({});
+Sizes.args = {
+  ...Default.args
 };
 
-export const Large = Template.bind({});
-Large.args = {
-  ...Default.args,
-  size: 'large'
-};
+const ColorsTemplate: Story<ToggleButtonProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'row', gap: '1.5rem' }}>
+    <ToggleButton {...args} defaultSelected appearance="filled" color="default" />
+    <ToggleButton {...args} defaultSelected color="primary" />
+    <ToggleButton {...args} defaultSelected color="secondary" />
+    <ToggleButton {...args} defaultSelected color="success" />
+    <ToggleButton {...args} defaultSelected color="error" />
+    <ToggleButton {...args} defaultSelected color="warning" />
+    <ToggleButton {...args} defaultSelected color="info" />
+  </div>
+);
 
-export const Primary = Template.bind({});
-Primary.args = {
+export const Colors = ColorsTemplate.bind({});
+Colors.args = {
   ...Default.args,
   color: 'primary'
 };
 
-export const Success = Template.bind({});
-Success.args = {
-  ...Default.args,
-  color: 'success'
-};
+const AppearanceTemplate: Story<ToggleButtonProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'row', gap: '1.5rem' }}>
+    <ToggleButton {...args} appearance="filled" />
+    <ToggleButton {...args} appearance="outlined" />
+    <ToggleButton {...args} appearance="subtle" />
+  </div>
+);
 
-export const Error = Template.bind({});
-Error.args = {
-  ...Default.args,
-  color: 'error'
-};
-
-export const WithoutBorder = Template.bind({});
-WithoutBorder.args = {
-  ...Default.args,
-  removeBorder: true
-};
-
-export const Disabled = Template.bind({});
-Disabled.args = {
-  ...Default.args,
-  disabled: true
+export const Variants = AppearanceTemplate.bind({});
+Variants.args = {
+  ...Default.args
 };

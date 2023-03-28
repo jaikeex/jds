@@ -34,6 +34,7 @@ export * from './OutputIcon';
 export * from './PlusIcon';
 export * from './RedoIcon';
 export * from './RefreshIcon';
+export * from './RemoveIcon';
 export * from './RightArrowIcon';
 export * from './SearchCheckIcon';
 export * from './SearchIcon';

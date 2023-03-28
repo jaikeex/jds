@@ -1,0 +1,47 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import ButtonGroup from './ButtonGroup';
+
+<Meta
+  title="Design System/ButtonGroup/Overview"
+  component={ButtonGroup}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true }
+    }
+  }}
+/>
+
+## ButtonGroup
+
+Individual buttons can be grouped by wrapping them with the `ButtonGroup` component.
+
+<br />
+
+### Basic example
+
+<Canvas>
+  <Story id="design-system-buttongroup--button-variants" />
+</Canvas>
+
+### Orientation
+
+The `orientation` prop can be set to either `horizontal` or `vertical`.
+
+<Canvas>
+  <Story id="design-system-buttongroup--vertical" />
+</Canvas>
+
+### Colors
+
+The `color`, `appearance`, `size` and `disabled` props are passed down to all child buttons inside the `ButtonGroup`.
+
+<Canvas>
+  <Story id="design-system-buttongroup--colors" />
+</Canvas>
+
+<br />
+
+## Available props
+
+<ArgsTable of={ButtonGroup} />

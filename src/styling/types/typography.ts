@@ -1,4 +1,4 @@
-import type { TypographyVariants } from 'core/types';
+import type { TypographyVariants } from 'components/Typography';
 import type { CSSProperties } from 'react';
 
 export interface Typography extends Record<TypographyVariants, CSSProperties>, FontStyle, TypographyUtils {}

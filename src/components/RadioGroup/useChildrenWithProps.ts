@@ -1,11 +1,10 @@
 import * as React from 'react';
 import type { RadioProps } from 'components/Radio';
-import { ThemeColorVariants } from 'core/types';
 
 export const useChildrenWithProps = (
-  children: React.ReactElement | React.ReactElement[] | null,
+  children: React.ReactNode,
   changeHandler: (event: React.ChangeEvent<HTMLInputElement>, value: string) => void,
-  isChildActive: (value: any) => boolean,
+  isChildActive: (value: string | undefined) => boolean,
   props: RadioProps
 ) => {
   const styledChildren = React.useMemo(() => {
@@ -20,6 +19,7 @@ export const useChildrenWithProps = (
       }
       childrenWithProps.push(
         React.cloneElement(child, {
+          key: `${index}-${child.props.value}`,
           size: child.props.size ? child.props.size : props.size,
           color: child.props.color ? child.props.color : props.color,
           disabled: child.props.disabled ? child.props.disabled : props.disabled,

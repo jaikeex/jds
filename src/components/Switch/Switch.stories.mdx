@@ -1,0 +1,67 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import Switch from './Switch';
+
+<Meta
+  title="Design System/Switch/Overview"
+  component={Switch}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true }
+    }
+  }}
+/>
+
+## Switch
+
+<br />
+
+### Basic switch
+
+<Canvas>
+  <Story id="design-system-switch--default" />
+</Canvas>
+
+### Sizes
+
+Use the `size` prop to control the size of the switch component.
+
+<Canvas>
+  <Story id="design-system-switch--sizes" />
+</Canvas>
+
+### Colors
+
+Switch is available in all theme color variants.
+
+<Canvas>
+  <Story id="design-system-switch--colors" />
+</Canvas>
+
+### Label
+
+The string passed in a `label` prop will be used as an input label for the given switch.
+
+<Canvas>
+  <Story id="design-system-switch--label" />
+</Canvas>
+
+### Label positions
+
+The `labelPosition` prop controls the position at which the label will be displayed .
+
+<Canvas>
+  <Story id="design-system-switch--label-positions" />
+</Canvas>
+
+### Handling input changes
+
+The switch component accepts the `onClick(event: React.ChangeEvent<HtmlInputElement>)` function as a prop, which is used to handle changes of its state. Because the switch is based on a native html checkbox input, the checked/unchecked state can be accessed inside the `onClick()` handler as `event.target.checked`.
+
+<br />
+
+## Available props
+
+In addition to the props mentioned below, you can also pass any props available on the native html input element.
+
+<ArgsTable of={Switch} />

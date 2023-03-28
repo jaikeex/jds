@@ -1,0 +1,85 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import Button from './Button';
+
+<Meta
+  title="Design System/Button/Overview"
+  component={Button}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true }
+    }
+  }}
+/>
+
+## Button
+
+The button component comes in three appearance variants:
+
+- Filled (default)
+- Outlined
+- Subtle
+
+<br />
+
+### Filled button
+
+The default appearance. Should be used on primary and emphasized actions within the application.
+
+<Canvas>
+  <Story id="design-system-button--filled" />
+</Canvas>
+
+### Outlined button
+
+Less pronounced appeearance. Commonly used alongside primary buttons to handle secondary actions, e.g. "Cancel" action in forms, etc.
+
+<Canvas>
+  <Story id="design-system-button--outlined" />
+</Canvas>
+
+### Subtle button
+
+Used for low importance actions. Using subtle button helps maintain focus on the surrounding content, typically in cards and dialogs.
+
+<Canvas>
+  <Story id="design-system-button--subtle" />
+</Canvas>
+
+### Click handling
+
+All buttons accept the `onClick(event: React.MouseEvent<HtmlButtonElement>)` function as a prop.
+
+```jsx
+<Button onClick={() => console.log('Button clicked!')}>Button</Button>
+```
+
+### Sizes
+
+The `size` prop can be used to create larger or smaller buttons.
+
+<Canvas>
+  <Story id="design-system-button--sizes" />
+</Canvas>
+
+### Colors
+
+Buttons support all available color theme variants.
+
+<Canvas>
+  <Story id="design-system-button--colors" />
+</Canvas>
+
+### Ripple effect
+
+The ripple effect is enabled by default on all buttons. To disable it, set the `disableRippleEffect` prop.
+
+<Canvas>
+  <Story id="design-system-button--without-ripple-effect" />
+</Canvas>
+
+## Available props
+
+In addition to the props mentioned below, you can also pass any props available on the native html button element.
+
+<ArgsTable of={Button} />

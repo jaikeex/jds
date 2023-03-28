@@ -1,4 +1,4 @@
-import type { SliderSize } from 'components/Slider/types';
+import type { Size } from 'core/types';
 
 export interface OffsetAdjustmentValues {
   mark: OffsetAdjustmentOptions;
@@ -7,7 +7,7 @@ export interface OffsetAdjustmentValues {
   standardValueBox: OffsetAdjustmentOptions;
 }
 
-export type OffsetAdjustmentOptions = Record<SliderSize, number>;
+export type OffsetAdjustmentOptions = Record<Size, number>;
 
 const offsetAdjustmentValues: OffsetAdjustmentValues = {
   mark: {

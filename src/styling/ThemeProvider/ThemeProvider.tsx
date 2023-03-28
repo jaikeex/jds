@@ -2,8 +2,8 @@ import React, { useContext, useState } from 'react';
 import { defaultLightTheme } from 'styling/default/light';
 import { defaultDarkTheme } from 'styling/default/dark';
 import type { Theme, ThemeNameToTheme } from 'styling/types';
-import { ThemeProvider as JSSThemeProvider } from 'react-jss';
 import { CacheProvider } from '@emotion/react';
+import { ThemeProvider as EmotionThemeProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 
 interface CacheProps {
@@ -15,7 +15,6 @@ const EmotionCacheProvider: React.FC<CacheProps> = ({ children }) => {
     () =>
       createCache({
         key: 'jds',
-        insertionPoint: document.querySelector('title')!,
         prepend: true
       }),
     []
@@ -63,15 +62,19 @@ const ThemeProvider: React.FC<ThemeContextProviderProps> = ({
     }
   }, []);
 
-  const defaultProps = { theme: theme, setTheme: themeChangeHandler };
+  const defaultValue = React.useMemo(
+    () => ({ theme: theme, setTheme: themeChangeHandler }),
+    [theme, themeChangeHandler]
+  );
 
   return (
-    <EmotionCacheProvider>
-      <ThemeContext.Provider value={defaultProps}>
-        {/* @ts-ignore */}
-        <JSSThemeProvider theme={theme}>{children}</JSSThemeProvider>
+    <div className={theme.name}>
+      <ThemeContext.Provider value={defaultValue}>
+        <EmotionCacheProvider>
+          <EmotionThemeProvider theme={theme}>{children}</EmotionThemeProvider>
+        </EmotionCacheProvider>
       </ThemeContext.Provider>
-    </EmotionCacheProvider>
+    </div>
   );
 };
 

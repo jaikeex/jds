@@ -1,25 +1,19 @@
-import clsx from 'clsx';
-import type { ThemeColorVariants } from 'core/types';
-import { mergeClasses } from 'core/utils';
-import type { Classes } from 'jss';
+import type { Size, ThemeColorVariants } from 'core/types';
 import * as React from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import isValueSelected from './isValueSelected';
-import type { RadioGroupClassKey } from './types';
 import { useChildrenWithProps } from './useChildrenWithProps';
-import { useStyles } from './useStyles';
+import * as Styled from './styles';
 
-export interface RadioGroupProps {
-  children?: React.ReactElement | React.ReactElement[];
+export interface RadioGroupProps extends React.PropsWithChildren {
   className?: string;
-  classes?: Classes<RadioGroupClassKey>;
   color?: ThemeColorVariants;
   defaultValue?: string;
   disabled?: boolean;
   labelPosition?: 'left' | 'right' | 'bottom' | 'top';
   onChange?: (event: React.ChangeEvent<HTMLInputElement>, value: string | null) => void;
   orientation?: 'horizontal' | 'vertical';
-  size?: 'small' | 'medium' | 'large';
+  size?: Size;
   style?: React.CSSProperties;
   value?: string;
 }
@@ -27,7 +21,6 @@ export interface RadioGroupProps {
 const RadioGroup: React.FC<RadioGroupProps> = ({
   children = null,
   className = '',
-  classes = {},
   defaultValue = undefined,
   onChange = () => {},
   orientation = 'vertical',
@@ -37,8 +30,6 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
 }): JSX.Element => {
   const [selectedValue, setSelectedValue] = useState<string | undefined>(value);
 
-  const classNames = mergeClasses(useStyles({ orientation }), classes);
-
   const radioButtonClickHandler = useCallback(
     (event: React.ChangeEvent<HTMLInputElement>, value: string) => {
       setSelectedValue(event.target.value);
@@ -47,7 +38,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
     [setSelectedValue, onChange]
   );
 
-  const isChildActive = (value: string) => isValueSelected(selectedValue, value);
+  const isChildActive = (value: string | undefined) => isValueSelected(selectedValue, value);
 
   const childrenWithProps = useChildrenWithProps(children, radioButtonClickHandler, isChildActive, props);
 
@@ -56,9 +47,9 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
   }, [value]);
 
   return (
-    <div className={clsx(classNames.root, className)} style={style}>
+    <Styled.RadioGroupRoot orientation={orientation} className={className} style={style}>
       {childrenWithProps}
-    </div>
+    </Styled.RadioGroupRoot>
   );
 };
 

@@ -1,68 +1,103 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef } from 'react';
 import { TabButton } from './TabButton';
 import { Divider } from 'components/Divider';
-import { mergeClasses } from 'core/utils';
-import { useStyles } from './useStyles';
-import type { TabsClassKey } from './types';
-import type { Classes } from 'jss';
+import { scrollToSide } from 'core/utils';
+import { TabsContextProvider } from './TabsContextProvider';
+import { useDistributedProps } from './useDistributedProps';
+import { ChevronLeftIcon, ChevronRightIcon } from 'components/icons';
+import { useSideScroll } from './useSideScroll';
+import { TabPanelsContainer } from './TabPanelsContainer';
+import * as Styled from './styles';
 
-export interface TabsProps {
-  children?: React.ReactNode[];
-  classes?: Classes<TabsClassKey>;
+export interface TabsProps extends React.PropsWithChildren {
   className?: string;
+  defaultValue?: string;
   divider?: boolean;
   justifyButtons?: 'space-around' | 'space-between' | 'space-evenly' | 'stretch' | 'center' | 'flex-end' | 'flex-start';
+  onChange?: (value: string) => void;
+  removeHorizontalPadding?: boolean;
+  removeVerticalPadding?: boolean;
+  scrollButtons?: 'auto' | 'allways' | 'never';
   style?: React.CSSProperties;
+  value?: string | null;
 }
 
 const Tabs: React.FC<TabsProps> = ({
-  children,
-  classes = {},
+  children = [],
   className = '',
+  defaultValue = undefined,
   divider = false,
-  justifyButtons = 'flex-start',
-  style = {}
+  justifyButtons = 'stretch',
+  onChange = () => {},
+  scrollButtons = 'auto',
+  style = {},
+  value = defaultValue,
+  ...props
 }) => {
-  const [activeTab, setActiveTab] = useState<number>(0);
-  const classNames = mergeClasses(useStyles(), classes);
+  const buttonPanelRef = useRef(null);
 
-  const labels = React.Children.map(children, (child) => {
-    if (React.isValidElement(child)) {
-      return { label: child.props.label, disabled: child.props.disabled };
-    }
-  });
+  const { leftScrollButtonVisible, rightScrollButtonVisible, scrolledToLeft, scrolledToRight } = useSideScroll(
+    buttonPanelRef,
+    scrollButtons
+  );
 
-  const styles = () => {
-    const styles = { ...style };
-    styles.justifyContent = justifyButtons;
-
-    return styles;
+  const styleProps = {
+    scrollButtons,
+    justifyButtons,
+    removeHorizontalPadding: props.removeHorizontalPadding
   };
 
-  const tabChangeHandler = (index: number) => {
-    setActiveTab(index);
-  };
+  const scrollButtonPanelRight = useCallback(
+    () => scrollToSide(buttonPanelRef.current, { behavior: 'smooth' }, 'right'),
+    [scrollToSide, buttonPanelRef]
+  );
+
+  const scrollButtonPanelLeft = useCallback(
+    () => scrollToSide(buttonPanelRef.current, { behavior: 'smooth' }, 'left'),
+    [scrollToSide, buttonPanelRef]
+  );
+
+  const { tabButtonProps, tabPanelProps } = useDistributedProps(children, props);
 
   return (
-    <div>
-      <div style={styles()} className={classNames.root}>
-        {labels &&
-          labels.map((args, index) => (
-            <div
-              key={index}
-              //TODO: refactor this shit
-              onClick={useCallback(() => tabChangeHandler(index), [tabChangeHandler])}
+    <TabsContextProvider activeTab={value || tabButtonProps[0].value} onChange={onChange}>
+      <Styled.TabsRoot className={className} {...styleProps} style={style}>
+        {leftScrollButtonVisible && (
+          <Styled.TabsScrollButtonWrapper {...styleProps} direction={'left'} style={{ left: 0 }}>
+            <Styled.TabsScrollButton
+              enableBackground
+              color="default"
+              disabled={scrolledToLeft}
+              onClick={scrollButtonPanelLeft}
             >
-              <TabButton active={index === activeTab} disabled={args.disabled}>
-                {args.label}
-              </TabButton>
-            </div>
-          ))}
-      </div>
-      {divider && <Divider removeMargin />}
-      {children && children[activeTab]}
-    </div>
+              <ChevronLeftIcon />
+            </Styled.TabsScrollButton>
+          </Styled.TabsScrollButtonWrapper>
+        )}
+        {rightScrollButtonVisible && (
+          <Styled.TabsScrollButtonWrapper {...styleProps} direction={'right'} style={{ right: 0 }}>
+            <Styled.TabsScrollButton
+              enableBackground
+              color="default"
+              disabled={scrolledToRight}
+              onClick={scrollButtonPanelRight}
+            >
+              <ChevronRightIcon />
+            </Styled.TabsScrollButton>
+          </Styled.TabsScrollButtonWrapper>
+        )}
+        <Styled.TabsButtonPanel {...styleProps} id={`button-panel-`} ref={buttonPanelRef}>
+          {tabButtonProps.map((props, index) => {
+            const { ...rest } = props;
+            return <TabButton {...rest} key={`${index}-${value}`} />;
+          })}
+        </Styled.TabsButtonPanel>
+        {divider && <Divider removeMargin />}
+        <TabPanelsContainer value={value}>{tabPanelProps}</TabPanelsContainer>
+      </Styled.TabsRoot>
+    </TabsContextProvider>
   );
 };
 
+Tabs.displayName = 'Tabs';
 export default Tabs;

@@ -3,12 +3,14 @@ import { addDecorator } from '@storybook/react';
 import { defaultDarkTheme } from '../src/styling/default';
 import { ThemeProvider } from '../src/styling/ThemeProvider';
 import ThemeSwitchButton from './ThemeSwitchButton/ThemeSwitchButton';
+import { themes } from '@storybook/theming';
 
 addDecorator((story) => {
   return (
     <div className="jds-storybook">
       <ThemeProvider defaultTheme={defaultDarkTheme}>
-        <ThemeSwitchButton /> {story()}
+        {/* <ThemeSwitchButton /> */}
+        {story()}
       </ThemeProvider>
     </div>
   );
@@ -23,6 +25,9 @@ export const parameters = {
       date: /Date$/
     }
   },
+  docs: {
+    theme: themes.dark
+  },
   backgrounds: {
     default: 'dark',
     values: [
@@ -32,7 +37,7 @@ export const parameters = {
       },
       {
         name: 'dark',
-        value: '#202020'
+        value: '#1e293b'
       }
     ]
   },

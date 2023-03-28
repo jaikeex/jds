@@ -6,104 +6,157 @@ import { HomeIcon } from 'components/icons';
 
 export default {
   title: 'Design System/Button',
-  component: Button
+  component: Button,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Button>;
 
-const Template: Story<ButtonProps> = (args) => (
-  <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-    <Button {...args} color="primary">
-      default
+const FilledTemplate: Story<ButtonProps> = () => (
+  <div style={{ display: 'flex', gap: '1rem' }}>
+    <Button>Button</Button>
+    <Button iconLeft={<HomeIcon />}>Home</Button>
+    <Button disabled>Disabled</Button>
+  </div>
+);
+
+export const Filled = FilledTemplate.bind({});
+Filled.args = {};
+
+const OutlinedTemplate: Story<ButtonProps> = () => (
+  <div style={{ display: 'flex', gap: '1rem' }}>
+    <Button appearance="outlined">Button</Button>
+    <Button appearance="outlined" iconLeft={<HomeIcon />}>
+      Home
     </Button>
-    <Button {...args} color="success">
-      success
-    </Button>
-    <Button {...args} color="warning">
-      warning
-    </Button>
-    <Button {...args} color="error">
-      error
-    </Button>
-    <Button {...args} color="info">
-      info
+    <Button appearance="outlined" disabled>
+      Disabled
     </Button>
   </div>
 );
 
-export const Contained = Template.bind({});
-Contained.args = {
-  size: 'medium'
-};
+export const Outlined = OutlinedTemplate.bind({});
+Outlined.args = {};
 
-export const Outlined = Template.bind({});
-Outlined.args = {
-  appearance: 'outlined'
-};
+const SubtleTemplate: Story<ButtonProps> = () => (
+  <div style={{ display: 'flex', gap: '1rem' }}>
+    <Button appearance="subtle">Button</Button>
+    <Button appearance="subtle" iconLeft={<HomeIcon />}>
+      Home
+    </Button>
+    <Button appearance="subtle" disabled>
+      Disabled
+    </Button>
+  </div>
+);
 
-export const Subtle = Template.bind({});
-Subtle.args = {
-  appearance: 'subtle'
-};
+export const Subtle = SubtleTemplate.bind({});
+Subtle.args = {};
 
-export const Small = Template.bind({});
-Small.args = {
-  size: 'small'
-};
-Small.storyName = 'Size - Small';
+const SizesTemplate: Story<ButtonProps> = () => (
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem', height: 'max-content' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <Button size="small">Small</Button>
+      <Button size="medium">Medium</Button>
+      <Button size="large">Large</Button>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <Button appearance="outlined" size="small">
+        Small
+      </Button>
+      <Button appearance="outlined" size="medium">
+        Medium
+      </Button>
+      <Button appearance="outlined" size="large">
+        Large
+      </Button>
+    </div>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+      <Button appearance="subtle" size="small">
+        Small
+      </Button>
+      <Button appearance="subtle" size="medium">
+        Medium
+      </Button>
+      <Button appearance="subtle" size="large">
+        Large
+      </Button>
+    </div>
+  </div>
+);
 
-export const Large = Template.bind({});
-Large.args = {
-  size: 'large'
-};
-Large.storyName = 'Size - Large';
+export const Sizes = SizesTemplate.bind({});
+Sizes.args = {};
 
-export const OutlinedWithIconLeft = Template.bind({});
-OutlinedWithIconLeft.args = {
-  appearance: 'outlined',
-  iconLeft: <HomeIcon />
-};
+const ColorsTemplate: Story<ButtonProps> = () => (
+  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2rem', height: 'max-content' }}>
+    <div style={{ display: 'flex', gap: '1rem' }}>
+      <Button color="primary">primary</Button>
+      <Button color="secondary">secondary</Button>
+      <Button color="success">success</Button>
+      <Button color="warning">warning</Button>
+      <Button color="error">error</Button>
+      <Button color="info">info</Button>
+    </div>
+    <div style={{ display: 'flex', gap: '1rem' }}>
+      <Button appearance="outlined" color="primary">
+        primary
+      </Button>
+      <Button appearance="outlined" color="secondary">
+        secondary
+      </Button>
+      <Button appearance="outlined" color="success">
+        success
+      </Button>
+      <Button appearance="outlined" color="warning">
+        warning
+      </Button>
+      <Button appearance="outlined" color="error">
+        error
+      </Button>
+      <Button appearance="outlined" color="info">
+        info
+      </Button>
+    </div>
+    <div style={{ display: 'flex', gap: '1rem' }}>
+      <Button appearance="subtle" color="primary">
+        primary
+      </Button>
+      <Button appearance="subtle" color="secondary">
+        secondary
+      </Button>
+      <Button appearance="subtle" color="success">
+        success
+      </Button>
+      <Button appearance="subtle" color="warning">
+        warning
+      </Button>
+      <Button appearance="subtle" color="error">
+        error
+      </Button>
+      <Button appearance="subtle" color="info">
+        info
+      </Button>
+    </div>
+  </div>
+);
 
-export const SmallWithIconLeft = Template.bind({});
-SmallWithIconLeft.args = {
-  iconLeft: <HomeIcon />,
-  size: 'small'
-};
+export const Colors = ColorsTemplate.bind({});
+Colors.args = {};
 
-export const MediumWithIconLeft = Template.bind({});
-MediumWithIconLeft.args = {
-  iconLeft: <HomeIcon />
-};
+const AppearanceTemplate: Story<ButtonProps> = () => (
+  <div style={{ display: 'flex', gap: '1rem' }}>
+    <Button disableRippleEffect appearance="filled">
+      Button
+    </Button>
+    <Button disableRippleEffect appearance="outlined">
+      Button
+    </Button>
+    <Button disableRippleEffect appearance="subtle">
+      Button
+    </Button>
+  </div>
+);
 
-export const LargeWithIconLeft = Template.bind({});
-LargeWithIconLeft.args = {
-  iconLeft: <HomeIcon />,
-  size: 'large'
-};
-
-export const OutlinedWithIconRight = Template.bind({});
-OutlinedWithIconRight.args = {
-  appearance: 'outlined',
-  iconRight: <HomeIcon />
-};
-
-export const SmallWithIconRight = Template.bind({});
-SmallWithIconRight.args = {
-  iconRight: <HomeIcon />,
-  size: 'small'
-};
-
-export const MediumWithIconRight = Template.bind({});
-MediumWithIconRight.args = {
-  iconRight: <HomeIcon />
-};
-
-export const LargeWithIconRight = Template.bind({});
-LargeWithIconRight.args = {
-  iconRight: <HomeIcon />,
-  size: 'large'
-};
-
-export const Disabled = Template.bind({});
-Disabled.args = {
-  children: 'Disabled',
-  disabled: true
-};
+export const WithoutRippleEffect = AppearanceTemplate.bind({});
+WithoutRippleEffect.args = {};

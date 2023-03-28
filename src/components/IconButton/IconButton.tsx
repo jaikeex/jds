@@ -1,22 +1,17 @@
 import React, { useCallback } from 'react';
-import type { ThemeColorVariants } from 'core/types';
-import type { IconButtonClassKey, IconButtonSize } from './types';
+import type { Size, ThemeColorVariantsWithDefault } from 'core/types';
 import { useForwardedRef, useRippleEffect } from 'core/hooks';
-import type { Classes } from 'jss';
-import { mergeClasses } from 'core/utils';
-import { useStyles } from './useStyles';
-import clsx from 'clsx';
+import * as Styled from './styles';
 
 export interface IconButtonProps extends React.PropsWithChildren {
-  size?: IconButtonSize;
-  color?: ThemeColorVariants;
+  size?: Size;
+  color?: ThemeColorVariantsWithDefault;
   style?: React.CSSProperties;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   enableRippleEffect?: boolean;
   enableBackground?: boolean;
-  disableTransform?: boolean;
   className?: string;
-  classes?: Classes<IconButtonClassKey>;
+  disabled?: boolean;
 }
 
 const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
@@ -25,34 +20,44 @@ const IconButton = React.forwardRef<HTMLButtonElement, IconButtonProps>(
       color = 'primary',
       size = 'medium',
       className = '',
-      classes = {},
       style = {},
       onClick = () => {},
       enableRippleEffect = false,
       enableBackground = false,
-      disableTransform = false,
-      children = null
+      children = null,
+      disabled = false
     },
     ref
   ) => {
     const buttonRef = useForwardedRef<HTMLButtonElement>(ref);
-    const createRippleEffect = useRippleEffect(buttonRef, { center: true, color: color });
-    const classNames = mergeClasses(useStyles({ color, enableBackground, disableTransform }), classes);
+    const createRippleEffect = useRippleEffect(buttonRef, { center: true, color: color, animationTime: 400 });
 
-    const rootClassNames = clsx(classNames.root, classNames[size], className);
+    const styleProps = {
+      color,
+      enableBackground,
+      disabled,
+      size
+    };
 
     const buttonClickHandler = useCallback(
       (event: React.MouseEvent<HTMLButtonElement>) => {
-        enableRippleEffect && createRippleEffect(event);
+        enableRippleEffect && enableBackground && createRippleEffect(event);
         onClick(event);
       },
       [enableRippleEffect, createRippleEffect, onClick]
     );
 
     return (
-      <button ref={buttonRef} className={rootClassNames} style={style} onClick={buttonClickHandler}>
+      <Styled.IconButtonRoot
+        {...styleProps}
+        disabled={disabled}
+        ref={buttonRef}
+        className={className}
+        style={style}
+        onClick={buttonClickHandler}
+      >
         {children}
-      </button>
+      </Styled.IconButtonRoot>
     );
   }
 );

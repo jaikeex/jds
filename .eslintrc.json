@@ -39,6 +39,7 @@
     "@typescript-eslint/semi": ["error", "always"],
     "@typescript-eslint/no-empty-function": "off",
     "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/member-delimiter-style": [
       "error",
       {
@@ -75,6 +76,10 @@
     "react/no-unused-prop-types": ["error"],
     "react/self-closing-comp": ["error"],
     "react/no-danger": ["error"],
+    "react/jsx-first-prop-new-line": [2, "multiline"],
+    "react/jsx-max-props-per-line": [2, { "maximum": 1, "when": "multiline" }],
+    "react/jsx-indent-props": [2, 2],
+    "react/jsx-closing-bracket-location": [2, "tag-aligned"],
 
     //* General rules
     "prefer-const": "error",

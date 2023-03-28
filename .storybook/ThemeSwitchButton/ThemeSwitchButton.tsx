@@ -18,7 +18,7 @@ const ThemeSwitchButton: React.FC<ThemeSwitchButtonProps> = () => {
   return (
     <Tooltip position="right" content={`Switch to ${theme === defaultDarkTheme ? 'light theme' : 'dark theme'}`}>
       <div style={{ position: 'fixed', top: '10px', left: '10px' }}>
-        <IconButton onClick={themeChangeHandler} size="small">
+        <IconButton enableBackground enableRippleEffect onClick={themeChangeHandler} size="small">
           {theme === defaultDarkTheme ? <LightModeIcon size={24} /> : <DarkModeIcon size={24} />}
         </IconButton>
       </div>

@@ -1,43 +1,52 @@
 import React from 'react';
-import type { ButtonAppearance, ButtonSize } from 'components/Button';
-import { mergeClasses } from 'core/utils';
-import type { ButtonGroupClassKey } from './types';
-import type { Classes } from 'jss';
-import { useStyles } from './useStyles';
-import type { ThemeColorVariants } from 'core/types';
+import type { ButtonAppearance } from 'components/Button';
+import type { Size, ThemeColorVariants } from 'core/types';
 import { useStyledChildren } from './useStyledChildren';
-import clsx from 'clsx';
+import * as Styled from './styles';
 
-export interface ButtonGroupProps {
-  size?: ButtonSize;
-  orientation?: 'horizontal' | 'vertical';
-  className?: string;
-  disabled?: boolean;
-  color?: ThemeColorVariants;
-  classes?: Classes<ButtonGroupClassKey>;
+export interface ButtonGroupProps extends React.PropsWithChildren, React.ComponentProps<'div'> {
+  /**
+   * The appearance of child buttons.
+   */
   appearance?: ButtonAppearance;
-  style?: React.CSSProperties;
-  children?: React.ReactElement | React.ReactElement[];
+  /**
+   * Css class passed to the root component.
+   */
+  className?: string;
+  /**
+   * The color of child buttons. Can be any of the theme colors.
+   */
+  color?: ThemeColorVariants;
+  /**
+   * Size of child buttons.
+   */
+  size?: Size;
+  /**
+   * Dictates whether the buttons are lined up horizontally or vertically
+   */
+  orientation?: 'horizontal' | 'vertical';
+  /**
+   * If true, all buttons inside the group are disabled.
+   */
+  disabled?: boolean;
 }
 
 const ButtonGroup: React.FC<ButtonGroupProps> = ({
-  size = 'medium',
-  className = '',
-  classes = {},
-  disabled = false,
-  color = 'primary',
-  orientation = 'horizontal',
   appearance = 'filled',
-  style = {},
-  children = null
+  className = '',
+  color = 'primary',
+  disabled = false,
+  orientation = 'horizontal',
+  size = 'medium',
+  children = null,
+  ...props
 }) => {
-  const classNames = mergeClasses(useStyles({ orientation, appearance }), classes);
-  const styledChildren = useStyledChildren(children, size, color, disabled, appearance, classNames);
+  const styledChildren = useStyledChildren(children, size, color, disabled, appearance);
 
   return (
-    <div className={clsx(classNames.root, className)} style={style}>
+    <Styled.ButtonGroupRoot orientation={orientation} className={className} {...props}>
       {styledChildren}
-    </div>
+    </Styled.ButtonGroupRoot>
   );
 };
 

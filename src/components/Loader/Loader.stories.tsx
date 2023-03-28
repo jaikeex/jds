@@ -13,26 +13,27 @@ const Template: Story<LoaderProps> = (args) => <Loader {...args} />;
 export const Default = Template.bind({});
 Default.args = {};
 
-export const Small = Template.bind({});
-Small.args = {
-  ...Default.args,
-  size: 'small'
-};
+const SizesTemplate: Story<LoaderProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '4rem' }}>
+    <Loader {...args} size="small" />
+    <Loader {...args} size="medium" />
+    <Loader {...args} size="large" />
+  </div>
+);
 
-export const Large = Template.bind({});
-Large.args = {
-  ...Default.args,
-  size: 'large'
-};
+export const Sizes = SizesTemplate.bind({});
+Sizes.args = {};
 
-export const Success = Template.bind({});
-Success.args = {
-  ...Default.args,
-  color: 'success'
-};
+const ColorsTemplate: Story<LoaderProps> = (args) => (
+  <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '3rem' }}>
+    <Loader {...args} color="primary" />
+    <Loader {...args} color="secondary" />
+    <Loader {...args} color="success" />
+    <Loader {...args} color="error" />
+    <Loader {...args} color="warning" />
+    <Loader {...args} color="info" />
+  </div>
+);
 
-export const Error = Template.bind({});
-Error.args = {
-  ...Default.args,
-  color: 'error'
-};
+export const Colors = ColorsTemplate.bind({});
+Colors.args = {};

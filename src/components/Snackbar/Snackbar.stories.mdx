@@ -1,0 +1,81 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import Snackbar from './Snackbar';
+import { SnackbarProvider } from 'components/SnackbarProvider';
+
+<Meta
+  title="Design System/Snackbar/Overview"
+  component={Snackbar}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true }
+    }
+  }}
+  decorators={[(story) => <SnackbarProvider>{story()}</SnackbarProvider>]}
+/>
+
+## Snackbar
+
+Snackbar is a popup element which displays small piece of information to the user. Typically used to provide feedback about the app processes and user actions, it can be dismissed manually or disappears automatically after a set period of time. JDS snackbars can also offer an action to the user e.g. button or a link. By default, 3 snackbars can be displayed at a time in the top right corner of the screen.
+
+<br />
+
+### Usage
+
+To be able to display snackbars, the application must be wrapped in `SnackbarProvider` component. You can supply it with the following props:
+
+<ArgsTable of={SnackbarProvider} />
+
+When displaying individiual snackbars, call the `useSnackbar()` hook which returns the `displaySnackbar` function. You can then call this function with an options argument that contains props you want to pass to the snackbar itself. A simple example can be seen here:
+
+```jsx
+const Component = () => {
+  const displaySnackbar = useSnackbar();
+
+  const clickHandler = () => {
+    displaySnackbar({
+      message: 'This is a snackbar'
+    });
+  };
+
+  return <Button onClick={clickHandler}>Show snackbar</Button>;
+};
+```
+
+All available props that can be customized inside the `displaySnackbar` argument can be found at the bottom.
+
+### Basic snackbar
+
+<Canvas>
+  <Story id="design-system-snackbar--default" />
+</Canvas>
+
+### Colors
+
+By defualt, snackbars appear in a neutral color variant, but can be changed intoany available theme color. Additionally, the `success`, `error`, and `warning` variants automatically display a matching icon.
+
+<Canvas>
+  <Story id="design-system-snackbar--colors" />
+</Canvas>
+
+### Actions
+
+By passing a component to the `action` prop, an action can be displayed below the snackbar message.
+
+<Canvas>
+  <Story id="design-system-snackbar--action" />
+</Canvas>
+
+### Icon
+
+The icon displayd in front of the message can be customized via the `icon` prop
+
+<Canvas>
+  <Story id="design-system-snackbar--icon" />
+</Canvas>
+
+<br />
+
+## Available props
+
+<ArgsTable of={Snackbar} />

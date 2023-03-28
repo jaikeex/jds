@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-import classNames from 'classnames';
 import type { CardAppearance } from './types';
 
 export interface CardProps {
@@ -23,17 +22,17 @@ const Card: React.FC<CardProps> = ({
   backside,
   children
 }) => {
-  const rootClasses = classNames('jds-card');
+  // const rootClasses = classNames('jds-card');
 
-  const frontSideClasses = classNames('jds-card__side', `jds-card__side--${appearance}`, {
-    'jds-card__side--sharp': sharpCorners,
-    'jds-card__side--shadow': hasShadow,
-    'jds-card__side--clickable': clickable && !backside,
-    'jds-card__side--front': backside
-  });
-  const backSideClasses = classNames('jds-card__side', {
-    'jds-card__side--back': backside
-  });
+  // const frontSideClasses = classNames('jds-card__side', `jds-card__side--${appearance}`, {
+  //   'jds-card__side--sharp': sharpCorners,
+  //   'jds-card__side--shadow': hasShadow,
+  //   'jds-card__side--clickable': clickable && !backside,
+  //   'jds-card__side--front': backside
+  // });
+  // const backSideClasses = classNames('jds-card__side', {
+  //   'jds-card__side--back': backside
+  // });
 
   const cardClickHandler = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
@@ -44,15 +43,11 @@ const Card: React.FC<CardProps> = ({
 
   return (
     <React.Fragment>
-      <div className={rootClasses}>
-        <div className={frontSideClasses} style={style} onClick={cardClickHandler}>
+      <div>
+        <div style={style} onClick={cardClickHandler}>
           {children}
         </div>
-        {backside && (
-          <div className={backSideClasses} style={style}>
-            {backside}
-          </div>
-        )}
+        {backside && <div style={style}>{backside}</div>}
       </div>
     </React.Fragment>
   );
