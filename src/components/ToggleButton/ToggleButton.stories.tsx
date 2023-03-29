@@ -6,7 +6,10 @@ import { LoginIcon } from 'components/icons';
 
 export default {
   title: 'Design System/ToggleButton',
-  component: ToggleButton
+  component: ToggleButton,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof ToggleButton>;
 
 const Template: Story<ToggleButtonProps> = (args) => (

@@ -6,7 +6,10 @@ import { Radio } from 'components/Radio';
 
 export default {
   title: 'Design System/RadioGroup',
-  component: RadioGroup
+  component: RadioGroup,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof RadioGroup>;
 
 const Template: Story<RadioGroupProps> = (args) => (

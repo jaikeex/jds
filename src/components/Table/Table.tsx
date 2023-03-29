@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import type { Column, DefaultFilterTypes, PluginHook, CellProps, HeaderProps } from 'react-table';
 import { useTable, useSortBy, usePagination, useFilters, useRowSelect } from 'react-table';
 import { TableContextProvider } from './TableContextProvider';

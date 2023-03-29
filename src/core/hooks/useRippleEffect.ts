@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import type { RippleEffectOptions } from 'core/types';
 import { css, keyframes } from '@emotion/css';
 import { useTheme } from 'styling';

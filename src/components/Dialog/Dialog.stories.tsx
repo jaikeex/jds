@@ -7,7 +7,10 @@ import { Typography } from 'components/Typography';
 
 export default {
   title: 'Design System/Dialog',
-  component: Dialog
+  component: Dialog,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Dialog>;
 
 const Template: Story<DialogProps> = (args) => {

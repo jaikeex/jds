@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import type { Size, ThemeColorVariants } from 'core/types';
 import { makeId } from 'core/utils';
 import { Typography } from 'components/Typography';

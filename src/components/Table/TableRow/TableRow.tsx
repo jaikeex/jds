@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import * as React from 'react';
+import React from 'react';
 import type { Row } from 'react-table';
 import { TableCell } from 'components/Table/TableCell';
 import { useTableContext } from 'components/Table/TableContextProvider';

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import type { InputProps, GroupBase } from 'react-select';
 import type { Selectable } from 'components/Select';
 import { components } from 'react-select';

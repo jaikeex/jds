@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import { ChevronDownIcon, ChevronUpIcon } from 'components/icons';
 import { Typography } from 'components/Typography';

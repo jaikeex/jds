@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { TextField } from 'components/TextField';
 import { Typography } from 'components/Typography';
-import * as React from 'react';
+import React from 'react';
 import { useState, useCallback } from 'react';
 import type { ColumnFilterProps } from 'components/Table/types';
 

@@ -10,7 +10,10 @@ import { DeleteIcon, EditIcon, MoreHorizontalIcon } from 'components/icons';
 
 export default {
   title: 'Design System/Menu',
-  component: Menu
+  component: Menu,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Menu>;
 
 const generateMenuItems = (props: MenuItemProps, amount: number) =>

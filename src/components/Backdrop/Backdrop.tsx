@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import type { NumericRange } from 'core/types';
 import { createPortal } from 'react-dom';
 import { OutsideClickListener } from 'components/OutsideClickListener';

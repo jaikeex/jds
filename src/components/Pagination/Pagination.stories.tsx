@@ -5,7 +5,10 @@ import Pagination from './Pagination';
 
 export default {
   title: 'Design System/Pagination',
-  component: Pagination
+  component: Pagination,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Pagination>;
 
 const Template: Story<PaginationProps> = (args) => (

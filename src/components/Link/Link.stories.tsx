@@ -5,7 +5,10 @@ import Link from './Link';
 
 export default {
   title: 'Design System/Link',
-  component: Link
+  component: Link,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Link>;
 
 const Template: Story<LinkProps> = (args) => (

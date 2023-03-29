@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import { Typography } from 'components/Typography';
 import type { ButtonAppearance } from 'components/Button';

@@ -9,6 +9,9 @@ import { AppsIcon } from 'components/icons';
 export default {
   title: 'Design System/Snackbar',
   component: Snackbar,
+  parameters: {
+    viewMode: 'story'
+  },
   decorators: [
     (Story) => (
       <SnackbarProvider>

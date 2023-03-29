@@ -9,7 +9,10 @@ import { CheckboxSelect } from './CheckboxSelect';
 
 export default {
   title: 'Design System/Select',
-  component: Select
+  component: Select,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Select>;
 
 const options: Selectable[] = [

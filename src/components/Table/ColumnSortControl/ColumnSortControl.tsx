@@ -1,5 +1,5 @@
 import { DownArrowIcon, UpArrowIcon } from 'components/icons';
-import * as React from 'react';
+import React from 'react';
 import type { HeaderGroup } from 'react-table';
 
 export interface ColumnSortControlProps {

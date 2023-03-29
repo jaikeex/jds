@@ -7,7 +7,10 @@ import { DarkModeIcon, LightModeIcon, StarIcon } from 'components/icons';
 
 export default {
   title: 'Design System/ToggleButtonGroup',
-  component: ToggleButtonGroup
+  component: ToggleButtonGroup,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof ToggleButtonGroup>;
 
 const Template: Story<ToggleButtonGroupProps> = (args) => {

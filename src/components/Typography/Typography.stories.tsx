@@ -5,7 +5,10 @@ import Typography from './Typography';
 
 export default {
   title: 'Design System/Typography',
-  component: Typography
+  component: Typography,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Typography>;
 
 const Template: Story<TypographyProps> = (args) => (

@@ -7,7 +7,10 @@ import type { User } from './_mock-data/types';
 
 export default {
   title: 'Design System/Table',
-  component: Table
+  component: Table,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Table>;
 
 const Template: Story<TableProps<User>> = (args) => (

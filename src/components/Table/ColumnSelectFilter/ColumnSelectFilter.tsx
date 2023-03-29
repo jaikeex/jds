@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import type { Selectable } from 'components/Select';
 import { Select } from 'components/Select';
-import * as React from 'react';
+import React from 'react';
 import { useCallback } from 'react';
 import type { ColumnFilterProps } from 'components/Table/types';
 

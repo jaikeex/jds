@@ -5,7 +5,10 @@ import Switch from './Switch';
 
 export default {
   title: 'Design System/Switch',
-  component: Switch
+  component: Switch,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Switch>;
 
 const Template: Story<SwitchProps> = () => (

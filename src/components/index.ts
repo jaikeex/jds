@@ -5,7 +5,6 @@ export * from './ButtonGroup';
 export * from './Card';
 export * from './CardHeader';
 export * from './Checkbox';
-export * from './Code';
 export * from './Dialog';
 export * from './Divider';
 export * from './IconButton';

@@ -10,7 +10,10 @@ const text =
 
 export default {
   title: 'Design System/Accordion',
-  component: Accordion
+  component: Accordion,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof Accordion>;
 
 const Template: Story<AccordionProps> = () => (

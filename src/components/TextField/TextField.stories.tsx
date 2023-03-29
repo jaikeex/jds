@@ -6,7 +6,10 @@ import { SettingsIcon } from 'components/icons';
 
 export default {
   title: 'Design System/TextField',
-  component: TextField
+  component: TextField,
+  parameters: {
+    viewMode: 'story'
+  }
 } as ComponentMeta<typeof TextField>;
 
 const Template: Story<TextFieldProps> = (args) => (
