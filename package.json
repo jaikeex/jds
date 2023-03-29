@@ -11,7 +11,8 @@
   "private": false,
   "license": "ISC",
   "publishConfig": {
-    "tag": "alpha"
+    "tag": "alpha",
+    "access": "public"
   },
   "author": "Jakub Hrubý",
   "main": "dist/cjs/index.js",
