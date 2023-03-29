@@ -1,5 +1,5 @@
 import type { Size, ThemeColorVariants } from 'core/types';
-import * as React from 'react';
+import React from 'react';
 import { useCallback, useEffect, useState } from 'react';
 import isValueSelected from './isValueSelected';
 import { useChildrenWithProps } from './useChildrenWithProps';

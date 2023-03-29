@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Typography } from 'components/Typography';
 import { useForwardedRef } from 'core/hooks';
 import type { Size, ThemeColorVariants, ThemeColorVariantsWithDefault } from 'core/types';

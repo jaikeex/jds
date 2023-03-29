@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useTableContext } from 'components/Table/TableContextProvider';
 import { TableRow } from 'components/Table/TableRow';
 

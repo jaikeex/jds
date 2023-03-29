@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useContext, useMemo } from 'react';
 import type { ThemeColorVariants } from 'core/types';
 

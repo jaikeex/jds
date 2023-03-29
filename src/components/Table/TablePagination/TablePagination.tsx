@@ -4,7 +4,7 @@ import { Pagination } from 'components/Pagination';
 import type { Selectable } from 'components/Select';
 import { Select } from 'components/Select';
 import { Typography } from 'components/Typography';
-import * as React from 'react';
+import React from 'react';
 import type { UsePaginationState } from 'react-table';
 import { useTableContext } from 'components/Table/TableContextProvider';
 import { useCallback } from 'react';

@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 import type { SvgIconProps } from 'components/icons';
 import { SvgIcon } from 'components/icons';
 import { shouldForwardPropDefault } from 'core/utils';
-import * as React from 'react';
+import React from 'react';
 
 const CenterIconRoot = styled('div', {
   label: 'radio-center',

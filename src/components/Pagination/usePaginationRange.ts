@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import range from 'lodash/range';
 
 export const usePaginationRange = (activePage: number, totalPages: number, siblingCount: number) => {

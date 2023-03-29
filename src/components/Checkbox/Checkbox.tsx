@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import type { Size, ThemeColorVariants, ThemeColorVariantsWithDefault } from 'core/types';
 import { CheckmarkThickIcon, RemoveIcon } from 'components/icons';
 import { makeId } from 'core/utils';

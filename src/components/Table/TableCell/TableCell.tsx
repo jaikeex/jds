@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { Typography } from 'components/Typography';
-import * as React from 'react';
+import React from 'react';
 import { useTableContext } from 'components/Table/TableContextProvider';
 export interface TableCellOwnProps<E extends React.ElementType = 'td'> extends React.PropsWithChildren {
   textAlign?: 'center' | 'start' | 'end';

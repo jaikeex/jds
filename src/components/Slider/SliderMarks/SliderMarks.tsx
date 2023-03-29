@@ -1,5 +1,5 @@
 import { Typography } from 'components/Typography';
-import * as React from 'react';
+import React from 'react';
 import type { SliderMarksDefinition } from './types';
 import {
   calculateAbsolutePostionPercentage,

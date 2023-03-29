@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import type { Size, ThemeColorVariantsWithDefault } from 'core/types';
 import { useCallback, useEffect, useState } from 'react';
 import { useChildrenWithProps } from './useChildrenWithProps';

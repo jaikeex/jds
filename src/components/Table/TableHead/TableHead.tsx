@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { useTableContext } from 'components/Table/TableContextProvider';
 import styled from '@emotion/styled';
 import { TableCell } from 'components/Table/TableCell';

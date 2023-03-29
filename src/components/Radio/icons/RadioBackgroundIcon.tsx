@@ -1,6 +1,6 @@
 import type { SvgIconProps } from 'components/icons';
 import { SvgIcon } from 'components/icons';
-import * as React from 'react';
+import React from 'react';
 
 const RadioBackgroundIcon: React.FC<SvgIconProps> = ({ ...props }): JSX.Element => (
   <SvgIcon viewBox="0 0 24 24" {...props} style={{ position: 'absolute' }}>
