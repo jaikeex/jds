@@ -1,6 +1,6 @@
 {
   "name": "@jaikeex/jds",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "A simple React component library",
   "homepage": "https://jds-docs.com",
   "bugs": "https://github.com/jaikeex/jds/issues",
@@ -16,6 +16,7 @@
   },
   "author": "Jakub Hrubý",
   "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "typings": "dist/index.d.ts",
   "files": [
     "dist"
