@@ -101,7 +101,7 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
 
     useEffect(() => {
       onChange(isExpanded);
-    }, [isExpanded]);
+    }, [isExpanded, disabled]);
 
     useEffect(() => {
       if (expanded !== undefined) {
@@ -128,9 +128,9 @@ const Accordion = React.forwardRef<HTMLDivElement, AccordionProps>(
             {isExpanded ? <ChevronUpIcon /> : <ChevronDownIcon />}
           </Styled.AccordionExpandIcon>
         </Styled.AccordionHeader>
-        {divider && isExpanded && <Divider removeMargin />}
+        {divider && isExpanded && <Divider removeMargin data-testid="accordion-divider" />}
         <Styled.AccordionContent ref={contentRef} height={contentHeight} expanded={isExpanded}>
-          {children}
+          {isExpanded && children}
         </Styled.AccordionContent>
       </Styled.AccordionRoot>
     );
