@@ -78,7 +78,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     );
 
     return (
-      <Styled.ButtonRoot className={className} ref={buttonRef} onClick={buttonClickHandler} {...styleProps} {...props}>
+      <Styled.ButtonRoot
+        className={className}
+        ref={buttonRef}
+        onClick={buttonClickHandler}
+        data-testid="jds-button"
+        {...styleProps}
+        {...props}
+      >
         {iconLeft && <Styled.ButtonIcon {...styleProps}>{iconLeft}</Styled.ButtonIcon>}
         <Typography variant="button" upperCase={disableUpperCase ? false : true}>
           {children}
