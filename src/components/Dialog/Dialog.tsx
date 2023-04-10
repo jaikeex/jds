@@ -102,8 +102,8 @@ const Dialog: React.FC<DialogProps> = ({
   return (
     <React.Fragment>
       <Styled.DialogBackdrop visible={open} level={backdropLevel} onClick={backdropClickHandler}>
-        <div style={{ zIndex: 2000 }} className={className} {...props}>
-          <Styled.DialogSheet {...sheetProps} style={getSheetStyles()}>
+        <div style={{ zIndex: 2000 }} className={className} {...props} data-testid="jds-dialog">
+          <Styled.DialogSheet {...sheetProps} style={getSheetStyles()} data-testid="jds-dialog-sheet">
             {children}
           </Styled.DialogSheet>
         </div>
