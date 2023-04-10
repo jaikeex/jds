@@ -2,14 +2,38 @@ import React from 'react';
 import type { ThemeColorVariantsWithDefault } from 'core/types';
 import * as Styled from './styles';
 
-export interface DividerProps extends React.ComponentProps<'div'> {
+export interface DividerProps {
+  /**
+   * Css class passed to the root component.
+   */
   className?: string;
+  /**
+   * The color of the divider. Can be any of the theme colors or `default`.
+   */
   color?: ThemeColorVariantsWithDefault;
+  /**
+   * If specified, the divider will be rendered inside this HMTL element. Default is `div`
+   */
   component?: keyof JSX.IntrinsicElements;
+  /**
+   * If true, the divider will maintain the correct dimensions when rendered inside a flex container.
+   */
   flexItem?: boolean;
+  /**
+   * The strength of the divider line.
+   */
   lineStrength?: string | number;
+  /**
+   * If true, will remove margin from both sides of the divider.
+   */
   removeMargin?: boolean;
+  /**
+   * Specifies the direction of the divider.
+   */
   orientation?: 'horizontal' | 'vertical';
+  /**
+   * CSS styles passed to the <hr> element.
+   */
   style?: React.CSSProperties;
 }
 

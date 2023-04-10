@@ -1,15 +1,32 @@
 import React from 'react';
 import type { ThemeColorVariants } from 'core/types';
 import * as Styled from './styles';
-import type { TypographyVariants } from 'components/Typography';
+import type { TypographyProps, TypographyVariants } from 'components/Typography';
 
-export interface LinkProps extends React.PropsWithChildren {
-  color?: ThemeColorVariants;
+export interface LinkProps extends React.PropsWithChildren, TypographyProps {
+  /**
+   * Css class passed to the root component.
+   */
   className?: string;
+  /**
+   * The color of the link. Can be any of the theme colors.
+   */
+  color?: ThemeColorVariants;
+  /**
+   * Target of the anchor element.
+   */
   href?: string;
-  level?: TypographyVariants;
+  /**
+   * If true, the link target will be opened in a new tab or window (depends on the browser setting).
+   */
   openInNew?: boolean;
+  /**
+   * CSS styles passed to the anchor element.
+   */
   style?: React.CSSProperties;
+  /**
+   * Defines when the underline is displayed.
+   */
   underline?: 'none' | 'hover' | 'allways';
 }
 
@@ -17,14 +34,14 @@ const Link: React.FC<LinkProps> = ({
   children = null,
   className = '',
   color = 'primary',
-  level = 'body1',
   openInNew = false,
   underline = 'hover',
-  ...anchorProps
+  style = {},
+  ...props
 }) => {
   const getChildren = () =>
     typeof children === 'string' ? (
-      <Styled.LinkText variant={level} underline={underline} color={color} className={className}>
+      <Styled.LinkText underline={underline} color={color} className={className} {...props}>
         {children}
       </Styled.LinkText>
     ) : (
@@ -32,7 +49,7 @@ const Link: React.FC<LinkProps> = ({
     );
 
   const getAnchorProps = () => {
-    const props = { ...anchorProps } as LinkProps & React.LinkHTMLAttributes<HTMLAnchorElement>;
+    const props = {} as LinkProps & React.LinkHTMLAttributes<HTMLAnchorElement>;
 
     if (openInNew) {
       props.rel = 'noreferrer';
@@ -49,6 +66,7 @@ const Link: React.FC<LinkProps> = ({
       target={openInNew ? '_blank' : '_self'}
       underline={underline}
       className={className}
+      style={style}
     >
       {getChildren()}
     </Styled.LinkRoot>
