@@ -97,6 +97,20 @@ body {
   font-family: 'OpenSans';
 }
 
+.jds-storybook-main {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.jds-storybook-root {
+  box-sizing: border-box;
+  margin: auto;
+  padding: 1rem;
+  max-height: 100%;
+}
+
 p[class*='sbdocs'] {
   font-size: 0.913rem !important;
 }

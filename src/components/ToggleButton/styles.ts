@@ -115,5 +115,9 @@ export const ToggleButtonRoot = styled('button', {
     '& svg': {
       fill: props.theme.palette.text.disabled
     }
+  }),
+
+  ...(props.removeBorder && {
+    border: 'none !important'
   })
 }));
