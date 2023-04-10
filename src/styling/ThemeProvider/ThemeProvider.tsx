@@ -30,7 +30,7 @@ export interface ThemeContextProps {
 
 export interface ThemeContextProviderProps extends React.PropsWithChildren {
   defaultTheme?: Theme;
-  additionalThemes?: ThemeNameToTheme;
+  additionalThemes?: Theme[];
 }
 
 export const ThemeContext = React.createContext<ThemeContextProps>({
@@ -43,15 +43,19 @@ export const useTheme = () => useContext(ThemeContext);
 const ThemeProvider: React.FC<ThemeContextProviderProps> = ({
   children = null,
   defaultTheme = defaultLightTheme,
-  additionalThemes = {}
+  additionalThemes = []
 }) => {
   const [theme, setTheme] = useState<Theme>(defaultTheme);
 
+  const additionalThemesObj: ThemeNameToTheme = {};
+
+  additionalThemes.forEach((theme) => (additionalThemesObj[theme.name] = theme));
+
   const availableThemes = {
-    'light': defaultLightTheme,
-    'dark': defaultDarkTheme,
+    [defaultLightTheme.name]: defaultLightTheme,
+    [defaultDarkTheme.name]: defaultDarkTheme,
     [defaultTheme.name]: defaultTheme,
-    ...additionalThemes
+    ...additionalThemesObj
   };
 
   const themeChangeHandler = React.useCallback((theme: string | Theme) => {

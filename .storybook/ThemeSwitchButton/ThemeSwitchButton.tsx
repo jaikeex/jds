@@ -4,7 +4,6 @@ import { LightModeIcon, DarkModeIcon } from '../../src/components/icons/basic-ui
 import { useTheme } from '../../src/styling/ThemeProvider';
 import { defaultDarkTheme } from '../../src/styling/default';
 import { Tooltip } from '../../src/components/Tooltip';
-import { Typography } from '../../src/components/Typography';
 
 export interface ThemeSwitchButtonProps {}
 

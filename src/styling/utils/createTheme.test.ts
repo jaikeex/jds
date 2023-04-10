@@ -6,6 +6,7 @@ import { createTheme } from './createTheme';
 it('should merge themes correctly', () => {
   const defaultTheme = defaultDarkTheme;
   const theme: ThemeOptions = {
+    name: 'new-theme',
     palette: {
       error: {
         main: 'red',

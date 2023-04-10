@@ -36,7 +36,7 @@ export const Sizes = SizesTemplate.bind({});
 Sizes.args = {};
 
 const LabelPositionsTemplate: Story<RadioGroupProps> = () => (
-  <RadioGroup style={{ gap: '3rem', display: 'flex', flexDirection: 'column' }}>
+  <RadioGroup orientation="horizontal" style={{ gap: '5rem' }}>
     <Radio labelPosition="left" label="Left" value="left" />
     <Radio labelPosition="bottom" label="Bottom" value="bottom" />
     <Radio labelPosition="right" label="Right" value="right" />
@@ -45,9 +45,7 @@ const LabelPositionsTemplate: Story<RadioGroupProps> = () => (
 );
 
 export const LabelPositions = LabelPositionsTemplate.bind({});
-LabelPositions.args = {
-  orientation: 'horizontal'
-};
+LabelPositions.args = {};
 
 const ColorsTemplate: Story<RadioGroupProps> = () => (
   <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '4rem' }}>
