@@ -79,12 +79,16 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
 
     const inputChangeHandler = useCallback(
       (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (disabled) {
+          return;
+        }
+
         if (checked === undefined) {
           setIsChecked(event.target.checked);
         }
         onChange(event);
       },
-      [setIsChecked, onChange]
+      [setIsChecked, onChange, disabled]
     );
 
     useEffect(() => {
@@ -103,6 +107,7 @@ const Switch = React.forwardRef<HTMLInputElement, SwitchProps>(
       >
         <Styled.SwitchInput
           {...props}
+          data-testid="jds-switch"
           disabled={disabled}
           color={color}
           id={id}
