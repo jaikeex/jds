@@ -14,8 +14,6 @@ export * from './ListItem';
 export * from './Loader';
 export * from './Menu';
 export * from './MenuItem';
-export * from './Navigation';
-export * from './NavigationItem';
 export * from './OutsideClickListener';
 export * from './Popper';
 export * from './Radio';
