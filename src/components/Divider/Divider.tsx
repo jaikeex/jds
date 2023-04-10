@@ -2,7 +2,7 @@ import React from 'react';
 import type { ThemeColorVariantsWithDefault } from 'core/types';
 import * as Styled from './styles';
 
-export interface DividerProps {
+export interface DividerProps extends React.ComponentProps<'div'> {
   className?: string;
   color?: ThemeColorVariantsWithDefault;
   component?: keyof JSX.IntrinsicElements;
@@ -21,7 +21,8 @@ const Divider: React.FC<DividerProps> = ({
   lineStrength = 1,
   removeMargin = false,
   style = {},
-  orientation = 'horizontal'
+  orientation = 'horizontal',
+  ...props
 }) => {
   const Component = component;
 
@@ -45,7 +46,7 @@ const Divider: React.FC<DividerProps> = ({
   };
 
   return (
-    <Styled.DividerRoot {...styleProps} style={style} as={Component} className={className}>
+    <Styled.DividerRoot {...props} {...styleProps} style={style} as={Component} className={className}>
       <hr style={styles()} />
     </Styled.DividerRoot>
   );
