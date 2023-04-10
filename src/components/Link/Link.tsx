@@ -44,6 +44,7 @@ const Link: React.FC<LinkProps> = ({
   return (
     <Styled.LinkRoot
       {...getAnchorProps()}
+      data-testid="jds-link"
       as={'a'}
       target={openInNew ? '_blank' : '_self'}
       underline={underline}
