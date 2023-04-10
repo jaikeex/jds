@@ -21,7 +21,7 @@ export interface SliderProps {
   displayValue?: boolean;
   style?: React.CSSProperties;
   className?: string;
-  onChange?: (value: number) => void;
+  onInputChange?: (value: number) => void;
 }
 
 const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
@@ -38,7 +38,7 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
       className = '',
       marks = undefined,
       id = '',
-      onChange = () => {},
+      onInputChange = () => {},
       width = '100%',
       style = {}
     },
@@ -48,13 +48,13 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
     const [inputValue, setInputValue] = useState<number>(defaultValue);
 
     const inputChangeHandler = useCallback(
-      (event: React.FormEvent<HTMLInputElement>) => {
+      (event: React.ChangeEvent<HTMLInputElement>) => {
         if (value === undefined) {
           setInputValue(+event.currentTarget.value);
         }
-        onChange(+event.currentTarget.value);
+        onInputChange(+event.currentTarget.value);
       },
-      [setInputValue, onChange]
+      [setInputValue, onInputChange]
     );
 
     const minPosition = calculateAbsolutePostionPercentage(inputValue, min, max);
@@ -81,9 +81,11 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
         <Styled.SliderInput
           /* @ts-ignore */
           size={size}
+          onChange={inputChangeHandler}
           color={color}
           data-thumbwidth={20}
           ref={inputRef}
+          data-testid="jds-slider"
           type="range"
           id={id}
           min={min}
@@ -91,7 +93,6 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
           step={step}
           value={inputValue}
           style={getStyles()}
-          onInput={inputChangeHandler}
         />
         {displayValue && (
           <Styled.SliderSelectorWrapper>
