@@ -41,6 +41,8 @@ const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
 
   const buttonClickHandler = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>, value: string) => {
+      event.preventDefault();
+
       let newValue: string | string[];
 
       if (Array.isArray(selectedValue) && selectedValue.includes(value)) {
@@ -52,7 +54,7 @@ const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
       setSelectedValue(newValue);
       onChange(event, newValue);
     },
-    [setSelectedValue, onChange]
+    [selectedValue, setSelectedValue, onChange]
   );
 
   const buttonExclusiveClickHandler = useCallback(
@@ -60,7 +62,7 @@ const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
       setSelectedValue((prevState) => (value === prevState ? '' : value));
       onChange(event, value);
     },
-    [setSelectedValue]
+    [setSelectedValue, onChange]
   );
 
   const isChildActive = (value?: string) => isValueSelected(selectedValue, value);
@@ -78,7 +80,12 @@ const ToggleButtonGroup: React.FC<ToggleButtonGroupProps> = ({
   }, [value]);
 
   return (
-    <Styled.ToggleButtonGroupRoot {...styleProps} className={className} style={style}>
+    <Styled.ToggleButtonGroupRoot
+      {...styleProps}
+      className={className}
+      style={style}
+      data-testid="jds-toggle-button-group"
+    >
       {childrenWithProps}
     </Styled.ToggleButtonGroupRoot>
   );
