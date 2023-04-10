@@ -19,7 +19,7 @@ export const RadioInput = styled('input', {
 export const RadioLabel = styled('label', {
   label: 'radio-label',
   shouldForwardProp: shouldForwardPropDefault
-})<RadioProps>((props) => ({
+})<Partial<RadioProps>>((props) => ({
   cursor: 'pointer',
   display: 'flex',
   alignItems: 'center',
@@ -41,7 +41,7 @@ export const RadioLabel = styled('label', {
 export const RadioButton = styled('div', {
   label: 'radio-btn',
   shouldForwardProp: shouldForwardPropDefault
-})<RadioProps>((props) => ({
+})<Partial<RadioProps>>((props) => ({
   position: 'relative',
 
   ...(props.size === 'small' && {

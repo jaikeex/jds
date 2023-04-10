@@ -8,21 +8,46 @@ import RadioBackgroundIcon from './icons/RadioBackgroundIcon';
 import RadioCenterIcon from './icons/RadioCenterIcon';
 import * as Styled from './styles';
 
-export interface RadioProps {
+export interface RadioProps extends Omit<React.ComponentProps<'input'>, 'ref' | 'size' | 'onChange'> {
+  /**
+   * If true, the component is in the checked state.
+   */
   checked?: boolean;
-  className?: string;
+  /**
+   * The color of the radio, can be any of the theme colors.
+   */
   color?: ThemeColorVariants;
+  /**
+   * If true, the radio is checked by default.
+   */
   defaultChecked?: boolean;
+  /**
+   * if true, the component is disabled.
+   */
   disabled?: boolean;
-  id?: string;
+  /**
+   * The label for the radio button.
+   */
   label?: string;
+  /**
+   * Sets the position of the input label.
+   */
   labelPosition?: 'left' | 'right' | 'bottom' | 'top';
-  name?: string;
+  /**
+   * Callback fired when the radio state changes.
+   * @param event React.ChangeEvent<HTMLInputElement> - the source event of the callback.
+   * @param value string - value of the radio
+   * @returns void
+   */
   onChange?: (event: React.ChangeEvent<HTMLInputElement>, value: string) => void;
-  required?: boolean;
+  /**
+   * The size of the component.
+   */
   size?: Size;
-  style?: React.CSSProperties;
-  value?: string;
+  /**
+   * The value of the radio button.
+   */
+  value: string;
 }
 
 const Radio: React.FC<RadioProps> = React.forwardRef<HTMLInputElement, RadioProps>(
@@ -38,10 +63,10 @@ const Radio: React.FC<RadioProps> = React.forwardRef<HTMLInputElement, RadioProp
       labelPosition = 'right',
       name = '',
       onChange = () => {},
-      required = false,
       size = 'medium',
       style = {},
-      value = ''
+      value = '',
+      ...props
     },
     ref
   ): JSX.Element => {
@@ -52,10 +77,13 @@ const Radio: React.FC<RadioProps> = React.forwardRef<HTMLInputElement, RadioProp
 
     const radioChangeHandler = useCallback(
       (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (disabled) {
+          return;
+        }
         setIsChecked(event.target.checked);
         onChange(event, value);
       },
-      [setIsChecked, onChange]
+      [setIsChecked, onChange, disabled]
     );
 
     useEffect(() => {
@@ -65,6 +93,7 @@ const Radio: React.FC<RadioProps> = React.forwardRef<HTMLInputElement, RadioProp
     return (
       <div className={className}>
         <Styled.RadioInput
+          {...props}
           ref={inputRef}
           checked={isChecked}
           value={value}
@@ -72,7 +101,6 @@ const Radio: React.FC<RadioProps> = React.forwardRef<HTMLInputElement, RadioProp
           type="radio"
           id={id}
           name={name}
-          required={required}
           disabled={disabled}
         />
         <Styled.RadioLabel style={style} htmlFor={id} labelPosition={labelPosition} disabled={disabled}>
