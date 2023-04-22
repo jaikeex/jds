@@ -7,13 +7,39 @@ import type { Size, ThemeColorVariants } from 'core/types';
 import * as Styled from './styles';
 
 export interface PaginationProps {
+  /**
+   * Appearance of the pagination. Can be `filled`, `outlined` or `subtle`.
+   */
   appearance?: ButtonAppearance;
+  /**
+   * The color of the pagination. Can be any of the theme colors.
+   */
   color?: ThemeColorVariants;
+  /**
+   * Default selected page.
+   */
   defaultPage?: number;
+  /**
+   * Callback fired whenever a new page is selected.
+   * @param page number of the selected page
+   * @returns void
+   */
   onChange?: (page: number) => void;
+  /**
+   * Controls the currently selected page.
+   */
   page?: number;
+  /**
+   * The size of the component.
+   */
   size?: Size;
+  /**
+   * The number of pages available.
+   */
   totalPages?: number;
+  /**
+   * Maximum amount of numbered buttons adjacent to the currently selected page.
+   */
   siblingCount?: number;
 }
 

@@ -5,11 +5,11 @@ import { ThemeProvider } from '../src/styling/ThemeProvider';
 import ThemeSwitchButton from './ThemeSwitchButton/ThemeSwitchButton';
 import { themes } from '@storybook/theming';
 
-addDecorator((story) => {
+addDecorator((story, context) => {
   return (
     <div className="jds-storybook">
       <ThemeProvider defaultTheme={defaultDarkTheme}>
-        {/* <ThemeSwitchButton /> */}
+        {context.viewMode === 'story' && <ThemeSwitchButton context={context} />}
         {story()}
       </ThemeProvider>
     </div>
@@ -39,13 +39,6 @@ export const parameters = {
         name: 'dark',
         value: '#1e293b'
       }
-    ]
-  },
-  theme: {
-    default: 'dark',
-    themes: [
-      { title: 'light', id: 'light', class: 'theme-light', color: '#ffffff' },
-      { title: 'dark', id: 'dark', class: 'theme-dark', color: '#202020' }
     ]
   }
 };

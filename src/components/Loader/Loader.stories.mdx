@@ -1,0 +1,47 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import Loader from './Loader';
+
+<Meta
+  title="Design System/Loader/Overview"
+  component={Loader}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true }
+    }
+  }}
+/>
+
+## Loader
+
+The loader component provides feedback to the user that an app process is ongoing, such as fetching data or submitting a form.
+
+<br />
+
+### Default loader
+
+<Canvas>
+  <Story id="design-system-loader--default" />
+</Canvas>
+
+### Sizes
+
+To use a loader of different size, you can specify the `size` prop.
+
+<Canvas>
+  <Story id="design-system-loader--sizes" />
+</Canvas>
+
+### Colors
+
+Loader can be of any of the available theme color variants.
+
+<Canvas>
+  <Story id="design-system-loader--colors" />
+</Canvas>
+
+<br />
+
+## Available props
+
+<ArgsTable of={Loader} />

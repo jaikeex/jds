@@ -5,7 +5,7 @@ export const useChildrenWithProps = (
   children: React.ReactNode,
   changeHandler: (event: React.ChangeEvent<HTMLInputElement>, value: string) => void,
   isChildActive: (value: string | undefined) => boolean,
-  props: RadioProps
+  props: Partial<RadioProps>
 ) => {
   const styledChildren = React.useMemo(() => {
     if (!Array.isArray(children)) {

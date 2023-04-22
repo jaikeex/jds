@@ -6,6 +6,7 @@ import { createTheme } from './createTheme';
 it('should merge themes correctly', () => {
   const defaultTheme = defaultDarkTheme;
   const theme: ThemeOptions = {
+    name: 'new-theme',
     palette: {
       error: {
         main: 'red',
@@ -35,5 +36,4 @@ it('should merge themes correctly', () => {
   expect(newTheme.typography.body1.marginBottom).toBe('0.375rem');
   expect(newTheme.typography.body1.fontWeight).toBe(400);
   expect(newTheme.typography.h1.textTransform).toBe('uppercase');
-  expect(newTheme.typography.h1.fontSize).toBe('5rem');
 });

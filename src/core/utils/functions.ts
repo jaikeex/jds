@@ -37,4 +37,4 @@ export const checkOverflow = (element: HTMLElement | null) => {
   return isOverflowing;
 };
 
-export const shouldForwardPropDefault = (propName: string) => isPropValid(propName);
+export const shouldForwardPropDefault = (propName: string) => isPropValid(propName) && propName !== 'enableBackground';

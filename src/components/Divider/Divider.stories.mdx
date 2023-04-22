@@ -1,0 +1,31 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import Divider from './Divider';
+
+<Meta
+  title="Design System/Divider/Overview"
+  component={Divider}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true }
+    }
+  }}
+/>
+
+## Divider
+
+A divider is a thin line which can be used to separate content.
+
+### Orientation
+
+The divider can be either vertical or horizontal. The direction is set via the `orientation` prop. An example of horizontal divider can be seen here:
+
+<Canvas>
+  <Story id="design-system-divider--horizontal" />
+</Canvas>
+
+<br />
+
+## Available props
+
+<ArgsTable of={Divider} />

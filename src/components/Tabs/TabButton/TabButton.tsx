@@ -1,8 +1,7 @@
 import React from 'react';
 import type { ButtonProps } from 'components/Button';
 import { useTabsContext } from 'components/Tabs/TabsContextProvider';
-import { useForwardedRef } from 'core/hooks';
-import { useScrollToView } from 'core/hooks';
+import { useForwardedRef, useScrollToView } from 'core/hooks';
 import { useCallback } from 'react';
 import * as Styled from './styles';
 

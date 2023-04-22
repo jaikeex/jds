@@ -18,6 +18,7 @@ const Template: Story<ToggleButtonGroupProps> = (args) => {
 
   const valueChangeHandler = (event: React.MouseEvent<HTMLButtonElement>, value: string | string[] | null) => {
     event.preventDefault();
+    console.log(value);
     value && setValue(value);
   };
 

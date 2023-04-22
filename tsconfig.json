@@ -19,8 +19,8 @@
     "declarationDir": "dist/esm/types",
     "outDir": "dist/esm",
     "sourceMap": true,
-    "rootDir": "src"
+    "rootDir": "src",
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
-  "include": ["src"],
   "exclude": ["node_modules"]
 }

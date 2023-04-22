@@ -1,4 +1,3 @@
-import { expect, it } from 'vitest';
 import { defaultDarkTheme } from 'styling/default';
 
 it('should correctly calculate px -> rem conversion', () => {

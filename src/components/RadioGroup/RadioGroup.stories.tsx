@@ -12,8 +12,8 @@ export default {
   }
 } as ComponentMeta<typeof RadioGroup>;
 
-const Template: Story<RadioGroupProps> = (args) => (
-  <RadioGroup {...args}>
+const Template: Story<RadioGroupProps> = () => (
+  <RadioGroup>
     <Radio label="First" value="first" />
     <Radio label="Second" value="second" />
     <Radio label="Third" value="third" />
@@ -24,8 +24,8 @@ const Template: Story<RadioGroupProps> = (args) => (
 export const Default = Template.bind({});
 Default.args = {};
 
-const SizesTemplate: Story<RadioGroupProps> = (args) => (
-  <RadioGroup {...args}>
+const SizesTemplate: Story<RadioGroupProps> = () => (
+  <RadioGroup>
     <Radio size="small" label="Small" value="sm" />
     <Radio size="medium" label="Medium" value="md" />
     <Radio size="large" label="Large" value="lg" />
@@ -35,8 +35,8 @@ const SizesTemplate: Story<RadioGroupProps> = (args) => (
 export const Sizes = SizesTemplate.bind({});
 Sizes.args = {};
 
-const LabelPositionsTemplate: Story<RadioGroupProps> = (args) => (
-  <RadioGroup style={{ gap: '3rem' }} {...args}>
+const LabelPositionsTemplate: Story<RadioGroupProps> = () => (
+  <RadioGroup orientation="horizontal" style={{ gap: '5rem' }}>
     <Radio labelPosition="left" label="Left" value="left" />
     <Radio labelPosition="bottom" label="Bottom" value="bottom" />
     <Radio labelPosition="right" label="Right" value="right" />
@@ -45,28 +45,26 @@ const LabelPositionsTemplate: Story<RadioGroupProps> = (args) => (
 );
 
 export const LabelPositions = LabelPositionsTemplate.bind({});
-LabelPositions.args = {
-  orientation: 'horizontal'
-};
+LabelPositions.args = {};
 
-const ColorsTemplate: Story<RadioGroupProps> = (args) => (
+const ColorsTemplate: Story<RadioGroupProps> = () => (
   <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center', gap: '4rem' }}>
-    <RadioGroup style={{ gap: '1rem' }} color="primary" {...args}>
+    <RadioGroup style={{ gap: '1rem' }} color="primary">
       <Radio label="First" value="first" />
       <Radio label="Second" value="second" />
       <Radio label="Third" value="third" />
     </RadioGroup>
-    <RadioGroup style={{ gap: '1rem' }} color="success" {...args}>
+    <RadioGroup style={{ gap: '1rem' }} color="success">
       <Radio label="First" value="first" />
       <Radio label="Second" value="second" />
       <Radio label="Third" value="third" />
     </RadioGroup>
-    <RadioGroup style={{ gap: '1rem' }} color="error" {...args}>
+    <RadioGroup style={{ gap: '1rem' }} color="error">
       <Radio label="First" value="first" />
       <Radio label="Second" value="second" />
       <Radio label="Third" value="third" />
     </RadioGroup>
-    <RadioGroup style={{ gap: '1rem' }} color="warning" {...args}>
+    <RadioGroup style={{ gap: '1rem' }} color="warning">
       <Radio label="First" value="first" />
       <Radio label="Second" value="second" />
       <Radio label="Third" value="third" />

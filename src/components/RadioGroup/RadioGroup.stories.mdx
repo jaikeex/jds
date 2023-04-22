@@ -1,0 +1,60 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import RadioGroup from './RadioGroup';
+
+<Meta
+  title="Design System/RadioGroup/Overview"
+  component={RadioGroup}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true }
+    }
+  }}
+/>
+
+## Radio Group
+
+The Radio Group allows the user to select one (and only one) option from a predefined set of options.
+
+<br />
+
+### Usage
+
+`RadioGroup` provides an api for wrapping `Radio` components together into a single input group. It also allows to set many props like `size`, `color` or `labelPosition` for its children directly, though they can still be overriden manually on each `Radio` component. (Full list of props can be found at the bottom.)
+
+### Basic Radio Group
+
+<Canvas>
+  <Story id="design-system-radiogroup--default" />
+</Canvas>
+
+### Event handling
+
+You can use the `onChange` prop to pass a function which will be fired on every selection change. It accepts two arguments: the `event` source of the callback, and the string `value`
+of newly selected radio button.
+
+### Sizes
+
+Use the `size` prop to create smaller or larger radio buttons. It can be set on the entire group or on each element individually.
+
+<Canvas>
+  <Story id="design-system-radiogroup--sizes" />
+</Canvas>
+
+### Colors
+
+<Canvas>
+  <Story id="design-system-radiogroup--colors" />
+</Canvas>
+
+### Label positions
+
+<Canvas>
+  <Story id="design-system-radiogroup--label-positions" />
+</Canvas>
+
+<br />
+
+## Available props
+
+<ArgsTable of={RadioGroup} />

@@ -1,0 +1,81 @@
+import { Canvas, Meta, Story, ArgsTable } from '@storybook/addon-docs';
+import Pagination from './Pagination';
+
+<Meta
+  title="Design System/Pagination/Overview"
+  component={Pagination}
+  parameters={{
+    viewMode: 'docs',
+    previewTabs: {
+      canvas: { hidden: true }
+    }
+  }}
+/>
+
+## Pagination
+
+The pagination component allows users to navigate through pages of content. It comes with configurable appearance, color, and size options.
+
+<br />
+
+### Default pagination
+
+The default pagination settings with filled buttons and primary color.
+
+<Canvas>
+  <Story id="design-system-pagination--default" />
+</Canvas>
+
+### Outlined pagination
+
+A less pronounced appearance with outlined buttons.
+
+<Canvas>
+  <Story id="design-system-pagination--outlined" />
+</Canvas>
+
+### Subtle pagination
+
+A low contrast pagination style using subtle buttons.
+
+<Canvas>
+  <Story id="design-system-pagination--subtle" />
+</Canvas>
+
+### Sizes
+
+The `size` prop can be used to create larger or smaller pagination components.
+
+<Canvas>
+  <Story id="design-system-pagination--sizes" />
+</Canvas>
+
+### Colors
+
+Pagination components support all available color theme variants.
+
+<Canvas>
+  <Story id="design-system-pagination--colors" />
+</Canvas>
+
+### Pagination range
+
+The `siblingCount` prop can be used to configure the number of siblings displayed around the active page.
+
+<Canvas>
+  <Story id="design-system-pagination--sibling-count" />
+</Canvas>
+
+### Page change handling
+
+Pagination components accept an onChange function prop to handle page changes.
+
+```jsx
+<Pagination onChange={(page) => console.log(`Page changed to: ${page}`)} />
+```
+
+<br />
+
+## Available props
+
+<ArgsTable of={Pagination} />

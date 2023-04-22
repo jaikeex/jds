@@ -26,7 +26,7 @@ const Backdrop: React.FC<BackdropProps> = ({
     <React.Fragment>
       {visible &&
         createPortal(
-          <Styled.BackdropRoot {...styleProps} className={className}>
+          <Styled.BackdropRoot {...styleProps} className={className} data-testid="jds-backdrop">
             <OutsideClickListener onOutsideClick={onClick}>{children}</OutsideClickListener>
           </Styled.BackdropRoot>,
           document.body
