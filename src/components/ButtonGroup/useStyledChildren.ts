@@ -22,8 +22,9 @@ export const useStyledChildren = (
               React.cloneElement(child, {
                 size: size,
                 appearance: appearance,
+                key: child.props.key ? child.props.key : index,
                 color: child.props.color ? child.props.color : color,
-                disabled: child.props.disabled ? child.props.disabled : disabled
+                disabled: child.props.disabled !== undefined ? child.props.disabled : disabled
               })
             );
           } else if (index === children.length - 1) {
@@ -31,8 +32,9 @@ export const useStyledChildren = (
               React.cloneElement(child, {
                 size: size,
                 appearance: appearance,
+                key: child.props.key ? child.props.key : index,
                 color: child.props.color ? child.props.color : color,
-                disabled: child.props.disabled ? child.props.disabled : disabled
+                disabled: child.props.disabled !== undefined ? child.props.disabled : disabled
               })
             );
           } else {
@@ -40,8 +42,9 @@ export const useStyledChildren = (
               React.cloneElement(child, {
                 size: size,
                 appearance: appearance,
+                key: child.props.key ? child.props.key : index,
                 color: child.props.color ? child.props.color : color,
-                disabled: child.props.disabled ? child.props.disabled : disabled
+                disabled: child.props.disabled !== undefined ? child.props.disabled : disabled
               })
             );
           }

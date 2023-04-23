@@ -17,7 +17,7 @@ const Template: Story<TooltipProps> = (args) => (
   <div className="story-container">
     <div className="story-item story-item--1">
       <Tooltip {...args} position="top-start">
-        <Button onClick={() => console.log('BUTTON CLICKED')}>top-start</Button>
+        <Button>top-start</Button>
       </Tooltip>
     </div>
     <div className="story-item story-item--2">

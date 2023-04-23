@@ -25,7 +25,7 @@ export interface RangeSliderProps {
   displayValue?: boolean;
   style?: React.CSSProperties;
   className?: string;
-  onChange?: (value: RangeSliderValue) => void;
+  onInputChange?: (value: RangeSliderValue) => void;
 }
 
 const RangeSlider: React.FC<RangeSliderProps> = ({
@@ -40,7 +40,7 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
   className = '',
   marks = undefined,
   id = '',
-  onChange = () => {},
+  onInputChange = () => {},
   width = '100%',
   style = {}
 }): JSX.Element => {
@@ -52,9 +52,9 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
       event.preventDefault();
       const newMinValue = Math.min(+event.currentTarget.value, inputMaxValue - step);
       setInputMinValue(newMinValue);
-      onChange({ min: newMinValue, max: inputMaxValue });
+      onInputChange({ min: newMinValue, max: inputMaxValue });
     },
-    [setInputMinValue, onChange, inputMaxValue, step, max]
+    [setInputMinValue, onInputChange, inputMaxValue, step, max]
   );
 
   const inputMaxChangeHandler = useCallback(
@@ -62,9 +62,9 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
       event.preventDefault();
       const newMaxValue = Math.max(+event.currentTarget.value, inputMinValue + step);
       setInputMaxValue(newMaxValue);
-      onChange({ min: inputMinValue, max: newMaxValue });
+      onInputChange({ min: inputMinValue, max: newMaxValue });
     },
-    [setInputMinValue, onChange, inputMinValue, step, min]
+    [setInputMinValue, onInputChange, inputMinValue, step, min]
   );
 
   const minPosition = calculateAbsolutePostionPercentage(inputMinValue, min, max);
@@ -111,13 +111,14 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
           size={size}
           color={color}
           position={'min'}
+          data-testid="jds-range-slider-min"
           data-thumbwidth={20}
           type="range"
           id={id}
           min={min}
           max={max}
           step={step}
-          onInput={inputMinChangeHandler}
+          onChange={inputMinChangeHandler}
         />
         <Styled.RangeSiderInput
           /* @ts-ignore */
@@ -126,13 +127,14 @@ const RangeSlider: React.FC<RangeSliderProps> = ({
           size={size}
           color={color}
           position={'max'}
+          data-testid="jds-range-slider-max"
           data-thumbwidth={20}
           type="range"
           id={id}
           min={min}
           max={max}
           step={step}
-          onInput={inputMaxChangeHandler}
+          onChange={inputMaxChangeHandler}
         />
         {displayValue && (
           <Styled.RangedSliderSelectorWrapper>

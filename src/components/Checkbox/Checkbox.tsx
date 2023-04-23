@@ -103,12 +103,17 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
 
     const inputChangeHandler = useCallback(
       (event: React.ChangeEvent<HTMLInputElement>) => {
+        if (disabled) {
+          return;
+        }
+
         if (checked === undefined) {
           setIsChecked(event.target.checked);
         }
+
         onChange(event);
       },
-      [setIsChecked, onChange]
+      [setIsChecked, onChange, disabled]
     );
 
     useEffect(() => {

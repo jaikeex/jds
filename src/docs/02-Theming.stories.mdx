@@ -11,3 +11,113 @@ import { Meta } from '@storybook/addon-docs';
 />
 
 # Theming
+
+There are two themes available from the start: `defaultLightTheme` and `defaultDarkTheme`.
+
+Start by wrapping your application in a `ThemeProvider`. By default, the light theme is enabled, but you can specify a different one by using the `defaultTheme` prop:
+
+```jsx
+import { ThemeProvider, defaultDarkTheme } from 'jds';
+
+<ThemeProvider defaultTheme={defaultDarkTheme}>{children}</ThemeProvider>;
+```
+
+If you create more new themes ([see below](#create-new-theme)) and want them to be available on the `ThemeProvider` for later activation, pass those themes into the `additionalThemes` prop like this:
+
+```jsx
+import { ThemeProvider, defaultDarkTheme } from 'jds';
+import { myDarkTheme, myLightTheme } from 'my-themes';
+
+<ThemeProvider defaultTheme={defaultDarkTheme} additionalThemes={[myDarkTheme, myLightTheme]}>
+  {children}
+</ThemeProvider>;
+```
+
+## Switching themes
+
+To set a theme from inside your application, first get the `setTheme()` function from the `useTheme` hook. This function accepts either a Theme object or a string, which must correspond to a `theme.name` property on one of available themes (either default ones or those added through the `additionalThemes` prop).
+
+```jsx
+import React from 'react';
+import { IconButton, LightModeIcon, DarkModeIcon, useTheme, defaultDarkTheme } from 'jds';
+
+const ThemeSwitchButton = () => {
+  const { setTheme, theme } = useTheme();
+
+  const themeChangeHandler = () => {
+    theme === defaultDarkTheme ? setTheme('light') : setTheme('dark');
+  };
+
+  return (
+    <IconButton onClick={themeChangeHandler}>
+      {theme === defaultDarkTheme ? <LightModeIcon /> : <DarkModeIcon />}
+    </IconButton>
+  );
+};
+s;
+```
+
+## Custom themes
+
+<br />
+
+### Modify existing theme
+
+You can modify an already existing theme by using the `updateThemeInPlace()` function:
+
+```jsx
+import { ThemeProvider, defaultDarkTheme, updateThemeInPlace } from 'jds';
+
+// Will modify values inside the defaultDarkTheme directly
+updateThemeInPlace(
+  {
+    palette: {
+      primary: {
+        main: #111111,
+        dark: #000000,
+        light: #222222
+      }
+    }
+  },
+  defaultDarkTheme
+)
+
+export const App = () => {
+  return <ThemeProvider defaultTheme={defaultDarkTheme}>{children}</ThemeProvider>;
+}
+```
+
+### Create new theme
+
+To create a new theme, call the `createTheme()` function with two arguments: the first is a partial `Theme` object with your style values, the second one is a complete theme (usually one of the default ones) to which your partial theme will be merged to create a fully defined theme object.
+
+```jsx
+import { ThemeProvider, defaultDarkTheme, createTheme } from 'jds';
+
+const theme: ThemeOptions = {
+  name: 'my-dark-theme',
+  palette: {
+    error: {
+      main: 'red',
+      dark: 'darkred'
+    }
+  },
+  typography: {
+    body1: {
+      fontSize: '2rem',
+      textDecoration: 'underline',
+      color: 'yellow'
+    },
+    h1: {
+      textTransform: 'uppercase'
+    }
+  }
+};
+
+// Will merge the theme object into defaultDarkTheme and return a new theme.
+const myDarkTheme = createTheme(theme, defaultDarkTheme);
+
+export const App = () => {
+  return <ThemeProvider defaultTheme={myDarkTheme}>{children}</ThemeProvider>;
+};
+```

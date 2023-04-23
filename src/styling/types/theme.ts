@@ -4,7 +4,7 @@ import type { Shape, ShapeOptions } from './shape';
 import type { Spacing, SpacingOptions } from './spacing';
 
 export interface ThemeOptions {
-  name?: string;
+  name: string;
   shape?: ShapeOptions;
   palette?: PaletteOptions;
   spacing?: SpacingOptions;

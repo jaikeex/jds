@@ -98,6 +98,7 @@ const TextField = React.forwardRef<HTMLInputElement, TextFieldProps>(
         <Styled.TextFieldInput
           {...props}
           {...styleProps}
+          data-testid="jds-textfield"
           type="text"
           autoFocus={autoFocus}
           disabled={disabled}

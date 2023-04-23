@@ -4,7 +4,6 @@ import { LightModeIcon, DarkModeIcon } from '../../src/components/icons/basic-ui
 import { useTheme } from '../../src/styling/ThemeProvider';
 import { defaultDarkTheme } from '../../src/styling/default';
 import { Tooltip } from '../../src/components/Tooltip';
-import { Typography } from '../../src/components/Typography';
 
 export interface ThemeSwitchButtonProps {}
 
@@ -12,7 +11,18 @@ const ThemeSwitchButton: React.FC<ThemeSwitchButtonProps> = () => {
   const { setTheme, theme } = useTheme();
 
   const themeChangeHandler = () => {
-    theme === defaultDarkTheme ? setTheme('light') : setTheme('dark');
+    const newTheme = theme === defaultDarkTheme ? 'light' : 'dark';
+    setTheme(newTheme);
+
+    const body = document.querySelector('body');
+    const root = document.querySelector('#root');
+
+    if (body && root) {
+      body.classList.add('jds-storybook-main');
+      root.classList.add('jds-storybook-root');
+      body.classList.remove('sb-show-main');
+      body.style.background = newTheme === 'dark' ? '#1e293b' : '#ffffff';
+    }
   };
 
   return (

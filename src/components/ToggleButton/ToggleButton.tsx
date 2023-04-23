@@ -6,7 +6,9 @@ import { useCallback, useEffect, useState } from 'react';
 import * as Styled from './styles';
 import type { ButtonAppearance } from 'components/Button';
 
-export interface ToggleButtonProps extends React.PropsWithChildren {
+export interface ToggleButtonProps
+  extends React.PropsWithChildren,
+    Omit<React.ComponentProps<'button'>, 'onChange' | 'onClick' | 'ref'> {
   appearance?: ButtonAppearance;
   className?: string;
   color?: ThemeColorVariantsWithDefault;
@@ -40,7 +42,8 @@ const ToggleButton: React.FC<ToggleButtonProps> = React.forwardRef<HTMLButtonEle
       selected = undefined,
       size = 'medium',
       style = {},
-      value = ''
+      value = '',
+      ...props
     },
     ref
   ): JSX.Element => {
@@ -90,6 +93,8 @@ const ToggleButton: React.FC<ToggleButtonProps> = React.forwardRef<HTMLButtonEle
     return (
       <Styled.ToggleButtonRoot
         {...styleProps}
+        {...props}
+        data-testid="jds-togglebutton"
         appearance={appearance}
         ref={buttonRef}
         className={className}
